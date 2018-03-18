@@ -5,6 +5,7 @@ Web user interface for docks
 
 ```bash
 npm install -g @angular/cli
+npm install
 ```
 
 # Usage
