@@ -1,5 +1,12 @@
 <!-- This is where our omni present navbar will go -->
 <!--This is where our routed content will render to.-->
-<button _ngcontent-c22="" color="primary" mat-raised-button="" class="mat-raised-button mat-primary"><span class="mat-button-wrapper">Primary</span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div></button>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>Docks-UI</span>
 
+        <span class="align-right"></span>
+        <button mat-button="" routerLink="/about">About</button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<button mat-raised-button="" color="Primary" (click)="reveal()">Submit</button>
 <router-outlet></router-outlet>
