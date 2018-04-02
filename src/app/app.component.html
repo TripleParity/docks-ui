@@ -3,10 +3,12 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
         <span>Docks-UI</span>
-
+        <span class="align-right"></span>
+        <span>API Status: {{ status }}</span>
         <span class="align-right"></span>
         <button mat-button="" routerLink="/about">About</button>
     </mat-toolbar-row>
 </mat-toolbar>
-<button mat-raised-button="" color="Primary" (click)="reveal()">Submit</button>
+<button mat-raised-button="" color="Primary" (click)="listContainers()">Submit</button>
+<button mat-raised-button="" color="Primary" (click)="isHostUp()">Check Connection</button>
 <router-outlet></router-outlet>

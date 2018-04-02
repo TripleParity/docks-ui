@@ -5,13 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
-import { AboutComponent } from './about/about.component';
 import { FormsModule } from '@angular/forms';
+
+import { DockerService } from './_services/docker.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent
   ],
   imports: [
       BrowserModule,
@@ -21,7 +21,7 @@ import { FormsModule } from '@angular/forms';
       MaterialModule,
       FormsModule,
   ],
-  providers: [],
+  providers: [DockerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

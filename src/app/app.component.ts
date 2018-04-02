@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-
+import {DockerService} from './_services/docker.service';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,17 +11,36 @@ import {HttpClient} from '@angular/common/http';
 
 export class AppComponent implements OnInit {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private dockerService: DockerService) { }
+    private status: string;
 
     ngOnInit() {
+        this.isHostUp();
+        Observable.interval(5000).subscribe(() => {
+            this.isHostUp();
+        });
     }
 
-    public reveal() {
-        this.http.get('http://localhost:8080/docker/containers/json', { responseType: 'json' }).subscribe( json => {
-            for ( let i = 0; i < Object.keys(json).length; i++) {
-                alert('Container ' + <number>(i + 1) + ': ' + json[i]['Id'].slice(0, 10));
+    public listContainers() {
+        const buffer = this.dockerService.getContainers();
+        buffer.subscribe((data) => {
+            alert(data[0]['Id']);
+        }, (err) => {
+            alert('Service is down.');
+        });
+
+    }
+
+    public isHostUp() {
+        const observable = this.dockerService.pingHost();
+        observable.subscribe(() => this.status = 'Running', err => {
+            if (err.status === 404) {
+                this.status = 'Running';
+            } else {
+                this.status = 'Down';
             }
         });
     }
 }
+
 
