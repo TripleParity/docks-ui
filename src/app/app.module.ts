@@ -19,7 +19,6 @@ import { DockerService } from './_services/docker.service';
       HttpClientModule,
       BrowserAnimationsModule,
       MaterialModule,
-      FormsModule,
   ],
   providers: [DockerService],
   bootstrap: [AppComponent]

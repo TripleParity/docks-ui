@@ -13,20 +13,25 @@ export class AppComponent implements OnInit {
 
     constructor(private http: HttpClient, private dockerService: DockerService) { }
     private status: string;
-
+    private containers: any[] = [];
     ngOnInit() {
         this.isHostUp();
-        Observable.interval(5000).subscribe(() => {
+        this.listContainers();
+        Observable.interval(10000).subscribe(() => {
             this.isHostUp();
+            this.listContainers();
         });
     }
 
     public listContainers() {
+        this.containers = [];
         const buffer = this.dockerService.getContainers();
         buffer.subscribe((data) => {
-            alert(data[0]['Id']);
+            for (let i = 0; i < data['length']; i++) {
+                this.containers.push(data[i]);
+            }
         }, (err) => {
-            alert('Service is down.');
+            console.log('Service is down.');
         });
 
     }
