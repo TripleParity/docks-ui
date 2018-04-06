@@ -11,7 +11,7 @@ import 'rxjs/add/observable/interval';
 
 export class AppComponent implements OnInit {
 
-    constructor(private http: HttpClient, private dockerService: DockerService) { }
+    constructor(private dockerService: DockerService) { }
     private status: string;
     private containers: any[] = [];
     ngOnInit() {
