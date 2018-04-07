@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { Container } from '../_models/container.model';
+
+import 'rxjs/add/operator/map';
+
 
 
 @Injectable()
@@ -11,8 +15,8 @@ export class DockerService {
   }
     private host: string;
 
-    public getContainers(): Observable<string> {
-        return this.http.get<string>(this.host + '/docker/containers/json', { responseType: 'json' });
+    public getContainers(): Observable<Container[]> {
+        return this.http.get<Container[]>(this.host + '/docker/containers/json', { responseType: 'json' });
     }
 
     public pingHost(): Observable<string> {
