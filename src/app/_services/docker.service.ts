@@ -12,11 +12,11 @@ export class DockerService {
     private host: string;
 
     public getContainers(): Observable<string> {
-        return this.http.get<string>(this.host + '/docker/containers/json', { responseType: 'json' });
+        return this.http.get<string>('$(this.host)/docker/containers/json', { responseType: 'json' });
     }
 
     public pingHost(): Observable<string> {
-        return this.http.get<string>(this.host + '/docker', { responseType: 'json' });
+        return this.http.get<string>('$(this.host)/docker', { responseType: 'json' });
     }
 
     public setHost(host: string) {

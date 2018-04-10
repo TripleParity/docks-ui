@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
 
     public listContainers() {
         this.containers = [];
-        const buffer = this.dockerService.getContainers();
+        const buffer: Observable<string> = this.dockerService.getContainers();
         buffer.subscribe((data) => {
             for (let i = 0; i < data['length']; i++) {
                 this.containers.push(data[i]);
