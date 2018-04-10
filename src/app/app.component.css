@@ -1,5 +1,11 @@
-.example-card {
-    max-width: 400px;
+mat-card-subtitle{
+    font-weight: bold;
+}
+
+mat-card{
+    float: left;
+    margin: 4px;
+    align-content: center;
 }
 
 .example-header-image {

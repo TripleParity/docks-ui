@@ -16,21 +16,18 @@
     <mat-card class="example-card">
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            <mat-card-title>Team Name</mat-card-title>
+            <mat-card-subtitle>ID: {{ container['Id'].slice(0,6) }}</mat-card-subtitle>
         </mat-card-header>
 
-        <img mat-card-image src="https://forums.docker.com/uploads/default/original/2X/8/8425fda4f1fa565a5dbf5c5f60cc43a972fd30b9.png">
+        <img mat-card-image style="height: 200px;width: 200px;align-self: center" src="https://forums.docker.com/uploads/default/original/2X/8/8425fda4f1fa565a5dbf5c5f60cc43a972fd30b9.png">
         <mat-card-content>
-            <h1>ID: {{ container['Id'].slice(0,6) }}</h1>
             <p>
                 State: {{ container['State'] }}<br>
                 Status: {{ container['Status'] }}<br>
             </p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button color="Primary">Stop</button>
-            <button mat-raised-button color="Primary">Share To Imgur/Reddit</button>
         </mat-card-actions>
     </mat-card>
 </div>
