@@ -15,8 +15,8 @@ export class DockerService {
   }
     private host: string;
 
-    public getContainers(): Observable<Container[]> {
-        return this.http.get<Container[]>(this.host + '/docker/containers/json', { responseType: 'json' });
+    public getContainers(): Observable<string> {
+        return this.http.get<string>(this.host + '/docker/containers/json', { responseType: 'json' });
     }
 
     public pingHost(): Observable<string> {
