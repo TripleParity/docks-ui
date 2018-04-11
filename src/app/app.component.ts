@@ -12,8 +12,8 @@ import 'rxjs/add/observable/interval';
 export class AppComponent implements OnInit {
 
     constructor(private dockerService: DockerService) { }
-    private status: string;
-    private containers: any[] = [];
+    public status: string;
+    public containers: any[] = [];
     ngOnInit() {
         this.isHostUp();
         this.listContainers();
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
             this.listContainers();
         });
     }
-    
+
     public stopContainer(id: string){
     this.dockerService.stopContainer(id).subscribe( () => {}, (err) => {alert(err)});
     }
