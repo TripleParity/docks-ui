@@ -22,7 +22,10 @@ export class AppComponent implements OnInit {
             this.listContainers();
         });
     }
-
+    
+    public stopContainer(id: string){
+    this.dockerService.stopContainer(id).subscribe( () => {}, (err) => {alert(err)});
+    }
     public listContainers() {
         this.containers = [];
         const buffer: Observable<string> = this.dockerService.getContainers();
