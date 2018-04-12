@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {DockerService} from './_services/docker.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
-import {forEach} from '@angular/router/src/utils/collection';
+import {DockerService} from '../_services/docker.service';
 @Component({
   selector: 'app-root',
   templateUrl: './container.component.html',
@@ -40,12 +39,13 @@ export class ContainerComponent implements OnInit {
                 // Add img here
                 // red: https://ibb.co/iWeRgc
                 // blue: "https://forums.docker.com/uploads/default/original/2X/8/8425fda4f1fa565a5dbf5c5f60cc43a972fd30b9.png"
-                if (data[i]['Status'].toString().includes("Exited")) {
+                if (data[i]['Status'].toString().includes('Exited')) {
                     data[i]['imgSrc'] = 'https://image.ibb.co/icegEx/8425fda4f1fa565a5dbf5c5f60cc43a972fd30b9red.png';
-                    data[i]['Toggle'] = "Start";
-                }else{
-                    data[i]['imgSrc'] = 'https://forums.docker.com/uploads/default/original/2X/8/8425fda4f1fa565a5dbf5c5f60cc43a972fd30b9.png';
-                    data[i]['Toggle'] = "Stop";
+                    data[i]['Toggle'] = 'Start';
+                } else {
+                    data[i]['imgSrc'] =
+                        'https://forums.docker.com/uploads/default/original/2X/8/8425fda4f1fa565a5dbf5c5f60cc43a972fd30b9.png';
+                    data[i]['Toggle'] = 'Stop';
                 }
                 this.containers.push(data[i]);
             }
