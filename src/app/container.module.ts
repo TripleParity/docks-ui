@@ -4,14 +4,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { AppComponent } from './app.component';
+import { ContainerComponent } from './container.component';
 import { FormsModule } from '@angular/forms';
 
 import { DockerService } from './_services/docker.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    ContainerComponent,
   ],
   imports: [
       BrowserModule,
@@ -21,6 +21,6 @@ import { DockerService } from './_services/docker.service';
       MaterialModule,
   ],
   providers: [DockerService],
-  bootstrap: [AppComponent]
+  bootstrap: [ContainerComponent]
 })
 export class AppModule { }

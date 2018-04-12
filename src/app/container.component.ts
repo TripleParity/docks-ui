@@ -6,11 +6,11 @@ import 'rxjs/add/observable/interval';
 import {forEach} from '@angular/router/src/utils/collection';
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './container.component.html',
+  styleUrls: ['./container.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class ContainerComponent implements OnInit {
 
     constructor(private dockerService: DockerService) { }
     public status: string;
