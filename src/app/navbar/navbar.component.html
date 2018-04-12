@@ -1,0 +1,18 @@
+<mat-toolbar  color="primary">
+  <mat-toolbar-row>
+    <span>Navigate the Dashboard!</span>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <span><mat-menu #appMenu="matMenu">
+      <button mat-menu-item routerLink="/containers" routerLinkActive="active">Containers</button>
+      <button mat-menu-item routerLink="/stacks" routerLinkActive="active">Stacks</button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>Click here to navigate</mat-icon>
+    </button></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

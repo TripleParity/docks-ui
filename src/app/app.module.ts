@@ -7,15 +7,21 @@ import { MaterialModule } from './material.module';
 import { ContainerComponent } from './container/container.component';
 import { FormsModule } from '@angular/forms';
 
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+// import { Component } form '@angular/core';
+
 import { DockerService } from './_services/docker.service';
 import { StackComponent } from './stack/stack.component';
 import { AppComponent } from './app/app.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     ContainerComponent,
     StackComponent,
     AppComponent,
+    NavbarComponent,
   ],
   imports: [
       BrowserModule,
@@ -23,6 +29,10 @@ import { AppComponent } from './app/app.component';
       HttpClientModule,
       BrowserAnimationsModule,
       MaterialModule,
+      BrowserModule,
+      BrowserAnimationsModule,
+      MatMenuModule,
+      MatIconModule
   ],
   providers: [DockerService],
   bootstrap: [AppComponent]
