@@ -5,7 +5,30 @@ mat-card-subtitle{
 mat-card{
     float: left;
     margin: 4px;
-    align-content: center;
+    width: 220px;
+    height: 400px;
+    position: relative;
+}
+
+mat-card-header{
+  height: 20%;
+}
+
+img.mat-card-image{
+  position: relative;
+  height: 200px;
+  width: 200px;
+  align-self: center;
+  margin: auto;
+}
+
+mat-card-content{
+  position: relative;
+  height: 15%;
+}
+
+mat-card-actions{
+  position: relative;
 }
 
 .example-header-image {

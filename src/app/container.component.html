@@ -13,23 +13,23 @@
 <button mat-raised-button="" color="Primary" (click)="isHostUp()">Check Connection</button>
 
 <div *ngFor="let container of containers">
-    <mat-card class="example-card">
-        <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{ container['Image'] }}</mat-card-title>
-            <mat-card-subtitle>ID: {{ container['Id'].slice(0,6) }}</mat-card-subtitle>
-        </mat-card-header>
+  <mat-card class="example-card">
+      <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title class="card-title">{{ container['Image'] }}</mat-card-title>
+          <mat-card-subtitle>ID: {{ container['Id'].slice(0,6) }}</mat-card-subtitle>
+      </mat-card-header>
 
-        <img mat-card-image style="height: 200px;width: 200px;align-self: center" src="{{ container['imgSrc'] }}">
-        <mat-card-content>
-            <p>
-                State: {{ container['State'] }}<br>
-                Status: {{ container['Status'] }}<br>
-            </p>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button color="Primary" (click)="toggleContainer(container['Id'])">{{ container['Toggle'] }}</button>
-        </mat-card-actions>
-    </mat-card>
+      <img mat-card-image class='mat-card-image' src="{{ container['imgSrc'] }}">
+      <mat-card-content>
+          <p>
+              State: {{ container['State'] }}<br>
+              Status: {{ container['Status'] }}<br>
+          </p>
+      </mat-card-content>
+      <mat-card-actions>
+          <button mat-raised-button color="Primary" (click)="toggleContainer(container['Id'])">{{ container['Toggle'] }}</button>
+      </mat-card-actions>
+  </mat-card>
 </div>
 <router-outlet></router-outlet>
