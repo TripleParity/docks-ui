@@ -6,11 +6,19 @@ import {Router} from "@angular/router";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private router : Router) {
   }
 
+  username : string
+  password : string
+
+  login() : void {
+    if(this.username == 'admin' && this.password == 'admin'){
+     this.router.navigate(["index"]);
+    }else {
+      alert("Invalid credentials");
+    }
+  }
 }

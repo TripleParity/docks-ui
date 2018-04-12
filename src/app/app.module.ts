@@ -16,6 +16,10 @@ import { StackComponent } from './stack/stack.component';
 import { AppComponent } from './app/app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
+// import { CustomMaterialModule } from "./material.module";
+import { UserComponent } from './user/user.component';
+import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     ContainerComponent,
@@ -29,10 +33,9 @@ import { NavbarComponent } from './navbar/navbar.component';
       HttpClientModule,
       BrowserAnimationsModule,
       MaterialModule,
-      BrowserModule,
-      BrowserAnimationsModule,
       MatMenuModule,
-      MatIconModule
+      MatIconModule,
+      FormsModule,
   ],
   providers: [DockerService],
   bootstrap: [AppComponent]
