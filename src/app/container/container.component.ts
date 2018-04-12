@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import {DockerService} from '../_services/docker.service';
 @Component({
-  selector: 'app-root',
+  selector: 'app-container',
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.css']
 })

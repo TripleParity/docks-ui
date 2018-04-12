@@ -1,3 +1,20 @@
-<p>
-  stack works!
-</p>
+<div>
+<mat-form-field>
+    <textarea matInput placeholder="Compose File" matTextareaAutosize matAutosizeMinRows="15" matAutosizeMaxRows="50">
+     version: '3.2'
+
+services:
+  angular:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
+    ports:
+      - "4200:4200"
+  </textarea>
+</mat-form-field>
+</div>
+<button mat-raised-button color="Primary" (click)="createStack()">Create Stack</button>

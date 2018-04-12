@@ -42,4 +42,7 @@ export class DockerService {
         this.host = host;
     }
 
+    public createStack(composeFile: string): Observable<string> {
+        return this.http.post<string>(this.host + '/api/stacks/create', {composeFile});
+    }
 }
