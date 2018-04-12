@@ -45,4 +45,14 @@ export class DockerService {
     public createStack(composeFile: string): Observable<string> {
         return this.http.post<string>(this.host + '/api/stacks/create', {composeFile});
     }
+
+    public attachContainer(id: string): Observable<string> {
+        const stream = 'true';
+        const params = new HttpParams().set('stream', 'true');
+        return this.http.post<string>(this.host + '/docker/containers/' + id + '/attach', { params: {stream}});
+    }
+
+    public removeContainer(id: string): Observable<string> {
+        return this.http.delete<string>(this.host + '/docker/containers/' + id, {});
+    }
 }

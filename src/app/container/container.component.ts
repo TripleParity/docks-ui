@@ -84,4 +84,14 @@ export class ContainerComponent implements OnInit {
             }
         });
     }
+
+    public attachContainer(id: string) {
+        const obvs: Observable<string> = this.dockerService.attachContainer(id);
+        obvs.subscribe((data) => console.log('data: ' + data), (err) => console.log(err));
+    }
+
+    public deleteContainer(id: string) {
+        const obvs: Observable<string> = this.dockerService.removeContainer(id);
+        obvs.subscribe((data) => console.log('Deleting: ' + data), (err) => console.log(err));
+    }
 }

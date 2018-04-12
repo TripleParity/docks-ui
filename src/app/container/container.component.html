@@ -29,6 +29,8 @@
       </mat-card-content>
       <mat-card-actions>
           <button mat-raised-button color="Primary" (click)="toggleContainer(container['Id'])">{{ container['Toggle'] }}</button>
+          <button mat-raised-button color="Primary" (click)="deleteContainer(container['Id'])">Remove</button>
+
       </mat-card-actions>
   </mat-card>
 </div>
