@@ -77,13 +77,11 @@ export class AppComponent implements OnInit {
     public isHostUp() {
         const observable = this.dockerService.pingHost();
         observable.subscribe(() => this.status = 'Running', err => {
-            if (err.status === 404) {
-                this.status = 'Running';
-            } else {
+            if (err.status === 0) {
                 this.status = 'Down';
+            } else {
+                this.status = 'Running';
             }
         });
     }
 }
-
-

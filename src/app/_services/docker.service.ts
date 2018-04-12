@@ -27,7 +27,7 @@ export class DockerService {
     }
 
     public pingHost(): Observable<string> {
-        return this.http.get<string>(this.host + '/docker/', { responseType: 'json' });
+        return this.http.get<string>(this.host + '/docker/_ping', {});
     }
 
     public stopContainer(id: string): Observable<string> {
@@ -39,7 +39,7 @@ export class DockerService {
     }
 
     public setHost(host: string) {
-        this.host = host;    
+        this.host = host;
     }
 
 }
