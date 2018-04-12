@@ -35,10 +35,11 @@ export class DockerService {
     }
 
     public startContainer(id: string): Observable<string> {
-        return this.http.post<string>(this.host + '/docker/containers/' + id + '/start', { responseType: 'json' });
+        return this.http.post<string>(this.host + '/docker/containers/' + id + '/start', {});
     }
 
     public setHost(host: string) {
-        this.host = host;
+        this.host = host;    
     }
+
 }
