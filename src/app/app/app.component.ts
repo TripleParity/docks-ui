@@ -10,15 +10,4 @@ export class AppComponent {
 
   constructor(private router : Router) {
   }
-
-  username : string
-  password : string
-
-  login() : void {
-    if(this.username == 'admin' && this.password == 'admin'){
-     this.router.navigate(["index"]);
-    }else {
-      alert("Invalid credentials");
-    }
-  }
 }

@@ -15,9 +15,6 @@ import { DockerService } from './_services/docker.service';
 import { StackComponent } from './stack/stack.component';
 import { AppComponent } from './app/app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-
-// import { CustomMaterialModule } from "./material.module";
-import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({
@@ -26,6 +23,7 @@ import { LoginComponent } from './login/login.component';
     StackComponent,
     AppComponent,
     NavbarComponent,
+    LoginComponent,
   ],
   imports: [
       BrowserModule,
