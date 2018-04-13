@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { ContainerComponent } from './container/container.component';
 import { FormsModule } from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -36,6 +37,7 @@ import { NetworksComponent } from './networks/networks.component';
       MatMenuModule,
       MatIconModule,
       FormsModule,
+      MatSnackBarModule,
   ],
   providers: [DockerService],
   bootstrap: [AppComponent]
