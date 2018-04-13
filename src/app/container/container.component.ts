@@ -106,7 +106,7 @@ export class ContainerComponent implements OnInit {
     }
 
     public openSnackBar(s : string) {
-        this.snackBar.open(s, 'Undo', {
+        this.snackBar.open(s, '', {
             duration: 3000,
         });
     }

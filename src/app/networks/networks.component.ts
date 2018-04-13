@@ -15,7 +15,8 @@ export class NetworksComponent implements OnInit {
   ngOnInit() {
       this.getNetworks();
       Observable.interval(10000).subscribe(() => {
-          this.getNetworks();
+        this.networks = [];
+        this.getNetworks();
       });
   }
 
