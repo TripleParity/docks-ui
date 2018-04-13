@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import {DockerService} from '../_services/docker.service';
+import {MatSnackBar} from '@angular/material';
+
 @Component({
   selector: 'app-container',
   templateUrl: './container.component.html',
@@ -11,7 +13,7 @@ import {DockerService} from '../_services/docker.service';
 
 export class ContainerComponent implements OnInit {
 
-    constructor(private dockerService: DockerService) { }
+    constructor(private dockerService: DockerService, public snackBar: MatSnackBar) { }
     public status: string;
     public containers: any[] = [];
     ngOnInit() {
@@ -24,11 +26,13 @@ export class ContainerComponent implements OnInit {
     }
 
     public stopContainer(id: string) {
-        this.dockerService.stopContainer(id).subscribe( () => {}, (err) => console.log(err));
+      this.openSnackBar("Stopping container...");
+      this.dockerService.stopContainer(id).subscribe( () => this.openSnackBar('Stopping container ' + id.slice(0,6) + ' done'), (err) => this.openSnackBar(err.statusText));
     }
 
     public startContainer(id: string) {
-        this.dockerService.startContainer(id).subscribe( () => {}, (err) => console.log(err));
+      this.openSnackBar("Starting container...");
+        this.dockerService.startContainer(id).subscribe( () => this.openSnackBar('Starting container ' + id.slice(0,6) + ' done'), (err) => this.openSnackBar(err.statusText));
     }
 
     public listContainers() {
@@ -92,6 +96,13 @@ export class ContainerComponent implements OnInit {
 
     public deleteContainer(id: string) {
         const obvs: Observable<string> = this.dockerService.removeContainer(id);
-        obvs.subscribe((data) => console.log('Deleting: ' + data), (err) => console.log(err));
+        obvs.subscribe((data) => this.openSnackBar('Deleting container ' + id.slice(0,6) + ' done'), (err) => this.openSnackBar(err.statusText));
+
+    }
+
+    public openSnackBar(s : string) {
+        this.snackBar.open(s, 'Undo', {
+            duration: 3000,
+        });
     }
 }
