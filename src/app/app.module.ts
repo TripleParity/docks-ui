@@ -16,6 +16,7 @@ import { StackComponent } from './stack/stack.component';
 import { AppComponent } from './app/app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
+import { NetworksComponent } from './networks/networks.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     NavbarComponent,
     LoginComponent,
+    NetworksComponent,
   ],
   imports: [
       BrowserModule,
