@@ -15,6 +15,7 @@ import { DockerService } from './_services/docker.service';
 import { StackComponent } from './stack/stack.component';
 import { AppComponent } from './app/app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     StackComponent,
     AppComponent,
     NavbarComponent,
+    LoginComponent,
   ],
   imports: [
       BrowserModule,
@@ -29,10 +31,9 @@ import { NavbarComponent } from './navbar/navbar.component';
       HttpClientModule,
       BrowserAnimationsModule,
       MaterialModule,
-      BrowserModule,
-      BrowserAnimationsModule,
       MatMenuModule,
-      MatIconModule
+      MatIconModule,
+      FormsModule,
   ],
   providers: [DockerService],
   bootstrap: [AppComponent]
