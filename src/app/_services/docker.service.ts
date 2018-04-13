@@ -55,4 +55,8 @@ export class DockerService {
     public removeContainer(id: string): Observable<string> {
         return this.http.delete<string>(this.host + '/docker/containers/' + id, {});
     }
+
+    public getNetworks(): Observable<string> {
+        return this.http.get<string>(this.host + '/docker/networks', {responseType: 'json' });
+    }
 }
