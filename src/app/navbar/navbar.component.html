@@ -7,10 +7,11 @@
     <span><mat-menu #appMenu="matMenu">
       <button mat-menu-item routerLink="/containers" routerLinkActive="active">Containers</button>
       <button mat-menu-item routerLink="/stacks" routerLinkActive="active">Stacks</button>
-    </mat-menu>
+      <button mat-menu-item routerLink="/networks" routerLinkActive="active">Networks</button>
+</mat-menu>
 
-    <button mat-icon-button [matMenuTriggerFor]="appMenu">
-      <mat-icon>Click here to navigate</mat-icon>
+    <button mat-raised-button [matMenuTriggerFor]="appMenu">
+        <h1 style="color: black">Click here to navigate</h1>
     </button></span>
   </mat-toolbar-row>
 </mat-toolbar>

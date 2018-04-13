@@ -15,15 +15,27 @@ export class DockerService {
   }
     private host: string;
 
-    public getContainers(displayAll: boolean): Observable<string> {
-        let all: string;
-        if (displayAll === true) {
-            all = 'true';
-        } else {
-            all = 'false';
-        }
-        const params = new HttpParams().set('all', all);
+    public getContainers(displayAll: boolean, filter: boolean): Observable<string> {
+      let all: string;
+      if (displayAll === true) {
+          all = 'true';
+      } else {
+          all = 'false';
+      }
+      const params = new HttpParams().set('all', all);
+
+
+      if (filter === false) {
         return this.http.get<string>(this.host + '/docker/containers/json', { params: {all}, responseType: 'json' });
+      } else {
+        // let filters: string;
+        // filters = JSON.parse('{"status":["exited"]}');
+        // const params = new HttpParams().set('all', all).set('filters', filters);
+        // return this.http.get<string>(this.host + '/docker/containers/json', { params: params, responseType: 'json' });
+        let limit: string = '2';
+        const params = new HttpParams().set('limit', limit);
+        return this.http.get<string>(this.host + '/docker/containers/json', { params: params, responseType: 'json' });
+      }
     }
 
     public pingHost(): Observable<string> {
@@ -54,5 +66,9 @@ export class DockerService {
 
     public removeContainer(id: string): Observable<string> {
         return this.http.delete<string>(this.host + '/docker/containers/' + id, {});
+    }
+
+    public getNetworks(): Observable<string> {
+        return this.http.get<string>(this.host + '/docker/networks', {responseType: 'json' });
     }
 }

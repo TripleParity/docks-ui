@@ -12,16 +12,19 @@ import {MatSnackBar} from '@angular/material';
 })
 
 export class ContainerComponent implements OnInit {
+    public viewContainers: boolean = false;
+    public useFilter: boolean = false;
 
     constructor(private dockerService: DockerService, public snackBar: MatSnackBar) { }
+
     public status: string;
     public containers: any[] = [];
     ngOnInit() {
         this.isHostUp();
-        this.listContainers();
+        this.listContainers(this.viewContainers, this.useFilter);
         Observable.interval(10000).subscribe(() => {
             this.isHostUp();
-            this.listContainers();
+            this.listContainers(this.viewContainers, this.useFilter);
         });
     }
 
@@ -35,9 +38,11 @@ export class ContainerComponent implements OnInit {
         this.dockerService.startContainer(id).subscribe( () => this.openSnackBar('Starting container ' + id.slice(0,6) + ' done'), (err) => this.openSnackBar(err.statusText));
     }
 
-    public listContainers() {
+    public listContainers(viewAll: boolean, filtering: boolean) {
         this.containers = [];
-        const buffer: Observable<string> = this.dockerService.getContainers(true);
+        this.viewContainers = viewAll;
+        this.useFilter = filtering;
+        const buffer: Observable<string> = this.dockerService.getContainers(this.viewContainers, this.useFilter);
         buffer.subscribe((data) => {
             for (let i = 0; i < data['length']; i++) {
                 // Add img here
