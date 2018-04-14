@@ -1,0 +1,39 @@
+<!-- This is where our omni present navbar will go -->
+<!--This is where our routed content will render to.-->
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>Containers</span>
+        <span class="align-right"></span>
+        <span>API Status: {{ status }}</span>
+        <span class="align-right"></span>
+        <button mat-button="" routerLink="/index" routerLinkActive="active">Back to navigation page</button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<button mat-raised-button="" color="Primary" (click)="listContainers(true, false)">View All Containers</button>
+<button mat-raised-button="" color="Primary" (click)="listContainers(false, false)">View Running Containers</button>
+<button mat-raised-button="" color="Primary" (click)="listContainers(true, true)">View 2 Most Recently Created Containers</button>
+
+<div *ngFor="let container of containers">
+  <mat-card class="example-card">
+      <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title class="card-title">{{ container['Image'] }}</mat-card-title>
+          <mat-card-subtitle>ID: {{ container['Id'].slice(0,6) }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <img mat-card-image class='mat-card-image' src="{{ container['imgSrc'] }}">
+      <mat-card-content>
+          <p>
+              State: {{ container['State'] }}<br>
+              Status: {{ container['Status'] }}<br>
+          </p>
+      </mat-card-content>
+      <mat-card-actions>
+          <button mat-raised-button color="Primary" (click)="toggleContainer(container['Id'])">{{ container['Toggle'] }}</button>
+          <button mat-raised-button color="Primary" (click)="deleteContainer(container['Id'])">Remove</button>
+
+      </mat-card-actions>
+  </mat-card>
+</div>
+<router-outlet></router-outlet>
