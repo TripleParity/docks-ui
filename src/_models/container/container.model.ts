@@ -15,6 +15,9 @@ export class Container {
     // TODO: (CDuPlooy) Add NetworkSettings Model.
     // TODO: (CDuPlooy) Add Mounts Model.
 
+    // TODO: (CDuPlooy) Inspect relationship between container ID and endPointID in services for example.
+
+
     constructor() {}
     static parse(data: JSON): Container {
         let container: Container = new Container();
