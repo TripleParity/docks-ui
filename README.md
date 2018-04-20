@@ -2,12 +2,14 @@
 Web user interface for docks
 
 ## Deployment
+The Docks API is expected to run at `127.0.0.1:8080`
+
+
 Docks UI can be deployed as follows:
 ```
 $ docker run -d -p 4200:80 --name docks-ui tripleparity/docks-ui
 ```
 The web interface can then be accessed at http://127.0.0.1:4200/
-
 
 To stop the running container:
 ```
