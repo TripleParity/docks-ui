@@ -3,8 +3,8 @@ import {Deserialize, deserializeAs, Serialize, serializeAs} from 'cerialize';
 export class Service {
     @deserializeAs('Id') @serializeAs('Id') public id: string;
     // TODO: (CDuPlooy) Create version model.
-    @deserializeAs('CreatedAt') @serializeAs('CreatedAt') public id: string;
-    @deserializeAs('UpdatedAt') @serializeAs('UpdatedAt') public id: string;
+    @deserializeAs('CreatedAt') @serializeAs('CreatedAt') public createdAt: string;
+    @deserializeAs('UpdatedAt') @serializeAs('UpdatedAt') public updatedAt: string;
     // TODO: (CDuPlooy) Create spec model.
     // TODO: (CDuPlooy) Create resources model.
     // TODO: (CDuPlooy) Create restart policy model.

@@ -5,7 +5,7 @@ export class Volume {
     @deserializeAs('Driver') @serializeAs('Driver') public driver: string;
     @deserializeAs('Mountpoint') @serializeAs('Mountpoint') public mountPoint: string;
     // TODO: (CDuPlooy) Labels example?
-    @deserializeAs('Scope') @serializeAs('Scope') public mountPoint: string;
+    @deserializeAs('Scope') @serializeAs('Scope') public scope: string;
 
     constructor() {}
     static parse(data: JSON): Volume {

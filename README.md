@@ -1,27 +1,31 @@
-# PlayMusic
+[![Build Status](https://travis-ci.org/TripleParity/docks-ui.svg?branch=bootstrap_migration)](https://travis-ci.org/TripleParity/docks-ui)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+# Docks UI
+Web user interface for docks
 
-## Development server
+## Deployment
+Docks UI can be deployed as follows:
+```
+$ docker run -d -p 4200:80 --name docks-ui tripleparity/docks-ui
+```
+The web interface can then be accessed at http://127.0.0.1:4200/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+To stop the running container:
+```
+$ docker stop docks-ui
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Development
+### Requirements
+- Make sure [docks](https://github.com/TripleParity/docks) is working.
+- Install [docker](https://docs.docker.com/install/)
+- Install [compose](https://docs.docker.com/compose/install/)
 
-## Build
+### Development Example
+If everything is running you can simply run the command
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```bash
+$ docker-compose up
+```
+Please note that it might take a while to download angular and friends. The dev server is hosting at localhost:4200
