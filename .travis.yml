@@ -8,7 +8,7 @@ before_script:
 
 script:
    - ng lint
-     # At some point figure out setting up karma and travis.
+   - ng test
 
 notifications:
     on_failure: change
