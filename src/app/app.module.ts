@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule.forRoot(),
     AppRoutingModule,
   ],
-  providers: [HttpClientModule, ContainerService],
+  providers: [ContainerService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
