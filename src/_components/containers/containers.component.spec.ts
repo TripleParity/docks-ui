@@ -20,6 +20,7 @@ describe('ContainersComponent', () => {
   });
 
   it('should create', () => {
+    console.log('Testing!');
     expect(component).toBeTruthy();
   });
 });

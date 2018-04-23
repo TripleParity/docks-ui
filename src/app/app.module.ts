@@ -8,7 +8,9 @@ import { NavbarComponent } from '../_shared';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ContainersComponent } from '../_components/containers/containers.component';
-import {ContainerService} from '../_services';
+import { ContainerService } from '../_services/';
+import {ContainerModule} from '../_components/containers/containers.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -17,11 +19,13 @@ import {ContainerService} from '../_services';
     ContainersComponent,
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
+    AppRoutingModule,
+    ContainerModule,
   ],
-  providers: [ContainerService],
+  providers: [ContainerModule, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {
