@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ContainerService} from '../../_services';
-import { HttpClientModule, HttpClient, HttpHandler } from '@angular/common/http';
+import {ContainerService} from '../../_services/index';
 
 @Component({
   selector: 'app-containers',
   templateUrl: './containers.component.html',
   styleUrls: ['./containers.component.css'],
-  providers: [ContainerService, HttpClientModule, HttpClient ]
 })
 
 export class ContainersComponent implements OnInit {

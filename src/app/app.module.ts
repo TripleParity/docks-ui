@@ -4,13 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from '../_shared';
+import { NavbarComponent } from './_shared';
 
-import { HttpClientModule } from '@angular/common/http';
-import { ContainersComponent } from '../_components/containers/containers.component';
-import { ContainerService } from '../_services/';
-import {ContainerModule} from '../_components/containers/containers.module';
+import { ContainersComponent } from './_shared/containers/containers.component';
+import { ContainerService } from './_services/';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,13 +18,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ContainersComponent,
   ],
   imports: [
-    NgbModule.forRoot(),
     BrowserModule,
     HttpClientModule,
+    NgbModule.forRoot(),
     AppRoutingModule,
-    ContainerModule,
   ],
-  providers: [ContainerModule, HttpClientModule],
+  providers: [HttpClientModule, ContainerService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

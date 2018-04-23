@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClientModule, HttpClient, HttpParams} from '@angular/common/http';
 import {Container} from '../../_models';
 import {map} from 'rxjs/operators';
 
