@@ -14,6 +14,7 @@ import {ContainersComponent} from './_shared/containers/containers.component';
 import {ContainerService, TaskService} from './_services/';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
+import {TokenStorage} from './_classes';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import {HttpClientModule} from '@angular/common/http';
         ContainerService,
         TaskService,
         AuthService,
+        TokenStorage,
     ],
     bootstrap: [AppComponent]
 })

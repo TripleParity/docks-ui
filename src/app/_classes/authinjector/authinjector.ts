@@ -2,7 +2,7 @@ import {Injectable, Injector} from '@angular/core';
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
-import {TokenStorage} from '..';
+import {TokenStorage} from '../tokenstorage/tokenstorage';
 
 const TOKEN_HEADER_KEY = 'Authorization';
 
