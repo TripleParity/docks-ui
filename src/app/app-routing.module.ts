@@ -1,18 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, Router } from '@angular/router';
-import { ContainerComponent } from './container/container.component';
-import { StackComponent } from './stack/stack.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { LoginComponent } from './login/login.component';
-import {NetworksComponent} from './networks/networks.component';
+import { Routes, RouterModule } from '@angular/router';
+import {ContainersComponent} from './_shared/containers/containers.component';
+
 
 const routes: Routes = [
-    {path: 'containers', component: ContainerComponent},
-    {path: 'stacks', component: StackComponent},
-    {path: 'index', component: NavbarComponent},
-    {path: 'networks', component: NetworksComponent},
-    {path: '', component: LoginComponent},
-];
+    {path: 'containers', component: ContainersComponent}
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
