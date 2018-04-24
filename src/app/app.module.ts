@@ -1,30 +1,42 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {HttpInterceptor, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInjector} from './_classes/authinjector/authinjector';
+import {AuthService} from './_services/auth/auth.service';
 
-import { AppRoutingModule } from './app-routing.module';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './_shared';
+import {AppRoutingModule} from './app-routing.module';
 
-import { ContainersComponent } from './_shared/containers/containers.component';
-import { ContainerService } from './_services/';
+import {AppComponent} from './app.component';
+import {NavbarComponent} from './_shared';
+
+import {ContainersComponent} from './_shared/containers/containers.component';
+import {ContainerService} from './_services/';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    ContainersComponent,
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    NgbModule.forRoot(),
-    AppRoutingModule,
-  ],
-  providers: [ContainerService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        ContainersComponent,
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        NgbModule.forRoot(),
+        AppRoutingModule,
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInjector,
+            multi: true
+        },
+        ContainerService,
+        AuthService,
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 
