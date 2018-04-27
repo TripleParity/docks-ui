@@ -34,15 +34,16 @@
     background-color: #eee;
 }
 
-/*#help {*/
-    /*color: white;*/
-    /*background-color: #0c1722;*/
-/*}*/
+.card-header {
+    background-color: #212529;
+    color: #FFF;
+}
 
-/*#test {*/
-    /*color: white;*/
-/*}*/
+body {
+    background-color: #32383E;
+}
 
-/*#helpmePls {*/
-    /*background-color: #1a3047;*/
-/*}*/
+.list-group-item {
+    background-color: #32383E;
+    color: #d3d3d0;
+}
