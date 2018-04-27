@@ -15,12 +15,14 @@ import {ConfigurationService, ContainerService, TaskService} from './_services/'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {TokenStorage} from './_classes';
+import { TaskListViewComponent } from './_shared/task-list-view/task-list-view.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavbarComponent,
         ContainersComponent,
+        TaskListViewComponent,
     ],
     imports: [
         BrowserModule,
