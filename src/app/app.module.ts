@@ -11,7 +11,7 @@ import {AppComponent} from './app.component';
 import {NavbarComponent} from './_shared';
 
 import {ContainersComponent} from './_shared/containers/containers.component';
-import {ContainerService, TaskService} from './_services/';
+import {ConfigurationService, ContainerService, TaskService} from './_services/';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {TokenStorage} from './_classes';
@@ -34,6 +34,7 @@ import {TokenStorage} from './_classes';
             useClass: AuthInjector,
             multi: true
         },
+        ConfigurationService,
         ContainerService,
         TaskService,
         AuthService,

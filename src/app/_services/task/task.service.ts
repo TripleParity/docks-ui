@@ -4,6 +4,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {Task} from '../../_models';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
+import {ConfigurationService} from '../configuration/configuration.service';
 
 export enum TaskError {
     ERR_OK = 200,
@@ -15,11 +16,11 @@ export enum TaskError {
 @Injectable()
 export class TaskService {
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private config: ConfigurationService) {
     }
 
     public getTasks(): Observable<Task[]> {
-        return this.http.get('http://localhost:8080/docker/tasks', {responseType: 'json'})
+        return this.http.get(this.config.getAPIHostname() + '/docker/tasks', {responseType: 'json'})
             .pipe(
                 map(data => {
                     console.log(data);
@@ -35,7 +36,7 @@ export class TaskService {
     }
 
     public getLog(id: string): Observable<string> {
-        return this.http.get('http://localhost:8080/docker/tasks/' + id + '/logs', {responseType: 'text'})
+        return this.http.get(this.config.getAPIHostname() + '/docker/tasks/' + id + '/logs', {responseType: 'text'})
             .pipe(
               map(x => {
                  return x;
@@ -46,7 +47,7 @@ export class TaskService {
     }
 
     public inspect(id: string): Observable<JSON> {
-        return this.http.get<JSON>('http://localhost:8080/docker/tasks/' + id, {responseType: 'json'})
+        return this.http.get<JSON>(this.config.getAPIHostname() + '/docker/tasks/' + id, {responseType: 'json'})
             .pipe(map(x => {
                 return x;
             }), catchError((err: HttpErrorResponse) => {
