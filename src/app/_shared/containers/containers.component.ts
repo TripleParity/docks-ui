@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ContainerService} from '../../_services/index';
+import {ContainerService, TaskService} from '../../_services/index';
 
 @Component({
   selector: 'app-containers',
@@ -9,7 +9,7 @@ import {ContainerService} from '../../_services/index';
 
 export class ContainersComponent implements OnInit {
 
-  constructor(private cs: ContainerService) { }
+  constructor(private cs: ContainerService, private ts: TaskService) { }
 
   ngOnInit() {
     this.cs.getContainer().subscribe(containers => {
