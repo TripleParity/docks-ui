@@ -9,10 +9,7 @@ import {ConfigurationService} from '../configuration/configuration.service';
 
 @Injectable()
 export class ContainerService {
-  private host: string;
-  constructor(private http: HttpClient, private config: ConfigurationService) {
-        this.host = 'http://localhost:8080';
-  }
+  constructor(private http: HttpClient, private config: ConfigurationService) {}
 
   public getContainer(): Observable<Container[]> {
       return this.http.get<JSON>(this.config.getAPIHostname() + '/docker/containers/json', {responseType: 'json'}).pipe(
