@@ -5,6 +5,7 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {HttpClientModule, HttpHandler} from '@angular/common/http';
 import {ContainerService} from './_services';
 import {NavbarComponent} from './_shared';
+import {UserBarComponent} from './_shared';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -12,7 +13,7 @@ describe('AppComponent', () => {
         RouterTestingModule, HttpClientModule,
       ],
       declarations: [
-        AppComponent, NavbarComponent
+        AppComponent, NavbarComponent, UserBarComponent,
       ],
     }).compileComponents();
   }));

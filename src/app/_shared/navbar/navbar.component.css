@@ -36,17 +36,22 @@
 
 /* level 1*/
 .list-group .collapse .list-group-item  {
-    padding-left: 20px;
+    padding-left: 40px;
 }
 
 /* level 2*/
 .list-group .collapse > .collapse .list-group-item {
-    padding-left: 30px;
+    padding-left: 60px;
 }
 
 /* level 3*/
 .list-group .collapse > .collapse > .collapse .list-group-item {
-    padding-left: 40px;
+    padding-left: 80px;
+}
+
+.list-group{
+    height: 100vh;
+    background-color: #333;
 }
 
 @media (max-width:48em) {
@@ -65,6 +70,13 @@
     .list-group > .list-group-item[aria-expanded="false"]::after {
         display:none;
     }
+
+    .list-group{
+        height: fit-content;
+        background-color: #333;
+    }
+
+
 }
 
 /* change transition animation to width when entire sidebar is toggled */
@@ -89,11 +101,25 @@
 
 }
 
-.list-group{
-    height: 100vh;
-    background-color: #333;
+.main-list-group-item{
+    padding-left: 20px;
+}
+
+.main-list-group-item:hover{
+    background-color: #222;
+    color: #93C54B;
 }
 
 .sub-list-group-item{
     background-color: #222;
+}
+
+.sub-list-group-item:hover{
+    color: #93C54B;
+}
+
+.brand{
+    margin: auto;
+    margin-bottom: 10%;
+    margin-top: 10%;
 }
