@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ConfigurationService {
     // TODO(CDuPlooy): For now localhost:8080 seems sane enough. Maybe change it to docks-api at some point.
-    private api_hostname = 'https://localhost:8080';
+    private api_hostname = 'http://localhost:8080';
     constructor() { }
 
     public getAPIHostname(): string {
