@@ -1,0 +1,95 @@
+.list-group-item {
+    border-radius: 0;
+    background-color: #333;
+    color: #ccc;
+    border-left: 0;
+    border-right: 0;
+    border-color: #2c2c2c;
+    white-space: nowrap;
+}
+
+/* highlight active menu */
+.list-group-item:not(.collapsed) {
+    background-color: #222;
+}
+
+/* closed state */
+.list-group .list-group-item[aria-expanded="false"]::after {
+    content: " \f0d7";
+    font-family: FontAwesome;
+    display: inline;
+    text-align: right;
+    padding-left: 5px;
+}
+
+/* open state */
+.list-group .list-group-item[aria-expanded="true"] {
+    background-color: #222;
+}
+.list-group .list-group-item[aria-expanded="true"]::after {
+    content: " \f0da";
+    font-family: FontAwesome;
+    display: inline;
+    text-align: right;
+    padding-left: 5px;
+}
+
+/* level 1*/
+.list-group .collapse .list-group-item  {
+    padding-left: 20px;
+}
+
+/* level 2*/
+.list-group .collapse > .collapse .list-group-item {
+    padding-left: 30px;
+}
+
+/* level 3*/
+.list-group .collapse > .collapse > .collapse .list-group-item {
+    padding-left: 40px;
+}
+
+@media (max-width:48em) {
+    /* overlay sub levels on small screens */
+    .list-group .collapse.in, .list-group .collapsing {
+        position: absolute;
+        z-index: 1;
+        width: 190px;
+    }
+    .list-group > .list-group-item {
+        text-align: center;
+        padding: .75rem .5rem;
+    }
+    /* hide caret icons of top level when collapsed */
+    .list-group > .list-group-item[aria-expanded="true"]::after,
+    .list-group > .list-group-item[aria-expanded="false"]::after {
+        display:none;
+    }
+}
+
+/* change transition animation to width when entire sidebar is toggled */
+.collapse {
+    -webkit-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+    -webkit-transition-duration: .2s;
+    -o-transition-duration: .2s;
+    transition-duration: .2s;
+}
+
+.collapsing {
+    opacity: 0.8;
+    width: 0;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    -webkit-transition-property: width;
+    -o-transition-property: width;
+    transition-property: width;
+
+}
+
+.list-group{
+    height: 100vh;
+    background-color: #333;
+}

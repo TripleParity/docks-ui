@@ -15,6 +15,7 @@ import {ConfigurationService, ContainerService, TaskService} from './_services/'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {TokenStorage} from './_classes';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import {TokenStorage} from './_classes';
         HttpClientModule,
         NgbModule.forRoot(),
         AppRoutingModule,
+        AngularFontAwesomeModule,
     ],
     providers: [
         {
