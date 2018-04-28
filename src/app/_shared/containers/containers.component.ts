@@ -12,11 +12,7 @@ export class ContainersComponent implements OnInit {
   constructor(private cs: ContainerService, private ts: TaskService) { }
 
   ngOnInit() {
-    this.cs.getContainer().subscribe(containers => {
-      for (let i = 0; i < containers.length; i++) {
-          console.log(containers[i]);
-      }
-    });
+    this.ts.test();
   }
 
 }
