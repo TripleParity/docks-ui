@@ -9,13 +9,13 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './_shared';
+import { TaskListViewComponent } from './_shared';
 
 import {ContainersComponent} from './_shared/containers/containers.component';
-import {ConfigurationService, ContainerService, TaskService} from './_services/';
+import {ConfigurationService, ContainerService, TaskService, MockService} from './_services/';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {TokenStorage} from './_classes';
-import { TaskListViewComponent } from './_shared/task-list-view/task-list-view.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +39,7 @@ import { TaskListViewComponent } from './_shared/task-list-view/task-list-view.c
         ConfigurationService,
         ContainerService,
         TaskService,
+        MockService,
         AuthService,
         TokenStorage,
     ],

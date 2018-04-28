@@ -1,25 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 
-import { TaskListViewComponent } from './task-list-view.component';
+import {TaskService, ConfigurationService, MockService} from '../../_services/';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
-describe('TaskListViewComponent', () => {
-  let component: TaskListViewComponent;
-  let fixture: ComponentFixture<TaskListViewComponent>;
+describe('ContainerService', () => {
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [ConfigurationService, TaskService, MockService],
+            imports: [HttpClientModule],
+        });
+    });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TaskListViewComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TaskListViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should be created', inject([TaskService], (service: TaskService) => {
+        expect(service).toBeTruthy();
+    }));
 });

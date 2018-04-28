@@ -5,6 +5,7 @@ export class Task {
     @deserializeAs('CreatedAt') @serializeAs('CreatedAt') public createdAt: string;
     @deserializeAs('UpdatedAt') @serializeAs('UpdatedAt') public updatedAt: string;
     // TODO(CDuPlooy): Add spec model.
+    // TODO(CDuPlooy / FJMentz): Add image member. (Task->Spec->ContainerSpec->Image)
     @deserializeAs('ServiceID') @serializeAs('ServiceID') public serviceID: string;
     @deserializeAs('Slot') @serializeAs('Slot') public slot: number;
     @deserializeAs('NodeID') @serializeAs('NodeID') public nodeID: string;

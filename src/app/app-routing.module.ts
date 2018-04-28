@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ContainersComponent} from './_shared/containers/containers.component';
-import {TaskListViewComponent} from './_shared/task-list-view/task-list-view.component';
+import {TaskListViewComponent} from './_shared';
 
 
 const routes: Routes = [
