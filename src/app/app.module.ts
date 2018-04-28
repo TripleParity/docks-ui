@@ -16,6 +16,12 @@ import {ConfigurationService, ContainerService, TaskService, MockService} from '
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {TokenStorage} from './_classes';
+import { GraphViewComponent } from './_shared/graph-view/graph-view.component';
+
+import * as FusionCharts from 'fusioncharts';
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
+import { FusionChartsModule } from 'angular4-fusioncharts';
 
 @NgModule({
     declarations: [
@@ -23,12 +29,15 @@ import {TokenStorage} from './_classes';
         NavbarComponent,
         ContainersComponent,
         TaskListViewComponent,
+        GraphViewComponent,
+        // FusionChartsModule
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         NgbModule.forRoot(),
         AppRoutingModule,
+        FusionChartsModule.forRoot(FusionCharts, Charts, FintTheme)
     ],
     providers: [
         {
