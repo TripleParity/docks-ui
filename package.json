@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "start": "ng serve",
     "check": "ng lint; ng test",
     "serve": "ng serve",
     "fix": "ng lint --fix"
