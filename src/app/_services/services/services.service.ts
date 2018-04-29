@@ -1,11 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
-import {Container, Task} from '../../_models';
 import {Observable} from 'rxjs/Observable';
 import {Service} from '../../_models';
 import {ConfigurationService} from '..';
-import {TaskError} from '../task/task.service';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 
 export enum ServiceError {
