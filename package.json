@@ -3,12 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "check": "ng lint; ng test",
+    "serve": "ng serve",
+    "fix": "ng lint --fix"
   },
   "private": true,
   "dependencies": {
@@ -46,10 +43,5 @@
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "~2.5.3"
-  },
-  "scripts": {
-    "check": "ng lint; ng test",
-    "serve": "ng serve",
-    "fix": "ng lint --fix"
   }
 }
