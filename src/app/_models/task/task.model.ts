@@ -4,8 +4,8 @@ import {Status} from './status/status.model';
 
 export class Task {
     @deserializeAs('ID') @serializeAs('ID') public id: string;
-    @deserializeAs('CreatedAt') @serializeAs('CreatedAt') public createdAt: Date;
-    @deserializeAs('UpdatedAt') @serializeAs('UpdatedAt') public updatedAt: Date;
+    @deserializeAs('CreatedAt') @serializeAs('CreatedAt') public createdAt: string; // Might cause a merge conflict on develop.
+    @deserializeAs('UpdatedAt') @serializeAs('UpdatedAt') public updatedAt: string;
     @deserializeAs('TaskSpec') @serializeAs('TaskSpec') public spec: TaskSpec;
     @deserializeAs('ServiceID') @serializeAs('ServiceID') public serviceID: string;
     @deserializeAs('Slot') @serializeAs('Slot') public slot: number;
@@ -23,7 +23,7 @@ export class Task {
         return task;
     }
 
-    // TODO(CDuPlooy): Implemenet nested serialisation.
+    // TODO(CDuPlooy): Implement nested serialisation.
 
     public toJSON(): JSON {
         return Serialize(this);
