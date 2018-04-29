@@ -3,12 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "check": "ng lint; ng test",
+    "serve": "ng serve",
+    "fix": "ng lint --fix"
   },
   "private": true,
   "dependencies": {
