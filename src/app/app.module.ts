@@ -16,7 +16,7 @@ import {ConfigurationService, ContainerService, TaskService, MockService} from '
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {TokenStorage} from './_classes';
-import { GraphViewComponent } from './_shared/graph-view/graph-view.component';
+import { GraphViewComponent } from './_shared/tasks/graph-view/graph-view.component';
 
 @NgModule({
     declarations: [

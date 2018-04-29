@@ -72,10 +72,10 @@
                         Image: {{ task.spec.containerSpec.image }}
                     </li>
                     <li class="list-group-item d-flex justify-content-between sub-item">
-                        Date Created: {{ task.createdAt | slice:0:10 }}
+                        Date Created: {{ this.PrettifyDateTime(task.createdAt) }}
                     </li>
                     <li class="list-group-item d-flex justify-content-between sub-item">
-                        Last Updated: {{ task.updatedAt | slice:0:10 }}
+                        Last Updated: {{ this.PrettifyDateTime(task.updatedAt) }}
                     </li>
                 </ul>
             </div>

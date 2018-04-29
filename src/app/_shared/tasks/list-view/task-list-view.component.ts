@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from '../../_models';
-import { TaskService } from '../../_services';
-import { MockService} from '../../_services';
+import { Task } from '../../../_models/index';
+import { TaskService } from '../../../_services/index';
+import { MockService} from '../../../_services/index';
+import { Formatter } from '../../../_classes/index';
 
 @Component({
   selector: 'app-task-list-view',
@@ -21,5 +22,10 @@ export class TaskListViewComponent implements OnInit {
           }
       });
   }
+
+  public PrettifyDateTime(buff: string): string {
+      return Formatter.PrettifyDateTime(buff);
+  }
+
 
 }

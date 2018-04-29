@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import {TaskService, ConfigurationService, MockService} from '../../_services/';
+import {TaskService, ConfigurationService, MockService} from '../../../_services/index';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 describe('ContainerService', () => {
