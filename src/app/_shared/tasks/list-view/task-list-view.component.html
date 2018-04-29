@@ -1,5 +1,4 @@
-<!--TODO(FJMentz): Query Display ID vs Name or (ID if !hasName())-->
-<!--TODO(FJMentz): Query Node ID vs Name or (ID if !hasName())-->
+<!--TODO(FJMentz): NodeID -> NodeName or (ID if !hasName())-->
 
 <div id="taskList">
     <div *ngFor="let task of tasks; let i = index">
@@ -7,7 +6,6 @@
             <div class="card-header" [attr.id]="'heading-'+ i" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
                 <h5 class="mb-0">
                     <span class="main-item">
-
                         <div *ngIf="task.name !== undefined;then name else notName"></div>
 
                         <ng-template #name>{{task.name}}</ng-template>
@@ -55,7 +53,7 @@
                         <ng-template [ngSwitchCase]="'REMOVE'"><span class="badge badge-danger badge-pill'">{{task.status.state}}</span></ng-template>
 
                         <!--Something went wrong-->
-                        <ng-template *ngSwitchDefault><span class="badge badge-danger badge-pill">Error</span></ng-template>
+                        <span *ngSwitchDefault><span class="badge badge-light badge-pill">Error</span></span>
                     </span>
                 </h5>
             </div>
@@ -67,6 +65,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         NodeID: {{ task.nodeID }}
+                        <!--Change to Node name as soon as Node service is implemented-->
                     </li>
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         Image: {{ task.spec.containerSpec.image }}

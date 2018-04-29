@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from '../../../_models/index';
-import { TaskService } from '../../../_services/index';
-import { MockService} from '../../../_services/index';
-import { Formatter } from '../../../_classes/index';
+import { Task } from '../../../_models';
+import { TaskService } from '../../../_services';
+import { MockService} from '../../../_services';
+import { Formatter } from '../../../_classes';
 
 @Component({
   selector: 'app-task-list-view',
