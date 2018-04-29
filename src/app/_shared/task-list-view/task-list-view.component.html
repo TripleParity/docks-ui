@@ -1,5 +1,3 @@
-<!--TODO(FJMentz): Update desiredState to status as soon as task implements it-->
-<!--TODO(FJMentz): Update image as soon as task implements it-->
 <!--TODO(FJMentz): Query Display ID vs Name or (ID if !hasName())-->
 <!--TODO(FJMentz): Query Node ID vs Name or (ID if !hasName())-->
 
@@ -9,48 +7,52 @@
             <div class="card-header" [attr.id]="'heading-'+ i" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
                 <h5 class="mb-0">
                     <span class="main-item">
-                        {{ task.id }}
+
+                        <div *ngIf="task.name !== undefined;then name else notName"></div>
+
+                        <ng-template #name>{{task.name}}</ng-template>
+                        <ng-template #notName>ID: {{ task.id | slice:0:6}}</ng-template>
                     </span>
 
-                    <span class="main-item" [ngSwitch]='task.desiredState.toUpperCase()'>
+                    <span class="main-item" [ngSwitch]='task.status.state.toUpperCase()'>
                         <!--NEW	The task was initialized.-->
-                        <ng-template [ngSwitchCase]="'NEW'"><span class="badge badge-primary badge-pill">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'NEW'"><span class="badge badge-primary badge-pill">{{task.status.state}}</span></ng-template>
 
                         <!--PENDING	Resources for the task were allocated.-->
-                        <ng-template [ngSwitchCase]="'PENDING'"><span class="badge badge-warning badge-pill">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'PENDING'"><span class="badge badge-warning badge-pill">{{task.status.state}}</span></ng-template>
 
                         <!--ASSIGNED	Docker assigned the task to nodes.-->
-                        <ng-template [ngSwitchCase]="'ASSIGNED'"><span class="badge badge-info badge-pill">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'ASSIGNED'"><span class="badge badge-info badge-pill">{{task.status.state}}</span></ng-template>
 
                         <!--ACCEPTED	The task was accepted by a worker node. If a worker node rejects the task, the state changes to REJECTED.-->
-                        <ng-template [ngSwitchCase]="'ACCEPTED'"><span class="badge badge-info badge-pill">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'ACCEPTED'"><span class="badge badge-info badge-pill">{{task.status.state}}</span></ng-template>
 
                         <!--PREPARING	Docker is preparing the task.-->
-                        <ng-template [ngSwitchCase]="'PREPARING'"><span class="badge badge-info badge-pill">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'PREPARING'"><span class="badge badge-info badge-pill">{{task.status.state}}</span></ng-template>
 
                         <!--STARTING	Docker is starting the task.-->
-                        <ng-template [ngSwitchCase]="'STARTING'"><span class="badge badge-info badge-pill">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'STARTING'"><span class="badge badge-info badge-pill">{{task.status.state}}</span></ng-template>
 
                         <!--RUNNING	The task is executing.-->
-                        <ng-template [ngSwitchCase]="'RUNNING'"><span class="badge badge-success badge-pill">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'RUNNING'"><span class="badge badge-success badge-pill">{{task.status.state}}</span></ng-template>
 
                         <!--COMPLETE	The task exited without an error code.-->
-                        <ng-template [ngSwitchCase]="'COMPLETE'"><span class="badge badge-success badge-pill">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'COMPLETE'"><span class="badge badge-success badge-pill">{{task.status.state}}</span></ng-template>
 
                         <!--FAILED	The task exited with an error code.-->
-                        <ng-template [ngSwitchCase]="'FAILED'"><span class="badge badge-dark badge-pill">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'FAILED'"><span class="badge badge-dark badge-pill">{{task.status.state}}</span></ng-template>
 
                         <!--SHUTDOWN	Docker requested the task to shut down.-->
-                        <ng-template [ngSwitchCase]="'SHUTDOWN'"><span class="badge badge-danger badge-pill">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'SHUTDOWN'"><span class="badge badge-danger badge-pill">{{task.status.state}}</span></ng-template>
 
                         <!--REJECTED	The worker node rejected the task.-->
-                        <ng-template [ngSwitchCase]="'REJECTED'"><span class="badge badge-danger badge-pill">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'REJECTED'"><span class="badge badge-danger badge-pill">{{task.status.state}}</span></ng-template>
 
                         <!--ORPHANED	The node was down for too long.-->
-                        <ng-template [ngSwitchCase]="'ORPHANED'"><span class="badge badge-danger badge-pill">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'ORPHANED'"><span class="badge badge-danger badge-pill">{{task.status.state}}</span></ng-template>
 
                         <!--REMOVE	The task is not terminal but the associated service was removed or scaled down.-->
-                        <ng-template [ngSwitchCase]="'REMOVE'"><span class="badge badge-danger badge-pill'">{{task.desiredState}}</span></ng-template>
+                        <ng-template [ngSwitchCase]="'REMOVE'"><span class="badge badge-danger badge-pill'">{{task.status.state}}</span></ng-template>
 
                         <!--Something went wrong-->
                         <ng-template *ngSwitchDefault><span class="badge badge-danger badge-pill">Error</span></ng-template>
@@ -67,14 +69,13 @@
                         NodeID: {{ task.nodeID }}
                     </li>
                     <li class="list-group-item d-flex justify-content-between sub-item">
-                        <!--Image: {{ task.image }}-->
-                        Image: COMING SOON!
+                        Image: {{ task.spec.containerSpec.image }}
                     </li>
                     <li class="list-group-item d-flex justify-content-between sub-item">
-                        Date Created: {{ task.createdAt }}
+                        Date Created: {{ task.createdAt | slice:0:10 }}
                     </li>
                     <li class="list-group-item d-flex justify-content-between sub-item">
-                        Last Updated: {{ task.updatedAt }}
+                        Last Updated: {{ task.updatedAt | slice:0:10 }}
                     </li>
                 </ul>
             </div>
