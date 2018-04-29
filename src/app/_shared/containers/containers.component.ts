@@ -12,7 +12,6 @@ export class ContainersComponent implements OnInit {
   constructor(private cs: ContainerService, private ts: TaskService) { }
 
   ngOnInit() {
-    this.ts.test();
   }
 
 }
