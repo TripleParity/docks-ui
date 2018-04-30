@@ -2,7 +2,7 @@
 
 <div id="taskList">
     <div *ngFor="let task of tasks; let i = index">
-        <div class="card">
+        <div class="card taskListCard">
             <div class="card-header" [attr.id]="'heading-'+ i" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
                 <h5 class="mb-0">
                     <span class="main-item">

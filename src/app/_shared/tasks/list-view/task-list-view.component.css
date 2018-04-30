@@ -34,3 +34,7 @@
 .card-header{
     cursor: pointer;
 }
+
+.taskListCard{
+    border: none;
+}
