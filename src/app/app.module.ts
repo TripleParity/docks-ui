@@ -1,5 +1,5 @@
 import {HttpInterceptor, HTTP_INTERCEPTORS} from '@angular/common/http';
-import {AuthInjector} from './_classes/authinjector/authinjector';
+import {AuthInjector} from './_classes';
 import {AuthService} from './_services/auth/auth.service';
 
 import {BrowserModule} from '@angular/platform-browser';
@@ -10,6 +10,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './_shared';
 import {UserBarComponent} from './_shared';
+import { ServiceListViewComponent } from './_shared';
 
 import {ContainersComponent} from './_shared/containers/containers.component';
 import {ConfigurationService, ContainerService, TaskService} from './_services/';
@@ -24,6 +25,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
         AppComponent,
         ContainersComponent,
         UserBarComponent,
+        ServiceListViewComponent,
     ],
     imports: [
         BrowserModule,
