@@ -28,7 +28,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
         AppComponent,
         ContainersComponent,
         TaskListViewComponent,
-        GraphViewComponent
+        GraphViewComponent,
         UserBarComponent,
     ],
     imports: [
