@@ -1,0 +1,47 @@
+<!--TODO(FJMentz): Uncomment and make work as soon as service model is complete-->
+
+<div id="serviceList">
+    <div *ngFor="let service of services; let i = index">
+        <div class="card">
+            <div class="card-header" [attr.id]="'heading-'+ i" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
+              <h5 class="mb-0">
+                  <!--<span class="main-item">-->
+                      <!--<div *ngIf="service.spec.name !== undefined;then name else notName"></div>-->
+
+                      <!--<ng-template #name>{{service.spec.name}}</ng-template>-->
+                      <!--<ng-template #notName>ID: {{ service.id | slice:0:6}}</ng-template>-->
+                  <!--</span>-->
+              </h5>
+            </div>
+
+
+
+            <div [attr.id]="'collapse-' + i" class="collapse" [attr.aria-labelledby]="'heading-'+ i" data-parent="#taskList">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between sub-item">
+                        <!--Image: {{ service.spec.taskTemplate.containerSpec.image }}-->
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between sub-item">
+                        <!--Mode: {{ service.endpoint.spec.mode }}-->
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between sub-item">
+                        <!--Image: {{ task.spec.containerSpec.image }}-->
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between sub-item">
+                        <!--Replicas: {{ service.spec.mode.replicated.replicas }}-->
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between sub-item">
+                        <!--Published ports: {{ service.endpoint.ports.publishedports }}-->
+                        <!--Maybe this should rather be a list in the details view?-->
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between sub-item">
+                         <!--Date Created: {{ this.PrettifyDateTime(service.createdAt) }}-->
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between sub-item">
+                        <!--Last Updated: {{ this.PrettifyDateTime(service.updatedAt) }}-->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
