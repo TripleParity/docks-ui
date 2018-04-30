@@ -4,6 +4,7 @@ import {Status} from './status/status.model';
 
 export class Task {
     @deserializeAs('ID') @serializeAs('ID') public id: string;
+    // TODO(CDuPlooy): Add version control model.
     @deserializeAs('CreatedAt') @serializeAs('CreatedAt') public createdAt: string; // Might cause a merge conflict on develop.
     @deserializeAs('UpdatedAt') @serializeAs('UpdatedAt') public updatedAt: string;
     @deserializeAs('TaskSpec') @serializeAs('TaskSpec') public spec: TaskSpec;
