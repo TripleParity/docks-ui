@@ -10,27 +10,33 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './_shared';
 import { TaskListViewComponent } from './_shared';
+import {UserBarComponent} from './_shared';
+
 
 import {ContainersComponent} from './_shared/containers/containers.component';
 import {ConfigurationService, ContainerService, TaskService, MockService} from './_services/';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {TokenStorage} from './_classes';
+
 import { GraphViewComponent } from './_shared/tasks/graph-view/graph-view.component';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 @NgModule({
     declarations: [
-        AppComponent,
         NavbarComponent,
+        AppComponent,
         ContainersComponent,
         TaskListViewComponent,
         GraphViewComponent
+        UserBarComponent,
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         NgbModule.forRoot(),
-        AppRoutingModule
+        AppRoutingModule,
+        AngularFontAwesomeModule,
     ],
     providers: [
         {

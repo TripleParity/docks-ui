@@ -1,0 +1,15 @@
+.user-image{
+    border-radius: 50%;
+    width: 50px;
+}
+
+.set-right{
+    position: absolute;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.navbar{
+    background-color: #333;
+    border-bottom: 5px solid #93C54B;
+}
