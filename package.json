@@ -6,7 +6,8 @@
     "start": "ng serve",
     "check": "ng lint; ng test",
     "serve": "ng serve",
-    "fix": "ng lint --fix"
+    "fix": "ng lint --fix",
+    "build": "ng build --prod --no-progress"
   },
   "private": true,
   "dependencies": {
