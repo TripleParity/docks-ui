@@ -27,8 +27,17 @@
 }
 
 .list-group{
+     margin-left: 20px;
+     margin-right: 20px;
+ }
+
+.sub-list-group{
+    padding: 0px;
     margin-left: 20px;
-    margin-right: 20px;
+}
+
+.sub-list-group-item{
+    width: 100%;
 }
 
 .card-header{
@@ -37,4 +46,8 @@
 
 .ServiceListCard{
     border: none;
+}
+
+.ports{
+    cursor: pointer;
 }

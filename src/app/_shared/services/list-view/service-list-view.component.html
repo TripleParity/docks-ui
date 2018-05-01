@@ -16,7 +16,7 @@
 
 
 
-            <div [attr.id]="'collapse-' + i" class="collapse" [attr.aria-labelledby]="'heading-'+ i" data-parent="#taskList">
+            <div [attr.id]="'collapse-' + i" class="collapse" [attr.aria-labelledby]="'heading-'+ i" data-parent="#serviceList">
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         Image: {{ service.spec.taskTemplate.containerSpec.image }}
@@ -28,10 +28,21 @@
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         Replicas: {{ service.spec.mode.replicated.replicas}}
                     </li>
-                    <li class="list-group-item d-flex justify-content-between sub-item">
-                        Published port: {{ service.endpoint.ports[0].publishedPort }}<br>
-                        Target port: {{ service.endpoint.ports[0].targetPort}}
+                    <li [attr.id]="'ports-heading-'+ i" class="list-group-item d-flex justify-content-between sub-item ports" data-toggle="collapse" [attr.data-target]="'#ports-collapse-'+ i" aria-expanded="true" [attr.aria-controls]="'ports-collapse-' + i">
+                        Ports:
                     </li>
+
+                    <div [attr.id]="'ports-collapse-'+ i" class="collapse justify-content-between" [attr.aria-labelledby]="'ports-heading-'+ i">
+                        <div *ngFor="let port of service.endpoint.ports" class="sub-list-group-item">
+                            <ul class="sub-list-group">
+                                <li class="list-group-item d-flex justify-content-between sub-item">
+                                    Published port: {{ port.publishedPort }}<br>
+                                    Target port: {{ port.targetPort}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <li class="list-group-item d-flex justify-content-between sub-item">
                          Date Created: {{ service.createdAt }}
                          <!--Date Created: {{ this.PrettifyDateTime(service.createdAt) }}-->
