@@ -1,10 +1,11 @@
 import {Deserialize, deserializeAs, Serialize, serializeAs} from 'cerialize';
-import {TaskTemplate} from "./tasktemplate.model";
+import {TaskTemplate} from './tasktemplate.model';
+import {Mode} from './mode.model';
 
 export class ServiceSpec {
     @deserializeAs('Name') @serializeAs('Name') public name: string;
     @deserializeAs('TaskTemplate') @serializeAs('TaskTemplate') public taskTemplate: TaskTemplate;
-    // TODO: (AHelberg) Create mode model.
+    @deserializeAs('Mode') @serializeAs('Mode') public mode: Mode;
     // TODO: (AHelberg) Create updateConfig model.
     // TODO: (AHelberg) Create EndpointSpec model.
 
@@ -12,7 +13,8 @@ export class ServiceSpec {
     static parse(data: JSON): ServiceSpec {
         let service: ServiceSpec = new ServiceSpec();
         service = Deserialize(data, ServiceSpec);
-        service.taskTemplate = TaskTemplate.parse(data);
+        service.taskTemplate = TaskTemplate.parse(data['TaskTemplate']);
+        service.mode = Mode.parse(data['Mode']);
         return service;
     }
 

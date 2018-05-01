@@ -11,7 +11,7 @@ export class TaskTemplate {
     static parse(data: JSON): TaskTemplate {
         let taskTemplate: TaskTemplate = new TaskTemplate();
         taskTemplate = Deserialize(data, TaskTemplate);
-        taskTemplate.containerSpec = ContainerSpec.parse(data);
+        taskTemplate.containerSpec = ContainerSpec.parse(data['ContainerSpec']);
         return taskTemplate;
     }
 

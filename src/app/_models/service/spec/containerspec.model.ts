@@ -3,6 +3,7 @@ import {Deserialize, deserializeAs, Serialize, serializeAs} from 'cerialize';
 export class ContainerSpec {
     @deserializeAs('ContainerID') @serializeAs('ContainerID') public containerID: string;
     @deserializeAs('PID') @serializeAs('PID') public state: number;
+    @deserializeAs('Image') @serializeAs('Image') public image: number;
 
 
     constructor() {}
