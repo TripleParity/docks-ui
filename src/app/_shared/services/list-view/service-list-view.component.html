@@ -1,8 +1,8 @@
-<!--TODO(FJMentz): Uncomment and make work as soon as service model is complete-->
+<!--TODO(FJMentz): Do date stuff (commented)-->
 
 <div id="serviceList">
     <div *ngFor="let service of services; let i = index">
-        <div class="card">
+        <div class="card ServiceListCard">
             <div class="card-header" [attr.id]="'heading-'+ i" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
               <h5 class="mb-0">
                   <span class="main-item">
@@ -31,14 +31,14 @@
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         Published port: {{ service.endpoint.ports[0].publishedPort }}<br>
                         Target port: {{ service.endpoint.ports[0].targetPort}}
-
-                        <!--Maybe this should rather be a list in the details view?-->
                     </li>
                     <li class="list-group-item d-flex justify-content-between sub-item">
                          Date Created: {{ service.createdAt }}
+                         <!--Date Created: {{ this.PrettifyDateTime(service.createdAt) }}-->
                     </li>
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         Last Updated: {{ service.updatedAt }}
+                        <!--Last Updated: {{ this.PrettifyDateTime(service.updatedAt) }}-->
                     </li>
                 </ul>
             </div>

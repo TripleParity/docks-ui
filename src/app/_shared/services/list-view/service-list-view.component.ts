@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../_models';
 import {MockService} from '../../../_services';
+// TODO(FJMentz): Do date stuff (commented)
+// import { Formatter } from '../../../_classes';
 
 @Component({
   selector: 'app-service-list-view',
@@ -17,6 +19,10 @@ export class ServiceListViewComponent implements OnInit {
       this.services = services;
     });
   }
+
+    // public PrettifyDateTime(buff: string): string {
+    //     return Formatter.PrettifyDateTime(buff);
+    // }
 
 
 }
