@@ -15,7 +15,6 @@ export class ServiceListViewComponent implements OnInit {
   ngOnInit() {
     this.mock.getServices().subscribe((services) => {
       this.services = services;
-      console.log(services[0].spec.taskTemplate.containerSpec.image);
     });
   }
 
