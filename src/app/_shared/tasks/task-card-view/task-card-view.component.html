@@ -1,30 +1,78 @@
-<div id="cardList">
-    <div class="card-deck">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
+ <div id="taskList">
+    <div *ngFor="let task of tasks; let i = index">
+        <div class="card-deck">
+            <div class="card">
+                <h5 class="card-title"><span class="main-item">
+                    <div *ngIf="task.name !== undefined;then name else notName"></div>
+                    <ng-template #name>{{task.name}}</ng-template>
+                    <ng-template #notName>ID: {{ task.id | slice:0:6}}</ng-template>
+                    </span>
+                </h5>
+                <div class="card-text">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            ID: {{ task.id }}
+                        </li>
+                        <li class="list-group-item">
+                            NodeID: {{ task.nodeID }}
+                            <!--Change to Node name as soon as Node service is implemented-->
+                        </li>
+                        <li class="list-group-item">
+                            Image: {{ task.spec.containerSpec.image }}
+                        </li>
+                        <li class="list-group-item">
+                            Date Created: {{ PrettifyDateTime(task.createdAt) }}
+                        </li>
+                        <li class="list-group-item">
+                            Last Updated: {{ PrettifyDateTime(task.updatedAt) }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span class="main-item" [ngSwitch]='task.status.state.toUpperCase()'>
+                        <!--NEW	The task was initialized.-->
+                        <ng-template [ngSwitchCase]="'NEW'"><span class="badge badge-primary badge-pill">{{task.status.state}}</span></ng-template>
+
+                        <!--PENDING	Resources for the task were allocated.-->
+                        <ng-template [ngSwitchCase]="'PENDING'"><span class="badge badge-warning badge-pill">{{task.status.state}}</span></ng-template>
+
+                        <!--ASSIGNED	Docker assigned the task to nodes.-->
+                        <ng-template [ngSwitchCase]="'ASSIGNED'"><span class="badge badge-info badge-pill">{{task.status.state}}</span></ng-template>
+
+                        <!--ACCEPTED	The task was accepted by a worker node. If a worker node rejects the task, the state changes to REJECTED.-->
+                        <ng-template [ngSwitchCase]="'ACCEPTED'"><span class="badge badge-info badge-pill">{{task.status.state}}</span></ng-template>
+
+                        <!--PREPARING	Docker is preparing the task.-->
+                        <ng-template [ngSwitchCase]="'PREPARING'"><span class="badge badge-info badge-pill">{{task.status.state}}</span></ng-template>
+
+                        <!--STARTING	Docker is starting the task.-->
+                        <ng-template [ngSwitchCase]="'STARTING'"><span class="badge badge-info badge-pill">{{task.status.state}}</span></ng-template>
+
+                        <!--RUNNING	The task is executing.-->
+                        <ng-template [ngSwitchCase]="'RUNNING'"><span class="badge badge-success badge-pill">{{task.status.state}}</span></ng-template>
+
+                        <!--COMPLETE	The task exited without an error code.-->
+                        <ng-template [ngSwitchCase]="'COMPLETE'"><span class="badge badge-success badge-pill">{{task.status.state}}</span></ng-template>
+
+                        <!--FAILED	The task exited with an error code.-->
+                        <ng-template [ngSwitchCase]="'FAILED'"><span class="badge badge-dark badge-pill">{{task.status.state}}</span></ng-template>
+
+                        <!--SHUTDOWN	Docker requested the task to shut down.-->
+                        <ng-template [ngSwitchCase]="'SHUTDOWN'"><span class="badge badge-danger badge-pill">{{task.status.state}}</span></ng-template>
+
+                        <!--REJECTED	The worker node rejected the task.-->
+                        <ng-template [ngSwitchCase]="'REJECTED'"><span class="badge badge-danger badge-pill">{{task.status.state}}</span></ng-template>
+
+                        <!--ORPHANED	The node was down for too long.-->
+                        <ng-template [ngSwitchCase]="'ORPHANED'"><span class="badge badge-danger badge-pill">{{task.status.state}}</span></ng-template>
+
+                        <!--REMOVE	The task is not terminal but the associated service was removed or scaled down.-->
+                        <ng-template [ngSwitchCase]="'REMOVE'"><span class="badge badge-danger badge-pill'">{{task.status.state}}</span></ng-template>
+
+                        <!--Something went wrong-->
+                        <span *ngSwitchDefault><span class="badge badge-light badge-pill">Error</span></span>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
