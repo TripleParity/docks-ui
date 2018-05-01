@@ -12,13 +12,14 @@ export class Task {
     @deserializeAs('NodeID') @serializeAs('NodeID') public nodeID: string;
     @deserializeAs('Status') @serializeAs('Status') public status: Status;
     @deserializeAs('DesiredState') @serializeAs('DesiredState') public desiredState: string;
+    @deserializeAs('Name') @serializeAs('Name') public name: string;
     // TODO(CDuPlooy): Add network attachments model.
 
     constructor() {}
     static parse(data: JSON): Task {
         let task: Task = new Task();
         task = Deserialize(data, Task);
-        task.spec = TaskSpec.parse(data['ContainerSpec']);
+        task.spec = TaskSpec.parse(data['Spec']);
         task.status = Status.parse(data['Status']);
         return task;
     }

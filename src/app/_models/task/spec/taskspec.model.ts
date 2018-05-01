@@ -8,7 +8,7 @@ export class TaskSpec {
     static parse(data: JSON): TaskSpec {
         let task: TaskSpec = new TaskSpec();
         task = Deserialize(data, TaskSpec);
-        task.containerSpec = ContainerSpec.parse(data);
+        task.containerSpec = ContainerSpec.parse(data['ContainerSpec']);
         return task;
     }
 
