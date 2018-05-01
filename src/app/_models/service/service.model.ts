@@ -3,7 +3,7 @@ import {ServiceSpec} from './spec/servicespec.model';
 import {Endpoint} from './endpoints/endpoint.model';
 
 export class Service {
-    @deserializeAs('Id') @serializeAs('Id') public id: string;
+    @deserializeAs('ID') @serializeAs('ID') public id: string;
     // TODO: (CDuPlooy) Create version model.
     @deserializeAs('CreatedAt') @serializeAs('CreatedAt') public createdAt: string;
     @deserializeAs('UpdatedAt') @serializeAs('UpdatedAt') public updatedAt: string;

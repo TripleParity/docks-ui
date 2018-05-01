@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../_models';
+import {MockService} from '../../../_services';
 
 @Component({
   selector: 'app-service-list-view',
@@ -8,10 +9,15 @@ import { Service } from '../../../_models';
 })
 export class ServiceListViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mock: MockService) { }
 
   public services: Service[] = [];
   ngOnInit() {
+    this.mock.getServices().subscribe((services) => {
+      this.services = services;
+      console.log(services[0].spec.taskTemplate.containerSpec.image);
+    });
   }
+
 
 }

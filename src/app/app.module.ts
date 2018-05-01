@@ -13,7 +13,7 @@ import {UserBarComponent} from './_shared';
 import { ServiceListViewComponent } from './_shared';
 
 import {ContainersComponent} from './_shared/containers/containers.component';
-import {ConfigurationService, ContainerService, TaskService} from './_services/';
+import {ConfigurationService, ContainerService, MockService, TaskService} from './_services/';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {TokenStorage} from './_classes';
@@ -45,6 +45,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
         TaskService,
         AuthService,
         TokenStorage,
+        MockService,
     ],
     bootstrap: [AppComponent]
 })
