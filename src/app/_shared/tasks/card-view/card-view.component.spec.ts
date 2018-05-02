@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TaskCardViewComponent } from './task-card-view.component';
+import { TaskCardViewComponent } from './card-view.component';
 
-describe('TaskCardViewComponent', () => {
+describe('CardViewComponent', () => {
   let component: TaskCardViewComponent;
   let fixture: ComponentFixture<TaskCardViewComponent>;
 
