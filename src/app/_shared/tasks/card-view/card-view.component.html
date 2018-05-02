@@ -1,7 +1,6 @@
-
 <div id="taskList">
-    <div *ngFor="let task of tasks; let i = index">
-        <div class="card-deck">
+    <div class="card-deck">
+        <div *ngFor="let task of tasks; let i = index">
             <div class="card">
                 <h5 class="card-title"><span class="main-item">
                     <div *ngIf="task.name !== undefined;then name else notName"></div>
@@ -13,20 +12,20 @@
                 <div class="card-text">
                     <ul class="list-group">
                         <li class="list-group-item">
-                            ID: {{ task.id }}
+                            <span class="text">ID:</span> {{ task.id }}
                         </li>
                         <li class="list-group-item">
-                            NodeID: {{ task.nodeID }}
-                        <!--Change to Node name as soon as Node service is implemented-->
+                            <span class="text">NodeID:</span> {{ task.nodeID }}
+                            <!--Change to Node name as soon as Node service is implemented-->
                         </li>
                         <li class="list-group-item">
-                            Image: {{ task.spec.containerSpec.image }}
+                            <span class="text">Image:</span> {{ task.spec.containerSpec.image }}
                         </li>
                         <li class="list-group-item">
-                            Date Created: {{ PrettifyDateTime(task.createdAt) }}
+                            <span class="text">Date Created:</span> {{ PrettifyDateTime(task.createdAt) }}
                         </li>
                         <li class="list-group-item">
-                            Last Updated: {{ PrettifyDateTime(task.updatedAt) }}
+                            <span class="text">Last Updated:</span> {{ PrettifyDateTime(task.updatedAt) }}
                         </li>
                     </ul>
                 </div>

@@ -1,25 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, inject, TestBed} from '@angular/core/testing';
 
-import { TaskCardViewComponent } from './card-view.component';
+import {ConfigurationService, TaskService, MockService} from '../../../_services';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('CardViewComponent', () => {
-  let component: TaskCardViewComponent;
-  let fixture: ComponentFixture<TaskCardViewComponent>;
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          providers: [ConfigurationService, TaskService, MockService],
+            imports: [HttpClientModule],
+        });
+    }));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TaskCardViewComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TaskCardViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should be created', inject([TaskService], (service: TaskService) => {
+        expect(service).toBeTruthy();
+    }));
 });
