@@ -14,10 +14,11 @@ import { ServiceListViewComponent } from './_shared';
 
 import {ContainersComponent} from './_shared/containers/containers.component';
 import {ConfigurationService, ContainerService, MockService, TaskService} from './_services/';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbAlert, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {TokenStorage} from './_classes';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { PageNotFoundComponent } from './_shared/pagenotfound/pagenotfound.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
         ContainersComponent,
         UserBarComponent,
         ServiceListViewComponent,
+        PageNotFoundComponent,
+        NgbAlert,
     ],
     imports: [
         BrowserModule,
