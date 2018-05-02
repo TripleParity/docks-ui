@@ -28,7 +28,6 @@ import { PageNotFoundComponent } from './_shared/pagenotfound/pagenotfound.compo
         UserBarComponent,
         ServiceListViewComponent,
         PageNotFoundComponent,
-        NgbAlert,
     ],
     imports: [
         BrowserModule,
