@@ -22,6 +22,7 @@ import {TokenStorage} from './_classes';
 import { GraphViewComponent } from './_shared/tasks/graph-view/graph-view.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { TaskCardViewComponent } from './_shared/tasks/card-view/card-view.component';
+import { ModalViewComponent } from './_shared/tasks/modal-view/modal-view.component';
 
 @NgModule({
     declarations: [

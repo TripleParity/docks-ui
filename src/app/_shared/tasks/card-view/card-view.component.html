@@ -1,21 +1,19 @@
 <div id="taskList">
     <div class="card-deck">
         <div *ngFor="let task of tasks; let i = index">
-            <div class="card {{getState(task.status.state.toUpperCase())}}">
+            <div [attr.class]="'card' + ' ' + getState(task.status.state.toUpperCase())" (click)="openModal(content, task)">
                 <div class="card-title">
                     <h5 class="card-name">
                         <span>
                             <div *ngIf="task.name !== undefined;then name else notName"></div>
                             <ng-template #name>{{task.name}}</ng-template>
                             <ng-template #notName>ID: {{ task.id | slice:0:6}}</ng-template>
-                            &nbsp;
+                            &nbsp; &nbsp;
                         </span>
                         <span class="light-container">
-                            <span class="light">&emsp; </span>
+                            <span class="light"></span>
                         </span>
                     </h5>
-
-
 
                 </div>
                 <div class="card-text">
@@ -45,4 +43,37 @@
             </div>
         </div>
     </div>
+
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div id="task-modal">
+            <div class="modal-header">
+                <h4 class="modal-title"><span id="modal-name"></span></h4>
+
+                <span class="light-container">
+                    <span class="light"></span>
+                </span>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-task">
+                <ul class="list-group header">
+                    <li class="list-group-item">
+                        <span class="text">ID:</span><span id="modal-id"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="text">NodeID:</span><span id="modal-node-id"></span>
+                        <!--Change to Node name as soon as Node service is implemented-->
+                    </li>
+                    <li class="list-group-item">
+                        <span class="text">Image:</span><span id="modal-image"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <h3><span id="modal-task-state"></span></h3>
+                <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+            </div>
+        </div>
+    </ng-template>
 </div>

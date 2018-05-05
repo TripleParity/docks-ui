@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Formatter} from '../../../_classes';
 import {MockService, TaskService} from '../../../_services';
 import {Task} from '../../../_models';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-card-view',
@@ -10,7 +11,7 @@ import {Task} from '../../../_models';
 })
 export class TaskCardViewComponent implements OnInit {
 
-    constructor(private taskService: TaskService, private mockService: MockService) {
+    constructor(private taskService: TaskService, private mockService: MockService, private modalService: NgbModal) {
     }
 
     public tasks: Task[] = [];
@@ -28,7 +29,6 @@ export class TaskCardViewComponent implements OnInit {
     }
 
     public getState(ste: string): string {
-        console.log(ste);
         switch (ste) {
             // 'NEW' The task was initialized
             case 'NEW': {
@@ -88,4 +88,20 @@ export class TaskCardViewComponent implements OnInit {
             }
         }
     }
+    public openModal(content, taskS) {
+        this.modalService.open(content, { size: 'lg' });
+        if(taskS.name !== undefined) {
+            document.getElementById('modal-name').innerText = taskS.name;
+        }
+        else {
+            document.getElementById('modal-name').innerText = taskS.id.slice(0,6);
+        }
+        document.getElementById('modal-task-state').innerText = taskS.status.state.toUpperCase();
+        document.getElementById('modal-id').innerText = taskS.id;
+        document.getElementById('modal-node-id').innerText = taskS.nodeID;
+        document.getElementById('modal-image').innerText = taskS.spec.containerSpec.image;
+
+        document.getElementById('task-modal').setAttribute('class', this.getState(taskS.status.state.toUpperCase()))
+    }
+
 }

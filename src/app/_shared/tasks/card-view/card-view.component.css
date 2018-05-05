@@ -1,6 +1,5 @@
-.badge{
-    font-size: 150%;
-    width: 100%;
+.card:hover{
+    cursor: pointer;
 }
 
 .card-title {
@@ -22,7 +21,7 @@
     margin-top: 20px;
 }
 
-.card-text{
+.card-text, .modal-body{
     background: #32383E;
 }
 
@@ -69,8 +68,11 @@
 }
 
 .light{
-    border-radius: 100%;
-    font-size: xx-small;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 20px;
 }
 
 .header{
@@ -82,11 +84,16 @@
     color: #A0A0A0;
 }
 
+/*successful task*/
 .success-card, .success-card > .card-title, .success-card > .card-footer{
     border: 2px solid var(--green);
 }
 
-.success-card > .card-title{
+.success-card > .modal-footer, .success-card > .modal-header{
+    border: 3px solid var(--green);
+}
+
+.success-card > .card-title, .success-card > .modal-header{
     color: var(--green);
 }
 
@@ -94,11 +101,16 @@
     background: var(--green);
 }
 
+/*failed task*/
 .danger-card, .danger-card > .card-title, .danger-card > .card-footer{
     border: 2px solid var(--red);
 }
 
-.danger-card > .card-title{
+.danger-card > .modal-footer, .danger-card > .modal-header{
+    border: 3px solid var(--red);
+}
+
+.danger-card > .card-title, .danger-card > .modal-header{
     color: var(--red);
 }
 
@@ -106,11 +118,16 @@
     background: var(--red);
 }
 
+/*complete task*/
 .info-card, .info-card > .card-title, .info-card > .card-footer{
     border: 2px solid var(--info);
 }
 
-.info-card > .card-title{
+.info-card > .modal-footer, .info-card > .modal-header{
+    border: 3px solid var(--info);
+}
+
+.info-card > .card-title, .info-card > .modal-header{
     color: var(--info);
 }
 
@@ -118,11 +135,16 @@
     background: var(--info);
 }
 
+/*dead task*/
 .dark-card, .dark-card > .card-title, .dark-card > .card-footer{
     border: 2px solid var(--dark);
 }
 
-.dark-card > .card-title{
+.dark-card > .modal-footer, .dark-card > .modal-header{
+    border: 3px solid var(--dark);
+}
+
+.dark-card > .card-title, .dark-card > .modal-header{
     color: var(--dark);
 }
 
@@ -130,14 +152,28 @@
     background: var(--dark);
 }
 
+/*new task*/
 .primary-card, .primary-card > .card-title, .primary-card > .card-footer{
     border: 2px solid var(--primary);
 }
 
-.primary-card > .card-title{
+.primary-card > .modal-footer, .primary-card > .modal-header{
+    border: 3px solid var(--primary);
+}
+
+.primary-card > .card-title, .primary-card > .modal-header{
     color: var(--primary);
 }
 
 .primary-card > .card-title > .card-name > .light-container > .light{
     background: var(--primary);
+}
+
+.modal-title, .modal-task-state {
+    text-align: center;
+    margin: auto;
+}
+
+.modal-header, .modal-footer{
+    background: #212529;
 }
