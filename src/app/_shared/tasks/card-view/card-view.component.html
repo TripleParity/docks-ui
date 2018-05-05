@@ -3,15 +3,19 @@
         <div *ngFor="let task of tasks; let i = index">
             <div class="card {{getState(task.status.state.toUpperCase())}}">
                 <div class="card-title">
-                    <h5 class="pull-left" id="card-name"><span class="main-item" >
+                    <h5 class="card-name">
+                        <span>
                             <div *ngIf="task.name !== undefined;then name else notName"></div>
                             <ng-template #name>{{task.name}}</ng-template>
                             <ng-template #notName>ID: {{ task.id | slice:0:6}}</ng-template>
-                        :</span>
+                            &nbsp;
+                        </span>
+                        <span class="light-container">
+                            <span class="light">&emsp; </span>
+                        </span>
                     </h5>
-                    <h4 id="state">&emsp;&emsp;&thinsp;{{task.status.state.toUpperCase()}}
-                        <span id="light" class="pull-right">&emsp; </span>
-                    </h4>
+
+
 
                 </div>
                 <div class="card-text">
@@ -33,13 +37,9 @@
                 </div>
 
                 <div class="card-footer">
-                    <div class="date pull-left">
-                        Date Created: <br />
-                        <span>{{PrettifyDateTime(task.createdAt)}}</span>
-                    </div>
-                    <div class="date pull-right" id="up-date">
-                        Last Updated: <br />
-                        <span>{{PrettifyDateTime(task.updatedAt) }}</span>
+                    <div class="up-date">
+                        <span class="text">Last Updated: </span><br />
+                        {{PrettifyDateTime(task.updatedAt) }}
                     </div>
                 </div>
             </div>

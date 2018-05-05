@@ -32,48 +32,54 @@
     border-radius: 10px;
 }
 
+.list-group{
+    text-align: center;
+}
+
 .list-group-item{
     background: transparent;
     border: none;
     border-bottom: 1px solid black;
     padding: 8px;
+    color: #707070;
+    font-size: smaller;
 }
 
-.date, .header{
+.header{
     color: whitesmoke;
     font-size: 70%;
 }
 
-.date > span{
-    font-size: 110%;
+.up-date{
+    font-size: smaller;
+    color: #707070;
+    text-align: center;
 }
 
-#card-name
+.card-name
 {
-    color: whitesmoke;
+    color: var(--white);
     font-size: 100%;
     margin-top: 8px;
+    text-align: center;
 }
 
-#up-date{
-    text-align: right;
+.light-container{
+    padding: 0.5vh;
 }
 
-#light{
-    width: 20px;
-    height: 20px;
+.light{
     border-radius: 100%;
-    margin-right: 2px;
-}
-
-#state{
-    font-size: 115%;
-    margin-top: 7px;
+    font-size: xx-small;
 }
 
 .header{
     color: whitesmoke;
     font-size: 110%;
+}
+
+.text{
+    color: #A0A0A0;
 }
 
 .success-card, .success-card > .card-title, .success-card > .card-footer{
@@ -84,7 +90,7 @@
     color: var(--green);
 }
 
-.success-card > .card-title > h4 > #light{
+.success-card > .card-title > .card-name > .light-container > .light{
     background: var(--green);
 }
 
@@ -96,6 +102,42 @@
     color: var(--red);
 }
 
-.danger-card > .card-title > h4 > #light{
+.danger-card > .card-title > .card-name > .light-container > .light{
     background: var(--red);
+}
+
+.info-card, .info-card > .card-title, .info-card > .card-footer{
+    border: 2px solid var(--info);
+}
+
+.info-card > .card-title{
+    color: var(--info);
+}
+
+.info-card > .card-title > .card-name > .light-container > .light{
+    background: var(--info);
+}
+
+.dark-card, .dark-card > .card-title, .dark-card > .card-footer{
+    border: 2px solid var(--dark);
+}
+
+.dark-card > .card-title{
+    color: var(--dark);
+}
+
+.dark-card > .card-title > .card-name > .light-container > .light{
+    background: var(--dark);
+}
+
+.primary-card, .primary-card > .card-title, .primary-card > .card-footer{
+    border: 2px solid var(--primary);
+}
+
+.primary-card > .card-title{
+    color: var(--primary);
+}
+
+.primary-card > .card-title > .card-name > .light-container > .light{
+    background: var(--primary);
 }

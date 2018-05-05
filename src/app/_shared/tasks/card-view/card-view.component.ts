@@ -84,7 +84,7 @@ export class TaskCardViewComponent implements OnInit {
             }
             // Something went wrong
             default: {
-                return 'dark-card';
+                return 'light-card';
             }
         }
     }
