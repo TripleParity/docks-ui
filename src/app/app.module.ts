@@ -18,7 +18,9 @@ import {NgbAlert, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {TokenStorage} from './_classes';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
-import { PageNotFoundComponent } from './_shared/pagenotfound/pagenotfound.component';
+import { PageNotFoundComponent } from './_shared';
+import {NetworkModule} from './_shared/networks/network.module';
+import { NetworkComponent } from './_shared/networks/network.component';
 
 @NgModule({
     declarations: [
