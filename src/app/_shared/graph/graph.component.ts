@@ -3,9 +3,9 @@ import {GraphService} from '../../_services/graphs/graph.service';
 import { Chart } from 'chart.js';
 
 @Component({
-    selector: 'app-graph',
-    templateUrl: './graph.component.html',
-    styleUrls: ['./graph.component.css']
+  selector: 'app-graph',
+  templateUrl: './graph.component.html',
+  styleUrls: ['./graph.component.css']
 })
 export class GraphComponent implements OnInit {
 
@@ -14,16 +14,17 @@ export class GraphComponent implements OnInit {
 
     ngOnInit() {
         this.chart = new Chart('chart', {
-            type: 'doughnut',
+            type: 'pie',
             data: {
-                labels: ["Disks", "Mgmt", "Hardware", "FC", "Vols&Pols"],
+                labels: ['Disks', 'Mgmt', 'Hardware', 'FC', 'Vols&Pols'],
                 datasets: [
                     {
-                        backgroundColor:["#008000","#008000","#008000","#008000","#008000"],
-                        data: [20,20,20,20,20]
+                        backgroundColor: ['#FF0000', '#FFA500', '#008080', '#008000', '#800080'],
+                        data: [10, 25, 5, 20, 40]
                     }
                 ]
-            }
+            },
         });
     }
+
 }
