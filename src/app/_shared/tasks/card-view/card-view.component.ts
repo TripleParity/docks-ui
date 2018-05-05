@@ -90,18 +90,17 @@ export class TaskCardViewComponent implements OnInit {
     }
     public openModal(content, taskS) {
         this.modalService.open(content, { size: 'lg' });
-        if(taskS.name !== undefined) {
+        if (taskS.name !== undefined) {
             document.getElementById('modal-name').innerText = taskS.name;
-        }
-        else {
-            document.getElementById('modal-name').innerText = taskS.id.slice(0,6);
+        } else {
+            document.getElementById('modal-name').innerText = taskS.id.slice(0, 6);
         }
         document.getElementById('modal-task-state').innerText = taskS.status.state.toUpperCase();
         document.getElementById('modal-id').innerText = taskS.id;
         document.getElementById('modal-node-id').innerText = taskS.nodeID;
         document.getElementById('modal-image').innerText = taskS.spec.containerSpec.image;
 
-        document.getElementById('task-modal').setAttribute('class', this.getState(taskS.status.state.toUpperCase()))
+        document.getElementById('task-modal').setAttribute('class', this.getState(taskS.status.state.toUpperCase()));
     }
 
 }
