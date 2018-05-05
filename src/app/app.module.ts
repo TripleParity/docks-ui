@@ -21,6 +21,10 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { PageNotFoundComponent } from './_shared';
 import {NetworkModule} from './_shared/networks/network.module';
 import { NetworkComponent } from './_shared/networks/network.component';
+import { GraphComponent } from './_shared/graph/graph.component';
+
+// Added to test
+import {GraphService} from './_services/graphs/graph.service';
 
 @NgModule({
     declarations: [
@@ -30,6 +34,7 @@ import { NetworkComponent } from './_shared/networks/network.component';
         UserBarComponent,
         ServiceListViewComponent,
         PageNotFoundComponent,
+        GraphComponent,
     ],
     imports: [
         BrowserModule,
@@ -50,6 +55,7 @@ import { NetworkComponent } from './_shared/networks/network.component';
         AuthService,
         TokenStorage,
         MockService,
+        GraphService    // Added for testing
     ],
     bootstrap: [AppComponent]
 })

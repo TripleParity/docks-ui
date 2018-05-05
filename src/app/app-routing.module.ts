@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import {ContainersComponent} from './_shared/containers/containers.component';
 import {ServiceListViewComponent} from './_shared';
 import {PageNotFoundComponent} from './_shared/pagenotfound/pagenotfound.component';
+import {GraphComponent} from './_shared/graph/graph.component';
 
 
 const routes: Routes = [
     {path: 'containers', component: ContainersComponent},
     {path: 'listServices', component: ServiceListViewComponent},
     {path: 'networks', loadChildren: 'app/_shared/networks/network.module#NetworkModule'},
+    {path: 'graph', component: GraphComponent},
     {path: '**' , component: PageNotFoundComponent},
   ];
 
