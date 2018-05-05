@@ -15,6 +15,7 @@ export enum ServiceError {
     ERR_NAME_CONFLICT = 409,
     ERR_NO_SERVICE = 404,
     ERR_STREAM = 101,
+    ERR_UNKNOWN,
 }
 
 @Injectable()
@@ -67,4 +68,47 @@ export class ServicesService {
                 })
             );
     }
+
+
+    // ADDED operations
+    public updateService(id: string, updated: string): Observable<string> {
+        return this.http.post(this.config.getAPIHostname() + '/docker/services/' + id + '/update?' + updated, {
+            responseType: 'json',
+            'Content-type': 'application/json'
+        })
+            .pipe(map(x => {
+                    return x;
+                }), catchError((err: HttpErrorResponse) => {
+                    return ErrorObservable.create(<ServiceError>err.status);
+                })
+            );
+    }
+
+    // What is you want to update more than one thing at a certain time?
+    // It should return anything. Except the maybe the ok but not an x
+
+    public scaleService(id: string, scaleAmount: number): Observable<string> {
+        let updated: string;
+        updated = 'replicas=' + scaleAmount.toString();
+
+        return this.updateService(id, updated);
+    } // If the update function works. This should work as well -> Parameter might change
+
+    public createService(): Observable<ServiceError> {
+        return this.http.post(this.config.getAPIHostname() + '/docker/services/create', {responseType: 'json'})
+            .pipe(map((x: Response) => {
+                    // x.json might not be what we want.
+                    x.json().then(data => {
+                        return Service.parse(data);
+                    }).catch(() => {
+                        return ServiceError.ERR_UNKNOWN;
+                    });
+                }), catchError((err: HttpErrorResponse) => {
+                    return ErrorObservable.create(<ServiceError>err.status);
+                })
+            );
+
+    }
+
+    // ADD stop / start?
 }
