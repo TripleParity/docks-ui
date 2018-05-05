@@ -4,8 +4,6 @@ import {ContainersComponent} from './_shared/containers/containers.component';
 import {TaskListViewComponent} from './_shared';
 import {GraphViewComponent} from './_shared/tasks/graph-view/graph-view.component';
 import {TaskCardViewComponent} from './_shared/tasks/card-view/card-view.component';
-import {ModalViewComponent} from './_shared/tasks/modal-view/modal-view.component';
-
 
 const routes: Routes = [
     {path: 'containers', component: ContainersComponent},
