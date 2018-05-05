@@ -3,30 +3,99 @@
     width: 100%;
 }
 
-.card-footer, .card-title {
-    background-color: #212529;
+.card-title {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 5px;
 }
-.card-title{
-    color: whitesmoke;
-    padding: 10px;
-    text-align: center;
+
+.card-footer{
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.card-footer, .card-title{
+    background: #212529;
 }
 
 .card-deck{
     margin-top: 20px;
 }
 
+.card-text{
+    background: #32383E;
+}
+
 .card{
-    border: 4px solid #212529;
+    margin-top: 10px;
+    background: #32383E;
     border-radius: 10px;
 }
 
-.list-group-item:first-child{
-    border-top: none;
+.list-group-item{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 8px;
 }
 
-.text{
+.date, .header{
+    color: whitesmoke;
+    font-size: 70%;
+}
+
+.date > span{
+    font-size: 110%;
+}
+
+#card-name
+{
+    color: whitesmoke;
+    font-size: 100%;
+    margin-top: 8px;
+}
+
+#up-date{
+    text-align: right;
+}
+
+#light{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    margin-right: 2px;
+}
+
+#state{
+    font-size: 115%;
+    margin-top: 7px;
+}
+
+.header{
+    color: whitesmoke;
+    font-size: 110%;
+}
+
+.success-card, .success-card > .card-title, .success-card > .card-footer{
+    border: 2px solid var(--green);
+}
+
+.success-card > .card-title{
     color: var(--green);
-    font-size: 120%;
-    font-weight: bold;
+}
+
+.success-card > .card-title > h4 > #light{
+    background: var(--green);
+}
+
+.danger-card, .danger-card > .card-title, .danger-card > .card-footer{
+    border: 2px solid var(--red);
+}
+
+.danger-card > .card-title{
+    color: var(--red);
+}
+
+.danger-card > .card-title > h4 > #light{
+    background: var(--red);
 }
