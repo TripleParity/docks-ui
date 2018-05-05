@@ -6,6 +6,7 @@ import {catchError, map} from 'rxjs/operators';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {Network} from '../../_models';
 import {ConfigurationService} from '../configuration/configuration.service';
+import {RequestOptions} from '@angular/http';
 
 enum NetworkError {
     ERR_OK = 200,
@@ -21,7 +22,20 @@ export class NetworkService {
   }
 
   public getNetworks(): Observable<Network[]> {
-        return this.http.get(this.config.getAPIHostname() + '/docker/networks', {responseType: 'json'})
+      return this.http.get(this.config.getAPIHostname() + '/docker/networks', {responseType: 'json'})
+          .pipe(map(x => {
+                  return <Network>x;
+              }), catchError((err: HttpErrorResponse) => {
+                  return ErrorObservable.create(<NetworkError>err.status);
+              })
+          );
+  }
+
+  public getNetworksFiltered(id: string, name: string, label: string, mode: string): Observable<Network[]> {
+        // TODO:(CDuPlooy) Encoding of json object in params is not correct.
+        const params = new HttpParams().set('filters', JSON.stringify({id: id, name: name, label: label, mode: mode}));
+
+        return this.http.get(this.config.getAPIHostname() + '/docker/networks', {params: params, responseType: 'json'})
             .pipe(map(x => {
                     return <Network>x;
                 }), catchError((err: HttpErrorResponse) => {
