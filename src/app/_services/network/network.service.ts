@@ -43,4 +43,64 @@ export class NetworkService {
                 })
             );
   }
+
+    public inspectNetwork(id: string, verbose: boolean): Observable<Network> {
+        // TODO:(CDuPlooy) Encoding of json object in params is not correct.
+        const params = new HttpParams().set('filters', JSON.stringify({verbose: verbose, scope: ''}));
+
+        return this.http.get(this.config.getAPIHostname() + '/docker/networks/' + id, {params: params, responseType: 'json'})
+            .pipe(map(x => {
+                    return <Network>x;
+                }), catchError((err: HttpErrorResponse) => {
+                    return ErrorObservable.create(<NetworkError>err.status);
+                })
+            );
+    }
+
+    public deleteNetwork(id: string): Observable<Network> {
+        return this.http.delete(this.config.getAPIHostname() + '/docker/networks/' + id, {responseType: 'json'})
+            .pipe(map(x => {
+                    return <Network>x;
+                }), catchError((err: HttpErrorResponse) => {
+                    return ErrorObservable.create(<NetworkError>err.status);
+                })
+            );
+    }
+    // TODO:(CDuPlooy): Create a network query parameters not working. ( Encoding of json object )
+
+    public connectContainer(network_id: string, container_id: string) {
+        // TODO:(CDuPlooy): Add IPAM parameter.
+
+        return this.http.post(this.config.getAPIHostname() + '/docker/networks/' + network_id + '/connect',
+            { Container: container_id }, {responseType: 'json'})
+            .pipe(map(x => {
+                    return <Network>x;
+                }), catchError((err: HttpErrorResponse) => {
+                    return ErrorObservable.create(<NetworkError>err.status);
+                })
+            );
+    }
+
+    public disconnectContainer(network_id: string, container_id: string, force: boolean) {
+        // TODO:(CDuPlooy): Add IPAM parameter.
+
+        return this.http.post(this.config.getAPIHostname() + '/docker/networks/' + network_id + '/disconnect',
+            { Container: container_id, Force: force }, {responseType: 'json'})
+            .pipe(map(x => {
+                    return <Network>x;
+                }), catchError((err: HttpErrorResponse) => {
+                    return ErrorObservable.create(<NetworkError>err.status);
+                })
+            );
+    }
+
+    public prune(): Observable<JSON> {
+        return this.http.post(this.config.getAPIHostname() + '/docker/networks/prune', {responseType: 'json'})
+            .pipe(map(x => {
+                    return x;
+                }), catchError((err: HttpErrorResponse) => {
+                    return ErrorObservable.create(<NetworkError>err.status);
+                })
+            );
+    }
 }
