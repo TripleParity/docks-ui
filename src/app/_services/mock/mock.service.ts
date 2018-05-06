@@ -7,7 +7,6 @@ import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {TaskError} from '../task/task.service';
 
 import {Service, Task} from '../../_models';
-import {Task} from '../../_models';
 
 
 /*
