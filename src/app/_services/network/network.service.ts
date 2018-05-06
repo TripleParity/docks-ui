@@ -87,7 +87,7 @@ export class NetworkService {
         return this.http.post(this.config.getAPIHostname() + '/docker/networks/' + network_id + '/disconnect',
             { Container: container_id, Force: force }, {responseType: 'json'})
             .pipe(map(x => {
-                    return <Network>x;
+                    return <Network[]>x;
                 }), catchError((err: HttpErrorResponse) => {
                     return ErrorObservable.create(<NetworkError>err.status);
                 })
