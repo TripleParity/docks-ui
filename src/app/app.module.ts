@@ -31,6 +31,7 @@ import { GraphComponent } from './_shared/graph/graph.component';
 
 // Added to test
 import {GraphService} from './_services/graphs/graph.service';
+import { VolumesComponent } from './_shared/volumes/volumes.component';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import {GraphService} from './_services/graphs/graph.service';
         ServiceListViewComponent,
         PageNotFoundComponent,
         GraphComponent,
+        VolumesComponent,
     ],
     imports: [
         BrowserModule,
@@ -64,7 +66,7 @@ import {GraphService} from './_services/graphs/graph.service';
         AuthService,
         TokenStorage,
         MockService,
-        GraphService    // Added for testing
+        GraphService
     ],
     bootstrap: [AppComponent]
 })

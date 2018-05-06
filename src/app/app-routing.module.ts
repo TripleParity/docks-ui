@@ -18,6 +18,7 @@ const routes: Routes = [
     {path: 'graph', component: GraphComponent},
     {path: 'graphTasks', component: GraphViewComponent},
     {path: 'listTasks', component: TaskListViewComponent},
+    {path: 'volumes', loadChildren: 'app/_shared/volumes/volume.module#VolumeModule'},
     {path: '**' , component: PageNotFoundComponent}
   ];
 
