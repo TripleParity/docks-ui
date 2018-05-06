@@ -12,13 +12,5 @@ export class NetworkComponent implements OnInit {
   constructor(private net: NetworkService) { }
 
   ngOnInit() {
-      this.net.getNetworks().subscribe(networks => {
-          for (const network of networks) {
-              // Do something with networks
-              console.log(network.Id);
-          }
-      });
-
-      this.net.prune().subscribe();
   }
 }
