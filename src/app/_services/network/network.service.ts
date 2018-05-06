@@ -57,10 +57,10 @@ export class NetworkService {
             );
     }
 
-    public deleteNetwork(id: string): Observable<Network> {
+    public deleteNetwork(id: string): Observable<JSON> {
         return this.http.delete(this.config.getAPIHostname() + '/docker/networks/' + id, {responseType: 'json'})
             .pipe(map(x => {
-                    return <Network>x;
+                    return x;
                 }), catchError((err: HttpErrorResponse) => {
                     return ErrorObservable.create(<NetworkError>err.status);
                 })
@@ -68,26 +68,26 @@ export class NetworkService {
     }
     // TODO:(CDuPlooy): Create a network query parameters not working. ( Encoding of json object )
 
-    public connectContainer(network_id: string, container_id: string) {
+    public connectContainer(network_id: string, container_id: string): Observable<JSON> {
         // TODO:(CDuPlooy): Add IPAM parameter.
 
         return this.http.post(this.config.getAPIHostname() + '/docker/networks/' + network_id + '/connect',
             { Container: container_id }, {responseType: 'json'})
             .pipe(map(x => {
-                    return <Network>x;
+                    return x;
                 }), catchError((err: HttpErrorResponse) => {
                     return ErrorObservable.create(<NetworkError>err.status);
                 })
             );
     }
 
-    public disconnectContainer(network_id: string, container_id: string, force: boolean) {
+    public disconnectContainer(network_id: string, container_id: string, force: boolean): Observable<JSON>{
         // TODO:(CDuPlooy): Add IPAM parameter.
 
         return this.http.post(this.config.getAPIHostname() + '/docker/networks/' + network_id + '/disconnect',
             { Container: container_id, Force: force }, {responseType: 'json'})
             .pipe(map(x => {
-                    return <Network[]>x;
+                    return x;
                 }), catchError((err: HttpErrorResponse) => {
                     return ErrorObservable.create(<NetworkError>err.status);
                 })
