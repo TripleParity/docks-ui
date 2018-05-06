@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {catchError, map} from 'rxjs/operators';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {TaskError} from '../task/task.service';
-import {Task} from '../../_models';
+
+import {Service, Task} from '../../_models';
+
 
 /*
     This service will be used for testing, for instance
@@ -21,6 +23,7 @@ import {Task} from '../../_models';
 export class MockService {
 
     private myTasks: Task[] = [];
+
     public getTasks(): Observable<Task[]> {
         this.myTasks.push(Task.parse(JSON.parse('{"ID": "0kzzo1i0y4jz6027t0k7aezc7","Version": {},' +
             '"CreatedAt": "2016-06-07T21:07:31.171892745Z",' +
@@ -44,4 +47,123 @@ export class MockService {
         });
     }
 
+
+    public getServices(): Observable<Service[]> {
+        const services: Service[] = [];
+        /* tslint:disable */ const json = '[{' +
+'       "ID": "p8tq4wvbdbn9mnpg8zenvtkcz",' +
+'           "Version": {},' +
+'       "CreatedAt": "2016-06-07T21:05:51.880065305Z",' +
+'           "UpdatedAt": "2016-06-07T21:07:29.962229872Z",' +
+'           "Spec": {' +
+'           "Name": "negative_nelly",' +
+'               "TaskTemplate": {' +
+'               "ContainerSpec": {' +
+'                   "Image": "redis"' +
+'               },' +
+'               "Resources": {},' +
+'               "RestartPolicy": {},' +
+'               "Placement": { },' +
+'               "ForceUpdate": 0' +
+'           },' +
+'           "Mode": {' +
+'               "Replicated": {}' +
+'           },' +
+'           "UpdateConfig": {},' +
+'           "RollbackConfig": {},' +
+'           "EndpointSpec": {}' +
+'       },' +
+'       "Endpoint": {' +
+'           "Spec": {' +
+'               "Mode": "vip",' +
+'                   "Ports": [' +
+'                   {' +
+'                       "Protocol": "tcp",' +
+'                       "TargetPort": 6379,' +
+'                       "PublishedPort": 30001' +
+'                   }' +
+'               ]' +
+'           },' +
+'           "Ports": [' +
+'               {' +
+'                   "Protocol": "tcp",' +
+'                   "TargetPort": 9736,' +
+'                   "PublishedPort": 10003' +
+'               },' +
+'               {' +
+'                   "Protocol": "tcp",' +
+'                   "TargetPort": 6379,' +
+'                   "PublishedPort": 30001' +
+'               }' +
+'           ],' +
+'               "VirtualIPs": [' +
+'               {' +
+'                   "NetworkID": "4qvuz4ko70xaltuqbt8956gd1",' +
+'                   "Addr": "10.255.0.2/16"' +
+'               },' +
+'               {' +
+'                   "NetworkID": "4qvuz4ko70xaltuqbt8956gd1",' +
+'                   "Addr": "10.255.0.3/16"' +
+'               }' +
+'           ]' +
+'       }' +
+'       },{ ' +
+'        "ID": "9mnpnzenvg8p8tdbtq4wvbkcz", ' +
+'            "Version": {}, ' +
+'        "CreatedAt": "2016-06-07T21:05:51.880065305Z", ' +
+'            "UpdatedAt": "2016-06-07T21:07:29.962229872Z", ' +
+'            "Spec": { ' +
+'            "Name": "hopeful_cori", ' +
+'                "TaskTemplate": { ' +
+'                "ContainerSpec": { ' +
+'                    "Image": "redis" ' +
+'                }, ' +
+'                "Resources": {}, ' +
+'                "RestartPolicy": {}, ' +
+'                "Placement": { }, ' +
+'                "ForceUpdate": 0 ' +
+'            }, ' +
+'            "Mode": { ' +
+'                "Replicated": {} ' +
+'            }, ' +
+'            "UpdateConfig": {}, ' +
+'            "RollbackConfig": {}, ' +
+'            "EndpointSpec": {} ' +
+'        }, ' +
+'        "Endpoint": { ' +
+'            "Spec": { ' +
+'                "Mode": "vip", ' +
+'                    "Ports": [ ' +
+'                    { ' +
+'                        "Protocol": "tcp", ' +
+'                        "TargetPort": 6379, ' +
+'                        "PublishedPort": 30001 ' +
+'                    } ' +
+'                ] ' +
+'            }, ' +
+'            "Ports": [ ' +
+'                { ' +
+'                    "Protocol": "tcp", ' +
+'                    "TargetPort": 6379, ' +
+'                    "PublishedPort": 30001 ' +
+'                } ' +
+'            ], ' +
+'                "VirtualIPs": [ ' +
+'                { ' +
+'                    "NetworkID": "4qvuz4ko70xaltuqbt8956gd1", ' +
+'                    "Addr": "10.255.0.2/16" ' +
+'                }, ' +
+'                { ' +
+'                    "NetworkID": "4qvuz4ko70xaltuqbt8956gd1", ' +
+'                    "Addr": "10.255.0.3/16" ' +
+'                } ' +
+'            ] ' +
+'        } ' +
+'        }]'; /* tslint:enable */
+        services.push(Service.parse(JSON.parse(json)[0]));
+        services.push(Service.parse(JSON.parse(json)[1]));
+        return Observable.create(obvs => {
+            obvs.next(services);
+        });
+    }
 }
