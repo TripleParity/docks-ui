@@ -5,7 +5,10 @@ import 'rxjs/add/operator/map';
 import {catchError, map} from 'rxjs/operators';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {TaskError} from '../task/task.service';
+
 import {Service, Task} from '../../_models';
+import {Task} from '../../_models';
+
 
 /*
     This service will be used for testing, for instance
@@ -44,6 +47,7 @@ export class MockService {
             obvs.next(this.myTasks);
         });
     }
+
 
     public getServices(): Observable<Service[]> {
         const services: Service[] = [];
