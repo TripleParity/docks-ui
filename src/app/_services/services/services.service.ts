@@ -5,8 +5,9 @@ import {Observable} from 'rxjs/Observable';
 import {Service} from '../../_models';
 import {ConfigurationService} from '..';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
-import {CreateService} from '../../_models/service/createservice.model';
 import {Services} from '@angular/core/src/view';
+import {ServiceSpec} from '../../_models/service/spec.model';
+
 
 export enum ServiceError {
     ERR_OK = 200,
@@ -37,7 +38,7 @@ export class ServicesService {
             );
     }
 
-    public inspectService(id: string): Observable<JSON> {
+    public inspectService(id: string): Observable<ServiceSpec> {
         return this.http.get<JSON>(this.config.getAPIHostname() + '/docker/services/' + id, {responseType: 'json'})
             .pipe(map(x => {
                     return x;
@@ -68,8 +69,7 @@ export class ServicesService {
     }
 
 
-    // ADDED operations
-    public updateService(id: string, params: CreateService): Observable<string> {
+    public updateService(id: string, params: ServiceSpec): Observable<string> {
         return this.http.post(this.config.getAPIHostname() + '/docker/services/' + id,
             { params }, { responseType: 'json' })
             .pipe(map(x => {
@@ -81,14 +81,17 @@ export class ServicesService {
     }
 
     public scaleService(id: string, replicas: number): Observable<string> {
-        let cs = {};
-        // TODO(CDuPlooy): Get the model by querying the service, change it and call update.
-        (<CreateService>cs).Mode.Replicated.Replicas = replicas;
-        console.log(cs);
-        return this.updateService(id, <CreateService>cs);
+       return this.inspectService(id)
+           .pipe(map((spec: ServiceSpec) => {
+                    spec.Mode.Replicated.Replicas = replicas;
+                    return this.updateService(id, spec);
+               }), catchError((err: HttpErrorResponse) => {
+                   return ErrorObservable.create(<ServiceError>err.status);
+               })
+           );
     }
 
-    public createService(params: CreateService): Observable<JSON> {
+    public createService(params: ServiceSpec): Observable<JSON> {
         return this.http.post(this.config.getAPIHostname() + '/docker/services/create', {params}, {responseType: 'json'})
             .pipe(map((x: Response) => {
                     // x.json might not be what we want.

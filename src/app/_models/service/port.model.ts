@@ -1,5 +1,5 @@
 export interface Port {
     Protocol: string;
-    TargetPort: string;
+    TargetPort: number;
     PublishedPort: number;
 }
