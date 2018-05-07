@@ -1,5 +1,5 @@
 import {HttpInterceptor, HTTP_INTERCEPTORS} from '@angular/common/http';
-import {AuthInjector} from './_classes/authinjector/authinjector';
+import {AuthInjector} from './_classes';
 import {AuthService} from './_services/auth/auth.service';
 
 import {BrowserModule} from '@angular/platform-browser';
@@ -9,21 +9,40 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './_shared';
+import { TaskListViewComponent } from './_shared';
 import {UserBarComponent} from './_shared';
+import { ServiceListViewComponent } from './_shared';
+
 
 import {ContainersComponent} from './_shared/containers/containers.component';
-import {ConfigurationService, ContainerService, TaskService} from './_services/';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+import {NgbAlert, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ConfigurationService, ContainerService, TaskService, MockService} from './_services/';
+
 import {HttpClientModule} from '@angular/common/http';
 import {TokenStorage} from './_classes';
+
+import { GraphViewComponent } from './_shared/tasks/graph-view/graph-view.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { PageNotFoundComponent } from './_shared';
+import {NetworkModule} from './_shared/networks/network.module';
+import { NetworkComponent } from './_shared/networks/network.component';
+import { GraphComponent } from './_shared/graph/graph.component';
+
+// Added to test
+import {GraphService} from './_services/graphs/graph.service';
 
 @NgModule({
     declarations: [
         NavbarComponent,
         AppComponent,
         ContainersComponent,
+        TaskListViewComponent,
+        GraphViewComponent,
         UserBarComponent,
+        ServiceListViewComponent,
+        PageNotFoundComponent,
+        GraphComponent,
     ],
     imports: [
         BrowserModule,
@@ -41,8 +60,11 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
         ConfigurationService,
         ContainerService,
         TaskService,
+        MockService,
         AuthService,
         TokenStorage,
+        MockService,
+        GraphService    // Added for testing
     ],
     bootstrap: [AppComponent]
 })

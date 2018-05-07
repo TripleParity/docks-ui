@@ -14,8 +14,9 @@ before_script:
 
 script:
    - ng lint
-   - ng test
-
+   - ng build --prod --no-progress
+   - ng test --no-progress
+   
 notifications:
     on_failure: change
     on_success: change

@@ -23,7 +23,6 @@ export class TaskService {
         return this.http.get(this.config.getAPIHostname() + '/docker/tasks', {responseType: 'json'})
             .pipe(
                 map(data => {
-                    console.log(data);
                     const tasks: Task[] = [];
                     for (let i = 0; i < Object.keys(data).length; i++) {
                         tasks.push(Task.parse(data[i]));
