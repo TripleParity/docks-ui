@@ -81,7 +81,7 @@ export class ServicesService {
     }
 
     public scaleService(id: string, replicas: number): Observable<string> {
-        let cs: CreateService = null;
+        let cs: CreateService;
         // TODO(CDuPlooy): Check if this works while the other fields have not been set.
         cs.Mode.Replicated.Replicas = replicas;
         return this.updateService(id, cs);

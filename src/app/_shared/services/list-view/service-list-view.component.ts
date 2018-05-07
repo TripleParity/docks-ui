@@ -15,9 +15,9 @@ export class ServiceListViewComponent implements OnInit {
 
   public services: Service[] = [];
   ngOnInit() {
-    this.mock.getServices().subscribe((services) => {
-      this.services = services;
-    });
+    // this.mock.getServices().subscribe((services) => {
+    //   this.services = services;
+    // });
   }
 
     // public PrettifyDateTime(buff: string): string {

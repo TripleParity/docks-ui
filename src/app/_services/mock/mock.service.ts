@@ -48,7 +48,7 @@ export class MockService {
 
 
     public getServices(): Observable<Service[]> {
-        const services: Service[] = [];
+        const services: JSON[] = [];
         /* tslint:disable */ const json = '[{' +
 '       "ID": "p8tq4wvbdbn9mnpg8zenvtkcz",' +
 '           "Version": {},' +
@@ -159,8 +159,8 @@ export class MockService {
 '            ] ' +
 '        } ' +
 '        }]'; /* tslint:enable */
-        // services.push(<Service>(json)[0]);
-        // services.push(<Service>(json)[1]);
+        services.push(JSON.parse((json)[0]));
+        services.push(JSON.parse((json)[1]));
         return Observable.create(obvs => {
             obvs.next(services);
         });
