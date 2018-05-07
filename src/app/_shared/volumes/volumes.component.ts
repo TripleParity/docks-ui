@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NetworkService, VolumeService} from '../../_services';
-import { Volume} from '../../_models';
+import { VolumeService } from '../../_services';
+import { Volume } from '../../_models';
 
 @Component({
   selector: 'app-volumes',
@@ -9,7 +9,7 @@ import { Volume} from '../../_models';
 })
 export class VolumesComponent implements OnInit {
 
-  constructor(private net: NetworkService) { }
+  constructor(private net: VolumeService) { }
 
   ngOnInit() {
   }

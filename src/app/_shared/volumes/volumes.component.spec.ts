@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VolumesComponent } from './volumes.component';
+import {ConfigurationService, MockService} from '../../_services';
+import {VolumeService} from '../../_services/volume/volume.service';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('VolumesComponent', () => {
   let component: VolumesComponent;
@@ -8,7 +11,9 @@ describe('VolumesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VolumesComponent ]
+      declarations: [ VolumesComponent ],
+      providers: [ConfigurationService, VolumeService, MockService],
+      imports: [HttpClientModule],
     })
     .compileComponents();
   }));
