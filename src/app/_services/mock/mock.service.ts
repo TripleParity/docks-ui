@@ -4,7 +4,6 @@ import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {catchError, map} from 'rxjs/operators';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
-import {TaskError} from '../task/task.service';
 
 import {Service, Task} from '../../_models';
 
@@ -160,8 +159,8 @@ export class MockService {
 '            ] ' +
 '        } ' +
 '        }]'; /* tslint:enable */
-        services.push(Service.parse(JSON.parse(json)[0]));
-        services.push(Service.parse(JSON.parse(json)[1]));
+        // services.push(<Service>(json)[0]);
+        // services.push(<Service>(json)[1]);
         return Observable.create(obvs => {
             obvs.next(services);
         });
