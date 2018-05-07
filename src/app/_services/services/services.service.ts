@@ -81,10 +81,11 @@ export class ServicesService {
     }
 
     public scaleService(id: string, replicas: number): Observable<string> {
-        let cs: CreateService;
-        // TODO(CDuPlooy): Check if this works while the other fields have not been set.
-        cs.Mode.Replicated.Replicas = replicas;
-        return this.updateService(id, cs);
+        let cs = {};
+        // TODO(CDuPlooy): Get the model by querying the service, change it and call update.
+        (<CreateService>cs).Mode.Replicated.Replicas = replicas;
+        console.log(cs);
+        return this.updateService(id, <CreateService>cs);
     }
 
     public createService(params: CreateService): Observable<JSON> {
