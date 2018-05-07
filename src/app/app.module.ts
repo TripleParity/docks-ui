@@ -32,6 +32,7 @@ import { GraphComponent } from './_shared/graph/graph.component';
 // Added to test
 import {GraphService} from './_services/graphs/graph.service';
 import { VolumesComponent } from './_shared/volumes/volumes.component';
+import { LoginpageComponent } from './_shared/loginpage/loginpage.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { VolumesComponent } from './_shared/volumes/volumes.component';
         PageNotFoundComponent,
         GraphComponent,
         VolumesComponent,
+        LoginpageComponent,
     ],
     imports: [
         BrowserModule,

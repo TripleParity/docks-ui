@@ -1,0 +1,35 @@
+#div1{
+    height: 250px;
+    width: 800px;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#form{
+    height: 250px;
+    width: 800px;
+    background-color: lightgreen;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#butSubmit {
+    width: 200px;
+}
+
+img {
+    height: 100px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+input {
+    width: 400px;
+    margin: 0 auto;
+
+}

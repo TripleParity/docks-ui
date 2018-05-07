@@ -8,6 +8,7 @@ import {GraphComponent} from './_shared/graph/graph.component';
 
 import {TaskListViewComponent} from './_shared';
 import {GraphViewComponent} from './_shared/tasks/graph-view/graph-view.component';
+import {LoginpageComponent} from "./_shared/loginpage/loginpage.component";
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
     {path: 'graph', component: GraphComponent},
     {path: 'graphTasks', component: GraphViewComponent},
     {path: 'listTasks', component: TaskListViewComponent},
+    {path: 'login', component: LoginpageComponent},
     {path: '**' , component: PageNotFoundComponent}
   ];
 
