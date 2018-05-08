@@ -20,6 +20,12 @@ import {Task} from '../../_models';
 @Injectable()
 export class MockService {
 
+    public getLog(id: string): Observable<string> {
+        return Observable.create((obvs) => {
+            obvs.next('Some Really\n\n\nunordered\nstring of things and blah blah' +
+                '\n       Alos here is the ID\n\n\n                   ' + id);
+        });
+    }
 
     public getTasks(): Observable<Task[]> {
     const myTasks: Task[] = [];

@@ -15,6 +15,8 @@ export class TaskCardViewComponent implements OnInit {
     }
 
     public tasks: Task[] = [];
+    public modalObject: Task;
+    public modalObjectLog: string;
 
     ngOnInit() {
         this.mockService.getTasks().subscribe((task) => {
@@ -32,75 +34,73 @@ export class TaskCardViewComponent implements OnInit {
         switch (ste) {
             // 'NEW' The task was initialized
             case 'NEW': {
-                return 'primary-card';
+                return 'primary';
             }
             // PENDING	Resources for the task were allocated
             case 'PENDING': {
-                return 'warning-card';
+                return 'warning';
             }
             // ASSIGNED	Docker assigned the task to nodes.
             case 'ASSIGNED': {
-                return 'info-card';
+                return 'info';
             }
             // ACCEPTED	The task was accepted by a worker node. If a worker node rejects the task, the state changes to REJECTED.
             case 'ACCEPTED': {
-                return 'info-card';
+                return 'info';
             }
             // PREPARING	Docker is preparing the task.
             case 'PREPARING': {
-                return 'info-card';
+                return 'info';
             }
             // STARTING	Docker is starting the task.
             case 'STARTING': {
-                return 'info-card';
+                return 'info';
             }
             // RUNNING	The task is executing.
             case 'RUNNING': {
-                return 'success-card';
+                return 'success';
             }
             // COMPLETE	The task exited without an error code.
             case 'COMPLETE': {
-                return 'success-card';
+                return 'success';
             }
             // FAILED	The task exited with an error code.
             case 'FAILED': {
-                return 'dark-card';
+                return 'dark';
             }
             // SHUTDOWN	Docker requested the task to shut down.
             case 'SHUTDOWN': {
-                return 'danger-card';
+                return 'danger';
             }
             // REJECTED	The worker node rejected the task.
             case 'REJECTED': {
-                return 'danger-card';
+                return 'danger';
             }
             // ORPHANED	The node was down for too long.
             case 'ORPHANED': {
-                return 'danger-card';
+                return 'danger';
             }
             // REMOVE	The task is not terminal but the associated service was removed or scaled down.
             case 'REMOVE': {
-                return 'danger-card';
+                return 'danger';
             }
             // Something went wrong
             default: {
-                return 'light-card';
+                return 'light';
             }
         }
     }
-    public openModal(content, taskS) {
-        this.modalService.open(content, { size: 'lg' });
-        if (taskS.name !== undefined) {
-            document.getElementById('modal-name').innerText = taskS.name;
-        } else {
-            document.getElementById('modal-name').innerText = taskS.id.slice(0, 6);
-        }
-        document.getElementById('modal-task-state').innerText = taskS.status.state.toUpperCase();
-        document.getElementById('modal-id').innerText = taskS.id;
-        document.getElementById('modal-node-id').innerText = taskS.nodeID;
-        document.getElementById('modal-image').innerText = taskS.spec.containerSpec.image;
 
-        document.getElementById('task-modal').setAttribute('class', this.getState(taskS.status.state.toUpperCase()));
+    public loadModal(content, task) {
+        this.modalObject = task;
+        this.modalService.open(content, { size: 'lg' });
+        this.mockService.getLog(this.modalObject.id).subscribe((log) => {
+            this.modalObjectLog = log;
+        });
+    }
+
+    public copyToClip(){
+        // TODO(FJMentz) : Implement this
     }
 
 }
