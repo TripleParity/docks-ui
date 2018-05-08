@@ -9,7 +9,7 @@ import { Volume } from '../../_models';
 })
 export class VolumesComponent implements OnInit {
 
-  constructor(private net: VolumeService) { }
+  constructor(private vol: VolumeService) { }
 
   ngOnInit() {
   }

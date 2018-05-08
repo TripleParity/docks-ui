@@ -17,7 +17,7 @@ import { ServiceListViewComponent } from './_shared';
 import {ContainersComponent} from './_shared/containers/containers.component';
 
 import {NgbAlert, NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ConfigurationService, ContainerService, TaskService, MockService} from './_services/';
+import {ConfigurationService, ContainerService, TaskService, MockService, VolumeService} from './_services/';
 
 import {HttpClientModule} from '@angular/common/http';
 import {TokenStorage} from './_classes';
@@ -66,6 +66,7 @@ import { VolumesComponent } from './_shared/volumes/volumes.component';
         AuthService,
         TokenStorage,
         MockService,
+        VolumeService,
         GraphService
     ],
     bootstrap: [AppComponent]

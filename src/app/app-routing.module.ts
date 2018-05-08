@@ -8,6 +8,7 @@ import {GraphComponent} from './_shared/graph/graph.component';
 
 import {TaskListViewComponent} from './_shared';
 import {GraphViewComponent} from './_shared/tasks/graph-view/graph-view.component';
+import {VolumesComponent} from './_shared/volumes/volumes.component';
 
 
 
@@ -18,11 +19,12 @@ const routes: Routes = [
     {path: 'graph', component: GraphComponent},
     {path: 'graphTasks', component: GraphViewComponent},
     {path: 'listTasks', component: TaskListViewComponent},
+    {path: 'volumes', component: VolumesComponent},
     {path: '**' , component: PageNotFoundComponent}
   ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes , {enableTracing: true})],
+  imports: [RouterModule.forRoot(routes , {enableTracing: false})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
