@@ -1,0 +1,88 @@
+<div id="taskList">
+    <div class="card-deck">
+        <div *ngFor="let task of tasks; let i = index">
+            <div [attr.class]="'card' + ' ' + getState(task.status.state.toUpperCase()) + '-card'" (click)="loadModal(content, task)">
+                <div class="card-title">
+                    <h5 class="card-name">
+                        <span>
+                            <div *ngIf="task.name !== undefined;then name else notName"></div>
+                            <ng-template #name>{{task.name}}</ng-template>
+                            <ng-template #notName>ID: {{ task.id | slice:0:6}}</ng-template>
+                            &nbsp; &nbsp;
+                        </span>
+                        <span class="light-container">
+                            <span class="light"></span>
+                        </span>
+                    </h5>
+
+                </div>
+                <div class="card-text">
+                    <ul class="list-group header">
+                        <li class="list-group-item">
+                            <span class="text">ID:</span> {{ task.id }}
+                        </li>
+                        <li class="list-group-item">
+                            <span class="text">NodeID:</span> {{ task.nodeID }}
+                            <!--Change to Node name as soon as Node service is implemented-->
+                        </li>
+                        <li class="list-group-item">
+                            <span class="text">Image:</span> {{ task.spec.containerSpec.image }}
+                        </li>
+                    </ul>
+                    <div class="service">
+                    </div>
+
+                </div>
+
+                <div class="card-footer">
+                    <div class="up-date">
+                        <span class="text">Last Updated: </span><br />
+                        {{PrettifyDateTime(task.updatedAt) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div id="task-modal">
+        <div class="modal-header" id="modal-header" [attr.class]="'modal-header ' + ' ' + getState(modalObject.status.state.toUpperCase()) + '-card'">
+            <h4 >
+                <div *ngIf="modalObject.name !== undefined;then name else notName"></div>
+                <ng-template #name>{{modalObject.name}}</ng-template>
+                <ng-template #notName>ID: {{ modalObject.id | slice:0:6}}</ng-template>
+            </h4>
+
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" id="modal-task">
+            <ul class="modal-list-group">
+                <li class="modal-list-group-item">
+                    <span class="text">ID: {{modalObject.id}}</span>
+                </li>
+                <li class="modal-list-group-item">
+                    <span class="text">NodeID: {{modalObject.nodeID}}</span>
+                    <!--Change to Node name as soon as Node service is implemented-->
+                </li>
+                <li class="modal-list-group-item">
+                    <span class="text">Image: {{modalObject.spec.containerSpec.image}}</span>
+                </li>
+                <li class="modal-list-group-item">
+                    <span class="text">Created date: {{PrettifyDateTime(modalObject.createdAt) }}</span>
+                </li>
+                <li class="modal-list-group-item">
+                    <span class="text">Logs:</span><br/>
+                    <textarea id="modalTextArea" class="modal-textarea" disabled>{{modalObjectLog}}</textarea><br/>
+                    <button type="button" class="btn modal-button">Copy to clipboard</button>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <h3 clss="pull-left"><span [attr.class]="'text-' + getState(modalObject.status.state.toUpperCase())">{{modalObject.status.state.toUpperCase()}}</span></h3>
+            <button type="button" class="btn btn-danger" (click)="c('Close click')">Close</button>
+        </div>
+    </div>
+</ng-template>
