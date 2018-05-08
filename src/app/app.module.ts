@@ -65,7 +65,6 @@ import {VolumesModule} from './_shared/volumes/volumes.module';
         AuthService,
         TokenStorage,
         MockService,
-        VolumeService,
         GraphService
     ],
     bootstrap: [AppComponent]
