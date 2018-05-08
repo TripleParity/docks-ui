@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('docks-ui App', () => {
+describe('play-music App', () => {
   let page: AppPage;
 
   beforeEach(() => {

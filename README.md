@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/TripleParity/docks-ui.svg?branch=bootstrap_migration)](https://travis-ci.org/TripleParity/docks-ui)
+
 # Docks UI
 Web user interface for docks
 
