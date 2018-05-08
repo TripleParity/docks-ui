@@ -31,6 +31,7 @@ import { GraphComponent } from './_shared/graph/graph.component';
 
 // Added to test
 import {GraphService} from './_services/graphs/graph.service';
+import {ServicesService} from './_services/services/services.service';
 
 @NgModule({
     declarations: [
@@ -61,6 +62,7 @@ import {GraphService} from './_services/graphs/graph.service';
         ContainerService,
         TaskService,
         MockService,
+        ServicesService,
         AuthService,
         TokenStorage,
         MockService,
