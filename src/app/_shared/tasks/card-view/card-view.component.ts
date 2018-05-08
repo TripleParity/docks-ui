@@ -99,7 +99,7 @@ export class TaskCardViewComponent implements OnInit {
         });
     }
 
-    public copyToClip(){
+    public copyToClip() {
         // TODO(FJMentz) : Implement this
     }
 
