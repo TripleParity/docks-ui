@@ -68,7 +68,7 @@ export class VolumeService {
         }
 
         public deleteVolume(id: string, force: boolean): Observable<JSON> {
-            const params = new HttpParams().set('filters', JSON.stringify({force: force}));
+            const params = new HttpParams().set('force', force.toString());
 
             return this.http.delete(this.config.getAPIHostname() + '/docker/volumes/' + id, {params: params, responseType: 'json'})
                 .pipe(map(x => {
