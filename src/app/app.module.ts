@@ -25,13 +25,12 @@ import {TokenStorage} from './_classes';
 import { GraphViewComponent } from './_shared/tasks/graph-view/graph-view.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { PageNotFoundComponent } from './_shared';
-import {NetworkModule} from './_shared/networks/network.module';
-import { NetworkComponent } from './_shared/networks/network.component';
 import { GraphComponent } from './_shared/graph/graph.component';
 
 // Added to test
 import {GraphService} from './_services/graphs/graph.service';
 import { VolumesComponent } from './_shared/volumes/volumes.component';
+import {VolumesModule} from './_shared/volumes/volumes.module';
 
 @NgModule({
     declarations: [
@@ -43,8 +42,7 @@ import { VolumesComponent } from './_shared/volumes/volumes.component';
         UserBarComponent,
         ServiceListViewComponent,
         PageNotFoundComponent,
-        GraphComponent,
-        VolumesComponent,
+        GraphComponent
     ],
     imports: [
         BrowserModule,
@@ -52,6 +50,7 @@ import { VolumesComponent } from './_shared/volumes/volumes.component';
         NgbModule.forRoot(),
         AppRoutingModule,
         AngularFontAwesomeModule,
+        VolumesModule
     ],
     providers: [
         {
