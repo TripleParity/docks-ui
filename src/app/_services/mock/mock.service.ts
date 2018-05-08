@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {catchError, map} from 'rxjs/operators';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
-import {TaskError} from '../task/task.service';
-import {Task} from '../../_models';
+
+import {Service, Task} from '../../_models';
+
 
 /*
     This service will be used for testing, for instance
@@ -20,6 +21,7 @@ import {Task} from '../../_models';
 @Injectable()
 export class MockService {
 
+
     public getLog(id: string): Observable<string> {
         return Observable.create((obvs) => {
             obvs.next('Some Really\n\n\nunordered\nstring of things and blah blah' +
@@ -27,8 +29,9 @@ export class MockService {
         });
     }
 
+    private myTasks: Task[] = [];
+
     public getTasks(): Observable<Task[]> {
-    const myTasks: Task[] = [];
         myTasks.push(Task.parse(JSON.parse('{"ID": "1yljwbmlr8er2waf8orvqpwms",' +
             '"Version": {},"CreatedAt": "2016-06-07T21:07:30.019104782Z",' +
             ' "UpdatedAt": "2016-06-07T21:07:30.231958098Z","Name": "hopeful_cori",' +
@@ -255,4 +258,15 @@ export class MockService {
         });
     }
 
+
+    public getServices(): Observable<Service[]> {
+        const services: JSON[] = [];
+        /* tslint:disable */
+        const json = `[{"ID":"9mnpnzenvg8p8tdbtq4wvbkcz","Version":{"Index":19},"CreatedAt":"2016-06-07T21:05:51.880065305Z","UpdatedAt":"2016-06-07T21:07:29.962229872Z","Spec":{"Name":"hopeful_cori","TaskTemplate":{"ContainerSpec":{"Image":"redis"},"Resources":{"Limits":{},"Reservations":{}},"RestartPolicy":{"Condition":"any","MaxAttempts":0},"Placement":{},"ForceUpdate":0},"Mode":{"Replicated":{"Replicas":1}},"UpdateConfig":{"Parallelism":1,"Delay":1000000000,"FailureAction":"pause","Monitor":15000000000,"MaxFailureRatio":0.15},"RollbackConfig":{"Parallelism":1,"Delay":1000000000,"FailureAction":"pause","Monitor":15000000000,"MaxFailureRatio":0.15},"EndpointSpec":{"Mode":"vip","Ports":[{"Protocol":"tcp","TargetPort":6379,"PublishedPort":30001}]}},"Endpoint":{"Spec":{"Mode":"vip","Ports":[{"Protocol":"tcp","TargetPort":6379,"PublishedPort":30001}]},"Ports":[{"Protocol":"tcp","TargetPort":6379,"PublishedPort":30001}],"VirtualIPs":[{"NetworkID":"4qvuz4ko70xaltuqbt8956gd1","Addr":"10.255.0.2/16"},{"NetworkID":"4qvuz4ko70xaltuqbt8956gd1","Addr":"10.255.0.3/16"}]}}]`;
+        /* tslint:enable */
+        services.push(JSON.parse(json)[0]);
+        return Observable.create(obvs => {
+            obvs.next(services);
+        });
+    }
 }
