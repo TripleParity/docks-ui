@@ -8,7 +8,7 @@ import {ServiceError} from '../services/services.service';
 import {TokenStorage} from '../../_classes';
 
 export enum AuthError {
-  AUTH_OK,
+  AUTH_OK = 0 ,
   AUTH_ERR
 }
 
@@ -18,7 +18,8 @@ export class AuthService {
   constructor(private http: HttpClient, private config: ConfigurationService, private token: TokenStorage) { }
 
   public getToken(username: string, password: string): Observable<AuthError> {
-      return this.http.post(this.config.getAPIHostname() + '/auth/token', {username: username, password: password}, {responseType: 'json'})
+      return this.http.post(this.config.getAPIHostname() + '/api/auth/token',
+          {username: username, password: password}, {responseType: 'json'})
           .pipe(map(x => {
                   if (x['jwt'] === null) {
                     return ErrorObservable.create(AuthError.AUTH_ERR);
