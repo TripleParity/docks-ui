@@ -3,7 +3,7 @@ import {Formatter} from '../../../_classes';
 import {MockService } from '../../../_services';
 import {ServicesService} from '../../../_services/services/services.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Service} from '../../../_models';
+import {Service, Task} from '../../../_models';
 
 @Component({
     selector: 'app-services-card-view',
@@ -16,7 +16,7 @@ export class ServicesCardViewComponent implements OnInit {
 
     public services: Service[] = [];
     public modalObject: Service;
-    public modalObjectLog: string;
+    public modalObjectTasks: Task[];
 
     ngOnInit() {
         this.mockService.getServices().subscribe((service) => {
@@ -24,6 +24,7 @@ export class ServicesCardViewComponent implements OnInit {
                 this.services.push(service[i]);
             }
         });
+        this.modalObjectTasks = [];
     }
 
     public PrettifyDateTime(buff: string): string {
@@ -32,15 +33,15 @@ export class ServicesCardViewComponent implements OnInit {
 
 
     public loadModal(content, service) {
+        this.mockService.getTasks().subscribe( (tasks) => {
+           for (let i = 0; i < tasks.length; i++) {
+               if (tasks[i].serviceID === service.ID) {
+                   console.log(tasks[i]);
+                   this.modalObjectTasks.push(tasks[i]);
+               }
+           }
+        });
         this.modalObject = service;
         this.modalService.open(content, { size: 'lg' });
-        this.mockService.getLog(this.modalObject.ID).subscribe((log) => {
-            this.modalObjectLog = log;
-        });
     }
-
-    public copyToClip() {
-        // TODO(FJMentz) : Implement this
-    }
-
 }

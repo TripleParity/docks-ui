@@ -61,6 +61,20 @@
     list-style-type: none;
 }
 
+.modal-sub-list-group{
+    padding-left: 0;
+}
+
+.modal-sub-list-group-item{
+    border-radius: 9px;
+    padding: 2%;
+    padding-left: 0;
+    background-color: #212529;
+    color: #A0A0A0;
+    list-style-type: none;
+    margin: 4px;
+}
+
 .header{
     color: whitesmoke;
     font-size: 70%;

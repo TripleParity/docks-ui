@@ -20,7 +20,7 @@ const routes: Routes = [
     {path: 'graphTasks', component: GraphViewComponent},
     {path: 'listTasks', component: TaskListViewComponent},
     {path: 'cardTasks', component: TaskCardViewComponent},
-    {path: 'cardService', component: ServicesCardViewComponent},
+    {path: 'cardServices', component: ServicesCardViewComponent},
     {path: '**' , component: PageNotFoundComponent}
   ];
 

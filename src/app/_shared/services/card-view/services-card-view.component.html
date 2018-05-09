@@ -1,3 +1,5 @@
+<!--TODO(FJMentz): Stack, Networks, Volumes (To modal)-->
+
 <div id="taskList">
     <div class="card-deck">
         <div *ngFor="let service of services; let i = index">
@@ -16,16 +18,16 @@
                 <div class="card-text">
                     <ul class="list-group header">
                         <li class="list-group-item">
-                          <span class="text">ID: </span> {{ service.ID }}
+                            <span class="text">ID: </span> {{ service.ID }}
                         </li>
                         <li class="list-group-item">
-                          <span class="text">Image: </span> {{ service.Spec.TaskTemplate.ContainerSpec.Image }}
+                            <span class="text">Image: </span> {{ service.Spec.TaskTemplate.ContainerSpec.Image }}
                         </li>
                         <li class="list-group-item">
-                          <span class="text">Mode: </span> {{ service.Endpoint.Spec.Mode }}
+                            <span class="text">Mode: </span> {{ service.Endpoint.Spec.Mode }}
                         </li>
                         <li class="list-group-item">
-                          <span class="text">Replicas: </span> {{ service.Spec.Mode.Replicated.Replicas }}
+                            <span class="text">Replicas: </span> {{ service.Spec.Mode.Replicated.Replicas }}
                         </li>
                     </ul>
                     <div class="service">
@@ -35,8 +37,8 @@
 
                 <div class="card-footer">
                     <div class="up-date">
-                        <span class="text">Last Updated: </span><br />
-                        {{PrettifyDateTime(service.UpdatedAt) }}
+                        <span class="text">Last Updated: </span><br/>
+                        {{ PrettifyDateTime(service.UpdatedAt) }}
                     </div>
                 </div>
             </div>
@@ -44,44 +46,65 @@
     </div>
 </div>
 
-<!--<ng-template #content let-c="close" let-d="dismiss">-->
-  <!--<div id="task-modal">-->
-    <!--<div class="modal-header" id="modal-header" [attr.class]="'modal-header ' + ' ' + getState(modalObject.status.state.toUpperCase()) + '-card'">-->
-      <!--<h4 >-->
-        <!--<div *ngIf="modalObject.name !== undefined;then name else notName"></div>-->
-        <!--<ng-template #name>{{modalObject.name}}</ng-template>-->
-        <!--<ng-template #notName>ID: {{ modalObject.id | slice:0:6}}</ng-template>-->
-      <!--</h4>-->
+<ng-template #content let-c="close" let-d="dismiss">
+    <div id="task-modal">
+        <div class="modal-header" id="modal-header">
+            <h4>
+                <div *ngIf="modalObject.Spec.Name !== undefined;then name else notName"></div>
+                <ng-template #name>{{ modalObject.Spec.Name }}</ng-template>
+                <ng-template #notName>ID: {{ modalObject.ID | slice:0:6 }}</ng-template>
+            </h4>
 
-      <!--<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">-->
-        <!--<span aria-hidden="true">&times;</span>-->
-      <!--</button>-->
-    <!--</div>-->
-    <!--<div class="modal-body" id="modal-task">-->
-      <!--<ul class="modal-list-group">-->
-        <!--<li class="modal-list-group-item">-->
-          <!--<span class="text">ID: {{modalObject.id}}</span>-->
-        <!--</li>-->
-        <!--<li class="modal-list-group-item">-->
-          <!--<span class="text">NodeID: {{modalObject.nodeID}}</span>-->
-          <!--&lt;!&ndash;Change to Node name as soon as Node service is implemented&ndash;&gt;-->
-        <!--</li>-->
-        <!--<li class="modal-list-group-item">-->
-          <!--<span class="text">Image: {{modalObject.spec.containerSpec.image}}</span>-->
-        <!--</li>-->
-        <!--<li class="modal-list-group-item">-->
-          <!--<span class="text">Created date: {{PrettifyDateTime(modalObject.createdAt) }}</span>-->
-        <!--</li>-->
-        <!--<li class="modal-list-group-item">-->
-          <!--<span class="text">Logs:</span><br/>-->
-          <!--<textarea id="modalTextArea" class="modal-textarea" disabled>{{modalObjectLog}}</textarea><br/>-->
-          <!--<button type="button" class="btn modal-button">Copy to clipboard</button>-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</div>-->
-    <!--<div class="modal-footer">-->
-      <!--<h3 clss="pull-left"><span [attr.class]="'text-' + getState(modalObject.status.state.toUpperCase())">{{modalObject.status.state.toUpperCase()}}</span></h3>-->
-      <!--<button type="button" class="btn btn-danger" (click)="c('Close click')">Close</button>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</ng-template>-->
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" id="modal-task">
+            <ul class="modal-list-group">
+                <li class="modal-list-group-item">
+                    <span class="text">ID: {{ modalObject.ID }}</span>
+                </li>
+                <li class="modal-list-group-item">
+                    <span class="text">Mode: {{ modalObject.Endpoint.Spec.Mode }}</span>
+                </li>
+                <li class="modal-list-group-item">
+                    <span class="text">Image: {{ modalObject.Spec.TaskTemplate.ContainerSpec.Image }}</span>
+                </li>
+                <li class="modal-list-group-item">
+                    <span class="text">Replicas: {{ modalObject.Spec.Mode.Replicated.Replicas }}</span>
+                </li>
+                <li class="modal-list-group-item">
+                    <span class="text">Ports:</span><br/>
+                    <div *ngFor="let port of modalObject.Endpoint.Ports">
+                        <ul class="modal-sub-list-group">
+                            <li class="modal-sub-list-group-item">
+                                Published port: {{ port.PublishedPort }}<br>
+                                Target port: {{ port.TargetPort}}
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="modal-list-group-item">
+                    <span class="text">Tasks:</span><br/>
+                    <ul class="modal-sub-list-group">
+                        <div *ngFor="let task of modalObjectTasks">
+                            <li class="modal-sub-list-group-item" *ngIf="task.name !== undefined"><i class="fa fa-arrow-right"></i> {{ task.name }}</li>
+                            <li class="modal-sub-list-group-item" *ngIf="task.name === undefined"><i class="fa fa-arrow-right"></i> ID: {{ task.id | slice:0:6}}</li>
+
+                        </div>
+                    </ul>
+                </li>
+
+                <li class="modal-list-group-item">
+                    <span class="text">Created date: {{ PrettifyDateTime(modalObject.CreatedAt) }}</span>
+                </li>
+                <li class="modal-list-group-item">
+                    <span class="text">Last updated: {{ PrettifyDateTime(modalObject.UpdatedAt) }}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="c('Close click')">Close</button>
+        </div>
+    </div>
+</ng-template>
