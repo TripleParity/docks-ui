@@ -24,7 +24,7 @@ import {TokenStorage} from './_classes';
 
 import { GraphViewComponent } from './_shared/tasks/graph-view/graph-view.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
-import { TaskCardViewComponent } from './_shared/tasks/card-view/card-view.component';
+import { TaskCardViewComponent } from './_shared/tasks/card-view/task-card-view.component';
 import { PageNotFoundComponent } from './_shared';
 import {NetworkModule} from './_shared/networks/network.module';
 import { NetworkComponent } from './_shared/networks/network.component';
