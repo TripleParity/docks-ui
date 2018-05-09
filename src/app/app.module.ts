@@ -24,6 +24,7 @@ import {TokenStorage} from './_classes';
 
 import { GraphViewComponent } from './_shared/tasks/graph-view/graph-view.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { TaskCardViewComponent } from './_shared/tasks/card-view/card-view.component';
 import { PageNotFoundComponent } from './_shared';
 import {NetworkModule} from './_shared/networks/network.module';
 import { NetworkComponent } from './_shared/networks/network.component';
@@ -31,6 +32,8 @@ import { GraphComponent } from './_shared/graph/graph.component';
 
 // Added to test
 import {GraphService} from './_services/graphs/graph.service';
+import {ServicesService} from './_services/services/services.service';
+
 
 @NgModule({
     declarations: [
@@ -40,9 +43,10 @@ import {GraphService} from './_services/graphs/graph.service';
         TaskListViewComponent,
         GraphViewComponent,
         UserBarComponent,
+        TaskCardViewComponent,
         ServiceListViewComponent,
         PageNotFoundComponent,
-        GraphComponent,
+        GraphComponent
     ],
     imports: [
         BrowserModule,
@@ -61,6 +65,7 @@ import {GraphService} from './_services/graphs/graph.service';
         ContainerService,
         TaskService,
         MockService,
+        ServicesService,
         AuthService,
         TokenStorage,
         MockService,
