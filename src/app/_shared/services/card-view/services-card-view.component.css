@@ -104,7 +104,7 @@
     color: #A0A0A0;
 }
 
-.modal-title, .modal-task-state {
+.modal-title {
     text-align: center;
     margin: auto;
 }
