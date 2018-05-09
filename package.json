@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "start": "ng serve",
     "check": "ng lint;ng build --prod --aot; ng test",
     "serve": "ng serve --aot",
-    "fix": "ng lint --fix"
+    "fix": "ng lint --fix",
+    "build": "ng build --prod --aot --no-progress"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +21,8 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^1.1.2",
+    "@types/chart.js": "^2.7.15",
+    "@types/chartjs": "0.0.31",
     "angular-font-awesome": "^3.1.2",
     "cerialize": "^0.1.18",
     "chart.js": "^2.7.2",
@@ -28,7 +32,7 @@
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular/cli": "~1.7.3",
+    "@angular/cli": "^1.7.4",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.8.3",
