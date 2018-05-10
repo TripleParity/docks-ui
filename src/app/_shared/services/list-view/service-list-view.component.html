@@ -2,7 +2,6 @@
     <div *ngFor="let service of services; let i = index">
         <div class="card ServiceListCard">
             <div class="card-header" [attr.id]="'heading-'+ i" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
-<<<<<<< HEAD
                 <h5 class="mb-0 container-fluid">
                     <div class="row">
                         <span class="main-item col-10 heading-item">
@@ -24,16 +23,6 @@
                         </span>
                     </div>
                 </h5>
-=======
-              <h5 class="mb-0">
-                  <span class="main-item">
-                      <div *ngIf="service.Spec.Name !== undefined;then name else notName"></div>
-
-                      <ng-template #name>{{service.Spec.Name}}</ng-template>
-                      <ng-template #notName>ID: {{ service.ID | slice:0:6}}</ng-template>
-                  </span>
-              </h5>
->>>>>>> develop
             </div>
 
 
@@ -49,38 +38,13 @@
 
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         Replicas: {{ service.Spec.Mode.Replicated.Replicas}}
-<<<<<<< HEAD
                     </li>
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         Date Created: {{ this.PrettifyDateTime(service.CreatedAt) }}
                     </li>
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         Last Updated: {{ this.PrettifyDateTime(service.UpdatedAt) }}
-=======
-                    </li>
-                    <li [attr.id]="'ports-heading-'+ i" class="list-group-item d-flex justify-content-between sub-item ports" data-toggle="collapse" [attr.data-target]="'#ports-collapse-'+ i" aria-expanded="true" [attr.aria-controls]="'ports-collapse-' + i">
-                        Ports:
-                    </li>
 
-                    <div [attr.id]="'ports-collapse-'+ i" class="collapse justify-content-between" [attr.aria-labelledby]="'ports-heading-'+ i">
-                        <div *ngFor="let port of service.Endpoint.Ports" class="sub-list-group-item">
-                            <ul class="sub-list-group">
-                                <li class="list-group-item d-flex justify-content-between sub-item">
-                                    Published port: {{ port.PublishedPort }}<br>
-                                    Target port: {{ port.TargetPort}}
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <li class="list-group-item d-flex justify-content-between sub-item">
-                         Date Created: {{ service.CreatedAt }}
-                         <!--Date Created: {{ this.PrettifyDateTime(service.createdAt) }}-->
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between sub-item">
-                        Last Updated: {{ service.UpdatedAt }}
-                        <!--Last Updated: {{ this.PrettifyDateTime(service.updatedAt) }}-->
->>>>>>> develop
                     </li>
                 </ul>
             </div>
