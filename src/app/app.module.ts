@@ -49,7 +49,9 @@ import { NetworkscardsComponent } from './_shared/networks/networkscards/network
         TaskCardViewComponent,
         ServiceListViewComponent,
         PageNotFoundComponent,
-        GraphComponent
+        GraphComponent,
+        ServicesOperationsComponent,
+        ServicesCardViewComponent,
     ],
     imports: [
         BrowserModule,

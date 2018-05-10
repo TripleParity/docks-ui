@@ -1,25 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, inject, TestBed} from '@angular/core/testing';
 
 import { NetworkslistComponent } from './networkslist.component';
+import {ConfigurationService, MockService, NetworkService, ServicesService} from '../../../_services';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('NetworkslistComponent', () => {
-  let component: NetworkslistComponent;
-  let fixture: ComponentFixture<NetworkslistComponent>;
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            providers: [ ConfigurationService, NetworkService ],
+            imports: [ HttpClientModule]
+        });
+    }));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ NetworkslistComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NetworkslistComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should be created', inject( [NetworkService], (net: NetworkService) => {
+        expect(net).toBeTruthy();
+    }));
 });
