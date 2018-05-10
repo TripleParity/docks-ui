@@ -4,13 +4,28 @@
     <div *ngFor="let service of services; let i = index">
         <div class="card ServiceListCard">
             <div class="card-header" [attr.id]="'heading-'+ i" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
-              <h5 class="mb-0">
-                  <span class="main-item">
-                      <div *ngIf="service.Spec.Name !== undefined;then name else notName"></div>
+              <h5 class="mb-0 container-fluid">
+                  <div class="row">
+                      <span class="main-item col-xs-2 heading-item">
+                          <div *ngIf="service.Spec.Name !== undefined;then name else notName"></div>
 
-                      <ng-template #name>{{service.Spec.Name}}</ng-template>
-                      <ng-template #notName>ID: {{ service.ID | slice:0:6}}</ng-template>
-                  </span>
+                          <ng-template #name>{{service.Spec.Name}}</ng-template>
+                          <ng-template #notName>ID: {{ service.ID | slice:0:6}}</ng-template>
+                      </span>
+                      <span class="center col-xs-offset-3 col-xs-2 heading-item">
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-outline-success" [id]="'operations-' + service.ID" ngbDropdownToggle (click)="voidParentClick($event)">Operations</button>
+                            <div ngbDropdownMenu [attr.aria-labelledby]="'operations-' + service.ID">
+                                <button class="dropdown-item" (click)="voidParentClick($event)">Scale</button>
+                                <button class="dropdown-item" (click)="voidParentClick($event)">Update</button>
+                                <button class="dropdown-item" (click)="voidParentClick($event)">View Logs</button>
+                            </div>
+                        </div>
+                      </span>
+                      <span class="col-xs-offset-3 col-xs-2 heading-item" (click)="removeService(service.ID, $event)">
+                          <i class="fa fa-trash-o redHover"></i>
+                      </span>
+                  </div>
               </h5>
             </div>
 

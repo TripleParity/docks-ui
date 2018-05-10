@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../_models';
 import {MockService} from '../../../_services';
 import {ServicesService} from '../../../_services/services/services.service';
-import {forEach} from '@angular/router/src/utils/collection';
-// TODO(FJMentz): Do date stuff (commented)
-// import { Formatter } from '../../../_classes';
 
 @Component({
   selector: 'app-service-list-view',
@@ -22,6 +19,17 @@ export class ServiceListViewComponent implements OnInit {
             this.services.push(services[i]);
         }
     });
+  }
+
+  public removeService(id, event) {
+      this.voidParentClick(event);
+      // this.service.deleteService(id);
+      // I (FJMentz) would rather test this with adult supervision
+      console.log('Removing container ' + id);
+  }
+
+  public voidParentClick(event) {
+      event.stopPropagation();
   }
 
 }
