@@ -12,7 +12,6 @@ export class AuthInjector implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // TODO(CDuPlooy): Inject jwt here
         req = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + this.tokens.getToken('auth'))});
         return next.handle(req).do(
             (err: any) => {

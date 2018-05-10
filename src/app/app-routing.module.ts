@@ -9,8 +9,7 @@ import {GraphComponent} from './_shared/graph/graph.component';
 import {TaskListViewComponent} from './_shared';
 import {GraphViewComponent} from './_shared/tasks/graph-view/graph-view.component';
 import {VolumesComponent} from './_shared/volumes/volumes.component';
-
-
+import {TaskCardViewComponent} from './_shared/tasks/card-view/card-view.component'
 
 const routes: Routes = [
     {path: 'containers', component: ContainersComponent},
@@ -21,6 +20,7 @@ const routes: Routes = [
     {path: 'graphTasks', component: GraphViewComponent},
     {path: 'listTasks', component: TaskListViewComponent},
     {path: 'volumes', component: VolumesComponent},
+    {path: 'cardTasks', component: TaskCardViewComponent},
     {path: '**' , component: PageNotFoundComponent}
   ];
 
