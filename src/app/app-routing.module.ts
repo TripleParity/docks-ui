@@ -9,7 +9,7 @@ import {GraphComponent} from './_shared/graph/graph.component';
 import {TaskListViewComponent} from './_shared';
 import {GraphViewComponent} from './_shared/tasks/graph-view/graph-view.component';
 import {VolumesComponent} from './_shared/volumes/volumes.component';
-import {TaskCardViewComponent} from './_shared/tasks/card-view/card-view.component'
+import {TaskCardViewComponent} from './_shared/tasks/card-view/card-view.component';
 
 const routes: Routes = [
     {path: 'containers', component: ContainersComponent},
