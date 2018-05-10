@@ -34,6 +34,8 @@ import { VolumesComponent } from './_shared/volumes/volumes.component';
 import {VolumesModule} from './_shared/volumes/volumes.module';
 import {ServicesService} from './_services/services/services.service';
 import { ServicesCardViewComponent } from './_shared/services/card-view/services-card-view.component';
+import { NetworkslistComponent } from './_shared/networks/networkslist/networkslist.component';
+import { NetworkscardsComponent } from './_shared/networks/networkscards/networkscards.component';
 
 @NgModule({
     declarations: [
@@ -47,7 +49,9 @@ import { ServicesCardViewComponent } from './_shared/services/card-view/services
         ServiceListViewComponent,
         PageNotFoundComponent,
         GraphComponent,
-        ServicesCardViewComponent
+        ServicesCardViewComponent,
+        NetworkslistComponent,
+        NetworkscardsComponent
     ],
     imports: [
         BrowserModule,

@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "ng serve --host=0.0.0.0",
-    "check": "ng lint;ng build --prod --aot; ng test",
-    "serve": "ng serve --aot",
+    "start": "ng serve --host=0.0.0.0 --prod",
+    "check": "ng lint;ng build --prod; ng test",
+    "serve": "ng serve --prod",
     "fix": "ng lint --fix",
-    "build": "ng build --prod --aot --no-progress"
+    "build": "ng build --prod --no-progress"
   },
   "private": true,
   "dependencies": {

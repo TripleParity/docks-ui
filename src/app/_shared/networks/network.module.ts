@@ -4,14 +4,15 @@ import {HttpClientModule} from '@angular/common/http';
 import {MockService, NetworkService} from '../../_services/index';
 import {NetworkComponent} from './network.component';
 import {NetworksRoutingModule} from './networks.routing-module';
-import {RouterModule, Routes} from '@angular/router';
+import {NetworkslistComponent} from './networkslist/networkslist.component';
+import {NetworkscardsComponent} from './networkscards/networkscards.component';
 
 @NgModule({
   imports: [
     CommonModule,
     NetworksRoutingModule
   ],
-  declarations: [NetworkComponent],
+  declarations: [NetworkComponent, NetworkslistComponent, NetworkscardsComponent],
   providers: [HttpClientModule, MockService, NetworkService],
   exports: [NetworkComponent]
 })
