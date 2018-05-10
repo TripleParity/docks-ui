@@ -225,14 +225,3 @@
     height: 50vh;
     resize: none;
 }
-
-.modal-button{
-    background-color: transparent;
-    color: var(--green);
-    border: 1px solid var(--green);
-}
-
-.modal-button:hover{
-    background-color: var(--green);
-    color: #32383E;
-}
