@@ -50,8 +50,6 @@ import { NetworkscardsComponent } from './_shared/networks/networkscards/network
         PageNotFoundComponent,
         GraphComponent,
         ServicesCardViewComponent,
-        NetworkslistComponent,
-        NetworkscardsComponent
     ],
     imports: [
         BrowserModule,
