@@ -34,7 +34,7 @@ import {GraphService} from './_services/graphs/graph.service';
 import {ServicesService} from './_services/services/services.service';
 import { ServicesCardViewComponent } from './_shared/services/card-view/services-card-view.component';
 // import { VolumeListViewComponent } from './_shared/volumes/list-view/volume-list-view.component';
-import { VolumeCardViewComponent } from './_shared/volumes/card-view/volume-card-view.component';
+// import { VolumeCardViewComponent } from './_shared/volumes/card-view/volume-card-view.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +50,7 @@ import { VolumeCardViewComponent } from './_shared/volumes/card-view/volume-card
         GraphComponent,
         ServicesCardViewComponent,
         // VolumeListViewComponent,
-        VolumeCardViewComponent
+        // VolumeCardViewComponent
     ],
     imports: [
         BrowserModule,

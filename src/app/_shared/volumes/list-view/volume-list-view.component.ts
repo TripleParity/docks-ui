@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Service, Volume} from "../../../_models";
+import {Service, Volume} from '../../../_models';
 import { VolumeService, MockService } from '../../../_services';
 
 @Component({
@@ -13,10 +13,11 @@ export class VolumeListViewComponent implements OnInit {
 
     public volumes: Volume[] = [];
     ngOnInit() {
+
         this.service.getVolumes().subscribe(volumes => {
             this.volumes = volumes;
-            console.log(volumes);
-        });
+            // console.log(volumes);
+        }, error => console.log('Error: ' + error));
     }
 
 }
