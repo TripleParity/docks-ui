@@ -13,13 +13,13 @@ import {LoginpageComponent} from "./_shared/loginpage/loginpage.component";
 
 
 const routes: Routes = [
+    {path: 'login', component: LoginpageComponent},
     {path: 'containers', component: ContainersComponent},
     {path: 'listServices', component: ServiceListViewComponent},
     {path: 'networks', loadChildren: 'app/_shared/networks/network.module#NetworkModule'},
     {path: 'graph', component: GraphComponent},
     {path: 'graphTasks', component: GraphViewComponent},
     {path: 'listTasks', component: TaskListViewComponent},
-    {path: 'login', component: LoginpageComponent},
     {path: '**' , component: PageNotFoundComponent}
   ];
 
