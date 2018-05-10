@@ -33,6 +33,7 @@ import { GraphComponent } from './_shared/graph/graph.component';
 // Added to test
 import {GraphService} from './_services/graphs/graph.service';
 import {ServicesService} from './_services/services/services.service';
+import { ServicesOperationsComponent } from './_shared/services/operations/services-operations.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {ServicesService} from './_services/services/services.service';
         TaskCardViewComponent,
         ServiceListViewComponent,
         PageNotFoundComponent,
-        GraphComponent
+        GraphComponent,
+        ServicesOperationsComponent
     ],
     imports: [
         BrowserModule,
