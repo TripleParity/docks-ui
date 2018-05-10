@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NetworkComponent } from './network.component';
 import {HttpClientModule} from '@angular/common/http';
-import {MockService, NetworkService} from '../../_services';
+import {ConfigurationService, MockService, NetworkService} from '../../_services';
 
 describe('NetworkComponent', () => {
   let component: NetworkComponent;
@@ -11,7 +11,8 @@ describe('NetworkComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NetworkComponent ],
-      providers: [HttpClientModule, NetworkService, MockService]
+      imports: [HttpClientModule],
+      providers: [NetworkService, MockService, ConfigurationService]
     })
     .compileComponents();
   }));

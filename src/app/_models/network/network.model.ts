@@ -1,25 +1,16 @@
-import {Deserialize, deserializeAs, Serialize, serializeAs} from 'cerialize';
+// This model will be using interfaces instead of classes as an experiment.
+import { Ipam } from './ipam/ipam.model';
 
-export class Network {
-    @deserializeAs('Id') @serializeAs('Id') public id: string;
-    @deserializeAs('Name') @serializeAs('Name') public name: string;
-    @deserializeAs('Driver') @serializeAs('Driver') public driver: string;
-    @deserializeAs('Scope') @serializeAs('Scope') public scope: string;
-    @deserializeAs('Internal') @serializeAs('Internal') public internal: boolean;
-    @deserializeAs('EnableIPv6') @serializeAs('EnableIPv6') public enableIPv6: string;
-    // TODO: (CDuPlooy) Create options model.
-
-
-    constructor() {}
-    static parse(data: JSON): Network {
-        let network: Network = new Network();
-        network = Deserialize(data, Network);
-        return network;
-    }
-
-    public toJSON(): JSON {
-        return Serialize(this);
-    }
-
-
+export interface Network {
+    Name: string;
+    Id: string;
+    Created: string;
+    Scope: string;
+    Driver: string;
+    EnableIPv6: boolean;
+    Internal: boolean;
+    Attachable: boolean;
+    Ingress: boolean;
+    IPAM: Ipam;
+    Options: JSON;
 }

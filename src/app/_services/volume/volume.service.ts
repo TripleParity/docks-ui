@@ -27,7 +27,7 @@ export class VolumeService {
         public getVolumes(): Observable<Volume[]> {
            return this.http.get(this.config.getAPIHostname() + '/docker/volumes', {responseType: 'json'})
                 .pipe(map(x => {
-                    return <Volume[]>x;
+                    return <Volume[]>x['Volumes'];
                 }), catchError((err: HttpErrorResponse) => {
                     return ErrorObservable.create(<VolumeError>err.status);
                 })
@@ -48,7 +48,7 @@ export class VolumeService {
 
         public createVolume(inputs: JSON): Observable<Volume> {
             return this.http.post(this.config.getAPIHostname() + '/docker/volumes/create',
-            inputs, {responseType: 'json' })
+            inputs, {responseType: 'json'})
                 .pipe(map(x => {
                     return <Volume>x;
                 }), catchError((err: HttpErrorResponse) => {
@@ -68,7 +68,7 @@ export class VolumeService {
         }
 
         public deleteVolume(id: string, force: boolean): Observable<JSON> {
-            const params = new HttpParams().set('filters', JSON.stringify({force: force}));
+            const params = new HttpParams().set('force', force.toString());
 
             return this.http.delete(this.config.getAPIHostname() + '/docker/volumes/' + id, {params: params, responseType: 'json'})
                 .pipe(map(x => {
