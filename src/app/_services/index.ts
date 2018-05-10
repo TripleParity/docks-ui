@@ -6,5 +6,4 @@ export { VolumeService } from './volume/volume.service';
 export { MockService } from './mock/mock.service';
 export { TaskService } from './task/task.service';
 export { ConfigurationService } from './configuration/configuration.service';
-// export { ServicesService } from './services/services.service';
-// Cannot add above because it causes a circular dependency due to configurationService being used in ServicesService
+export { ServicesService } from './services/services.service';

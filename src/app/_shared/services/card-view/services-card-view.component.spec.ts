@@ -1,8 +1,7 @@
 import {async, inject, TestBed} from '@angular/core/testing';
 
 import {HttpClientModule} from '@angular/common/http';
-import {ConfigurationService, MockService } from '../../../_services';
-import { ServicesService} from '../../../_services/services/services.service';
+import {ServicesService, ConfigurationService, MockService } from '../../../_services';
 
 describe('ServicesCardViewComponent', () => {
     beforeEach(async(() => {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Formatter} from '../../../_classes';
-import {MockService } from '../../../_services';
-import {ServicesService} from '../../../_services/services/services.service';
+import { ServicesService, MockService } from '../../../_services';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Service, Task} from '../../../_models';
 
