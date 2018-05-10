@@ -52,10 +52,6 @@
     cursor: pointer;
 }
 
-.redHover:hover{
-    color: var(--red);
-}
-
 .center{
     margin: auto;
 }
@@ -77,4 +73,23 @@
 .dropdown-item:hover{
     color: var(--green);
     cursor: pointer;
+}
+
+.dropdown-item-danger:hover{
+    background-color: transparent;
+    color: var(--red);
+}
+
+.dark-modal{
+    background-color: #212529;
+    color: var(--white);
+    border: none;
+}
+
+.warning-text{
+    color: var(--red);
+}
+
+.faded-text{
+    color: #A0A0A0;
 }
