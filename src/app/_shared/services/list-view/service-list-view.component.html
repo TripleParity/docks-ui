@@ -39,21 +39,6 @@
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         Replicas: {{ service.Spec.Mode.Replicated.Replicas}}
                     </li>
-                    <li [attr.id]="'ports-heading-'+ i" class="list-group-item d-flex justify-content-between sub-item ports" data-toggle="collapse" [attr.data-target]="'#ports-collapse-'+ i" aria-expanded="true" [attr.aria-controls]="'ports-collapse-' + i">
-                        Ports:
-                    </li>
-
-                    <div [attr.id]="'ports-collapse-'+ i" class="collapse justify-content-between" [attr.aria-labelledby]="'ports-heading-'+ i">
-                        <div *ngFor="let port of service.Endpoint.Ports" class="sub-list-group-item">
-                            <ul class="sub-list-group">
-                                <li class="list-group-item d-flex justify-content-between sub-item">
-                                    Published port: {{ port.PublishedPort }}<br>
-                                    Target port: {{ port.TargetPort}}
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         Date Created: {{ this.PrettifyDateTime(service.CreatedAt) }}
                     </li>
