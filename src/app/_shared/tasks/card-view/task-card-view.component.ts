@@ -6,8 +6,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-card-view',
-    templateUrl: './card-view.component.html',
-    styleUrls: ['./card-view.component.css']
+    templateUrl: './task-card-view.component.html',
+    styleUrls: ['./task-card-view.component.css']
 })
 export class TaskCardViewComponent implements OnInit {
 

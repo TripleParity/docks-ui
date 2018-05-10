@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../_models';
-import {MockService} from '../../../_services';
-import {ServicesService} from '../../../_services/services/services.service';
+import {ServicesService, MockService} from '../../../_services';
+import {forEach} from '@angular/router/src/utils/collection';
 // TODO(FJMentz): Do date stuff (commented)
 // import { Formatter } from '../../../_classes';
 
@@ -17,7 +17,9 @@ export class ServiceListViewComponent implements OnInit {
   public services: Service[] = [];
   ngOnInit() {
     this.mock.getServices().subscribe(services => {
-      const service: Service = services[0];
+        for (let i = 0; i < services.length; i++) {
+            this.services.push(services[i]);
+        }
     });
   }
 
