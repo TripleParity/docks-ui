@@ -1,25 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, inject, TestBed} from '@angular/core/testing';
 
 import { ServicesOperationsComponent } from './services-operations.component';
+import {HttpClientModule} from '@angular/common/http';
+import {ServicesService} from '../../../_services/services/services.service';
+import {ConfigurationService, MockService} from '../../../_services';
+import {ActivatedRoute} from '@angular/router';
 
-describe('ServicesOperationsComponent', () => {
-  let component: ServicesOperationsComponent;
-  let fixture: ComponentFixture<ServicesOperationsComponent>;
+describe('ServiceService', () => {
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            providers: [ ConfigurationService, ServicesService ],
+            imports: [HttpClientModule],
+        });
+    }));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ServicesOperationsComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ServicesOperationsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should be created', inject([ServicesService ], (service: ServicesService) => {
+        expect(service).toBeTruthy();
+    }));
 });
+

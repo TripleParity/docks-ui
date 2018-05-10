@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {ServiceSpec} from '../../../_models/service/spec.model';
+import {ServicesService} from '../../../_services/services/services.service';
 
 @Component({
   selector: 'app-services-operations',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicesOperationsComponent implements OnInit {
 
-  constructor() { }
+    public spec: ServiceSpec;
+    constructor(private route: ActivatedRoute, private serviceService: ServicesService) {
+        this.route.params.subscribe(res => {
+            // this
+            console.log(res.id);
+        });
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

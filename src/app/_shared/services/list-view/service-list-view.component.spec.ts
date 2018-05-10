@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import {TaskService, ConfigurationService, MockService} from '../../../_services/index';
+import {ConfigurationService, MockService} from '../../../_services/index';
 import {ServicesService} from '../../../_services/services/services.service';
 import {HttpClientModule} from '@angular/common/http';
 
