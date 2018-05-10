@@ -33,6 +33,7 @@ import {GraphService} from './_services/graphs/graph.service';
 import { VolumesComponent } from './_shared/volumes/volumes.component';
 import {VolumesModule} from './_shared/volumes/volumes.module';
 import {ServicesService} from './_services/services/services.service';
+import { ServicesOperationsComponent } from './_shared/services/operations/services-operations.component';
 import { ServicesCardViewComponent } from './_shared/services/card-view/services-card-view.component';
 import { NetworkslistComponent } from './_shared/networks/networkslist/networkslist.component';
 import { NetworkscardsComponent } from './_shared/networks/networkscards/networkscards.component';
@@ -48,8 +49,7 @@ import { NetworkscardsComponent } from './_shared/networks/networkscards/network
         TaskCardViewComponent,
         ServiceListViewComponent,
         PageNotFoundComponent,
-        GraphComponent,
-        ServicesCardViewComponent,
+        GraphComponent
     ],
     imports: [
         BrowserModule,
