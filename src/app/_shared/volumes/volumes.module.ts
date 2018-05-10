@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
-import {MockService, NetworkService, VolumeService} from '../../_services/index';
-import {VolumesComponent} from './volumes.component';
+import {MockService, VolumeService} from '../../_services/index';
+import {VolumeListViewComponent} from './list-view/volume-list-view.component';
 import {VolumesRoutingModule} from './volumes.routing-module';
 import {RouterModule, Routes} from '@angular/router';
 
@@ -11,8 +11,8 @@ import {RouterModule, Routes} from '@angular/router';
     CommonModule,
     VolumesRoutingModule
   ],
-  declarations: [VolumesComponent],
+  declarations: [VolumeListViewComponent],
   providers: [HttpClientModule, MockService, VolumeService],
-  exports: [VolumesComponent]
+  exports: [VolumeListViewComponent]
 })
 export class VolumesModule { }

@@ -30,10 +30,11 @@ import { GraphComponent } from './_shared/graph/graph.component';
 
 // Added to test
 import {GraphService} from './_services/graphs/graph.service';
-import { VolumesComponent } from './_shared/volumes/volumes.component';
-import {VolumesModule} from './_shared/volumes/volumes.module';
+// import { Volume } from './_shared/volumes/list-view/';
 import {ServicesService} from './_services/services/services.service';
 import { ServicesCardViewComponent } from './_shared/services/card-view/services-card-view.component';
+// import { VolumeListViewComponent } from './_shared/volumes/list-view/volume-list-view.component';
+import { VolumeCardViewComponent } from './_shared/volumes/card-view/volume-card-view.component';
 
 @NgModule({
     declarations: [
@@ -47,7 +48,9 @@ import { ServicesCardViewComponent } from './_shared/services/card-view/services
         ServiceListViewComponent,
         PageNotFoundComponent,
         GraphComponent,
-        ServicesCardViewComponent
+        ServicesCardViewComponent,
+        // VolumeListViewComponent,
+        VolumeCardViewComponent
     ],
     imports: [
         BrowserModule,
@@ -55,7 +58,6 @@ import { ServicesCardViewComponent } from './_shared/services/card-view/services
         NgbModule.forRoot(),
         AppRoutingModule,
         AngularFontAwesomeModule,
-        VolumesModule
     ],
     providers: [
         {

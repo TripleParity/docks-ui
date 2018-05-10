@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { VolumesComponent } from './volumes.component';
+import { VolumeListViewComponent } from './list-view/volume-list-view.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: VolumesComponent
+        component: VolumeListViewComponent
     }
 ];
 
