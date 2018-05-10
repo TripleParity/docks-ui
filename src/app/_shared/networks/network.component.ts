@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../_services/auth/auth.service';
-import {TokenStorage} from '../../_classes';
+import {NetworkService} from '../../_services';
+import {Network} from '../../_models';
+
 
 @Component({
   selector: 'app-network',
@@ -9,9 +10,8 @@ import {TokenStorage} from '../../_classes';
 })
 export class NetworkComponent implements OnInit {
 
-  constructor() { }
+  constructor(private net: NetworkService) { }
 
   ngOnInit() {
   }
-
 }
