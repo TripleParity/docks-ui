@@ -1,3 +1,36 @@
-<p>
-  networkslist works!
-</p>
+<div id="volumeList">
+  <div *ngFor="let network of networks; let i = index">
+    <div class="card VolumeListCard">
+      <div class="card-header" [attr.id]="'heading-'+ i" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
+        <h5 class="mb-0">
+                  <span class="main-item">
+                      <div *ngIf="network.Name !== undefined;then name else notName"></div>
+
+                      <ng-template #name>{{network.Name}}</ng-template>
+                    <!--<ng-template #notName>ID: {{ volume.ID | slice:0:6}}</ng-template>-->
+                  </span>
+        </h5>
+      </div>
+
+
+
+      <div [attr.id]="'collapse-' + i" class="collapse" [attr.aria-labelledby]="'heading-'+ i" data-parent="#volumeList">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between sub-item">
+            ID: {{ network.Id }}
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between sub-item">
+            Scope: {{ network.Scope }}
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between sub-item">
+            Driver: {{ network.Driver }}
+          </li>
+
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

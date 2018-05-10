@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NetworkService} from '../../../_services';
+import {Network} from '../../../_models';
 
 @Component({
   selector: 'app-networkslist',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NetworkslistComponent implements OnInit {
 
-  constructor() { }
+  constructor(private net: NetworkService) { }
+  public networks: Network[];
 
   ngOnInit() {
+      this.net.getNetworks().subscribe(result => {
+          this.networks = result;
+          console.log(this.networks);
+      }, err => console.log(err));
+
   }
 
 }
