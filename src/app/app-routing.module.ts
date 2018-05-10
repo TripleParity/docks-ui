@@ -20,7 +20,6 @@ const routes: Routes = [
     {path: 'graph', component: GraphComponent},
     {path: 'graphTasks', component: GraphViewComponent},
     {path: 'listTasks', component: TaskListViewComponent},
-    {path: 'volumes', component: VolumesComponent},
     {path: 'cardTasks', component: TaskCardViewComponent},
     {path: 'cardServices', component: ServicesCardViewComponent},
     {path: '**' , component: PageNotFoundComponent}
