@@ -1,33 +1,42 @@
 <div>
-  <!--Name of product an image for Stacey & Co-->
-  <div id="div1">
-    <h1 style="margin-top: 50px;">Docks-ui</h1>
-    <br>
-    <br>
-    <img src="https://static1.squarespace.com/static/588bb37b893fc0698d8db5f6/t/58d96d5f03596eed05f898f9/1490644323456/" alt="whale">
-  </div>
+    <!--Name of product an image for Stacey & Co-->
+    <div id="div1">
+        <h1 style="margin-top: 50px;">Docks-ui</h1>
+        <br>
+        <br>
+        <img src="https://static1.squarespace.com/static/588bb37b893fc0698d8db5f6/t/58d96d5f03596eed05f898f9/1490644323456/"
+             alt="whale">
+    </div>
 
-  <!--Body of page.-->
-  <!--Add Action / target ->  Must be written in ngBootstrap form-->
-  <!--But this is the basic idea for the login page-->
-  <!--Routing so that the navbar doesn't display-->
-  <form id="form">
-    <h3>Please enter your credentials to log in</h3>
-    <h4>Username</h4>
-    <input type="text" placeholder="Ex. TeenyTinyTeddie">
-    <h4>Password</h4>
-    <input type="password" placeholder="Ex. *************">
-    <br>
-    <input id="butSubmit" type="submit">
-    <br>
-  </form>
+    <!--Body of page.-->
+    <!--Add Action / target ->  Must be written in ngBootstrap form-->
+    <!--But this is the basic idea for the login page-->
+    <!--Routing so that the navbar doesn't display-->
 
-  <footer>
-    <p>
-      Compiax&reg;
-    </p>
-    <p style="alignment: right">
-        TripleParity&trade;
-    </p>
-  </footer>
+    <form (ngSubmit)="onSubmit()" class = "form-group">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="name">Email</label>
+                <input type="text" class="form-control" id="name" placeholder="John Doe">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="*******">
+            </div>
+        </div>
+        <div class="form-row justify-content-md-center">
+            <div class="form-group col-md-6">
+                <button type="button" class="btn btn-success btn-block" (click)="onSubmit()">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <footer class="">
+        <hr />
+        <div class="row justify-content-md-center">
+            <div class="form-group col-md-2">
+                Compiax&reg; TripleParity&trade;
+            </div>
+        </div>
+    </footer>
 </div>

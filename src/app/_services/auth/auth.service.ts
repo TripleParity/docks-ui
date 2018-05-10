@@ -31,4 +31,11 @@ export class AuthService {
               })
           );
   }
+
+  public isLoggedIn():Boolean {
+
+
+
+      return false;
+  }
 }

@@ -48,7 +48,6 @@ import { ServicesCardViewComponent } from './_shared/services/card-view/services
         ServiceListViewComponent,
         PageNotFoundComponent,
         GraphComponent,
-        VolumesComponent,
         LoginpageComponent,
         ServicesCardViewComponent
     ],
