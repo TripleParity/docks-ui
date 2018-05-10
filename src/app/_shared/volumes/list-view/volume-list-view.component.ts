@@ -14,9 +14,8 @@ export class VolumeListViewComponent implements OnInit {
     public volumes: Volume[] = [];
     ngOnInit() {
         this.service.getVolumes().subscribe(volumes => {
-            for (let i = 0; i < volumes.length; i++) {
-                this.volumes.push(volumes[i]);
-            }
+            this.volumes = volumes;
+            console.log(volumes);
         });
     }
 

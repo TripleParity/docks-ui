@@ -22,12 +22,11 @@ const routes: Routes = [
     {path: 'listTasks', component: TaskListViewComponent},
     {path: 'cardTasks', component: TaskCardViewComponent},
     {path: 'cardServices', component: ServicesCardViewComponent},
-    {path: 'listVolumes', component: VolumeListViewComponent},
     {path: '**' , component: PageNotFoundComponent}
   ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes , {enableTracing: false})],
+  imports: [RouterModule.forRoot(routes , {enableTracing: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
