@@ -16,15 +16,15 @@ export class ServiceListViewComponent implements OnInit {
     public services: Service[] = [];
     public removeeId = String;
     ngOnInit() {
-        this.mock.getServices().subscribe(services => {
+        this.serviceService.getServices().subscribe(services => {
                 this.services = services;
         });
     }
 
     public removeService(id) {
-        // this.serviceService.deleteService(id).subscribe( x => {
-        //    this.services.filter(service => service.ID !== id);
-        // });
+        this.serviceService.deleteService(id).subscribe( x => {
+           this.services.filter(service => service.ID !== id);
+        });
         // I (FJMentz) would rather test this with adult supervision
         console.log('Removing container ' + id);
     }
