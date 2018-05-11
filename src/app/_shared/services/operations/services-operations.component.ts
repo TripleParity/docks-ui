@@ -11,6 +11,7 @@ import {MockService, ServicesService} from '../../../_services';
 export class ServicesOperationsComponent implements OnInit {
 
     public spec: ServiceSpec;
+
     public serviceLog: String;
     constructor(private route: ActivatedRoute, private serviceService: ServicesService, private mock: MockService) {
         this.route.params.subscribe(res => {

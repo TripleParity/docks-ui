@@ -1,0 +1,30 @@
+<div id="networkList">
+  <div *ngFor="let network of networks; let i = index">
+    <div class="card networkListCard">
+      <div class="card-header" [attr.id]="'heading-'+ i" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
+        <h5 class="mb-0">
+          <span class="main-item">
+            <span>{{network.Name}}</span>
+          </span>
+        </h5>
+      </div>
+
+      <div [attr.id]="'collapse-' + i" class="collapse" [attr.aria-labelledby]="'heading-'+ i" data-parent="#volumeList">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between sub-item">
+            ID: {{ network.Id }}
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between sub-item">
+            Scope: {{ network.Scope }}
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between sub-item">
+            Driver: {{ network.Driver }}
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

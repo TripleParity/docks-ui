@@ -30,8 +30,7 @@ import { GraphComponent } from './_shared/graph/graph.component';
 
 // Added to test
 import {GraphService} from './_services/graphs/graph.service';
-import { VolumesComponent } from './_shared/volumes/volumes.component';
-import {VolumesModule} from './_shared/volumes/volumes.module';
+// import { Volume } from './_shared/volumes/list-view/';
 import {ServicesService} from './_services/services/services.service';
 import { ServicesOperationsComponent } from './_shared/services/operations/services-operations.component';
 import { ServicesCardViewComponent } from './_shared/services/card-view/services-card-view.component';
@@ -50,7 +49,7 @@ import {FormsModule} from '@angular/forms';
         PageNotFoundComponent,
         GraphComponent,
         ServicesOperationsComponent,
-        ServicesCardViewComponent,
+        ServicesCardViewComponent
     ],
     imports: [
         BrowserModule,
@@ -58,8 +57,6 @@ import {FormsModule} from '@angular/forms';
         NgbModule.forRoot(),
         AppRoutingModule,
         AngularFontAwesomeModule,
-        VolumesModule,
-        FormsModule,
     ],
     providers: [
         {

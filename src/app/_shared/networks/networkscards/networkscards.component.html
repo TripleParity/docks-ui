@@ -1,0 +1,106 @@
+<!--TODO(FJMentz): Stack, Networks, Volumes (To modal)-->
+
+<div id="networkList">
+  <div class="card-deck">
+    <div *ngFor="let network of networks; let i = index">
+      <div class="card" (click)="loadModal(content, network)">
+        <div class="card-title">
+          <h5 class="card-name">
+                        <span>
+                            <div *ngIf="network.Name !== undefined;then name else notName"></div>
+                            <ng-template #name>{{network.Name}}</ng-template>
+                            <ng-template #notName>ID: {{ network.ID | slice:0:6}}</ng-template>
+                            &nbsp; &nbsp;
+                        </span>
+                        <span class="light-container">
+                            <span class="light"></span>
+                        </span>
+          </h5>
+
+        </div>
+        <div class="card-text">
+          <ul class="list-group header">
+            <li class="list-group-item">
+              <span class="text">ID: </span> {{ network.Id }}
+            </li>
+            <li class="list-group-item">
+              <span class="text">Driver:</span> {{ network.Driver }}
+            </li>
+            <li class="list-group-item">
+              <span class="text">Scope:</span> {{ network.Scope }}
+            </li>
+          </ul>
+          <div class="service">
+          </div>
+
+        </div>
+
+        <div class="card-footer">
+          <div class="up-date">
+            <span class="text">Date Created: </span><br />
+            {{network.Created }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div id="network-modal">
+    <div class="modal-header" id="modal-header" [attr.class]="'modal-header ' + ' ' + getState(modalObject.status.state.toUpperCase()) + '-card'">
+      <h4 >
+        <div *ngIf="modalObject.Name !== undefined;then name else notName"></div>
+        <ng-template #name>{{modalObject.Name}}</ng-template>
+        <ng-template #notName>ID: {{ modalObject.Id | slice:0:6}}</ng-template>
+      </h4>
+
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" id="modal-task">
+      <ul class="modal-list-group">
+        <li class="modal-list-group-item">
+          <span class="text">ID: {{modalObject.id}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Driver: {{modalObject.Driver}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Scope: {{modalObject.Scope}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Date Created: {{modalObject.CreatedAt}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Enable IPv6: {{modalObject.EnableIPv6}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Internal: {{modalObject.Internal}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Attachable: {{modalObject.Attachable}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Ingress: {{modalObject.Ingress}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">IPAM: {{modalObject.IPAM}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Options: {{modalObject.Options}}</span>
+        </li>
+        <!--<li class="modal-list-group-item">-->
+        <!--<span class="text">Logs:</span><br/>-->
+        <!--<textarea id="modalTextArea" class="modal-textarea" disabled>{{modalObjectLog}}</textarea><br/>-->
+        <!--<button type="button" class="btn modal-button">Copy to clipboard</button>-->
+        <!--</li>-->
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <h3 clss="pull-left"><span [attr.class]="'text-' + getState(modalObject.status.state.toUpperCase())">{{modalObject.status.state.toUpperCase()}}</span></h3>
+      <button type="button" class="btn btn-danger" (click)="c('Close click')">Close</button>
+    </div>
+  </div>
+</ng-template>
