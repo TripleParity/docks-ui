@@ -1,0 +1,227 @@
+.card:hover{
+    cursor: pointer;
+}
+
+.card-title {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 5px;
+}
+
+.card-footer{
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.card-footer, .card-title{
+    background: #212529;
+}
+
+.card-deck{
+    margin-top: 20px;
+}
+
+.card-text, .modal-body{
+    background: #32383E;
+}
+
+.card{
+    margin-top: 10px;
+    background: #32383E;
+    border-radius: 10px;
+}
+
+.list-group{
+    text-align: center;
+}
+
+.list-group-item{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 8px;
+    color: #707070;
+    font-size: smaller;
+}
+
+.modal-list-group{
+    text-align: center;
+    padding: 0;
+}
+
+.modal-list-group-item{
+    background: transparent;
+    border: none;
+    border-bottom: 0.5px solid #212529;
+    padding: 8px;
+    color: #707070;
+    font-size: medium;
+    list-style-type: none;
+}
+
+.header{
+    color: whitesmoke;
+    font-size: 70%;
+}
+
+.up-date{
+    font-size: smaller;
+    color: #707070;
+    text-align: center;
+}
+
+.card-name
+{
+    color: var(--white);
+    font-size: 100%;
+    margin-top: 8px;
+    text-align: center;
+    padding-left: 3px;
+}
+
+.light-container{
+    padding: 0.5vh;
+}
+
+.light{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.header{
+    color: whitesmoke;
+    font-size: 110%;
+}
+
+.text{
+    color: #A0A0A0;
+}
+
+/*successful task*/
+.success-card, .success-card > .card-title, .success-card > .card-footer{
+    border: 2px solid var(--green);
+}
+
+.success-card > .modal-header{
+    border: 3px solid var(--green);
+}
+
+.success-card > .card-title, .success-card > .modal-header{
+    color: var(--green);
+}
+
+.success-card > .card-title > .card-name > .light-container > .light{
+    background: var(--green);
+}
+
+/*failed task*/
+.danger-card, .danger-card > .card-title, .danger-card > .card-footer{
+    border: 2px solid var(--red);
+}
+
+.danger-card > .modal-header{
+    border: 3px solid var(--red);
+}
+
+.danger-card > .card-title, .danger-card > .modal-header{
+    color: var(--red);
+}
+
+.danger-card > .card-title > .card-name > .light-container > .light{
+    background: var(--red);
+}
+
+/*complete task*/
+.info-card, .info-card > .card-title, .info-card > .card-footer{
+    border: 2px solid var(--info);
+}
+
+.info-card > .modal-header{
+    border: 3px solid var(--info);
+}
+
+.info-card > .card-title, .info-card > .modal-header{
+    color: var(--info);
+}
+
+.info-card > .card-title > .card-name > .light-container > .light{
+    background: var(--info);
+}
+
+/*dead task*/
+.dark-card, .dark-card > .card-title, .dark-card > .card-footer{
+    border: 2px solid var(--dark);
+}
+
+.dark-card > .modal-header{
+    border: 3px solid var(--dark);
+}
+
+.dark-card > .card-title, .dark-card > .modal-header{
+    color: var(--dark);
+}
+
+.dark-card > .card-title > .card-name > .light-container > .light{
+    background: var(--dark);
+}
+
+/*new task*/
+.primary-card, .primary-card > .card-title, .primary-card > .card-footer{
+    border: 2px solid var(--primary);
+}
+
+.primary-card > .modal-header{
+    border: 3px solid var(--primary);
+}
+
+.primary-card > .card-title, .primary-card > .modal-header{
+    color: var(--primary);
+}
+
+.primary-card > .card-title > .card-name > .light-container > .light{
+    background: var(--primary);
+}
+
+.modal-title, .modal-task-state {
+    text-align: center;
+    margin: auto;
+}
+
+#modal-header {
+    color: var(--white);
+    background: #212529;
+}
+
+.modal-footer{
+    background: #212529;
+}
+.text-success{
+    color: var(--green);
+}
+
+.text-danger{
+    color: var(--red)
+}
+
+.text-info{
+    color: var(--info)
+}
+
+.text-dark{
+    color: var(--dark)
+}
+
+.text-primary{
+    color: var(--primary);
+}
+
+.modal-textarea{
+    background-color: #32383E;
+    color: var(--white);
+    width: 80%;
+    height: 50vh;
+    resize: none;
+}

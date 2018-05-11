@@ -1,0 +1,95 @@
+<!--TODO(FJMentz): Stack, Networks, Volumes (To modal)-->
+
+<div id="volumeList">
+  <div class="card-deck">
+    <div *ngFor="let volume of volumes; let i = index">
+      <div class="card" (click)="loadModal(content, volume)">
+        <div class="card-title">
+          <h5 class="card-name">
+                        <span>
+                            <div *ngIf="volume.Name !== undefined;then name else notName"></div>
+                            <ng-template #name>{{volume.Name | slice:0:6}}</ng-template>
+                            <ng-template #notName>ID: {{ volume.Name | slice:0:6}}</ng-template>
+                            &nbsp; &nbsp;
+                        </span>
+                        <span class="light-container">
+                            <span class="light"></span>
+                        </span>
+          </h5>
+
+        </div>
+        <div class="card-text">
+          <ul class="list-group header">
+            <li class="list-group-item">
+              <span class="text">Date Created:</span> {{ volume.CreateAt }}
+            </li>
+            <li class="list-group-item">
+              <span class="text">Driver:</span> {{ volume.Driver }}
+            </li>
+            <li class="list-group-item">
+              <span class="text">Mountpoint:</span> {{ volume.Mountpoint }}
+            </li>
+          </ul>
+          <div class="service">
+          </div>
+
+        </div>
+
+        <div class="card-footer">
+          <div class="up-date">
+            <span class="text">Date Created: </span><br />
+            {{volume.CreatedAt }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div id="volume-modal">
+    <div class="modal-header" id="modal-header" [attr.class]="'modal-header ' + ' ' + getState(modalObject.status.state.toUpperCase()) + '-card'">
+      <h4 >
+        <div *ngIf="modalObject.Name !== undefined;then name else notName"></div>
+        <ng-template #name>{{modalObject.Name}}</ng-template>
+        <ng-template #notName>ID: {{ modalObject.id | slice:0:6}}</ng-template>
+      </h4>
+
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" id="modal-task">
+      <ul class="modal-list-group">
+        <li class="modal-list-group-item">
+          <span class="text">Date Created: {{modalObject.CreatedAt}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Driver: {{modalObject.Driver}}</span>
+          <!--Change to Node name as soon as Node service is implemented-->
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Mountpoint: {{modalObject.Mountpoint}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Scope: {{modalObject.Scope}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Labels: {{modalObject.Labels}}</span>
+        </li>
+        <li class="modal-list-group-item">
+          <span class="text">Options: {{modalObject.Options}}</span>
+        </li>
+        <!--<li class="modal-list-group-item">-->
+          <!--<span class="text">Logs:</span><br/>-->
+          <!--<textarea id="modalTextArea" class="modal-textarea" disabled>{{modalObjectLog}}</textarea><br/>-->
+          <!--<button type="button" class="btn modal-button">Copy to clipboard</button>-->
+        <!--</li>-->
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <h3 clss="pull-left"><span [attr.class]="'text-' + getState(modalObject.status.state.toUpperCase())">{{modalObject.status.state.toUpperCase()}}</span></h3>
+      <button type="button" class="btn btn-danger" (click)="c('Close click')">Close</button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,95 @@
+#serviceList{
+    padding: 10px;
+}
+
+.card-header {
+    background-color: #212529;
+    color: #FFF;
+}
+
+.list-group-item {
+    background-color: #32383E;
+    color: #d3d3d0;
+}
+
+.badge{
+    position: absolute;
+    right: 20px;
+}
+
+.main-item{
+    color: var(--green);
+}
+
+.sub-item:hover{
+    color: var(--green);
+    background-color: #212529;
+}
+
+.list-group{
+     margin-left: 20px;
+     margin-right: 20px;
+ }
+
+.sub-list-group{
+    padding: 0px;
+    margin-left: 20px;
+}
+
+.sub-list-group-item{
+    width: 100%;
+}
+
+.card-header{
+    cursor: pointer;
+}
+
+.ServiceListCard{
+    border: none;
+}
+
+.ports{
+    cursor: pointer;
+}
+
+.center{
+    margin: auto;
+}
+
+.heading-item{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.dropdown-menu{
+    background-color: #32383E;
+}
+
+.dropdown-item{
+    background-color: transparent;
+    color: #A0A0A0;
+}
+
+.dropdown-item:hover{
+    color: var(--green);
+    cursor: pointer;
+}
+
+.dropdown-item-danger:hover{
+    background-color: transparent;
+    color: var(--red);
+}
+
+.dark-modal{
+    background-color: #212529;
+    color: var(--white);
+    border: none;
+}
+
+.warning-text{
+    color: var(--red);
+}
+
+.faded-text{
+    color: #A0A0A0;
+}

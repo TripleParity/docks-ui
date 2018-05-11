@@ -10,4 +10,5 @@ FROM nginx:alpine
 EXPOSE 80
 
 WORKDIR /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/dist .
