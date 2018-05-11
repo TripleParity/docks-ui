@@ -47,8 +47,13 @@ import { ServicesCardViewComponent } from './_shared/services/card-view/services
         ServiceListViewComponent,
         PageNotFoundComponent,
         GraphComponent,
-        ServicesCardViewComponent,
-        ServicesOperationsComponent
+// <<<<<<< HEAD
+//         ServicesCardViewComponent,
+//         ServicesOperationsComponent
+// =======
+//         ServicesOperationsComponent,
+//         ServicesCardViewComponent,
+// >>>>>>> 94b31a9f3cdc45ee6577045ea2b72315dc2dd356
     ],
     imports: [
         BrowserModule,
