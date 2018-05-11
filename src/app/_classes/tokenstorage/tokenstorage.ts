@@ -20,4 +20,6 @@ export class TokenStorage {
     public getToken(token: string): string {
         return window.localStorage.getItem(token);
     }
+
+
 }

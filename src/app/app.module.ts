@@ -31,6 +31,7 @@ import { GraphComponent } from './_shared/graph/graph.component';
 // Added to test
 import {GraphService} from './_services/graphs/graph.service';
 import { VolumesComponent } from './_shared/volumes/volumes.component';
+import { LoginpageComponent } from './_shared/loginpage/loginpage.component';
 import {VolumesModule} from './_shared/volumes/volumes.module';
 import {ServicesService} from './_services/services/services.service';
 import { ServicesOperationsComponent } from './_shared/services/operations/services-operations.component';
@@ -49,8 +50,9 @@ import {FormsModule} from '@angular/forms';
         ServiceListViewComponent,
         PageNotFoundComponent,
         GraphComponent,
+        LoginpageComponent,
         ServicesOperationsComponent,
-        ServicesCardViewComponent,
+        ServicesCardViewComponent
     ],
     imports: [
         BrowserModule,

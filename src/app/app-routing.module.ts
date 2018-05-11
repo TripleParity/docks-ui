@@ -8,12 +8,15 @@ import {GraphComponent} from './_shared/graph/graph.component';
 
 import {TaskListViewComponent} from './_shared';
 import {GraphViewComponent} from './_shared/tasks/graph-view/graph-view.component';
+import {LoginpageComponent} from './_shared/loginpage/loginpage.component';
 import {ServicesOperationsComponent} from './_shared/services/operations/services-operations.component';
 import {VolumesComponent} from './_shared/volumes/volumes.component';
 import {TaskCardViewComponent} from './_shared/tasks/card-view/task-card-view.component';
 import {ServicesCardViewComponent} from './_shared/services/card-view/services-card-view.component';
 
+
 const routes: Routes = [
+    {path: 'login', component: LoginpageComponent},
     {path: 'containers', component: ContainersComponent},
     {path: 'listServices', component: ServiceListViewComponent},
     {path: 'networks', loadChildren: 'app/_shared/networks/network.module#NetworkModule'},
