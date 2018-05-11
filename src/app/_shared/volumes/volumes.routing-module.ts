@@ -6,9 +6,13 @@ import {VolumeOperationsComponent} from './volume-operations/volume-operations.c
 
 const routes: Routes = [
     {
-        path: '',
-        component: VolumeOperationsComponent
-    }
+        path: 'list',
+        component: VolumeListViewComponent
+    },
+    {
+        path: 'card',
+        component: VolumeCardViewComponent
+    },
 ];
 
 @NgModule({
