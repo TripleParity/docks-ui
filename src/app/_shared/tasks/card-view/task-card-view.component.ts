@@ -19,7 +19,7 @@ export class TaskCardViewComponent implements OnInit {
     public modalObjectLog: string;
 
     ngOnInit() {
-        this.mockService.getTasks().subscribe((task) => {
+        this.taskService.getTasks().subscribe((task) => {
             for (let i = 0; i < task.length; i++) {
                 this.tasks.push(task[i]);
             }
