@@ -7,6 +7,7 @@ import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {Volume} from '../../_models';
 import {ConfigurationService} from '../configuration/configuration.service';
 import {RequestOptions} from '@angular/http';
+import {CreateVolume} from '../../_models/volume/createVolume/createVolume.model';
 
 enum VolumeError {
     ERR_STREAM = 101,
