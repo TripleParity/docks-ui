@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorage} from '../../_classes/tokenstorage/tokenstorage';
 import {AuthService} from '../../_services/auth/auth.service';
+import {FormGroup} from '@angular/forms';
 
 
 @Component({
-  selector: 'app-loginpage',
-  templateUrl: './loginpage.component.html',
-  styleUrls: ['./loginpage.component.css']
+    selector: 'app-loginpage',
+    templateUrl: './loginpage.component.html',
+    styleUrls: ['./loginpage.component.css']
 })
 
 export class LoginpageComponent implements OnInit {
@@ -14,14 +15,19 @@ export class LoginpageComponent implements OnInit {
 
     }
 
-  ngOnInit() {
 
-  }
+    private token: FormGroup;
 
-  public onSubmit(){
-      console.log("hello from me")
-      console.log("hello from in here")
-  }
+    ngOnInit() {
+
+    }
+
+    public onSubmit() {
+        console.log('inSubmit')
+        this.auth.getToken('admin', 'admin').subscribe(() => {
+            console.log(this.tokens.getToken('auth'));
+        }, err => console.log(err));
+    }
 
     public hello() {
 

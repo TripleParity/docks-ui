@@ -13,7 +13,7 @@
     <!--But this is the basic idea for the login page-->
     <!--Routing so that the navbar doesn't display-->
 
-    <form (ngSubmit)="onSubmit()" class = "form-group">
+    <form formGroup = "myForm" (ngSubmit)="onSubmit()" class = "form-group">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="name">Email</label>
