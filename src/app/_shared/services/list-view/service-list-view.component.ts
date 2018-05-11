@@ -3,9 +3,6 @@ import { Service } from '../../../_models';
 import {Formatter} from '../../../_classes';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ServicesService, MockService} from '../../../_services';
-import {forEach} from '@angular/router/src/utils/collection';
-// TODO(FJMentz): Do date stuff (commented)
-// import { Formatter } from '../../../_classes';
 
 @Component({
     selector: 'app-service-list-view',

@@ -34,6 +34,7 @@ import {GraphService} from './_services/graphs/graph.service';
 import {ServicesService} from './_services/services/services.service';
 import { ServicesOperationsComponent } from './_shared/services/operations/services-operations.component';
 import { ServicesCardViewComponent } from './_shared/services/card-view/services-card-view.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -47,13 +48,8 @@ import { ServicesCardViewComponent } from './_shared/services/card-view/services
         ServiceListViewComponent,
         PageNotFoundComponent,
         GraphComponent,
-// <<<<<<< HEAD
-//         ServicesCardViewComponent,
-//         ServicesOperationsComponent
-// =======
-//         ServicesOperationsComponent,
-//         ServicesCardViewComponent,
-// >>>>>>> 94b31a9f3cdc45ee6577045ea2b72315dc2dd356
+        ServicesOperationsComponent,
+        ServicesCardViewComponent
     ],
     imports: [
         BrowserModule,

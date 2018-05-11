@@ -30,6 +30,22 @@ export class MockService {
         });
     }
 
+    public inspectService(id: string) {
+        /* tslint:disable */
+        const temp = JSON.parse('{ "Name": "hopeful_cori", "TaskTemplate": {}, "Mode": { "Replicated": { "Replicas": 1 } }, "UpdateConfig": {}, "RollbackConfig": {}, "EndpointSpec": { "Mode": "dnsrr", "Ports": [] } }');
+        /* tslint:enable */
+        return Observable.create(obvs => {
+            obvs.next(temp);
+        });
+    }
+
+    public getServiceLog(id: string) {
+        const temp = 'This is the log';
+        return Observable.create(obvs => {
+            obvs.next(temp);
+        });
+    }
+
 
     public getTasks(): Observable<Task[]> {
         this.myTasks.push(Task.parse(JSON.parse('{"ID": "1yljwbmlr8er2waf8orvqpwms",' +
