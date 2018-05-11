@@ -1,17 +1,28 @@
-<!--TODO(FJMentz): Do date stuff (commented)-->
-
 <div id="serviceList">
     <div *ngFor="let service of services; let i = index">
         <div class="card ServiceListCard">
             <div class="card-header" [attr.id]="'heading-'+ i" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
-              <h5 class="mb-0">
-                  <span class="main-item">
-                      <div *ngIf="service.Spec.Name !== undefined;then name else notName"></div>
+                <h5 class="mb-0 container-fluid">
+                    <div class="row">
+                        <span class="main-item col-10 heading-item">
+                          <div *ngIf="service.Spec.Name !== undefined;then name else notName"></div>
 
-                      <ng-template #name>{{service.Spec.Name}}</ng-template>
-                      <ng-template #notName>ID: {{ service.ID | slice:0:6}}</ng-template>
-                  </span>
-              </h5>
+                          <ng-template #name>{{service.Spec.Name}}</ng-template>
+                          <ng-template #notName>ID: {{ service.ID | slice:0:6}}</ng-template>
+                        </span>
+                        <span class="col-2 heading-item text-right">
+                            <div ngbDropdown class="d-inline-block" placement="bottom-right">
+                                <button class="btn btn-outline-success" [id]="'operations-' + service.ID" ngbDropdownToggle (click)="voidParentClick($event)">Operations</button>
+                                <div ngbDropdownMenu [attr.aria-labelledby]="'operations-' + service.ID">
+                                    <button class="dropdown-item" [routerLink]="'/operationsServices/'+ service.ID" (click)="voidParentClick($event)"><i class="fa fa-balance-scale"></i> Scale</button>
+                                    <button class="dropdown-item" [routerLink]="'/operationsServices/'+ service.ID" (click)="voidParentClick($event)"><i class="fa fa-sliders"></i> Update</button>
+                                    <button class="dropdown-item" [routerLink]="'/operationsServices/'+ service.ID" (click)="voidParentClick($event)"><i class="fa fa-eye"></i> View Logs</button>
+                                    <button class="dropdown-item dropdown-item-danger" (click)="loadModal(removeConfirm, service.ID, $event)"><i class="fa fa-trash-o"></i> Remove</button>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </h5>
             </div>
 
 
@@ -28,31 +39,36 @@
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         Replicas: {{ service.Spec.Mode.Replicated.Replicas}}
                     </li>
-                    <li [attr.id]="'ports-heading-'+ i" class="list-group-item d-flex justify-content-between sub-item ports" data-toggle="collapse" [attr.data-target]="'#ports-collapse-'+ i" aria-expanded="true" [attr.aria-controls]="'ports-collapse-' + i">
-                        Ports:
-                    </li>
-
-                    <div [attr.id]="'ports-collapse-'+ i" class="collapse justify-content-between" [attr.aria-labelledby]="'ports-heading-'+ i">
-                        <div *ngFor="let port of service.Endpoint.Ports" class="sub-list-group-item">
-                            <ul class="sub-list-group">
-                                <li class="list-group-item d-flex justify-content-between sub-item">
-                                    Published port: {{ port.PublishedPort }}<br>
-                                    Target port: {{ port.TargetPort}}
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
                     <li class="list-group-item d-flex justify-content-between sub-item">
-                         Date Created: {{ service.CreatedAt }}
-                         <!--Date Created: {{ this.PrettifyDateTime(service.createdAt) }}-->
+                        Date Created: {{ this.PrettifyDateTime(service.CreatedAt) }}
                     </li>
                     <li class="list-group-item d-flex justify-content-between sub-item">
-                        Last Updated: {{ service.UpdatedAt }}
-                        <!--Last Updated: {{ this.PrettifyDateTime(service.updatedAt) }}-->
+                        Last Updated: {{ this.PrettifyDateTime(service.UpdatedAt) }}
+
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+
+<ng-template #removeConfirm let-c="close" let-d="dismiss">
+    <div id="task-modal" class="dark-modal">
+        <div class="modal-header" id="remove-modal-header">
+            <h4 class="warning-text">
+                Warning!
+            </h4>
+
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" id="modal-task">
+            <span class="faded-text">Are you sure you want to delete service with id:</span><br/> {{ removeeId }} <span class="faded-text">?</span>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="removeService(removeeId); c('Close click')">Remove</button>
+            <button type="button" class="btn btn-outline-success" (click)="c('Close click')">Cancel</button>
+        </div>
+    </div>
+</ng-template>

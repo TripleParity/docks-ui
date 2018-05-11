@@ -1,0 +1,45 @@
+#serviceOperations{
+    margin-top: 30px;
+}
+
+#update-tab.active, #scale-tab.active, #log-tab.active{
+    background-color: #212529;
+    color: var(--green);
+    border: 2px solid var(--green);
+    border-bottom: none;
+}
+
+#update-tab, #scale-tab, #log-tab{
+    background-color: #212529;
+    color: var(--white);
+    border: none;
+}
+
+#serviceOperationsTabs{
+    background-color: #212529;
+}
+
+.textarea{
+    background-color: #32383E;
+    color: var(--white);
+    width: 90%;
+    height: 50vh;
+    resize: none;
+    margin: auto;
+}
+
+.content-container{
+    padding: 3%;
+    height: 70vh;
+    border: 5px solid #212529;
+    background-color: #32383E;
+}
+
+.copy-button{
+    margin: auto;
+    margin-top: 1%;
+}
+
+label{
+    color: var(--white);
+}

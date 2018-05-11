@@ -34,7 +34,9 @@ import { VolumesComponent } from './_shared/volumes/volumes.component';
 import { LoginpageComponent } from './_shared/loginpage/loginpage.component';
 import {VolumesModule} from './_shared/volumes/volumes.module';
 import {ServicesService} from './_services/services/services.service';
+import { ServicesOperationsComponent } from './_shared/services/operations/services-operations.component';
 import { ServicesCardViewComponent } from './_shared/services/card-view/services-card-view.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -49,6 +51,7 @@ import { ServicesCardViewComponent } from './_shared/services/card-view/services
         PageNotFoundComponent,
         GraphComponent,
         LoginpageComponent,
+        ServicesOperationsComponent,
         ServicesCardViewComponent
     ],
     imports: [
@@ -57,7 +60,8 @@ import { ServicesCardViewComponent } from './_shared/services/card-view/services
         NgbModule.forRoot(),
         AppRoutingModule,
         AngularFontAwesomeModule,
-        VolumesModule
+        VolumesModule,
+        FormsModule,
     ],
     providers: [
         {
