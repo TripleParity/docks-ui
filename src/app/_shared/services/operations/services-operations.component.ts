@@ -11,7 +11,7 @@ import {ServicesService} from '../../../_services/services/services.service';
 export class ServicesOperationsComponent implements OnInit {
 
     public spec: ServiceSpec;
-    constructor(private route: ActivatedRoute, private serviceService: ServicesService) {
+    constructor(private route: ActivatedRoute, private service: ServicesService) {
         this.route.params.subscribe(res => {
             // this
             console.log(res.id);
