@@ -51,3 +51,45 @@
 .ports{
     cursor: pointer;
 }
+
+.center{
+    margin: auto;
+}
+
+.heading-item{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.dropdown-menu{
+    background-color: #32383E;
+}
+
+.dropdown-item{
+    background-color: transparent;
+    color: #A0A0A0;
+}
+
+.dropdown-item:hover{
+    color: var(--green);
+    cursor: pointer;
+}
+
+.dropdown-item-danger:hover{
+    background-color: transparent;
+    color: var(--red);
+}
+
+.dark-modal{
+    background-color: #212529;
+    color: var(--white);
+    border: none;
+}
+
+.warning-text{
+    color: var(--red);
+}
+
+.faded-text{
+    color: #A0A0A0;
+}
