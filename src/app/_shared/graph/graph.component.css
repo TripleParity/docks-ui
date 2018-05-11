@@ -1,0 +1,47 @@
+#networks{
+    width: 250px;
+    background-color: lightgray;
+    float: left;
+    display: flex;
+    margin: 0 auto;
+    margin-right: 20px;
+}
+
+#volumes{
+    width: 250px;
+    background-color: lightgray;
+    float: left;
+    display: flex;
+    margin: 0 auto;
+    margin-right: 20px;
+}
+
+#tasks{
+    width: 250px;
+    background-color: lightgray;
+    float: left;
+    display: flex;
+    margin: 0 auto;
+}
+
+#stats {
+    display: inline-block;
+    margin-top: 5%;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    /*margin-left: 15px;*/
+}
+
+#volumes, #networks, #tasks{
+    text-align: center;
+    padding-top: 1%;
+    align-items: center;
+}
+
+.inner-container{
+    margin: auto;
+}
