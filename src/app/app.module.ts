@@ -33,6 +33,7 @@ import {GraphService} from './_services/graphs/graph.service';
 // import { Volume } from './_shared/volumes/list-view/';
 import {ServicesService} from './_services/services/services.service';
 import { ServicesCardViewComponent } from './_shared/services/card-view/services-card-view.component';
+import { VolumeOperationsComponent } from './_shared/volumes/volume-operations/volume-operations.component';
 // import { VolumeListViewComponent } from './_shared/volumes/list-view/volume-list-view.component';
 // import { VolumeCardViewComponent } from './_shared/volumes/card-view/volume-card-view.component';
 
@@ -49,6 +50,7 @@ import { ServicesCardViewComponent } from './_shared/services/card-view/services
         PageNotFoundComponent,
         GraphComponent,
         ServicesCardViewComponent,
+        VolumeOperationsComponent,
         // VolumeListViewComponent,
         // VolumeCardViewComponent
     ],

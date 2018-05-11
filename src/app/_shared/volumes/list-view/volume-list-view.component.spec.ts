@@ -1,25 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { VolumeListViewComponent } from './volume-list-view.component';
+import {ConfigurationService, MockService, VolumeService} from '../../../_services';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('VolumeListViewComponent', () => {
-  let component: VolumeListViewComponent;
-  let fixture: ComponentFixture<VolumeListViewComponent>;
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [ VolumeListViewComponent ],
+            providers: [ConfigurationService, VolumeService, MockService],
+            imports: [HttpClientModule],
+        });
+    });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ VolumeListViewComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(VolumeListViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should be created', inject([VolumeService], (service: VolumeService) => {
+        expect(service).toBeTruthy();
+    }));
 });

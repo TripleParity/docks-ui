@@ -1,13 +1,13 @@
 import { async, ComponentFixture } from '@angular/core/testing';
 import { TestBed, inject } from '@angular/core/testing';
-import { VolumeCardViewComponent } from './volume-card-view.component';
+import { VolumeOperationsComponent } from './volume-operations.component';
 import {ConfigurationService, MockService, VolumeService} from '../../../_services';
 import {HttpClientModule} from '@angular/common/http';
 
 describe('VolumeListViewComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [ VolumeCardViewComponent ],
+            declarations: [ VolumeOperationsComponent ],
             providers: [ConfigurationService, VolumeService, MockService],
             imports: [HttpClientModule],
         });
