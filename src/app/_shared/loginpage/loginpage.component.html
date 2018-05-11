@@ -13,18 +13,18 @@
     <!--But this is the basic idea for the login page-->
     <!--Routing so that the navbar doesn't display-->
 
-    <!--<div *ngIf="this.tokens.getToken('auth') !== null;then welcome else logIn"></div>-->
+    <div *ngIf="loggedIn !== false;then welcome else logIn"></div>
 
-    <!--<ng-template #welcome>-->
-        <!--<h1>-->
-            <!--You are signed in!!!-->
-        <!--</h1>-->
-        <!--<button type="button" class="btn btn-success btn-block" (click)="onLogOut()">Sign Out</button>-->
-    <!--</ng-template>-->
-    <!--<ng-template #logIn>-->
+    <ng-template #welcome>
+        <h1>
+            You are signed in!!!
+        </h1>
+        <button type="button" class="btn btn-success btn-block" (click)="onLogOut()">Sign Out</button>
+    </ng-template>
+    <ng-template #logIn>
 
 
-        <form formGroup="myForm" (ngSubmit)="onSubmit()" class="form-group">
+        <form (ngSubmit)="onSubmit()" class="form-group">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="name">Email</label>
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </form>
-    <!--</ng-template>-->
+    </ng-template>
 
     <footer class="">
         <hr/>
