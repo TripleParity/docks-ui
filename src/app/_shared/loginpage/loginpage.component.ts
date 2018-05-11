@@ -14,7 +14,7 @@ export class LoginpageComponent implements OnInit {
 
     }
 
-    private loggedIn = false;
+    public loggedIn = false;
     ngOnInit() {
 
     }
