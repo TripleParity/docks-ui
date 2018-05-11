@@ -10,7 +10,6 @@ import {TaskListViewComponent} from './_shared';
 import {GraphViewComponent} from './_shared/tasks/graph-view/graph-view.component';
 import {VolumeListViewComponent} from './_shared/volumes/list-view/volume-list-view.component';
 import {ServicesOperationsComponent} from './_shared/services/operations/services-operations.component';
-import {VolumesComponent} from './_shared/volumes/volumes.component';
 import {TaskCardViewComponent} from './_shared/tasks/card-view/task-card-view.component';
 import {ServicesCardViewComponent} from './_shared/services/card-view/services-card-view.component';
 

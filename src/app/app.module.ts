@@ -36,6 +36,7 @@ import { ServicesOperationsComponent } from './_shared/services/operations/servi
 import { ServicesCardViewComponent } from './_shared/services/card-view/services-card-view.component';
 import { VolumeOperationsComponent } from './_shared/volumes/volume-operations/volume-operations.component';
 import {FormsModule} from '@angular/forms';
+import {VolumesModule} from './_shared/volumes/volumes.module';
 
 @NgModule({
     declarations: [
