@@ -15,23 +15,20 @@ export class LoginpageComponent implements OnInit {
 
     }
 
-
-    private token: FormGroup;
-
     ngOnInit() {
 
     }
 
     public onSubmit() {
-        console.log('inSubmit')
+        console.log('inSubmit');
         this.auth.getToken('admin', 'admin').subscribe(() => {
             console.log(this.tokens.getToken('auth'));
         }, err => console.log(err));
     }
 
-    public hello() {
-
-        // console.log("help me")
+    public onLogOut() {
+        console.log('logging out');
+        this.tokens.signOut();
+        console.log(this.tokens.getToken('auth'));
     }
-
 }
