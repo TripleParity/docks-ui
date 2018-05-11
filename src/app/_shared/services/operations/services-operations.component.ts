@@ -10,22 +10,23 @@ import {MockService, ServicesService} from '../../../_services';
 })
 export class ServicesOperationsComponent implements OnInit {
 
-    public spec: ServiceSpec;
+    public spec: ServiceSpec = null;
     public serviceLog: String;
+    public allDataFetched = false;
     constructor(private route: ActivatedRoute, private serviceService: ServicesService, private mock: MockService) {
-        this.route.params.subscribe(res => {
-            console.log(res.id);
-            this.mock.inspectService(res.id).subscribe( serv => {
-                this.spec = serv;
-                console.log(this.spec);
-            });
-            this.mock.getServiceLog(res.id).subscribe(serv => {
-               this.serviceLog = serv;
-            });
-        });
+
     }
 
     ngOnInit() {
+        this.route.params.subscribe(res => {
+            this.serviceService.inspectService(res.id).subscribe( serv => {
+                this.spec = serv;
+                this.serviceService.getServiceLog(res.id).subscribe(log => {
+                    this.serviceLog = log;
+                    this.allDataFetched = true;
+                });
+            });
+        });
     }
 
 }

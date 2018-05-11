@@ -41,7 +41,7 @@ export class ServicesService {
     public inspectService(id: string): Observable<ServiceSpec> {
         return this.http.get<JSON>(this.config.getAPIHostname() + '/docker/services/' + id, {responseType: 'json'})
             .pipe(map(x => {
-                    return x;
+                    return x['Spec'];
                 }), catchError((err: HttpErrorResponse) => {
                     return ErrorObservable.create(<ServiceError>err.status);
                 })
@@ -59,7 +59,9 @@ export class ServicesService {
     }
 
     public getServiceLog(id: string): Observable<string> {
-        return this.http.get<JSON>(this.config.getAPIHostname() + '/docker/services/' + id + '/logs', {responseType: 'json'})
+        const params: HttpParams = new HttpParams().set('stdout', 'true');
+        // tslint:disable-next-line
+        return this.http.get(this.config.getAPIHostname() + '/docker/services/' + id + '/logs', {params: params, responseType: 'text' as 'text'})
             .pipe(map(x => {
                     return x;
                 }), catchError((err: HttpErrorResponse) => {
