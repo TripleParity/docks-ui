@@ -12,7 +12,7 @@ export class ConfigurationService {
         this.http.get('/config', {responseType: 'json'}).subscribe(
             (data) => {
                 this.api_hostname = data['docksApiAddress'];
-                console.log('Docks API Address: ' + data);
+                console.log('Docks API Address: ' + this.api_hostname);
                 },
             (error) => {
                 console.error(error);
