@@ -12,23 +12,17 @@ import {VolumeListViewComponent} from './_shared/volumes/list-view/volume-list-v
 import {ServicesOperationsComponent} from './_shared/services/operations/services-operations.component';
 import {TaskCardViewComponent} from './_shared/tasks/card-view/task-card-view.component';
 import {ServicesCardViewComponent} from './_shared/services/card-view/services-card-view.component';
+import {LoginComponent} from './login/login.component';
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
-    {path: 'containers', component: ContainersComponent},
-    {path: 'listServices', component: ServiceListViewComponent},
-    {path: 'networks', loadChildren: 'app/_shared/networks/network.module#NetworkModule'},
-    {path: 'volumes', loadChildren: 'app/_shared/volumes/volumes.module#VolumesModule'},
-    {path: 'graph', component: GraphComponent},
-    {path: 'graphTasks', component: GraphViewComponent},
-    {path: 'listTasks', component: TaskListViewComponent},
-    {path: 'cardTasks', component: TaskCardViewComponent},
-    {path: 'operationsServices/:id', component: ServicesOperationsComponent},
-    {path: 'cardServices', component: ServicesCardViewComponent},
+    {path: 'login', component: LoginComponent},
+    //{path: 'home', component: HomeComponent},
     {path: '**' , component: PageNotFoundComponent}
   ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes , {enableTracing: false})],
+  imports: [RouterModule.forRoot(routes , {enableTracing: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
