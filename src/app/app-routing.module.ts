@@ -14,15 +14,16 @@ import {TaskCardViewComponent} from './_shared/tasks/card-view/task-card-view.co
 import {ServicesCardViewComponent} from './_shared/services/card-view/services-card-view.component';
 import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
-    {path: 'login', component: LoginComponent},
-    //{path: 'home', component: HomeComponent},
+    {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
+    // {path: 'home', component: HomeComponent},
     {path: '**' , component: PageNotFoundComponent}
   ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes , {enableTracing: true})],
+  imports: [RouterModule.forRoot(routes , {enableTracing: false})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -16,7 +16,7 @@ export class ServiceListViewComponent implements OnInit {
     public services: Service[] = [];
     public removeeId = String;
     ngOnInit() {
-        this.serviceService.getServices().subscribe(services => {
+            this.serviceService.getServices().subscribe(services => {
                 this.services = services;
         });
     }
