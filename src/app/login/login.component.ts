@@ -8,25 +8,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  busy = false;
   statusMessage = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
-  public login(username: string, password: string) {
-    this.statusMessage = 'Logging in...';
+  // TODO(egeldenhuys): Form validation
+  public login(username: string, password: string): void {
+    this.busy = true;
+
     console.log('LoginComponent: logging in with ' + username + '/' + password);
     this.authService.getToken(username, password).subscribe(
       response => {
         if (response === AuthError.AUTH_OK) {
-          this.statusMessage = 'Success...';
           this.router.navigate(['/']);
         }
       },
       err => {
         if (err === AuthError.AUTH_ERR) {
-          this.statusMessage = 'ERROR: Invalid username or password';
+          this.statusMessage = 'Invalid username or password';
+          this.busy = false;
         }
       }
     );
