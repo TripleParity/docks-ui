@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
-import { UserBarComponent, NavbarComponent } from '../_shared';
+import { UserBarComponent, NavbarComponent } from '_shared/index';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '../_services/auth/auth.service';
+import { AuthService } from '_services/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ConfigurationService } from '../_services';
-import { TokenStorage } from '../_classes';
+import { ConfigurationService } from '_services/configuration/configuration.service';
+import { TokenStorage } from '_classes/index';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;

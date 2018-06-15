@@ -19,8 +19,8 @@ import {TokenStorage} from './_classes';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { PageNotFoundComponent } from './_shared';
 
-import { LoginComponent } from './login/login.component';
-import { HomeModule} from './home/home.module';
+import { LoginComponent } from './_shared/login/login.component';
+import { HomeModule} from './_shared/home/home.module';
 
 @NgModule({
     declarations: [

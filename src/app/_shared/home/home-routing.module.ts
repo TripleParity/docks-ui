@@ -3,19 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
 
-import { ServicesCardViewComponent } from '../_shared/services/card-view/services-card-view.component';
-import { ServiceListViewComponent, TaskListViewComponent } from '../_shared';
-import { GraphComponent } from '../_shared/graph/graph.component';
-import { ContainersComponent } from '../_shared/containers/containers.component';
-import { GraphViewComponent } from '../_shared/tasks/graph-view/graph-view.component';
-import { TaskCardViewComponent } from '../_shared/tasks/card-view/task-card-view.component';
-import { ServicesOperationsComponent } from '../_shared/services/operations/services-operations.component';
+import { ServicesCardViewComponent } from '_shared/services/card-view/services-card-view.component';
+import { ServiceListViewComponent, TaskListViewComponent } from '_shared/index';
+import { GraphComponent } from '_shared/graph/graph.component';
+import { ContainersComponent } from '_shared/containers/containers.component';
+import { GraphViewComponent } from '_shared/tasks/graph-view/graph-view.component';
+import { TaskCardViewComponent } from '_shared/tasks/card-view/task-card-view.component';
+import { ServicesOperationsComponent } from '_shared/services/operations/services-operations.component';
 
-import { VolumesComponent } from '../_shared/volumes/volumes.component';
-import { VolumeListViewComponent } from '../_shared/volumes/list-view/volume-list-view.component';
-import { VolumeCardViewComponent } from '../_shared/volumes/card-view/volume-card-view.component';
+import { VolumesComponent } from '_shared/volumes/volumes.component';
+import { VolumeListViewComponent } from '_shared/volumes/list-view/volume-list-view.component';
+import { VolumeCardViewComponent } from '_shared/volumes/card-view/volume-card-view.component';
 
-import { AuthGuard } from '../_guards/auth.guard';
+import { AuthGuard } from '_guards/auth.guard';
 
 const routes: Routes = [
   {
