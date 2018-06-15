@@ -9,8 +9,10 @@ import { ConfigurationService } from '../_services';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  busy = false;
-  statusMessage = '';
+  public busy = false;
+  public statusMessage = '';
+  public passwordError = false;
+  public usernameError = false;
 
   constructor(
     private authService: AuthService,
@@ -20,8 +22,37 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  // TODO(egeldenhuys): Form validation
+  // Seemed easier and quicker to write custom validation function
+  // than to create a model just for login
+
+  /**
+   * Check if given credentials are incomplete
+   * @param username
+   * @param password
+   * @returns true if credentials are complete, otherwise false
+   */
+  private validateLogin(username: string, password: string): boolean {
+    this.passwordError = false;
+    this.usernameError = false;
+
+    if (username.length === 0) {
+      this.usernameError = true;
+    }
+
+    if (password.length === 0) {
+      this.passwordError = true;
+    }
+
+    return !(this.passwordError || this.usernameError);
+  }
+
   public login(username: string, password: string): void {
+    this.statusMessage = '';
+
+    if (!this.validateLogin(username, password)) {
+      return;
+    }
+
     this.busy = true;
 
     this.authService.getToken(username, password).subscribe(

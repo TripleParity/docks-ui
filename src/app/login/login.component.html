@@ -44,6 +44,7 @@
         }
       </style>
 
+      <!-- TODO(egeldenhuys): Use a much smaller image-->
       <img src="assets/logo-big-square.png" class="img-fluid" alt="Responsive image" width="150px">
 
       <div class="card border-secondary" align="left">
@@ -52,12 +53,19 @@
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" placeholder="Username" aria-label="Username" id="username" #username>
+            <div [hidden]="!usernameError" class="alert alert-danger">
+              Username is required
+            </div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" placeholder="Password" aria-label="Password" id="password" (keyup.enter)="login(username.value, password.value)"
               #password>
+              <div [hidden]="!passwordError" class="alert alert-danger">
+                Password is required
+              </div>
           </div>
+
           <div *ngIf="statusMessage !== ''">
             <ngb-alert type="danger" (close)="statusMessage = ''">{{statusMessage}}</ngb-alert>
           </div>
