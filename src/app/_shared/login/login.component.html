@@ -44,8 +44,7 @@
         }
       </style>
 
-      <!-- TODO(egeldenhuys): Use a much smaller image-->
-      <img src="assets/logo-big-square.png" class="img-fluid" alt="Responsive image" width="150px">
+      <img src="assets/logo-docks-150x.png" class="img-fluid" alt="Responsive image" width="150px" id="logo">
 
       <div class="card border-secondary" align="left">
         <div class="card-body">
@@ -61,9 +60,9 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" placeholder="Password" aria-label="Password" id="password" (keyup.enter)="login(username.value, password.value)"
               #password>
-              <div [hidden]="!passwordError" class="alert alert-danger">
-                Password is required
-              </div>
+            <div [hidden]="!passwordError" class="alert alert-danger">
+              Password is required
+            </div>
           </div>
 
           <div *ngIf="statusMessage !== ''">
