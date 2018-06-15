@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, AuthError } from '../_services/auth/auth.service';
 import { Router } from '@angular/router';
+import { ConfigurationService } from '../_services';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   busy = false;
   statusMessage = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private configService: ConfigurationService
+  ) {}
 
   ngOnInit() {}
 
@@ -19,7 +24,6 @@ export class LoginComponent implements OnInit {
   public login(username: string, password: string): void {
     this.busy = true;
 
-    console.log('LoginComponent: logging in with ' + username + '/' + password);
     this.authService.getToken(username, password).subscribe(
       response => {
         if (response === AuthError.AUTH_OK) {
@@ -27,10 +31,15 @@ export class LoginComponent implements OnInit {
         }
       },
       err => {
-        if (err === AuthError.AUTH_ERR) {
+        if (err === AuthError.AUTH_ERR_CREDENTIALS) {
           this.statusMessage = 'Invalid username or password';
-          this.busy = false;
+        } else if (err === AuthError.AUTH_ERR_SERVER) {
+          this.statusMessage =
+            'Unable to connect to ' + this.configService.getAPIHostname();
+        } else {
+          this.statusMessage = 'Something went wrong';
         }
+        this.busy = false;
       }
     );
   }

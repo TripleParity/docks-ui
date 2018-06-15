@@ -8,9 +8,13 @@ import { TokenStorage } from '../../_classes';
 import { JwtHelper } from 'angular2-jwt';
 
 export enum AuthError {
-  AUTH_OK = 0,
-  AUTH_ERR
+  AUTH_OK,
+  AUTH_ERR, // Unknown error
+  AUTH_ERR_CREDENTIALS, // Bad username/password
+  AUTH_ERR_SERVER, // Server unreachable
 }
+
+const jwtKey = 'auth';
 
 @Injectable()
 export class AuthService {
@@ -26,27 +30,36 @@ export class AuthService {
       .post(
         this.config.getAPIHostname() + '/api/auth/token',
         { username: username, password: password },
-        { responseType: 'json' }
+        {
+          responseType: 'json',
+        }
       )
       .pipe(
-        map(x => {
-          if (x['jwt'] === null) {
-            console.log(x);
+        map(body => {
+          if (body['jwt'] === null) {
+            console.log(body);
             return ErrorObservable.create(AuthError.AUTH_ERR);
           }
-          this.token.saveToken('auth', x['jwt']);
+
+          this.token.saveToken(jwtKey, body['jwt']);
           return AuthError.AUTH_OK;
         }),
         catchError((err: HttpErrorResponse) => {
           console.log(err);
-          return ErrorObservable.create(AuthError.AUTH_ERR);
+
+          if (err.status === 0) {
+            return ErrorObservable.create(AuthError.AUTH_ERR_SERVER);
+          } else if (err.status === 401) {
+            return ErrorObservable.create(AuthError.AUTH_ERR_CREDENTIALS);
+          } else {
+            return ErrorObservable.create(AuthError.AUTH_ERR);
+          }
         })
       );
   }
 
   public isLoggedIn(): boolean {
-    // TODO(egeldenhuys): Store token key in constant
-    const jwtRaw = this.token.getToken('auth');
+    const jwtRaw = this.token.getToken(jwtKey);
 
     if (jwtRaw === null) {
       return false;
