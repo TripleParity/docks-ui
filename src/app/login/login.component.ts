@@ -22,11 +22,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  // Seemed easier and quicker to write custom validation function
-  // than to create a model just for login
-
   /**
-   * Check if given credentials are incomplete
+   * Check if given credentials are complete
    * @param username
    * @param password
    * @returns true if credentials are complete, otherwise false
