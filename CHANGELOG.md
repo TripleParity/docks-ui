@@ -6,14 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Login page
-- Authentication Guard to prevent visiting pages without being authenticated
+- Login page ([#58])
+- Authentication Guard to prevent visiting pages without being authenticated ([#48])
 - 150x150 Docks logo
 
 ### Changed
-- Default Docks address is now `http://127.0.0.1:8080`
-- Component and Module architecture now allow for Login Page at root
+- Default Docks address is now `http://127.0.0.1:8080` to avoid name resolution issues in Chrome
+- Frontend architecture now allows for a Login Page
 - Replaced search bar with logout button in User Bar
+
+### Fixed
+- JWT is now sent with requests to Docks API ([#48], [#100])
 
 ## [0.0.2] - 2018-05-11
 - Demo 2 release
@@ -23,3 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 [Unreleased]: https://github.com/TripleParity/docks-ui/compare/0.0.2...HEAD
 [0.0.2]: https://github.com/TripleParity/docks-ui/compare/0.0.1...0.0.2
+
+[#100]: https://github.com/TripleParity/docks-ui/issues/100
+[#58]: https://github.com/TripleParity/docks-ui/issues/58
+[#48]: https://github.com/TripleParity/docks-ui/issues/48
