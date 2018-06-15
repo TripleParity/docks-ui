@@ -6,17 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Login page with no styling
+- Login page
 - Authentication Guard to prevent visiting pages without being authenticated
-- Logout button to user bar
+- 150x150 Docks logo
 
 ### Changed
 - Default Docks address is now `http://127.0.0.1:8080`
-- Component and Module architecture to allow for Login Page at root
-
-### Removed
-- Search bar in user bar
-
+- Component and Module architecture now allow for Login Page at root
+- Replaced search bar with logout button in User Bar
 
 ## [0.0.2] - 2018-05-11
 - Demo 2 release
