@@ -14,8 +14,7 @@ export class ConfigurationService {
     private router: Router,
     private tokenStorage: TokenStorage
   ) {
-    this.tokenStorage.removeToken(docksApiAddressKey);
-    this.apiHostname = window.localStorage.getItem(docksApiAddressKey);
+    this.apiHostname = this.tokenStorage.getToken(docksApiAddressKey);
 
     this.fetchAPIHostname();
   }
@@ -42,9 +41,7 @@ export class ConfigurationService {
 
     this.http.get('/config', { responseType: 'json' }).subscribe(
       data => {
-        console.log(this.tokenStorage.getToken(docksApiAddressKey));
-
-        // Reload the active path to enable the new Docks address
+        // "Reload" the active path to enable the new Docks address
         // This is required to reload any components that have
         // requested a null address
         if (this.tokenStorage.getToken(docksApiAddressKey) === null) {
@@ -58,7 +55,7 @@ export class ConfigurationService {
 
         this.apiHostname = data['docksApiAddress'];
         console.log(
-          'ConfigurationService: Docks API Address = ' + this.apiHostname
+          'Docks API Address = ' + this.apiHostname
         );
         this.tokenStorage.saveToken(docksApiAddressKey, this.apiHostname);
       },
