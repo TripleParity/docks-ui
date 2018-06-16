@@ -7,7 +7,7 @@ import {
   ConfigurationService,
   MockService,
 } from '../../../_services';
-import { StorageService } from '../../../_services/storage/storage.service';
+import { TokenStorage } from '../../../_classes';
 
 describe('ServicesCardViewComponent', () => {
   beforeEach(async(() => {
@@ -17,7 +17,7 @@ describe('ServicesCardViewComponent', () => {
         ConfigurationService,
         ServicesService,
         MockService,
-        StorageService,
+        TokenStorage,
       ],
     });
   }));

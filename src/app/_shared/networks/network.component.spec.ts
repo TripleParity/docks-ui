@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { NetworkComponent } from './network.component';
 import {ConfigurationService, MockService, NetworkService} from '../../_services';
-import { StorageService } from '../../_services/storage/storage.service';
+import { TokenStorage } from '../../_classes';
 
 describe('NetworkComponent', () => {
   let component: NetworkComponent;
@@ -14,7 +14,7 @@ describe('NetworkComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ NetworkComponent ],
       imports: [HttpClientModule, RouterTestingModule],
-      providers: [NetworkService, MockService, ConfigurationService, StorageService]
+      providers: [NetworkService, MockService, ConfigurationService, TokenStorage]
     })
     .compileComponents();
   }));

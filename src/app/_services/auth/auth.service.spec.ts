@@ -4,14 +4,14 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AuthService } from './auth.service';
 import { ConfigurationService } from '../configuration/configuration.service';
-import { StorageService } from '../storage/storage.service';
+import { TokenStorage } from '../../_classes';
 
 
 describe('AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterTestingModule],
-      providers: [AuthService, StorageService, ConfigurationService, HttpClient],
+      providers: [AuthService, TokenStorage, ConfigurationService, HttpClient],
     });
   });
 

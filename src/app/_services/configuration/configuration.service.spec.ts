@@ -3,13 +3,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 
 import { ConfigurationService } from './configuration.service';
-import { StorageService } from '../storage/storage.service';
+import { TokenStorage } from '../../_classes';
 
 describe('ConfigurationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      providers: [ConfigurationService, HttpClient, HttpHandler],
+      providers: [ConfigurationService, HttpClient, HttpHandler, TokenStorage],
     });
   });
 

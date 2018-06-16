@@ -6,12 +6,13 @@ import {ServicesService} from '../../../_services/services/services.service';
 import {ConfigurationService, MockService} from '../../../_services';
 import {ActivatedRoute} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TokenStorage } from '../../../_classes';
 
 describe('ServicesOperationsComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientModule, RouterTestingModule],
-            providers: [ ConfigurationService, ServicesService ],
+            providers: [ ConfigurationService, ServicesService, TokenStorage],
         });
     }));
 

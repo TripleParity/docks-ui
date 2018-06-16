@@ -5,7 +5,7 @@ import {catchError, map} from 'rxjs/operators';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 
 import {ConfigurationService} from '../configuration/configuration.service';
-import { StorageService } from '../storage/storage.service';
+import { TokenStorage } from '../../_classes';
 
 export enum AuthError {
   AUTH_OK = 0 ,
@@ -15,7 +15,7 @@ export enum AuthError {
 @Injectable()
 export class AuthService {
 
-  constructor(private http: HttpClient, private config: ConfigurationService, private token: StorageService) { }
+  constructor(private http: HttpClient, private config: ConfigurationService, private token: TokenStorage) { }
 
   public getToken(username: string, password: string): Observable<AuthError> {
       return this.http.post(this.config.getAPIHostname() + '/api/auth/token',

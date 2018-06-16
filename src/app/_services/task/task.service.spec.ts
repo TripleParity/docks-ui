@@ -4,13 +4,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { TaskService } from './task.service';
 import { ConfigurationService } from '..';
-import { StorageService } from '../storage/storage.service';
+import { TokenStorage } from '../../_classes';
 
 describe('TaskService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterTestingModule],
-      providers: [ConfigurationService, TaskService, StorageService],
+      providers: [ConfigurationService, TaskService, TokenStorage],
     });
   });
 

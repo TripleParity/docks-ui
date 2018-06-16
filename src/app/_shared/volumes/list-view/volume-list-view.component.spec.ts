@@ -4,13 +4,13 @@ import {VolumeListViewComponent } from './volume-list-view.component';
 import {ConfigurationService, MockService, VolumeService} from '../../../_services';
 import {HttpClientModule} from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { StorageService } from '../../../_services/storage/storage.service';
+import { TokenStorage } from '../../../_classes';
 
 describe('VolumeListViewComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientModule, RouterTestingModule],
-            providers: [ConfigurationService, VolumeService, MockService, StorageService],
+            providers: [ConfigurationService, VolumeService, MockService, TokenStorage],
         });
     });
 

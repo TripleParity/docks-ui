@@ -7,13 +7,13 @@ import {
   TaskService,
   MockService,
 } from '../../../_services';
-import { StorageService } from '../../../_services/storage/storage.service';
+import { TokenStorage } from '../../../_classes';
 
 describe('TaskCardViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterTestingModule],
-      providers: [ConfigurationService, TaskService, MockService, StorageService],
+      providers: [ConfigurationService, TaskService, MockService, TokenStorage],
     });
   }));
 

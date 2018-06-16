@@ -2,13 +2,13 @@ import {Injectable, Injector} from '@angular/core';
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
-import { StorageService } from '../../_services/storage/storage.service';
+import { TokenStorage } from '../tokenstorage/tokenstorage';
 
 const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()
 export class AuthInjector implements HttpInterceptor {
-    constructor(private tokens: StorageService) {
+    constructor(private tokens: TokenStorage) {
     }
 
     // TODO(egeldenhuys): Only inject token if the target is Docks API
