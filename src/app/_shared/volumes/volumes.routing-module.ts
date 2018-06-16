@@ -13,6 +13,10 @@ const routes: Routes = [
         path: 'card',
         component: VolumeCardViewComponent
     },
+    {
+        path: 'ops',
+        component: VolumeOperationsComponent
+    },
 ];
 
 @NgModule({

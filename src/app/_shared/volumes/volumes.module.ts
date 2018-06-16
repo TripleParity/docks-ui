@@ -14,8 +14,7 @@ import { VolumeOperationsComponent } from './volume-operations/volume-operations
     VolumesRoutingModule
   ],
   declarations: [VolumeListViewComponent, VolumeCardViewComponent, VolumeOperationsComponent],
-  providers: [HttpClientModule, MockService, VolumeService, TokenStorage],
-  exports: [VolumeListViewComponent, VolumeCardViewComponent, VolumeOperationsComponent]
+  providers: [HttpClientModule, MockService, VolumeService, TokenStorage]
 })
 export class VolumesModule {
 
