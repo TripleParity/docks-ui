@@ -20,7 +20,6 @@ import {NgbAlert, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ConfigurationService, ContainerService, TaskService, MockService, VolumeService} from './_services/';
 
 import {HttpClientModule} from '@angular/common/http';
-import {TokenStorage} from './_classes';
 
 import { GraphViewComponent } from './_shared/tasks/graph-view/graph-view.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
@@ -37,6 +36,7 @@ import { ServicesCardViewComponent } from './_shared/services/card-view/services
 import { VolumeOperationsComponent } from './_shared/volumes/volume-operations/volume-operations.component';
 import {FormsModule} from '@angular/forms';
 import {VolumesModule} from './_shared/volumes/volumes.module';
+import { StorageService } from './_services/storage/storage.service';
 
 @NgModule({
     declarations: [
@@ -75,7 +75,8 @@ import {VolumesModule} from './_shared/volumes/volumes.module';
         MockService,
         ServicesService,
         AuthService,
-        TokenStorage,
+        StorageService,
+        StorageService,
         MockService,
         GraphService
     ],

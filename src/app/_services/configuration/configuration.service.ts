@@ -1,35 +1,72 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { StorageService } from '../storage/storage.service';
+
+const docksApiAddressKey = 'docksApiAddress';
 
 @Injectable()
 export class ConfigurationService {
+  private apiHostname: string = null;
 
-    // Default docks api address
-    private api_hostname = 'http://localhost:8080';
+  constructor(
+    private http: HttpClient,
+    private tokenStorage: StorageService,
+    private router: Router
+  ) {
+    this.tokenStorage.removeToken(docksApiAddressKey);
+    this.apiHostname = tokenStorage.getToken(docksApiAddressKey);
 
-    constructor(private http: HttpClient) {
+    this.fetchAPIHostname();
+  }
 
-        this.http.get('/config', {responseType: 'json'}).subscribe(
-            (data) => {
-                this.api_hostname = data['docksApiAddress'];
-                console.log('Docks API Address: ' + this.api_hostname);
-                },
-            (error) => {
-                console.error(error);
-            }
+  /**
+   * Return the Docks Address stored in memory
+   */
+  public getAPIHostname(): string {
+    if (this.apiHostname === null) {
+      console.error(
+        'Docks API Address has not been set yet. The request will fail.'
+      );
+    }
+
+    return this.apiHostname;
+  }
+
+  /**
+   * Downloads the Docks API address from /config and stores it in local storage.
+   * If the address is not in local storage the current page will be "refreshed"
+   * by the router.
+   */
+  public fetchAPIHostname() {
+
+    this.http.get('/config', { responseType: 'json' }).subscribe(
+      data => {
+        console.log(this.tokenStorage.getToken(docksApiAddressKey));
+
+        // Reload the active path to enable the new Docks address
+        // This is required to reload any components that have
+        // requested a null address
+        if (this.tokenStorage.getToken(docksApiAddressKey) === null) {
+          const url = this.router.url;
+          this.router.navigate(['refresh']).then(val1 => {
+            this.router.navigate([url]).then(val2 => {
+              console.log('Fixed null Docks API address: ' + (val1 && val2));
+            });
+          });
+        }
+
+        this.apiHostname = data['docksApiAddress'];
+        console.log(
+          'ConfigurationService: Docks API Address = ' + this.apiHostname
         );
+        this.tokenStorage.saveToken(docksApiAddressKey, this.apiHostname);
+      },
 
-    }
-
-    public getAPIHostname(): string {
-        return this.api_hostname;
-    }
-
-    public setAPIHostname(hostname: string) {
-        this.api_hostname = hostname;
-        // Perhaps introduce an observable that fires everytime this value is changed
-        // for more complicated components. I don't really see a use case so I'm leaving this comment.
-
-        // Check if host is reachable before assigning the hostname ?
-    }
+      error => {
+        console.error('Error while loading Docks API addess from /config');
+        console.error(error);
+      }
+    );
+  }
 }

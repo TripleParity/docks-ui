@@ -16,8 +16,9 @@ import {ServicesCardViewComponent} from './_shared/services/card-view/services-c
 const routes: Routes = [
     {path: 'containers', component: ContainersComponent},
     {path: 'listServices', component: ServiceListViewComponent},
-    {path: 'networks', loadChildren: 'app/_shared/networks/network.module#NetworkModule'},
-    {path: 'volumes', loadChildren: 'app/_shared/volumes/volumes.module#VolumesModule'},
+    // {path: 'networks', loadChildren: 'app/_shared/networks/network.module#NetworkModule'},
+    // {path: 'volumes', loadChildren: 'app/_shared/volumes/volumes.module#VolumesModule'},
+    // {path: 'networks', component: }
     {path: 'graph', component: GraphComponent},
     {path: 'graphTasks', component: GraphViewComponent},
     {path: 'listTasks', component: TaskListViewComponent},

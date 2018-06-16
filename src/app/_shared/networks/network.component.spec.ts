@@ -1,8 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {HttpClientModule} from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { NetworkComponent } from './network.component';
-import {HttpClientModule} from '@angular/common/http';
 import {ConfigurationService, MockService, NetworkService} from '../../_services';
+import { StorageService } from '../../_services/storage/storage.service';
 
 describe('NetworkComponent', () => {
   let component: NetworkComponent;
@@ -11,8 +13,8 @@ describe('NetworkComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NetworkComponent ],
-      imports: [HttpClientModule],
-      providers: [NetworkService, MockService, ConfigurationService]
+      imports: [HttpClientModule, RouterTestingModule],
+      providers: [NetworkService, MockService, ConfigurationService, StorageService]
     })
     .compileComponents();
   }));

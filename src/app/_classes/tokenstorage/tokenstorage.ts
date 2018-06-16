@@ -12,12 +12,16 @@ export class TokenStorage {
         window.localStorage.clear();
     }
 
-    public saveToken(token: string, value: string) {
+    saveToken(token: string, value: string) {
         window.localStorage.removeItem(token);
         window.localStorage.setItem(token,  value);
     }
 
-    public getToken(token: string): string {
+    getToken(token: string): string {
         return window.localStorage.getItem(token);
+    }
+
+    removeToken(token: string) {
+        window.localStorage.removeItem(token);
     }
 }
