@@ -2,12 +2,13 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import {TaskService, ConfigurationService, MockService} from '../../../_services/index';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('ContainerService', () => {
+describe('TaskListViewComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
+            imports: [HttpClientModule, RouterTestingModule],
             providers: [ConfigurationService, TaskService, MockService],
-            imports: [HttpClientModule],
         });
     });
 

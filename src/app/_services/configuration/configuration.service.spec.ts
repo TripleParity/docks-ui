@@ -5,11 +5,11 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ConfigurationService } from './configuration.service';
 import { StorageService } from '../storage/storage.service';
 
-describe('AuthService', () => {
+describe('ConfigurationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      providers: [ConfigurationService, HttpClient, HttpHandler, StorageService],
+      providers: [ConfigurationService, HttpClient, HttpHandler],
     });
   });
 

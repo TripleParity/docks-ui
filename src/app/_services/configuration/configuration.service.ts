@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { StorageService } from '../storage/storage.service';
 
 const docksApiAddressKey = 'docksApiAddress';
 
@@ -11,11 +10,10 @@ export class ConfigurationService {
 
   constructor(
     private http: HttpClient,
-    private tokenStorage: StorageService,
     private router: Router
   ) {
-    this.tokenStorage.removeToken(docksApiAddressKey);
-    this.apiHostname = tokenStorage.getToken(docksApiAddressKey);
+    window.localStorage.removeItem(docksApiAddressKey);
+    this.apiHostname = window.localStorage.getItem(docksApiAddressKey);
 
     this.fetchAPIHostname();
   }
@@ -42,12 +40,12 @@ export class ConfigurationService {
 
     this.http.get('/config', { responseType: 'json' }).subscribe(
       data => {
-        console.log(this.tokenStorage.getToken(docksApiAddressKey));
+        console.log(window.localStorage.getItem(docksApiAddressKey));
 
         // Reload the active path to enable the new Docks address
         // This is required to reload any components that have
         // requested a null address
-        if (this.tokenStorage.getToken(docksApiAddressKey) === null) {
+        if (window.localStorage.getItem(docksApiAddressKey) === null) {
           const url = this.router.url;
           this.router.navigate(['refresh']).then(val1 => {
             this.router.navigate([url]).then(val2 => {
@@ -60,7 +58,7 @@ export class ConfigurationService {
         console.log(
           'ConfigurationService: Docks API Address = ' + this.apiHostname
         );
-        this.tokenStorage.saveToken(docksApiAddressKey, this.apiHostname);
+        window.localStorage.setItem(docksApiAddressKey, this.apiHostname);
       },
 
       error => {

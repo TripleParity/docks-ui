@@ -3,13 +3,13 @@ import { TestBed, inject } from '@angular/core/testing';
 import { VolumeOperationsComponent } from './volume-operations.component';
 import {ConfigurationService, MockService, VolumeService} from '../../../_services';
 import {HttpClientModule} from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('VolumeListViewComponent', () => {
+describe('VolumeOperationsComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [ VolumeOperationsComponent ],
+            imports: [HttpClientModule, RouterTestingModule],
             providers: [ConfigurationService, VolumeService, MockService],
-            imports: [HttpClientModule],
         });
     });
 

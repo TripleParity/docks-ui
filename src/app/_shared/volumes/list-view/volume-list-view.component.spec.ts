@@ -9,7 +9,6 @@ import { StorageService } from '../../../_services/storage/storage.service';
 describe('VolumeListViewComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [ VolumeListViewComponent ],
             imports: [HttpClientModule, RouterTestingModule],
             providers: [ConfigurationService, VolumeService, MockService, StorageService],
         });

@@ -5,12 +5,13 @@ import {HttpClientModule} from '@angular/common/http';
 import {ServicesService} from '../../../_services/services/services.service';
 import {ConfigurationService, MockService} from '../../../_services';
 import {ActivatedRoute} from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('ServiceService', () => {
+describe('ServicesOperationsComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [HttpClientModule, RouterTestingModule],
             providers: [ ConfigurationService, ServicesService ],
-            imports: [HttpClientModule],
         });
     }));
 
