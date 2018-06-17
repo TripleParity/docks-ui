@@ -46,10 +46,15 @@ export class ConfigurationService {
         // requested a null address
         if (this.tokenStorage.getToken(docksApiAddressKey) === null) {
           const url = this.router.url;
-          this.router.navigate(['refresh']).then(val1 => {
+          this.router.navigate(['refresh'])
+          .then(val1 => {
             this.router.navigate([url]).then(val2 => {
               console.log('Fixed null Docks API address: ' + (val1 && val2));
             });
+          })
+          .catch(err => {
+            console.error('Error while navigating to "/refresh"');
+            console.error(err);
           });
         }
 
