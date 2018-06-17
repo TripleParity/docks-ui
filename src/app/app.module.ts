@@ -19,7 +19,6 @@ import {
   ContainerService,
   TaskService,
   MockService,
-  VolumeService,
 } from './_services/';
 import { GraphViewComponent } from './_shared/tasks/graph-view/graph-view.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -30,7 +29,6 @@ import { GraphService } from './_services/graphs/graph.service';
 import { ServicesService } from './_services/services/services.service';
 import { ServicesOperationsComponent } from './_shared/services/operations/services-operations.component';
 import { ServicesCardViewComponent } from './_shared/services/card-view/services-card-view.component';
-
 
 @NgModule({
   declarations: [

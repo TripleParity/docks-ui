@@ -59,7 +59,6 @@ export class ConfigurationService {
         }
 
         this.apiHostname = data['docksApiAddress'];
-        console.log('Docks API Address = ' + this.apiHostname);
         this.tokenStorage.saveToken(docksApiAddressKey, this.apiHostname);
       },
 
