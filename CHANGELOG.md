@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Docker API address can now be set using the `DOCKER_API_ADDRESS` environment variable when deploying using Docker ([#64])
+- Docks API address can now be set using the `DOCKS_API_ADDRESS` environment variable when deploying using Docker ([#64])
 - Instructions to deploy Docks UI to a swarm
 
 ### Fixed
