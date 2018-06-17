@@ -6,7 +6,6 @@ import { AuthService } from './auth.service';
 import { ConfigurationService } from '../configuration/configuration.service';
 import { TokenStorage } from '../../_classes';
 
-
 describe('AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
