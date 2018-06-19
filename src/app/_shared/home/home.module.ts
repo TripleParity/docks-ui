@@ -28,9 +28,16 @@ import { ServicesOperationsComponent } from '_shared/services/operations/service
 import { VolumeOperationsComponent } from '_shared/volumes/volume-operations/volume-operations.component';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from '_guards/auth.guard';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  imports: [CommonModule, VolumesModule, HomeRoutingModule, FormsModule],
+  imports: [
+    CommonModule,
+    VolumesModule,
+    HomeRoutingModule,
+    FormsModule,
+    NgbModule,
+  ],
   declarations: [
     HomeComponent,
     NavbarComponent,
