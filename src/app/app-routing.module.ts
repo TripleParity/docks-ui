@@ -8,7 +8,12 @@ import { RefreshComponent } from 'app/refresh/refresh.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'refresh', component: RefreshComponent},
+  { path: 'refresh', component: RefreshComponent },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 
