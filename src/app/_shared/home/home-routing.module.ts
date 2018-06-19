@@ -11,10 +11,6 @@ import { GraphViewComponent } from '_shared/tasks/graph-view/graph-view.componen
 import { TaskCardViewComponent } from '_shared/tasks/card-view/task-card-view.component';
 import { ServicesOperationsComponent } from '_shared/services/operations/services-operations.component';
 
-import { VolumesComponent } from '_shared/volumes/volumes.component';
-import { VolumeListViewComponent } from '_shared/volumes/list-view/volume-list-view.component';
-import { VolumeCardViewComponent } from '_shared/volumes/card-view/volume-card-view.component';
-
 import { AuthGuard } from '_guards/auth.guard';
 
 const routes: Routes = [
@@ -31,29 +27,23 @@ const routes: Routes = [
       { path: 'cardTasks', component: TaskCardViewComponent },
       {
         path: 'operationsServices/:id',
-        component: ServicesOperationsComponent
+        component: ServicesOperationsComponent,
       },
       { path: 'cardServices', component: ServicesCardViewComponent },
       {
         path: 'volumes',
-        component: VolumesComponent,
-        children: [
-          {
-            path: 'list',
-            component: VolumeListViewComponent
-          },
-          {
-            path: 'card',
-            component: VolumeCardViewComponent
-          }
-        ]
-      }
-    ]
-  }
+        loadChildren: 'app/_shared/volumes/volumes.module#VolumesModule',
+      },
+      {
+        path: 'networks',
+        loadChildren: 'app/_shared/networks/network.module#NetworkModule',
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class HomeRoutingModule {}

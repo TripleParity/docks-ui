@@ -20,7 +20,7 @@ export class VolumeListViewComponent implements OnInit {
         this.service.getVolumes().subscribe(volumes => {
             this.volumes = volumes;
             // console.log(volumes);
-        }, error => console.log('Error: ' + error));
+        }, error => console.error('Error: ' + error));
     }
 
 }

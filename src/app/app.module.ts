@@ -1,31 +1,30 @@
-import {HttpInterceptor, HTTP_INTERCEPTORS} from '@angular/common/http';
-import {AuthInjector} from './_classes';
-import {AuthService} from './_services/auth/auth.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
 
-
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
-
-import {HttpClientModule} from '@angular/common/http';
-import {TokenStorage} from './_classes';
+import {TokenStorage, AuthInjector} from './_classes';
 
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { PageNotFoundComponent } from './_shared';
 
 import { LoginComponent } from './_shared/login/login.component';
 import { HomeModule} from './_shared/home/home.module';
+import { AuthService } from '_services/auth/auth.service';
+import { RefreshComponent } from './refresh/refresh.component';
 
 @NgModule({
     declarations: [
         PageNotFoundComponent,
         LoginComponent,
+        RefreshComponent,
     ],
     imports: [
         BrowserModule,
@@ -46,6 +45,4 @@ import { HomeModule} from './_shared/home/home.module';
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-
-}
+export class AppModule {}

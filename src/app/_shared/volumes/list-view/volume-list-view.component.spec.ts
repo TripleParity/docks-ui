@@ -1,15 +1,16 @@
 import { async, ComponentFixture } from '@angular/core/testing';
 import { TestBed, inject } from '@angular/core/testing';
-import { VolumeListViewComponent } from './volume-list-view.component';
+import {VolumeListViewComponent } from './volume-list-view.component';
 import {ConfigurationService, MockService, VolumeService} from '../../../_services';
 import {HttpClientModule} from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TokenStorage } from '../../../_classes';
 
 describe('VolumeListViewComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [ VolumeListViewComponent ],
-            providers: [ConfigurationService, VolumeService, MockService],
-            imports: [HttpClientModule],
+            imports: [HttpClientModule, RouterTestingModule],
+            providers: [ConfigurationService, VolumeService, MockService, TokenStorage],
         });
     });
 

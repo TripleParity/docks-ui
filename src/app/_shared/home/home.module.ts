@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { VolumesModule } from '_shared/volumes/volumes.module';
 import {
   ConfigurationService,
   ContainerService,
@@ -25,7 +24,6 @@ import { ServicesCardViewComponent } from '_shared/services/card-view/services-c
 import { ContainersComponent } from '_shared/containers/containers.component';
 import { TaskCardViewComponent } from '_shared/tasks/card-view/task-card-view.component';
 import { ServicesOperationsComponent } from '_shared/services/operations/services-operations.component';
-import { VolumeOperationsComponent } from '_shared/volumes/volume-operations/volume-operations.component';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from '_guards/auth.guard';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -33,7 +31,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [
     CommonModule,
-    VolumesModule,
     HomeRoutingModule,
     FormsModule,
     NgbModule,
@@ -49,7 +46,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TaskCardViewComponent,
     ServiceListViewComponent,
     GraphComponent,
-    VolumeOperationsComponent,
     ServicesOperationsComponent,
     ServicesCardViewComponent,
   ],

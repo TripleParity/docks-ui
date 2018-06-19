@@ -3,12 +3,14 @@ import { TestBed, inject } from '@angular/core/testing';
 import { ContainerService } from './container.service';
 import {ConfigurationService} from '..';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TokenStorage } from '../../_classes';
 
 describe('ContainerService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [ConfigurationService, ContainerService],
-            imports: [HttpClientModule],
+            imports: [HttpClientModule, RouterTestingModule],
+            providers: [ConfigurationService, ContainerService, TokenStorage],
         });
     });
 
