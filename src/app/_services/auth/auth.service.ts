@@ -25,7 +25,6 @@ export class AuthService {
   ) {}
 
   public getToken(username: string, password: string): Observable<AuthError> {
-    console.log('getToken()');
     return this.http
       .post(
         this.config.getAPIHostname() + '/api/auth/token',
@@ -37,7 +36,7 @@ export class AuthService {
       .pipe(
         map(body => {
           if (body['jwt'] === null) {
-            console.log(body);
+            console.error(body);
             return ErrorObservable.create(AuthError.AUTH_ERR);
           }
 
@@ -45,7 +44,7 @@ export class AuthService {
           return AuthError.AUTH_OK;
         }),
         catchError((err: HttpErrorResponse) => {
-          console.log(err);
+          console.error(err);
 
           if (err.status === 0) {
             return ErrorObservable.create(AuthError.AUTH_ERR_SERVER);

@@ -57,8 +57,8 @@ export class ConfigurationService {
                   );
                 })
                 .catch((err2: any) => {
-                  console.log('Error navigating to ' + url);
-                  console.log(err2);
+                  console.error('Error navigating to ' + url);
+                  console.error(err2);
                 });
             })
             .catch((err1: any) => {

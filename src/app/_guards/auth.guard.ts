@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   CanActivate,
   ActivatedRouteSnapshot,
-  RouterStateSnapshot
+  RouterStateSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
@@ -25,10 +25,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    console.log(next.url);
     if (this.authService.isLoggedIn()) {
-      console.log(next.url);
-
       if (next.url.length !== 0 && next.url[0].path === 'login') {
         this.router.navigate(['/']);
         return false;
