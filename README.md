@@ -51,7 +51,7 @@ After making changes to docks-ui you need to rebuild the image, push the new ima
 ```
 $ docker build -t 127.0.0.1:5000/docks-ui:0.0.3-dev .
 $ docker push 127.0.0.1:5000/docks-ui:0.0.3-dev
-$ docker stack deploy -c docker-compose-api.yml docks-api
+$ docker stack deploy -c docker-compose-ui.local.yml docks-ui
 ```
 
 ### Serving Docks UI using Angular CLI
