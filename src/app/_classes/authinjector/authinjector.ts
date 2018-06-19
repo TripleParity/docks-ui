@@ -16,7 +16,7 @@ export class AuthInjector implements HttpInterceptor {
         req = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + this.tokens.getToken('auth'))});
         return next.handle(req).do(
             (err: any) => {
-                // Logging errors here seems like a bad idea.
+                console.error('AuthInjector::intercept(): Something went wrong');
                 // TODO(CDuPlooy): Token expiry?
             }
         );

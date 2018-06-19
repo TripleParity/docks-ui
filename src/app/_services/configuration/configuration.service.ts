@@ -39,22 +39,31 @@ export class ConfigurationService {
    */
   public fetchAPIHostname() {
     this.http.get('/config', { responseType: 'json' }).subscribe(
-      data => {
+      (data: Object) => {
         // "Reload" the active path to enable the new Docks address
         // This is required to reload any components that have
         // requested a null address
         if (this.tokenStorage.getToken(docksApiAddressKey) === null) {
           const url = this.router.url;
+
           this.router
             .navigate(['refresh'])
-            .then(val1 => {
-              this.router.navigate([url]).then(val2 => {
-                console.log('Fixed null Docks API address: ' + (val1 && val2));
-              });
+            .then((val1: boolean) => {
+              this.router
+                .navigate([url])
+                .then((val2: boolean) => {
+                  console.log(
+                    'Fixed null Docks API address: ' + (val1 && val2)
+                  );
+                })
+                .catch((err2: any) => {
+                  console.log('Error navigating to ' + url);
+                  console.log(err2);
+                });
             })
-            .catch(err => {
+            .catch((err1: any) => {
               console.error('Error while navigating to "/refresh"');
-              console.error(err);
+              console.error(err1);
             });
         }
 
@@ -62,9 +71,22 @@ export class ConfigurationService {
         this.tokenStorage.saveToken(docksApiAddressKey, this.apiHostname);
       },
 
-      error => {
-        console.error('Error while loading Docks API addess from /config');
-        console.error(error);
+      (error: any) => {
+        const errorString: string = error.toString();
+        const errorParts: string[] = errorString.split('\n');
+
+        // This error appears to only occur when executing using `ng test`
+        // TODO(egeldenhuys): Fix whatever is causing this error
+        if (
+          errorParts[0] === 'TypeError: _this.handler.handle is not a function'
+        ) {
+          console.warn(
+            'ConfigurationService::fetchAPIHostname(): Suppressed "TypeError: _this.handler.handle is not a function"'
+          );
+        } else {
+          console.error('Error while loading Docks API addess from /config');
+          console.error(error);
+        }
       }
     );
   }

@@ -4,9 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './_shared/pagenotfound/pagenotfound.component';
 import { LoginComponent } from '_shared/login/login.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { RefreshComponent } from 'app/refresh/refresh.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'refresh', component: RefreshComponent},
   { path: '**', component: PageNotFoundComponent },
 ];
 
