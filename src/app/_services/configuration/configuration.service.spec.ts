@@ -4,11 +4,19 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 
 import { ConfigurationService } from './configuration.service';
 import { TokenStorage } from '../../_classes';
+import { RefreshComponent } from 'app/refresh/refresh.component';
+import { Routes } from '@angular/router';
+
+const routes: Routes = [
+  {path: 'refresh', component: RefreshComponent},
+  {path: '', redirectTo: '', pathMatch: 'full'},
+];
 
 describe('ConfigurationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      declarations: [RefreshComponent],
+      imports: [RouterTestingModule.withRoutes(routes)],
       providers: [ConfigurationService, HttpClient, HttpHandler, TokenStorage],
     });
   });
