@@ -1,33 +1,33 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserBarComponent } from './user-bar.component';
-import { AuthService } from '../../_services/auth/auth.service';
+import { LoginComponent } from './login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '_services/auth/auth.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { ConfigurationService } from '../../_services';
-import { TokenStorage } from '../../_classes';
+import { ConfigurationService } from '_services/configuration/configuration.service';
+import { TokenStorage } from '_classes/tokenstorage/tokenstorage';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('UserBarComponent', () => {
-  let component: UserBarComponent;
-  let fixture: ComponentFixture<UserBarComponent>;
+describe('LoginComponent', () => {
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UserBarComponent],
+      declarations: [LoginComponent],
+      imports: [RouterTestingModule, NgbModule.forRoot()],
       providers: [
         AuthService,
         HttpClient,
         HttpHandler,
         ConfigurationService,
         TokenStorage,
-        RouterTestingModule,
       ],
-      imports: [RouterTestingModule],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserBarComponent);
+    fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
