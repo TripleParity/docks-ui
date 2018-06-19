@@ -17,7 +17,13 @@ export class TokenStorage {
         window.localStorage.setItem(token,  value);
     }
 
-    getToken(token: string): string {
+    /**
+     * Returns a value from the local storage
+     * @param token The key used to store the value
+     * @return {null} if no value was stored with the key
+     * @return the value stored using the key
+     */
+    public getToken(token: string): string {
         return window.localStorage.getItem(token);
     }
 

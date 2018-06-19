@@ -6,14 +6,14 @@ import {VolumeListViewComponent} from './list-view/volume-list-view.component';
 import {VolumesRoutingModule} from './volumes.routing-module';
 import {VolumeCardViewComponent} from './card-view/volume-card-view.component';
 import { TokenStorage } from '../../_classes';
-import { VolumeOperationsComponent } from './volume-operations/volume-operations.component';
+import {VolumesComponent} from './volumes.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    VolumesRoutingModule
+    VolumesRoutingModule,
   ],
-  declarations: [VolumeListViewComponent, VolumeCardViewComponent, VolumeOperationsComponent],
+  declarations: [VolumeListViewComponent, VolumeCardViewComponent, VolumesComponent],
   providers: [HttpClientModule, MockService, VolumeService, TokenStorage]
 })
 export class VolumesModule {
