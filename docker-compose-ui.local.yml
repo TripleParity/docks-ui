@@ -2,7 +2,7 @@ version: '3.2'
 
 services:
   ui:
-    image: 127.0.0.1:5000/docks-ui:0.0.3-dev
+    image: 127.0.0.1:5000/docks-ui:local
     ports:
       - 4200:80
     environment:

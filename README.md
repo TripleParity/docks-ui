@@ -28,12 +28,12 @@ This process simulates a production environment.
 
 2. Build docks-ui
     ```
-    $ docker build -t 127.0.0.1:5000/docks-ui:0.0.3-dev .
+    $ docker build -t 127.0.0.1:5000/docks-ui:local .
     ```
 
 3. Push docks-ui to local registry
     ```
-    $ docker push 127.0.0.1:5000/docks-ui:0.0.3-dev
+    $ docker push 127.0.0.1:5000/docks-ui:local
     ```
 
 4. Deploy docks-api using images from Docker Hub
@@ -49,8 +49,8 @@ This process simulates a production environment.
 #### Updating docks-ui image
 After making changes to docks-ui you need to rebuild the image, push the new image to the registry and the update the docks-ui stack:
 ```
-$ docker build -t 127.0.0.1:5000/docks-ui:0.0.3-dev .
-$ docker push 127.0.0.1:5000/docks-ui:0.0.3-dev
+$ docker build -t 127.0.0.1:5000/docks-ui:local .
+$ docker push 127.0.0.1:5000/docks-ui:local
 $ docker stack deploy -c docker-compose-ui.local.yml docks-ui
 ```
 
