@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {Observable} from 'rxjs/Observable';
+import {Services} from '@angular/core/src/view';
+import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
+
 import {Service} from '../../_models';
 import {ConfigurationService} from '../configuration/configuration.service';
-import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
-import {Services} from '@angular/core/src/view';
 import {ServiceSpec} from '../../_models/service/spec.model';
-
 
 export enum ServiceError {
     ERR_OK = 200,

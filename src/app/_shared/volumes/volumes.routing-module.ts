@@ -1,22 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VolumeListViewComponent } from './list-view/volume-list-view.component';
-import {VolumeCardViewComponent} from './card-view/volume-card-view.component';
-import {VolumeOperationsComponent} from './volume-operations/volume-operations.component';
+import { VolumeCardViewComponent } from './card-view/volume-card-view.component';
+import { VolumesComponent } from './volumes.component';
 
 const routes: Routes = [
-    {
+  {
+    path: '',
+    component: VolumesComponent,
+    children: [
+      {
         path: 'list',
-        component: VolumeListViewComponent
-    },
-    {
+        component: VolumeListViewComponent,
+      },
+      {
         path: 'card',
-        component: VolumeCardViewComponent
-    },
+        component: VolumeCardViewComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class VolumesRoutingModule { }
+export class VolumesRoutingModule {}

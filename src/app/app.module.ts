@@ -1,67 +1,38 @@
-import {HttpInterceptor, HTTP_INTERCEPTORS} from '@angular/common/http';
-import {AuthInjector} from './_classes';
-import {AuthService} from './_services/auth/auth.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
-import {NavbarComponent} from './_shared';
-import { TaskListViewComponent } from './_shared';
-import {UserBarComponent} from './_shared';
-import { ServiceListViewComponent } from './_shared';
 
+import {TokenStorage, AuthInjector} from './_classes';
 
-import {ContainersComponent} from './_shared/containers/containers.component';
-
-import {NgbAlert, NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ConfigurationService, ContainerService, TaskService, MockService, VolumeService} from './_services/';
-
-import {HttpClientModule} from '@angular/common/http';
-import {TokenStorage} from './_classes';
-
-import { GraphViewComponent } from './_shared/tasks/graph-view/graph-view.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
-import { TaskCardViewComponent } from './_shared/tasks/card-view/task-card-view.component';
 import { PageNotFoundComponent } from './_shared';
-import { GraphComponent } from './_shared/graph/graph.component';
 
-// Added to test
-import {GraphService} from './_services/graphs/graph.service';
-// import { Volume } from './_shared/volumes/list-view/';
-import {ServicesService} from './_services/services/services.service';
-import { ServicesOperationsComponent } from './_shared/services/operations/services-operations.component';
-import { ServicesCardViewComponent } from './_shared/services/card-view/services-card-view.component';
-import { VolumeOperationsComponent } from './_shared/volumes/volume-operations/volume-operations.component';
-import {FormsModule} from '@angular/forms';
-import {VolumesModule} from './_shared/volumes/volumes.module';
+import { LoginComponent } from './_shared/login/login.component';
+import { HomeModule} from './_shared/home/home.module';
+import { AuthService } from '_services/auth/auth.service';
+import { RefreshComponent } from './refresh/refresh.component';
 
 @NgModule({
     declarations: [
-        NavbarComponent,
-        AppComponent,
-        ContainersComponent,
-        TaskListViewComponent,
-        GraphViewComponent,
-        UserBarComponent,
-        TaskCardViewComponent,
-        ServiceListViewComponent,
         PageNotFoundComponent,
-        GraphComponent,
-        VolumeOperationsComponent,
-        ServicesOperationsComponent,
-        ServicesCardViewComponent
+        LoginComponent,
+        RefreshComponent,
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         NgbModule.forRoot(),
+        HomeModule,
         AppRoutingModule,
         AngularFontAwesomeModule,
-        VolumesModule,
-        FormsModule
     ],
     providers: [
         {
@@ -69,18 +40,9 @@ import {VolumesModule} from './_shared/volumes/volumes.module';
             useClass: AuthInjector,
             multi: true
         },
-        ConfigurationService,
-        ContainerService,
-        TaskService,
-        MockService,
-        ServicesService,
         AuthService,
         TokenStorage,
-        MockService,
-        GraphService
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-
-}
+export class AppModule {}

@@ -1,13 +1,13 @@
 {
   "name": "docks-ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "scripts": {
     "start": "ng serve --host=0.0.0.0",
     "check": "ng lint;ng build --prod --aot; ng test",
     "serve": "ng serve --aot",
     "fix": "ng lint --fix",
-    "build": "ng build --prod --aot --no-progress"
+    "build": "ng build --prod --no-progress"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +24,7 @@
     "@types/chart.js": "^2.7.15",
     "@types/chartjs": "0.0.31",
     "angular-font-awesome": "^3.1.2",
+    "angular2-jwt": "^0.2.3",
     "cerialize": "^0.1.18",
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
