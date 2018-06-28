@@ -25,7 +25,6 @@
     "@types/chartjs": "0.0.31",
     "angular-font-awesome": "^3.1.2",
     "angular2-jwt": "^0.2.3",
-    "cerialize": "^0.1.18",
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
