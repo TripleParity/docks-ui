@@ -94,7 +94,7 @@ export class TaskCardViewComponent implements OnInit {
     public loadModal(content, task) {
         this.modalObject = task;
         this.modalService.open(content, { size: 'lg' });
-        this.mockService.getLog(this.modalObject.id).subscribe((log) => {
+        this.mockService.getLog(this.modalObject.ID).subscribe((log) => {
             this.modalObjectLog = log;
         });
     }
