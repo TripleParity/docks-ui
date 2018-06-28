@@ -8,7 +8,7 @@ import { Ipam } from './ipam/ipam.model';
 
 export interface Network {
     Name: string;
-    Id: string;
+    ID: string;
     Created: string;
     Scope: string;
     Driver: string;

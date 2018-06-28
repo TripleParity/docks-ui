@@ -8,7 +8,7 @@ import {NetworkSettingsModel} from 'app/_models/container/networkSettings/networ
 import {Mount} from 'app/_models/container/mount/mount.model';
 
 export interface Container {
-    Id: string;
+    ID: string;
     Names: string[];
     Image: string;
     ImageID: string;

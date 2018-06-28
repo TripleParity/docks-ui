@@ -4,7 +4,7 @@
  * @interface
  */
 export interface Image {
-    Id: string;
+    ID: string;
     Created: string;
     Size: number;
     VirtualSize: number;
