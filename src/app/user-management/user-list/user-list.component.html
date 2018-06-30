@@ -1,0 +1,33 @@
+<div id="userListComponent">
+  <button type="button" class="btn btn-primary">Create user</button>
+
+  <hr>
+
+  <div id="userList">
+    <h4>List of users</h4>
+    <ngx-datatable class="bootstrap" [rows]="users" [columns]="columns" [headerHeight]="'auto'" [rowHeight]="'auto'" [selected]="selected"
+      [selectionType]="null" (activate)="onActivate($event)" (select)='onSelect($event)'>
+
+      <ngx-datatable-column name="Username">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Operations">
+
+        <ng-template let-column="column" ngx-datatable-header-template>
+          {{column.name}}
+        </ng-template>
+
+        <ng-template ngx-datatable-cell-template>
+          <div>
+              <button type="button" class="btn btn-warning">Edit</button>
+              <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+
+</div>
