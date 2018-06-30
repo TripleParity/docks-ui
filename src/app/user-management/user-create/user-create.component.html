@@ -1,35 +1,41 @@
-<h1>Create User</h1>
+<h2>Create User</h2>
 
-<form class="col-md-3">
-  <div class="form-row">
+<div class="col-md-3">
+
+  <form #createForm="ngForm" (ngSubmit)="submit()">
+
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" placeholder="Username" #username required>
-      <div [hidden]="usernamePopulated" class="alert alert-danger">
+      <input type="text" [(ngModel)]="model.username" class="form-control" id="username" placeholder="Username" #username="ngModel"
+        required name="username">
+      <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
         Username is required
       </div>
       <div [hidden]="!alreadyExists" class="alert alert-danger">
         Username already exists
       </div>
     </div>
-  </div>
 
-  <div class="form-row">
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Password" #password required>
-      <div [hidden]="passwordPopulated" class="alert alert-danger">
+      <input type="password" [(ngModel)]="model.password" class="form-control" id="password" placeholder="Password" #password="ngModel"
+        required name="password">
+      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
         Password is required
       </div>
     </div>
-  </div>
 
-  <div [hidden]="!genericError" class="alert alert-danger">
+    <!--TODO(egeldenhuys): Confirm password-->
+
+    <div [hidden]="!genericError" class="alert alert-danger">
       Something went wrong
     </div>
 
-  <div class="row">
-      <a routerLink="/users"><button id="btnCancel" type="button" class="btn btn-secondary">Cancel</button></a>
-      <button type="button" class="btn btn-success" (click)="submit(username.value, password.value)">Submit</button>
-  </div>
-</form>
+    <div class="row">
+      <a routerLink="/users">
+        <button id="btnCancel" type="button" class="btn btn-secondary">Cancel</button>
+      </a>
+      <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid || submitted">Submit</button>
+    </div>
+  </form>
+</div>
