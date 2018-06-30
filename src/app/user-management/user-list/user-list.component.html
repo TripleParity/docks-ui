@@ -1,5 +1,7 @@
 <div id="userListComponent">
-  <button type="button" class="btn btn-primary">Create user</button>
+  <a routerLink="/users/create">
+    <button type="button" class="btn btn-primary">Create user</button>
+  </a>
 
   <hr>
 
@@ -22,8 +24,8 @@
 
         <ng-template ngx-datatable-cell-template>
           <div>
-              <button type="button" class="btn btn-warning">Edit</button>
-              <button type="button" class="btn btn-danger">Delete</button>
+            <button type="button" class="btn btn-warning">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
           </div>
         </ng-template>
       </ngx-datatable-column>

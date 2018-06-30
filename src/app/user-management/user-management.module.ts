@@ -5,10 +5,11 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UserManagementRoutingModule } from './user-management-routing.module';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserService } from '../user-management/shared/user.service';
+import { UserCreateComponent } from './user-create/user-create.component';
 
 @NgModule({
   imports: [CommonModule, UserManagementRoutingModule, NgxDatatableModule],
-  declarations: [UserListComponent],
+  declarations: [UserListComponent, UserCreateComponent],
   providers: [UserService],
 })
 export class UserManagementModule {}
