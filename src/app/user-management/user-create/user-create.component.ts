@@ -4,7 +4,6 @@ import {
   CreateUserStatus,
 } from 'app/user-management/shared/user.service';
 import { User } from 'app/user-management/models/user.model';
-import { ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({

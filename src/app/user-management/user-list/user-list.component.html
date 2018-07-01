@@ -32,9 +32,7 @@
             <a routerLink="/users/{{row.username}}/edit">
               <button type="button" class="btn btn-warning">Edit</button>
             </a>
-            <a routerLink="/users/{{row.username}}/delete">
-              <button type="button" class="btn btn-danger">Delete</button>
-            </a>
+              <button type="button" class="btn btn-danger" (click)="open(content, row.username)">Delete</button>
           </div>
 
         </ng-template>
@@ -42,5 +40,28 @@
       </ngx-datatable-column>
     </ngx-datatable>
   </div>
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Delete User</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" align="center">
+      <h5>Are you sure you want to delete the following user?</h5>
+      <h5>
+        <pre>{{usernameToDelete}}</pre>
+      </h5>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="c('Cancel click')">Cancel</button>
+      <button type="button" class="btn btn-danger" (click)="c('Delete click')">Delete</button>
+      <button type="button" class="btn btn-danger">NIO</button>
+    </div>
+  </ng-template>
+  <hr>
+
+  <pre>{{closeResult}}</pre>
 
 </div>

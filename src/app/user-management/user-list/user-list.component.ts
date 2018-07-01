@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { UserService } from 'app/user-management/shared/user.service';
 import { User } from 'app/user-management/models/user.model';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user-list',
@@ -15,14 +16,20 @@ export class UserListComponent implements OnInit {
   updatedUser = '';
   updatedUserNotFound = '';
   genericError = false;
+  closeResult = '';
 
   selected: User[] = [];
 
   users: User[];
 
   columns = [{ prop: 'username' }];
+  usernameToDelete = '';
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private modalService: NgbModal
+  ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       if (params.has('createdUser')) {
         this.createdUser = params.get('createdUser');
@@ -56,5 +63,28 @@ export class UserListComponent implements OnInit {
 
   onActivate(event) {
     // console.log('Activate Event', event);
+  }
+
+  open(content, username: string) {
+    this.usernameToDelete = username;
+
+    this.modalService.open(content).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      }
+    );
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }
