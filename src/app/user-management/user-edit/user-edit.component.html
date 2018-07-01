@@ -1,6 +1,6 @@
 <h2>Edit User</h2>
 <div class="col-md-3">
-  <form [formGroup]="userForm">
+  <form [formGroup]="userForm" (ngSubmit)="submit()">
     <div class="form-group">
       <label for="username">Username</label>
       <input readonly type="text" id="username" class="form-control" formControlName="username">
@@ -13,7 +13,7 @@
       <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
 
         <div *ngIf="password.errors.required">
-          Password is required.
+          Password is required
         </div>
       </div>
     </div>
@@ -25,7 +25,15 @@
       <div *ngIf="userForm.errors?.passwordsDoNotMatch && (password2.touched || password2.dirty)" class="alert alert-danger">
         Passwords do not match
       </div>
-
     </div>
+
+    <div [hidden]="!genericError" class="alert alert-danger">
+      Something went wrong
+    </div>
+
+    <a routerLink="/users">
+      <button id="btnCancel" type="button" class="btn btn-secondary">Cancel</button>
+    </a>
+    <button type="submit" class="btn btn-success" [disabled]="!userForm.valid || submitted || userForm.errors">Submit</button>
   </form>
 </div>

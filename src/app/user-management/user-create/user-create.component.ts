@@ -18,8 +18,10 @@ export class UserCreateComponent implements OnInit {
 
   alreadyExists = false;
   genericError = false;
+  passwordHolder2 = '';
 
   submitted = false;
+  badUser = '';
 
   model: User = null;
 
@@ -47,6 +49,7 @@ export class UserCreateComponent implements OnInit {
         (err: CreateUserStatus) => {
           if (err === CreateUserStatus.CREATE_ERR_EXISTS) {
             this.alreadyExists = true;
+            this.badUser = this.model.username;
           } else if (err === CreateUserStatus.CREATE_ERR_SERVER) {
             this.genericError = true;
           }

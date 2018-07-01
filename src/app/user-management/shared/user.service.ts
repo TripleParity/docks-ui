@@ -17,6 +17,12 @@ export enum CreateUserStatus {
   CREATE_ERR_SERVER,
 }
 
+export enum UpdateUserStatus {
+  UPDATE_OK,
+  UPDATE_ERR_NOT_FOUND,
+  UPDATE_ERR_SERVER
+}
+
 @Injectable()
 export class UserService {
   private userEndpoint = null;
@@ -61,6 +67,27 @@ export class UserService {
             }
           }
         );
+    });
+  }
+
+  // TODO(egeldenhuys): Update using model
+  updateUser(username: string, password: string) {
+    return new Observable<UpdateUserStatus>((observer) => {
+      this.httpClient.put(this.userEndpoint, {username: username, password: password})
+      .subscribe(
+        (body) => {
+          console.log(body);
+          observer.next(UpdateUserStatus.UPDATE_OK);
+        },
+        (err: HttpErrorResponse) => {
+          console.error(err);
+          if (err.status === 404) {
+            observer.next(UpdateUserStatus.UPDATE_ERR_NOT_FOUND);
+          } else {
+            observer.next(UpdateUserStatus.UPDATE_ERR_SERVER);
+          }
+        }
+      );
     });
   }
 }

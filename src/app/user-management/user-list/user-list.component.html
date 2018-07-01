@@ -1,5 +1,8 @@
 <div id="userListComponent">
   <ngb-alert [hidden]="createdUser.length === 0" (close)="createdUser=''" [type]="'success'">User '{{createdUser}}' created successfully</ngb-alert>
+  <ngb-alert [hidden]="updatedUser.length === 0" (close)="updatedUser=''" [type]="'success'">User '{{updatedUser}}' successfully updated</ngb-alert>
+  <ngb-alert [hidden]="updatedUserNotFound.length === 0" (close)="updatedUserNotFound=''" [type]="'danger'">Error updating user '{{updatedUserNotFound}}'. User no longer exists</ngb-alert>
+  <ngb-alert [hidden]="!genericError" (close)="genericError=false" [type]="'danger'">Something went wrong</ngb-alert>
 
   <a routerLink="/users/create">
     <button type="button" class="btn btn-primary">Create user</button>

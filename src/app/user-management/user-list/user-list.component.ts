@@ -10,7 +10,11 @@ import { User } from 'app/user-management/models/user.model';
   styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit {
+  // Message flags
   createdUser = '';
+  updatedUser = '';
+  updatedUserNotFound = '';
+  genericError = false;
 
   selected: User[] = [];
 
@@ -20,18 +24,30 @@ export class UserListComponent implements OnInit {
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      const tmpCreatedUser = params.get('createdUser');
+      if (params.has('createdUser')) {
+        this.createdUser = params.get('createdUser');
+      }
 
-      if (tmpCreatedUser !== null) {
-        this.createdUser = tmpCreatedUser;
+      if (params.has('updatedUser')) {
+        this.updatedUser = params.get('updatedUser');
+      }
+
+      if (params.has('updatedUserNotFound')) {
+        this.updatedUserNotFound = params.get('updatedUserNotFound');
       }
     });
   }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe((users: User[]) => {
-      this.users = users;
-    });
+    this.userService.getUsers().subscribe(
+      (users: User[]) => {
+        this.users = users;
+      },
+      (err) => {
+        console.error(err);
+        this.genericError = true;
+      }
+    );
   }
 
   onSelect({ selected }) {
