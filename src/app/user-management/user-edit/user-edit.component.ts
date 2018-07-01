@@ -7,6 +7,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+
 import {
   UserService,
   UpdateUserStatus,
@@ -44,8 +45,6 @@ export class UserEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      console.log(params.get('username'));
-
       this.userForm.setValue({
         username: params.get('username'),
         password: '',

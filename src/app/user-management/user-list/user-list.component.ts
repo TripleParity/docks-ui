@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import {
+  NgbModal,
+  NgbModalRef,
+} from '@ng-bootstrap/ng-bootstrap';
 
-import { UserService } from 'app/user-management/shared/user.service';
+import {
+  UserService,
+  DeleteUserStatus,
+} from 'app/user-management/shared/user.service';
 import { User } from 'app/user-management/models/user.model';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user-list',
@@ -11,12 +17,18 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit {
-  // Message flags
+  // Alert message flags. Displays if value not empty or false
+  genericError = false;
+
   createdUser = '';
+
   updatedUser = '';
   updatedUserNotFound = '';
-  genericError = false;
-  closeResult = '';
+
+  activeModal: NgbModalRef;
+
+  deletedUser = '';
+  deletedUserNotFound = '';
 
   selected: User[] = [];
 
@@ -45,7 +57,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  fetchUsers() {
     this.userService.getUsers().subscribe(
       (users: User[]) => {
         this.users = users;
@@ -57,34 +69,50 @@ export class UserListComponent implements OnInit {
     );
   }
 
-  onSelect({ selected }) {
-    // console.log('Select Event', selected, this.selected);
-  }
-
-  onActivate(event) {
-    // console.log('Activate Event', event);
+  ngOnInit() {
+    this.fetchUsers();
   }
 
   open(content, username: string) {
     this.usernameToDelete = username;
+    console.log(content);
 
-    this.modalService.open(content).result.then(
-      (result) => {
-        this.closeResult = `Closed with: ${result}`;
+    this.activeModal = this.modalService.open(content);
+  }
+
+  deleteUser(username: string) {
+    this.userService.deleteUser(username).subscribe(
+      (result: DeleteUserStatus) => {
+        this.clearAlerts();
+        if (result === DeleteUserStatus.DELETE_OK) {
+          this.deletedUser = username;
+        } else {
+          this.genericError = true;
+        }
+
+        this.activeModal.close();
+        this.fetchUsers();
       },
-      (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      (err: DeleteUserStatus) => {
+        this.clearAlerts();
+        if (err === DeleteUserStatus.DELETE_ERR_NOT_FOUND) {
+          this.deletedUserNotFound = username;
+        } else {
+          this.genericError = true;
+        }
+
+        this.activeModal.close();
+        this.fetchUsers();
       }
     );
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  clearAlerts() {
+    this.createdUser = '';
+    this.deletedUser = '';
+    this.deletedUserNotFound = '';
+    this.genericError = false;
+    this.updatedUser = '';
+    this.updatedUserNotFound = '';
   }
 }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import {
   UserService,
   CreateUserStatus,
 } from 'app/user-management/shared/user.service';
 import { User } from 'app/user-management/models/user.model';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-create',
@@ -43,18 +44,21 @@ export class UserCreateComponent implements OnInit {
       .subscribe(
         (result: CreateUserStatus) => {
           this.submitted = false;
-          this.router.navigate(['/users', { createdUser: this.model.username}]);
+          this.router.navigate([
+            '/users',
+            { createdUser: this.model.username },
+          ]);
         },
         (err: CreateUserStatus) => {
+          console.error(err);
           if (err === CreateUserStatus.CREATE_ERR_EXISTS) {
             this.alreadyExists = true;
             this.badUser = this.model.username;
-          } else if (err === CreateUserStatus.CREATE_ERR_SERVER) {
+          } else {
             this.genericError = true;
           }
 
           this.submitted = false;
-          console.log(err);
         }
       );
   }

@@ -1,8 +1,14 @@
 <div id="userListComponent">
+  <!-- TODO(egeldenhuys): Improve with using subjectUser and flags[] -->
+  <!-- TODO(egeldenhuys): The persistent alert in the URL causes confusion
+      Is there a better way to pass messages between components? -->
+
   <ngb-alert [hidden]="createdUser.length === 0" (close)="createdUser=''" [type]="'success'">User '{{createdUser}}' created successfully</ngb-alert>
   <ngb-alert [hidden]="updatedUser.length === 0" (close)="updatedUser=''" [type]="'success'">User '{{updatedUser}}' successfully updated</ngb-alert>
   <ngb-alert [hidden]="updatedUserNotFound.length === 0" (close)="updatedUserNotFound=''" [type]="'danger'">Error updating user '{{updatedUserNotFound}}'. User no longer exists</ngb-alert>
   <ngb-alert [hidden]="!genericError" (close)="genericError=false" [type]="'danger'">Something went wrong</ngb-alert>
+  <ngb-alert [hidden]="deletedUser.length === 0" (close)="deletedUser=''" [type]="'success'">User '{{deletedUser}}' has been deleted successfully</ngb-alert>
+  <ngb-alert [hidden]="deletedUserNotFound.length === 0" (close)="deletedUserNotFound=''" [type]="'danger'">Error deleting user '{{deletedUserNotFound}}'. User no longer exists</ngb-alert>
 
   <a routerLink="/users/create">
     <button type="button" class="btn btn-primary">Create user</button>
@@ -12,8 +18,7 @@
 
   <div id="userList">
     <h4>List of users</h4>
-    <ngx-datatable class="bootstrap" [rows]="users" [columns]="columns" [headerHeight]="'auto'" [rowHeight]="'auto'" [selected]="selected"
-      [selectionType]="null" (activate)="onActivate($event)" (select)='onSelect($event)'>
+    <ngx-datatable class="bootstrap" [rows]="users" [columns]="columns" [headerHeight]="'auto'" [rowHeight]="'auto'" [selected]="selected">
 
       <ngx-datatable-column name="Username">
         <ng-template let-value="value" ngx-datatable-cell-template>
@@ -32,7 +37,7 @@
             <a routerLink="/users/{{row.username}}/edit">
               <button type="button" class="btn btn-warning">Edit</button>
             </a>
-              <button type="button" class="btn btn-danger" (click)="open(content, row.username)">Delete</button>
+            <button type="button" class="btn btn-danger" (click)="open(content, row.username)">Delete</button>
           </div>
 
         </ng-template>
@@ -56,12 +61,9 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="c('Cancel click')">Cancel</button>
-      <button type="button" class="btn btn-danger" (click)="c('Delete click')">Delete</button>
-      <button type="button" class="btn btn-danger">NIO</button>
+      <!-- usernameToDelete is set in open(content, row.username)-->
+      <button type="button" class="btn btn-danger" (click)="deleteUser(usernameToDelete)">Delete</button>
     </div>
   </ng-template>
-  <hr>
-
-  <pre>{{closeResult}}</pre>
 
 </div>
