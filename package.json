@@ -28,7 +28,6 @@
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
-    "jsdoc": "^3.5.5",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
@@ -50,6 +49,7 @@
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
+    "jsdoc": "^3.5.5",
     "typescript": "~2.5.3"
   }
 }
