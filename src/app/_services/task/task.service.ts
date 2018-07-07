@@ -25,7 +25,7 @@ export class TaskService {
                 map(data => {
                     const tasks: Task[] = [];
                     for (let i = 0; i < Object.keys(data).length; i++) {
-                        tasks.push(Task.parse(data[i]));
+                        tasks.push((data[i]));
                     }
                     return tasks;
                 }), catchError((err: HttpErrorResponse) => {

@@ -1,32 +1,26 @@
-import {Deserialize, deserializeAs, Serialize, serializeAs} from 'cerialize';
+/**
+ * Interface for containers
+ *
+ * @interface
+ */
+import {HostConfigModel} from 'app/_models/container/hostConfig/hostConfig.model';
+import {NetworkSettingsModel} from 'app/_models/container/networkSettings/networkSettings.model';
+import {Mount} from 'app/_models/container/mount/mount.model';
 
-export class Container {
-    @deserializeAs('Id') @serializeAs('Id') public id: string;
-    @deserializeAs('Names') @serializeAs('Names') public names: string[];
-    @deserializeAs('Image') @serializeAs('Image') public image: string;
-    @deserializeAs('ImageID') @serializeAs('ImageID') public imageID: string;
-    @deserializeAs('State') @serializeAs('State') public state: string;
-    @deserializeAs('Status') @serializeAs('Status') public status: string;
-    // TODO: (CDuPlooy) Add Ports Model.
-    // TODO: (CDuPlooy) Add Labels Model.
-    @deserializeAs('SizeRw') @serializeAs('SizeRw') public sizeRW: number;
-    @deserializeAs('SizeRootFs') @serializeAs('SizeRootFs') public sizeRootFS: number;
-    // TODO: (CDuPlooy) Add HostConfig Model.
-    // TODO: (CDuPlooy) Add NetworkSettings Model.
-    // TODO: (CDuPlooy) Add Mounts Model.
+export interface Container {
+    ID: string;
+    Names: string[];
+    Image: string;
+    ImageID: string;
+    State: string;
+    Status: string;
+    Ports: JSON[];  // TODO: (CDuPlooy) Verify that this is correct.
+    Labels: JSON;
+    SizeRw: number;
+    SizeRootFS: number;
+    HostConfig: HostConfigModel;
+    NetworkSettings: NetworkSettingsModel;
+    Mounts: Mount[];  // TODO: (CDuPlooy) Ensure this is serialised correctly from the json.
 
     // TODO: (CDuPlooy) Inspect relationship between container ID and endPointID in services for example.
-
-
-    constructor() {}
-    static parse(data: JSON): Container {
-        let container: Container = new Container();
-        container = Deserialize(data, Container);
-        return container;
-    }
-    public toJSON(): JSON {
-        return Serialize(this);
-    }
-
-
 }

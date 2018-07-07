@@ -3,6 +3,11 @@ import {Mode} from './mode.model';
 import {Config} from './config.model';
 import {EndpointSpec} from './endpointspec.model';
 
+/**
+ * Spec interface for Services.
+ *
+ * @interface
+ */
 export interface ServiceSpec {
     Name: string;
     Labels: JSON[];

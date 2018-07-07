@@ -11,12 +11,17 @@ import {ConfigurationService} from '../configuration/configuration.service';
 export class ContainerService {
   constructor(private http: HttpClient, private config: ConfigurationService) {}
 
+    /**
+     * Returns a list of all containers present on the endpoint.
+     *
+     * @returns {Observable<Container[]>}
+     */
   public getContainer(): Observable<Container[]> {
       return this.http.get<JSON>(this.config.getAPIHostname() + '/docker/containers/json', {responseType: 'json'}).pipe(
           map(data => {
               const containers: Container[] = [];
               for (let i = 0; i < Object.keys(data).length; i++) {
-                  containers.push(Container.parse(data[i]));
+                  containers.push(data[i]);
               }
               return containers;
           })

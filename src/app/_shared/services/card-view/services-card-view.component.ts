@@ -34,7 +34,7 @@ export class ServicesCardViewComponent implements OnInit {
     public loadModal(content, service) {
         this.mockService.getTasks().subscribe( (tasks) => {
            for (let i = 0; i < tasks.length; i++) {
-               if (tasks[i].serviceID === service.ID) {
+               if (tasks[i].ServiceID === service.ID) {
                    console.log(tasks[i]);
                    this.modalObjectTasks.push(tasks[i]);
                }
