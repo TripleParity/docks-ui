@@ -86,3 +86,22 @@ to serve a development version of Docks UI. This is the most flexible developmen
     ```
 
     The `--aot` flag is required to catch Ahead Of Time errors early as this will be used in production
+
+## Testing
+### Requirements
+- Chromium
+- `$ export CHROME_BIN=/usr/bin/chromium-browser`
+
+### Test Headless (Single Run)
+This is the process used when testing on Travis CI
+
+```
+ng test
+```
+
+### In Browser (Continuos Testing)
+This process is used for fixing missing dependencies in test cases
+
+```
+ng test --browsers="Chrome" --single-run=false
+```
