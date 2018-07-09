@@ -27,6 +27,7 @@ import { ServicesOperationsComponent } from '_shared/services/operations/service
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from '_guards/auth.guard';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SpinnerComponent } from '_shared/spinner/spinner.component';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     GraphComponent,
     ServicesOperationsComponent,
     ServicesCardViewComponent,
+    SpinnerComponent
   ],
   providers: [
     ConfigurationService,

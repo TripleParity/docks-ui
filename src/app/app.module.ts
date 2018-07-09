@@ -19,6 +19,7 @@ import { LoginComponent } from './_shared/login/login.component';
 import { HomeModule} from './_shared/home/home.module';
 import { AuthService } from '_services/auth/auth.service';
 import { RefreshComponent } from './refresh/refresh.component';
+import { SpinnerComponent } from './_shared/spinner/spinner.component';
 
 @NgModule({
     declarations: [
