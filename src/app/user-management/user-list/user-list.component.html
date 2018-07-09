@@ -1,7 +1,7 @@
 <div id="userListComponent">
   <!-- TODO(egeldenhuys): Improve with using subjectUser and flags[] -->
-  <!-- TODO(egeldenhuys): The persistent alert in the URL causes confusion
-      Is there a better way to pass messages between components? -->
+  <!-- TODO(egeldenhuys): Pass messages without using URL-->
+  <!-- TODO(egeldenhuys): Align cells vertically in center -->
 
   <ngb-alert [hidden]="createdUser.length === 0" (close)="createdUser=''" [type]="'success'">User '{{createdUser}}' created successfully</ngb-alert>
   <ngb-alert [hidden]="updatedUser.length === 0" (close)="updatedUser=''" [type]="'success'">User '{{updatedUser}}' successfully updated</ngb-alert>
@@ -17,33 +17,48 @@
   <hr>
 
   <div id="userList">
-    <h4>List of users</h4>
-    <ngx-datatable class="bootstrap" [rows]="users" [columns]="columns" [headerHeight]="'auto'" [rowHeight]="'auto'" [selected]="selected">
+    <div class="row">
+      <div class="col-md-auto">
+        <h4>List of users</h4>
+      </div>
+      <div class="col">
+        <input type='text' placeholder='Filter username...' (keyup)='updateFilter($event)' />
 
-      <ngx-datatable-column name="Username">
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          {{value}}
-        </ng-template>
-      </ngx-datatable-column>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-4">
+        <ngx-datatable class="bootstrap" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="users" [columns]="columns"
+          [headerHeight]="'auto'" [rowHeight]="'auto'" [selected]="selected">
 
-      <ngx-datatable-column name="Operations">
+          <ngx-datatable-column name="Username">
+            <ng-template let-value="value" ngx-datatable-cell-template class="d-flex align-content-center">
+              {{value}}
+            </ng-template>
+          </ngx-datatable-column>
 
-        <ng-template let-column="column" ngx-datatable-header-template>
-          {{column.name}}
-        </ng-template>
+          <ngx-datatable-column name="Operations">
 
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <div>
-            <a routerLink="/users/{{row.username}}/edit">
-              <button type="button" class="btn btn-warning">Edit</button>
-            </a>
-            <button type="button" class="btn btn-danger" (click)="open(content, row.username)">Delete</button>
-          </div>
+            <ng-template let-column="column" ngx-datatable-header-template>
+              {{column.name}}
+            </ng-template>
 
-        </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <div>
+                <a routerLink="/users/{{row.username}}/edit">
+                  <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                </a>
+                <button type="button" class="btn btn-danger btn-sm" (click)="open(content, row.username)">Delete</button>
+              </div>
 
-      </ngx-datatable-column>
-    </ngx-datatable>
+            </ng-template>
+
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+
   </div>
 
   <ng-template #content let-c="close" let-d="dismiss">

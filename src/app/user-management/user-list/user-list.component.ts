@@ -32,10 +32,12 @@ export class UserListComponent implements OnInit {
 
   selected: User[] = [];
 
-  users: User[];
+  users: User[]; // rows
 
   columns = [{ prop: 'username' }];
   usernameToDelete = '';
+
+  dataCache = [];
 
   constructor(
     private userService: UserService,
@@ -61,6 +63,7 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers().subscribe(
       (users: User[]) => {
         this.users = users;
+        this.dataCache = [...users];
       },
       (err) => {
         console.error(err);
@@ -114,5 +117,19 @@ export class UserListComponent implements OnInit {
     this.genericError = false;
     this.updatedUser = '';
     this.updatedUserNotFound = '';
+  }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.dataCache.filter((user: User) => {
+      return user.username.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.users = temp;
+
+    // TODO(egeldenhuys): Whenever the filter changes, always go back to the first page
   }
 }
