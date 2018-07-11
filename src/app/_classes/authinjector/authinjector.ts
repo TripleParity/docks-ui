@@ -16,7 +16,6 @@ export class AuthInjector implements HttpInterceptor {
     // TODO(egeldenhuys): Check for unauthenticated error and reset session
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         req = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + this.tokens.getToken('auth'))});
-        console.log(req.
         return next.handle(req).pipe(
             tap(
                 () => {},
