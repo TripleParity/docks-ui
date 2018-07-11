@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {MockService, VolumeService} from '../../../_services';
+import {MockService, VolumeService} from 'app/_services';
 import {Observable} from 'rxjs/Observable';
-import {Volume} from '../../../_models';
+import {Volume} from 'app/_models';
 
 @Component({
   selector: 'app-volume-operations',

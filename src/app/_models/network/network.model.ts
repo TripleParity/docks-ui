@@ -1,5 +1,5 @@
 // This model will be using interfaces instead of classes as an experiment.
-import { Ipam } from './ipam/ipam.model';
+import { Ipam } from 'app/_models/network/ipam/ipam.model';
 
 export interface Network {
     Name: string;

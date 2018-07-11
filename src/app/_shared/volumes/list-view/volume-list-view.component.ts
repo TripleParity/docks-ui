@@ -12,6 +12,8 @@ export class VolumeListViewComponent implements OnInit {
   constructor(private mock: MockService, private service: VolumeService) { }
 
     public volumes: Volume[] = [];
+    public isLoaded = false;
+
     ngOnInit() {
         /* tslint:disable-next-line */
         const data = JSON.parse('{"Name":"tardis2","Labels":{"com.example.some-label":"some-value","com.example.some-other-label":"some-other-value"},"Driver":"local"}');
@@ -21,6 +23,8 @@ export class VolumeListViewComponent implements OnInit {
             this.volumes = volumes;
             // console.log(volumes);
         }, error => console.error('Error: ' + error));
+
+        this.isLoaded = true;
     }
 
 }

@@ -1,6 +1,5 @@
 <app-spinner [hidden]="isLoaded"></app-spinner>
 
-
 <div id="taskList">
     <div class="card-deck">
         <div *ngFor="let task of tasks; let i = index">
@@ -49,6 +48,7 @@
 </div>
 
 <ng-template #content let-c="close" let-d="dismiss">
+    <!--TODO: add spinner to modal as soon as modal is off mock service -->
     <div id="task-modal">
         <div class="modal-header" id="modal-header" [attr.class]="'modal-header ' + ' ' + getState(modalObject.status.state.toUpperCase()) + '-card'">
             <h4>

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
+import { HomeRoutingModule } from '_shared/home/home-routing.module';
+import { HomeComponent } from '_shared/home/home.component';
 import {
   ConfigurationService,
   ContainerService,
   MockService,
   TaskService,
-} from '_services/index';
+} from 'app/_services';
 import { ServicesService } from '_services/services/services.service';
 import { GraphService } from '_services/graphs/graph.service';
 import { GraphComponent } from '_shared/graph/graph.component';
@@ -19,7 +19,7 @@ import {
   ServiceListViewComponent,
   TaskListViewComponent,
   UserBarComponent,
-} from '_shared/index';
+} from 'app/_shared';
 import { ServicesCardViewComponent } from '_shared/services/card-view/services-card-view.component';
 import { ContainersComponent } from '_shared/containers/containers.component';
 import { TaskCardViewComponent } from '_shared/tasks/card-view/task-card-view.component';
@@ -28,6 +28,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthGuard } from '_guards/auth.guard';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerComponent } from '_shared/spinner/spinner.component';
+import { SharedSpinnerModule } from '_shared/spinner/shared-spinner/shared-spinner.module';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { SpinnerComponent } from '_shared/spinner/spinner.component';
     HomeRoutingModule,
     FormsModule,
     NgbModule,
+    SharedSpinnerModule
   ],
   declarations: [
     HomeComponent,
@@ -49,7 +51,6 @@ import { SpinnerComponent } from '_shared/spinner/spinner.component';
     GraphComponent,
     ServicesOperationsComponent,
     ServicesCardViewComponent,
-    SpinnerComponent
   ],
   providers: [
     ConfigurationService,
@@ -61,5 +62,6 @@ import { SpinnerComponent } from '_shared/spinner/spinner.component';
     GraphService,
     AuthGuard,
   ],
+  exports: [SpinnerComponent]
 })
 export class HomeModule {}
