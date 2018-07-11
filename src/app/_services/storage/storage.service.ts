@@ -1,3 +1,7 @@
+/**
+ * Storage service used for saving tokens using local storage.
+ */
+
 import { Injectable } from '@angular/core';
 
 const authTokenKey = 'auth';
