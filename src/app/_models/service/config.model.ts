@@ -1,3 +1,8 @@
+/**
+ * Config interface for Services.
+ *
+ * @interface
+ */
 export interface Config {
     Parallelism: number;
     Delay: number;

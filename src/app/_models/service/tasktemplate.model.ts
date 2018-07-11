@@ -1,3 +1,8 @@
+/**
+ * TaskTemplate interface for Services.
+ *
+ * @interface
+ */
 export interface TaskTemplate {
     ContainerSpec: {
         Image: String;

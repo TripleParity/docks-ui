@@ -35,6 +35,7 @@ export class ServicesCardViewComponent implements OnInit {
     return Formatter.PrettifyDateTime(buff);
   }
 
+<<<<<<< HEAD
   public loadModal(content, service) {
     this.mockService.getTasks().subscribe((tasks) => {
       for (let i = 0; i < tasks.length; i++) {
@@ -47,4 +48,18 @@ export class ServicesCardViewComponent implements OnInit {
     this.modalObject = service;
     this.modalService.open(content, { size: 'lg' });
   }
+=======
+    public loadModal(content, service) {
+        this.mockService.getTasks().subscribe( (tasks) => {
+           for (let i = 0; i < tasks.length; i++) {
+               if (tasks[i].ServiceID === service.ID) {
+                   console.log(tasks[i]);
+                   this.modalObjectTasks.push(tasks[i]);
+               }
+           }
+        });
+        this.modalObject = service;
+        this.modalService.open(content, { size: 'lg' });
+    }
+>>>>>>> develop
 }

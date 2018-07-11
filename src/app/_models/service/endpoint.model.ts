@@ -1,5 +1,10 @@
 import {Port} from './port.model';
 
+/**
+ * Endpoint interface for Services.
+ *
+ * @interface
+ */
 export interface Endpoint {
     Spec: {
         Mode: string;
