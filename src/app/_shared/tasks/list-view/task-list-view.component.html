@@ -3,7 +3,7 @@
 <div id="taskList">
     <div *ngFor="let task of tasks; let i = index">
         <div class="card taskListCard">
-            <div class="card-header" [attr.id]="'heading-'+ i" (click)="isCollapsed = !isCollapsed" [attr.aria-controls]="'collapse-' + i" [attr.aria-expanded]="!isCollapsed">
+            <div class="card-header" [attr.id]="'heading-'+ i" (click)="Collapse(i)" [attr.aria-controls]="'collapse-' + i" [attr.aria-expanded]="!isCollapsed">
                 <h5 class="mb-0">
                     <span class="main-item">
                         <div *ngIf="task.Name !== undefined;then name else notName"></div>
@@ -86,7 +86,7 @@
                 </h5>
             </div>
 
-            <div [attr.id]="'collapse-' + i" [ngbCollapse]="isCollapsed" [attr.aria-labelledby]="'heading-'+ i" data-parent="#taskList">
+            <div [attr.id]="'collapse-' + i" [ngbCollapse]="!isCollapsed[i]" [attr.aria-labelledby]="'heading-'+ i" data-parent="#taskList">
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         ID: {{ task.ID }}

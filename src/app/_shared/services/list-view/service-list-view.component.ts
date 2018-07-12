@@ -14,10 +14,18 @@ export class ServiceListViewComponent implements OnInit {
     constructor(private mock: MockService, private serviceService: ServicesService, private modalService: NgbModal) { }
 
     public services: Service[] = [];
-    public removeeId = String;
+    public removeId = String;
+    public isCollapsed: Boolean[] = [];
+    public previous = 0;
+
     ngOnInit() {
             this.serviceService.getServices().subscribe(services => {
                 this.services = services;
+                console.log(this.services.length);
+                for (let i = 0; i < this.services.length; i++) {
+                    console.log('hh');
+                    this.isCollapsed.push(false);
+                }
         });
     }
 
@@ -39,9 +47,18 @@ export class ServiceListViewComponent implements OnInit {
 
     public loadModal(removeConfirm, id, event) {
         this.voidParentClick(event);
-        this.removeeId = id;
+        this.removeId = id;
         this.modalService.open(removeConfirm, { size: 'sm' });
     }
 
+    public Collapse(i) {
+        if (i !== this.previous) {
+            this.isCollapsed[this.previous] = false;
+            this.isCollapsed[i] = !this.isCollapsed[i];
+            this.previous = i;
+        } else {
+            this.isCollapsed[i] = !this.isCollapsed[i];
+        }
+      }
 
 }

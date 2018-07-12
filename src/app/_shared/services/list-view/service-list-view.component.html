@@ -1,7 +1,7 @@
 <div id="serviceList">
     <div *ngFor="let service of services; let i = index">
         <div class="card ServiceListCard">
-            <div class="card-header" [attr.id]="'heading-'+ i" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
+            <div class="card-header" [attr.id]="'heading-'+ i" (click)="Collapse(i)" [attr.aria-controls]="'collapse-' + i" [attr.aria-expanded]="!isCollapsed">
                 <h5 class="mb-0 container-fluid">
                     <div class="row">
                         <span class="main-item col-10 heading-item">
@@ -25,7 +25,7 @@
                 </h5>
             </div>
 
-            <div [attr.id]="'collapse-' + i" class="collapse" [attr.aria-labelledby]="'heading-'+ i" data-parent="#serviceList">
+            <div [attr.id]="'collapse-' + i" [ngbCollapse]="!isCollapsed[i]" [attr.aria-labelledby]="'heading-'+ i" data-parent="#serviceList">
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between sub-item">
                         Image: {{ service.Spec.TaskTemplate.ContainerSpec.Image }}
@@ -65,7 +65,7 @@
             <span class="faded-text">Are you sure you want to delete service with id:</span><br/> {{ removeeId }} <span class="faded-text">?</span>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-danger" (click)="removeService(removeeId); c('Close click')">Remove</button>
+            <button type="button" class="btn btn-danger" (click)="removeService(removeId); c('Close click')">Remove</button>
             <button type="button" class="btn btn-outline-success" (click)="c('Close click')">Cancel</button>
         </div>
     </div>
