@@ -6,13 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- User management pages to Create, View, Update and Delete users ([#115])
+
 ## [0.1.0]
 ### Added
 - Docks API address can now be set using the `DOCKS_API_ADDRESS` environment variable when deploying using Docker ([#64])
 - Instructions to deploy Docks UI to a swarm
 - Login page ([#58])
 - Authentication Guard to prevent visiting pages without being authenticated ([#48])
-- 150x150 Docks logo
 
 ### Fixed
 - Fix Lazy loading not working when `--aot` is not used with `ng serve` ([#109])
@@ -34,6 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [0.1.0]: https://github.com/TripleParity/docks-ui/compare/0.0.2...0.1.0
 [0.0.2]: https://github.com/TripleParity/docks-ui/compare/0.0.1...0.0.2
 
+[#115]: https://github.com/TripleParity/docks-ui/issues/115
 [#109]: https://github.com/TripleParity/docks-ui/issues/109
 [#100]: https://github.com/TripleParity/docks-ui/issues/100
 [#64]: https://github.com/TripleParity/docks-ui/issues/64
