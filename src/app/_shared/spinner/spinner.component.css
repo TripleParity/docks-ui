@@ -54,10 +54,10 @@
     position: absolute;
     top: 40%;
     left: 50%;
-    content: "Gathering Honey";
+    content: "Fetching Components";
     height: 20px;
     width: 200px;
-    margin: 20px 0 0 -60px;
+    margin: 20px 0 0 -75px;
     text-align: left;
     color: rgba(25, 25, 50, 0.6);
     text-transform: uppercase;

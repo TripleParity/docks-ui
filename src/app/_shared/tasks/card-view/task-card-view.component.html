@@ -3,13 +3,13 @@
 <div id="taskList">
     <div class="card-deck">
         <div *ngFor="let task of tasks; let i = index">
-            <div [attr.class]="'card' + ' ' + getState(task.status.state.toUpperCase()) + '-card'" (click)="loadModal(content, task)">
+            <div [attr.class]="'card' + ' ' + getState(task.Status.State.toUpperCase()) + '-card'" (click)="loadModal(content, task)">
                 <div class="card-title">
                     <h5 class="card-name">
                         <span>
-                            <div *ngIf="task.name !== undefined;then name else notName"></div>
-                            <ng-template #name>{{task.name}}</ng-template>
-                            <ng-template #notName>ID: {{ task.id | slice:0:6}}</ng-template>
+                            <div *ngIf="task.Name !== undefined;then name else notName"></div>
+                            <ng-template #name>{{task.Name}}</ng-template>
+                            <ng-template #notName>ID: {{ task.ID | slice:0:6}}</ng-template>
                             &nbsp; &nbsp;
                         </span>
                         <span class="light-container">
@@ -21,14 +21,14 @@
                 <div class="card-text">
                     <ul class="list-group header">
                         <li class="list-group-item">
-                            <span class="text">ID:</span> {{ task.id }}
+                            <span class="text">ID:</span> {{ task.ID }}
                         </li>
                         <li class="list-group-item">
-                            <span class="text">NodeID:</span> {{ task.nodeID }}
+                            <span class="text">NodeID:</span> {{ task.NodeID }}
                             <!--Change to Node name as soon as Node service is implemented-->
                         </li>
                         <li class="list-group-item">
-                            <span class="text">Image:</span> {{ task.spec.containerSpec.image }}
+                            <span class="text">Image:</span> {{ task.Spec.ContainerSpec.Image }}
                         </li>
                     </ul>
                     <div class="service">
@@ -38,8 +38,8 @@
 
                 <div class="card-footer">
                     <div class="up-date">
-                        <span class="text">Last Updated: </span>
-                        <br /> {{PrettifyDateTime(task.updatedAt) }}
+                        <span class="text">Last Updated: </span><br />
+                        {{PrettifyDateTime(task.UpdatedAt) }}
                     </div>
                 </div>
             </div>
@@ -50,11 +50,11 @@
 <ng-template #content let-c="close" let-d="dismiss">
     <!--TODO: add spinner to modal as soon as modal is off mock service -->
     <div id="task-modal">
-        <div class="modal-header" id="modal-header" [attr.class]="'modal-header ' + ' ' + getState(modalObject.status.state.toUpperCase()) + '-card'">
-            <h4>
+        <div class="modal-header" id="modal-header" [attr.class]="'modal-header ' + ' ' + getState(modalObject.Status.State.toUpperCase()) + '-card'">
+            <h4 >
                 <div *ngIf="modalObject.name !== undefined;then name else notName"></div>
-                <ng-template #name>{{modalObject.name}}</ng-template>
-                <ng-template #notName>ID: {{ modalObject.id | slice:0:6}}</ng-template>
+                <ng-template #name>{{modalObject.Name}}</ng-template>
+                <ng-template #notName>ID: {{ modalObject.ID | slice:0:6}}</ng-template>
             </h4>
 
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -64,17 +64,17 @@
         <div class="modal-body" id="modal-task">
             <ul class="modal-list-group">
                 <li class="modal-list-group-item">
-                    <span class="text">ID: {{modalObject.id}}</span>
+                    <span class="text">ID: {{modalObject.ID}}</span>
                 </li>
                 <li class="modal-list-group-item">
-                    <span class="text">NodeID: {{modalObject.nodeID}}</span>
+                    <span class="text">NodeID: {{modalObject.NodeID}}</span>
                     <!--Change to Node name as soon as Node service is implemented-->
                 </li>
                 <li class="modal-list-group-item">
-                    <span class="text">Image: {{modalObject.spec.containerSpec.image}}</span>
+                    <span class="text">Image: {{modalObject.Spec.ContainerSpec.Image}}</span>
                 </li>
                 <li class="modal-list-group-item">
-                    <span class="text">Created date: {{PrettifyDateTime(modalObject.createdAt) }}</span>
+                    <span class="text">Created date: {{PrettifyDateTime(modalObject.CreatedAt) }}</span>
                 </li>
                 <li class="modal-list-group-item">
                     <span class="text">Logs:</span>
@@ -86,9 +86,7 @@
             </ul>
         </div>
         <div class="modal-footer">
-            <h3 class="pull-left">
-                <span [attr.class]="'text-' + getState(modalObject.status.state.toUpperCase())">{{modalObject.status.state.toUpperCase()}}</span>
-            </h3>
+            <h3 clss="pull-left"><span [attr.class]="'text-' + getState(modalObject.Status.State.toUpperCase())">{{modalObject.Status.State.toUpperCase()}}</span></h3>
             <button type="button" class="btn btn-danger" (click)="c('Close click')">Close</button>
         </div>
     </div>
