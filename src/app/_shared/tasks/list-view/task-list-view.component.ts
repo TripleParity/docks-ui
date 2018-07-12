@@ -14,6 +14,7 @@ export class TaskListViewComponent implements OnInit {
 
   constructor(private taskService: TaskService, private mockService: MockService) { }
   public tasks: Task[] = [];
+  public isCollapsed = true;
 
   ngOnInit() {
       this.taskService.getTasks().subscribe((task) => {
