@@ -1,41 +1,55 @@
 import { Component, OnInit } from '@angular/core';
-import {MockService, ServicesService, VolumeService} from '../../../_services';
-import {Formatter} from '../../../_classes';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Service, Task, Volume} from '../../../_models';
+import {
+  MockService,
+  ServicesService,
+  VolumeService,
+} from '../../../_services';
+import { Formatter } from '../../../_classes';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Service, Task, Volume } from '../../../_models';
 
 @Component({
   selector: 'app-volume-card-view',
   templateUrl: './volume-card-view.component.html',
-  styleUrls: ['./volume-card-view.component.css']
+  styleUrls: ['./volume-card-view.component.css'],
 })
 export class VolumeCardViewComponent implements OnInit {
-
-  constructor(private service: VolumeService, private mock: MockService, private modal: NgbModal) { }
+  constructor(
+    private service: VolumeService,
+    private mock: MockService,
+    private modal: NgbModal
+  ) {}
 
   public volumes: Volume[] = [];
   public modalObject: Volume;
   public modalObjectTasks: Volume[];
+  public isLoaded = false;
+  public isLoadedModal = false;
 
   ngOnInit() {
       this.service.getVolumes().subscribe((volume) => {
-          for (let i = 0; i < volume.length; i++) {
-              this.volumes.push(volume[i]);
-          }
+        for (let i = 0; i < volume.length; i++) {
+          this.volumes.push(volume[i]);
+          this.isLoaded = true;
+        }
       });
       this.modalObjectTasks = [];
   }
 
   public loadModal(content, volume) {
-      this.service.getVolumes().subscribe( (volumes) => {
-          for (let i = 0; i < volumes.length; i++) {
-              if (volumes[i].Name === volume.Name) {
-                  console.log(volumes[i]);
-                  this.modalObjectTasks.push(volumes[i]);
-              }
+    this.isLoadedModal = false;
+    setTimeout(() => {
+      this.service.getVolumes().subscribe((volumes) => {
+        for (let i = 0; i < volumes.length; i++) {
+          if (volumes[i].Name === volume.Name) {
+            console.log(volumes[i]);
+            this.modalObjectTasks.push(volumes[i]);
+            this.isLoadedModal = true;
           }
+        }
       });
-      this.modalObject = volume;
-      this.modal.open(content, { size: 'lg' });
+    }, 8000);
+    this.modalObject = volume;
+    this.modal.open(content, { size: 'lg' });
   }
 }

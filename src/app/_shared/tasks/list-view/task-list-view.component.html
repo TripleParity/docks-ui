@@ -1,5 +1,5 @@
 <!--TODO(FJMentz): NodeID -> NodeName or (ID if !hasName())-->
-
+<app-spinner [hidden]="isLoaded"></app-spinner>
 <div id="taskList">
     <div *ngFor="let task of tasks; let i = index">
         <div class="card taskListCard">

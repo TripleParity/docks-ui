@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../_models';
-import {Formatter} from '../../../_classes';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ServicesService, MockService} from '../../../_services';
+import { Formatter } from '../../../_classes';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ServicesService, MockService } from '../../../_services';
 
 @Component({
-    selector: 'app-service-list-view',
-    templateUrl: './service-list-view.component.html',
-    styleUrls: ['./service-list-view.component.css']
+  selector: 'app-service-list-view',
+  templateUrl: './service-list-view.component.html',
+  styleUrls: ['./service-list-view.component.css'],
 })
 export class ServiceListViewComponent implements OnInit {
 
@@ -17,6 +17,7 @@ export class ServiceListViewComponent implements OnInit {
     public removeId = String;
     public isCollapsed: Boolean[] = [];
     public previous = 0;
+    public isLoaded = false;
 
     ngOnInit() {
             this.serviceService.getServices().subscribe(services => {
@@ -24,6 +25,7 @@ export class ServiceListViewComponent implements OnInit {
                 for (let i = 0; i < this.services.length; i++) {
                     this.isCollapsed.push(false);
                 }
+                this.isLoaded = true;
         });
     }
 
@@ -58,5 +60,4 @@ export class ServiceListViewComponent implements OnInit {
             this.isCollapsed[i] = !this.isCollapsed[i];
         }
       }
-
 }

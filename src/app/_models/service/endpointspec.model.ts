@@ -1,4 +1,4 @@
-import {Port} from './port.model';
+import {Port} from 'app/_models/service/port.model';
 
 /**
  * EndpointSpec interface for Services.

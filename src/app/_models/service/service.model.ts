@@ -1,5 +1,5 @@
-import {Version} from './version.model';
-import {ServiceSpec} from './spec.model';
+import {Version} from 'app/_models/service/version.model';
+import {ServiceSpec} from 'app/_models/service/spec.model';
 
 /**
  * Service interface.

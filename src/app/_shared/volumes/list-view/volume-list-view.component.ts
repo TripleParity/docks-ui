@@ -14,6 +14,7 @@ export class VolumeListViewComponent implements OnInit {
     public volumes: Volume[] = [];
     public isCollapsed: Boolean[] = [];
     public previous = 0;
+    public isLoaded = false;
 
     ngOnInit() {
         /* tslint:disable-next-line */
@@ -26,6 +27,7 @@ export class VolumeListViewComponent implements OnInit {
             for (let i = 0; i < this.volumes.length; i++) {
                 this.isCollapsed.push(false);
             }
+            this.isLoaded = true;
         }, error => console.error('Error: ' + error));
     }
 
