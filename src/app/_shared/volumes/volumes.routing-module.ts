@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { VolumeListViewComponent } from './list-view/volume-list-view.component';
-import { VolumeCardViewComponent } from './card-view/volume-card-view.component';
-import { VolumesComponent } from './volumes.component';
+import { VolumeListViewComponent } from '_shared/volumes/list-view/volume-list-view.component';
+import { VolumeCardViewComponent } from '_shared/volumes/card-view/volume-card-view.component';
+import { VolumesComponent } from '_shared/volumes/volumes.component';
 
 const routes: Routes = [
   {

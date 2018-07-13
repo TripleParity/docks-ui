@@ -1,3 +1,5 @@
+<app-spinner [hidden]="isLoaded"></app-spinner>
+
 <div id="taskList">
     <div class="card-deck">
         <div *ngFor="let task of tasks; let i = index">
@@ -46,6 +48,7 @@
 </div>
 
 <ng-template #content let-c="close" let-d="dismiss">
+    <!--TODO: add spinner to modal as soon as modal is off mock service -->
     <div id="task-modal">
         <div class="modal-header" id="modal-header" [attr.class]="'modal-header ' + ' ' + getState(modalObject.Status.State.toUpperCase()) + '-card'">
             <h4 >
@@ -74,8 +77,10 @@
                     <span class="text">Created date: {{PrettifyDateTime(modalObject.CreatedAt) }}</span>
                 </li>
                 <li class="modal-list-group-item">
-                    <span class="text">Logs:</span><br/>
-                    <textarea id="modalTextArea" class="modal-textarea" disabled>{{modalObjectLog}}</textarea><br/>
+                    <span class="text">Logs:</span>
+                    <br/>
+                    <textarea id="modalTextArea" class="modal-textarea" disabled>{{modalObjectLog}}</textarea>
+                    <br/>
                     <button type="button" class="btn btn-outline-success">Copy to clipboard</button>
                 </li>
             </ul>

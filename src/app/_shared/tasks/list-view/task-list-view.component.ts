@@ -14,12 +14,14 @@ export class TaskListViewComponent implements OnInit {
 
   constructor(private taskService: TaskService, private mockService: MockService) { }
   public tasks: Task[] = [];
+  public isLoaded = false;
 
   ngOnInit() {
       this.taskService.getTasks().subscribe((task) => {
           for (let i = 0; i < task.length; i++) {
               this.tasks.push(task[i]);
           }
+          this.isLoaded = true;
       });
   }
 
