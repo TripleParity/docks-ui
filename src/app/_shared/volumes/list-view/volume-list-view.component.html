@@ -3,7 +3,7 @@
 <div id="volumeList">
   <div *ngFor="let volume of volumes; let i = index">
     <div class="card VolumeListCard">
-      <div class="card-header" [attr.id]="'heading-'+ i" (click)="Collapse(i)" [attr.aria-controls]="'collapse-' + i" [attr.aria-expanded]="!isCollapsed">
+      <div class="card-header" [attr.id]="'heading-'+ i" (click)="Collapse(i)" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
         <h5 class="mb-0">
                   <span class="main-item">
                       <div *ngIf="volume.Name !== undefined;then name else notName"></div>
@@ -16,7 +16,7 @@
 
 
 
-      <div [attr.id]="'collapse-' + i" [ngbCollapse]="!isCollapsed[i]" [attr.aria-labelledby]="'heading-'+ i" data-parent="#taskList">
+      <div [attr.id]="'collapse-' + i" [ngbCollapse]="!isCollapsed[i]" [attr.aria-labelledby]="'heading-'+ i" data-parent="#volumeList">
         <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between sub-item">
             Driver: {{ volume.Driver }}

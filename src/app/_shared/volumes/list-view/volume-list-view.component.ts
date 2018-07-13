@@ -23,6 +23,9 @@ export class VolumeListViewComponent implements OnInit {
         this.service.getVolumes().subscribe(volumes => {
             this.volumes = volumes;
             // console.log(volumes);
+            for (let i = 0; i < this.volumes.length; i++) {
+                this.isCollapsed.push(false);
+            }
         }, error => console.error('Error: ' + error));
     }
 

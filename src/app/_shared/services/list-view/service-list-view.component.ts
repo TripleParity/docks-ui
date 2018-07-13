@@ -21,9 +21,7 @@ export class ServiceListViewComponent implements OnInit {
     ngOnInit() {
             this.serviceService.getServices().subscribe(services => {
                 this.services = services;
-                console.log(this.services.length);
                 for (let i = 0; i < this.services.length; i++) {
-                    console.log('hh');
                     this.isCollapsed.push(false);
                 }
         });

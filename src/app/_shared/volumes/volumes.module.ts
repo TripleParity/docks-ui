@@ -7,12 +7,14 @@ import {VolumesRoutingModule} from './volumes.routing-module';
 import {VolumeCardViewComponent} from './card-view/volume-card-view.component';
 import { TokenStorage } from '../../_classes';
 import {VolumesComponent} from './volumes.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VolumeOperationsComponent } from '_shared/volumes/volume-operations/volume-operations.component';
 
 @NgModule({
   imports: [
     CommonModule,
     VolumesRoutingModule,
+    NgbModule
   ],
   declarations: [VolumeListViewComponent, VolumeCardViewComponent, VolumesComponent, VolumeOperationsComponent],
   providers: [HttpClientModule, MockService, VolumeService, TokenStorage]
