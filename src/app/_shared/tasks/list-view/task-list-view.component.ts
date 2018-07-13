@@ -14,12 +14,9 @@ export class TaskListViewComponent implements OnInit {
 
   constructor(private taskService: TaskService, private mockService: MockService) { }
   public tasks: Task[] = [];
-<<<<<<< HEAD
   public isCollapsed: Boolean[] = [];
   public previous = 0;
-=======
   public isLoaded = false;
->>>>>>> Spiner
 
   ngOnInit() {
       this.taskService.getTasks().subscribe((task) => {
@@ -27,11 +24,7 @@ export class TaskListViewComponent implements OnInit {
               this.tasks.push(task[i]);
               this.isCollapsed.push(false);
           }
-<<<<<<< HEAD
-
-=======
           this.isLoaded = true;
->>>>>>> Spiner
       });
   }
 
