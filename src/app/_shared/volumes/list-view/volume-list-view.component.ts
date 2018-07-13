@@ -12,6 +12,9 @@ export class VolumeListViewComponent implements OnInit {
   constructor(private mock: MockService, private service: VolumeService) { }
 
     public volumes: Volume[] = [];
+    public isCollapsed: Boolean[] = [];
+    public previous = 0;
+
     ngOnInit() {
         /* tslint:disable-next-line */
         const data = JSON.parse('{"Name":"tardis2","Labels":{"com.example.some-label":"some-value","com.example.some-other-label":"some-other-value"},"Driver":"local"}');
@@ -23,4 +26,13 @@ export class VolumeListViewComponent implements OnInit {
         }, error => console.error('Error: ' + error));
     }
 
+    public Collapse(i) {
+        if (i !== this.previous) {
+            this.isCollapsed[this.previous] = false;
+            this.isCollapsed[i] = !this.isCollapsed[i];
+            this.previous = i;
+        } else {
+            this.isCollapsed[i] = !this.isCollapsed[i];
+        }
+      }
 }
