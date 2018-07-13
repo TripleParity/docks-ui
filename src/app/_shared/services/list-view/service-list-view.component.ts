@@ -23,8 +23,8 @@ export class ServiceListViewComponent implements OnInit {
   ngOnInit() {
         this.serviceService.getServices().subscribe((services) => {
             this.services = services;
+            this.isLoaded = true;
           });
-          this.isLoaded = true;
   }
 
   public removeService(id) {
