@@ -17,4 +17,10 @@ describe('TaskService', () => {
   it('should be created', inject([TaskService], (service: TaskService) => {
     expect(service).toBeTruthy();
   }));
+
+    it('should have all functions', inject([TaskService], (service: TaskService) => {
+        expect(service.getLog).toBeTruthy();
+        expect(service.getTasks).toBeTruthy();
+        expect(service.inspect).toBeTruthy();
+    }));
 });

@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServicesService } from './services.service';
 import { ConfigurationService } from '../configuration/configuration.service';
 import { TokenStorage } from '../../_classes';
+import {StorageService} from '_services/storage/storage.service';
 
 describe('ServicesService', () => {
   beforeEach(() => {
@@ -20,4 +21,14 @@ describe('ServicesService', () => {
       expect(service).toBeTruthy();
     }
   ));
+
+    it('should have all functions', inject([ServicesService], (service: ServicesService) => {
+        expect(service.createService).toBeTruthy();
+        expect(service.deleteService).toBeTruthy();
+        expect(service.getServiceLog).toBeTruthy();
+        expect(service.getServices).toBeTruthy();
+        expect(service.inspectService).toBeTruthy();
+        expect(service.scaleService).toBeTruthy();
+        expect(service.updateService).toBeTruthy();
+    }));
 });
