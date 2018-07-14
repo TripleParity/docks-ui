@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServicesService } from './services.service';
 import { ConfigurationService } from '../configuration/configuration.service';
 import { TokenStorage } from '../../_classes';
-import {StorageService} from '_services/storage/storage.service';
 
 describe('ServicesService', () => {
   beforeEach(() => {
