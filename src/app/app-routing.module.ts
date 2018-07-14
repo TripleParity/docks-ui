@@ -1,20 +1,37 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PageNotFoundComponent } from './_shared/pagenotfound/pagenotfound.component';
-import { LoginComponent } from '_shared/login/login.component';
-import { AuthGuard } from './_guards/auth.guard';
-import { RefreshComponent } from 'app/refresh/refresh.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { HomeComponent } from 'app/pages/home/home.component';
+import { PageNotFoundComponent } from 'app/pages/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'refresh', component: RefreshComponent },
   {
     path: '',
-    redirectTo: '',
-    pathMatch: 'full',
+    // loadChildren: 'app/pages/home/home.module#HomeModule',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
   },
-  { path: '**', component: PageNotFoundComponent },
+  {
+    path: 'home',
+    redirectTo: '',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'containers',
+    loadChildren: 'app/pages/containers/containers.module#ContainersModule'
+  },
+  // {
+  //   path: '**',
+  //   component: PageNotFoundComponent,
+  //   canActivate: [AuthGuard],
+  // }
 ];
 
 @NgModule({

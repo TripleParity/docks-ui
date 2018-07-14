@@ -3,9 +3,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {HttpClientModule, HttpHandler} from '@angular/common/http';
-import {ContainerService} from './_services';
-import {NavbarComponent} from './_shared';
-import {UserBarComponent} from './_shared';
+import {ContainerService} from './services/container/container.service';
+import {NavbarComponent} from './shared/navbar/navbar.component';
+import {UserBarComponent} from './shared/user-bar/user-bar.component';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
