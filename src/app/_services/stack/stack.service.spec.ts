@@ -6,7 +6,7 @@ import { ConfigurationService } from '../configuration/configuration.service';
 import { TokenStorage } from '../../_classes';
 import {StackService} from 'app/_services';
 
-describe('ServicesService', () => {
+describe('StackService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterTestingModule],
