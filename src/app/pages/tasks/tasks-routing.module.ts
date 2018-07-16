@@ -3,14 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TaskCardViewComponent } from '../../pages/tasks/card-view/task-card-view.component';
 import { TaskListViewComponent } from '../../pages/tasks/list-view/task-list-view.component';
-import { AuthGuard } from 'app/shared/guards/auth.guard';
-
-import { PageNotFoundComponent } from 'app/pages/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
-    path: 'tasks',
-    canActivate: [AuthGuard],
+    path: '',
     children: [
       {
         path: 'card',
@@ -21,11 +17,6 @@ const routes: Routes = [
         path: 'list',
         pathMatch: 'full',
         component: TaskListViewComponent,
-      },
-      {
-        path: '**',
-        component: PageNotFoundComponent,
-        canActivate: [AuthGuard],
       }
     ]
   },

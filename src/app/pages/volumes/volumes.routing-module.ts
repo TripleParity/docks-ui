@@ -4,14 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { VolumeListViewComponent } from './list-view/volume-list-view.component';
 import { VolumeCardViewComponent } from './card-view/volume-card-view.component';
 import { VolumeOperationsComponent } from '../volumes/volume-operations/volume-operations.component';
-import { AuthGuard } from 'app/shared/guards/auth.guard';
-
-import { PageNotFoundComponent } from 'app/pages/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
-    path: 'volumes',
-    canActivate: [AuthGuard],
+    path: '',
     children: [
       {
         path: 'list',
@@ -27,11 +23,6 @@ const routes: Routes = [
         path: 'operations',
         pathMatch: 'full',
         component: VolumeOperationsComponent,
-      },
-      {
-        path: '**',
-        component: PageNotFoundComponent,
-        canActivate: [AuthGuard],
       }
     ],
   },

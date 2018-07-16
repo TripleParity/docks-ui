@@ -1,9 +1,11 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { ServicesService, ConfigurationService, MockService } from '../../../services';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TokenStorage } from '../../../classes/tokenstorage/tokenstorage';
+import { ConfigurationService } from 'services/configuration/configuration.service';
+import { ServicesService } from 'services/services/services.service';
+import { MockService } from 'services/mock/mock.service';
 
 describe('ServicesListViewComponent', () => {
     beforeEach(() => {

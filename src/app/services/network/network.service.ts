@@ -6,7 +6,6 @@ import { catchError, map } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { Network } from '../../models/network/network.model';
 import { ConfigurationService } from '../configuration/configuration.service';
-import { RequestOptions } from '@angular/http';
 
 enum NetworkError {
     ERR_OK = 200,

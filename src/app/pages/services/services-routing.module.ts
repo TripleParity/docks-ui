@@ -4,14 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { ServicesCardViewComponent } from '../../pages/services/card-view/services-card-view.component';
 import { ServiceListViewComponent } from '../../pages/services/list-view/service-list-view.component';
 import { ServicesOperationsComponent } from '../../pages/services/operations/services-operations.component';
-import { AuthGuard } from 'app/shared/guards/auth.guard';
-
-import { PageNotFoundComponent } from 'app/pages/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
-    path: 'services',
-    canActivate: [AuthGuard],
+    path: '',
     children: [
       {
         path: 'list',
@@ -28,11 +24,6 @@ const routes: Routes = [
         pathMatch: 'full',
         component: ServicesOperationsComponent,
       },
-      {
-        path: '**',
-        component: PageNotFoundComponent,
-        canActivate: [AuthGuard],
-      }
     ],
   },
 ];
