@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ServicesCardViewComponent } from '../../pages/services/card-view/services-card-view.component';
 import { ServiceListViewComponent } from '../../pages/services/list-view/service-list-view.component';
@@ -18,6 +19,7 @@ import { ServicesRoutingModule } from '../../pages/services/services-routing.mod
     NgbModalModule,
     FormsModule,
     ServicesRoutingModule,
+    NgbModule,
   ],
   declarations: [
     ServiceListViewComponent,
