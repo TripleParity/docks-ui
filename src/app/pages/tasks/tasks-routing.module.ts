@@ -3,9 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TaskCardViewComponent } from '../../pages/tasks/card-view/task-card-view.component';
 import { TaskListViewComponent } from '../../pages/tasks/list-view/task-list-view.component';
-import { AuthGuard } from 'app/shared/guards/auth.guard';
-
-import { PageNotFoundComponent } from 'app/pages/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {

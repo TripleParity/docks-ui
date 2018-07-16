@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserListComponent } from '../user-management/user-list/user-list.component';
 import { UserCreateComponent } from '../user-management/user-create/user-create.component';
 import { UserEditComponent } from '../user-management/user-edit/user-edit.component';
-import { AuthGuard } from 'app/shared/guards/auth.guard';
 
 const routes: Routes = [
   {
