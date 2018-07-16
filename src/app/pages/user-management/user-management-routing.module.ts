@@ -5,14 +5,9 @@ import { UserListComponent } from '../user-management/user-list/user-list.compon
 import { UserCreateComponent } from '../user-management/user-create/user-create.component';
 import { UserEditComponent } from '../user-management/user-edit/user-edit.component';
 import { AuthGuard } from 'app/shared/guards/auth.guard';
-import { PageNotFoundComponent } from 'app/pages/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
-    path: 'users',
-    canActivate: [AuthGuard],
-    children: [
-      {
         path: '',
         pathMatch: 'full',
         component: UserListComponent,
@@ -25,9 +20,7 @@ const routes: Routes = [
       {
         path: ':username/edit',
         component: UserEditComponent,
-      },
-    ]
-  }
+      }
 ];
 
 @NgModule({

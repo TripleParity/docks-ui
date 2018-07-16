@@ -6,7 +6,7 @@ import { RefreshComponent } from 'app/pages/refresh/refresh.component';
 
 const routes: Routes = [
   {
-    path: 'refresh',
+    path: '',
     pathMatch: 'full',
     canActivate: [AuthGuard],
     component: RefreshComponent,

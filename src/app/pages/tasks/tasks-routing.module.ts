@@ -9,8 +9,7 @@ import { PageNotFoundComponent } from 'app/pages/pagenotfound/pagenotfound.compo
 
 const routes: Routes = [
   {
-    path: 'tasks',
-    canActivate: [AuthGuard],
+    path: '',
     children: [
       {
         path: 'card',
@@ -21,11 +20,6 @@ const routes: Routes = [
         path: 'list',
         pathMatch: 'full',
         component: TaskListViewComponent,
-      },
-      {
-        path: '**',
-        component: PageNotFoundComponent,
-        canActivate: [AuthGuard],
       }
     ]
   },
