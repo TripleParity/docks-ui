@@ -3,8 +3,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { NetworkComponent } from './network.component';
-import { ConfigurationService, MockService, NetworkService } from '../../services';
 import { TokenStorage } from '../../classes/tokenstorage/tokenstorage';
+import { NetworkService } from 'services/network/network.service';
+import { MockService } from 'services/mock/mock.service';
+import { ConfigurationService } from 'services/configuration/configuration.service';
 
 describe('NetworkComponent', () => {
   let component: NetworkComponent;
