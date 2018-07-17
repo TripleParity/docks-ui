@@ -1,3 +1,62 @@
-<p>
-  stacks-view works!
-</p>
+<!-- TODO(pwood): set up stacks in table cells -->
+
+
+<div class="row table-head">
+  <div class="col-md-6">
+    <a routerLink="/stacks/create">
+      <button class="btn button-primary">
+        <span class="input-group-text" id="Search">
+          <i class="fa fa-clone"> </i> Create Stack</span>
+      </button>
+    </a>
+  </div>
+  <div class="col-md-auto">
+    <h4>
+      Search Stacks
+    </h4>
+  </div>
+  <div class="col-md-4">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Search Stacks" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn button-default">
+          <span class="input-group-text" id="Search">
+            <i class="fa fa-search"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 offset-md-1">
+    <!-- <ngx-datatable class="bootstrap" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="stacks" [columns]="columns"
+      [headerHeight]="'auto'" [rowHeight]="'auto'">
+
+       <ngx-datatable-column name="Stack Name">
+        <ng-template let-column="column" ngx-datatable-cell-template class="d-flex align-content-center">
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Operations">
+
+        <ng-template let-column="column" ngx-datatable-header-template>
+          {{column.name}}
+        </ng-template>
+
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div>
+            <a routerLink="/users/{{row.username}}/edit">
+              <button type="button" class="btn btn-warning btn-sm">Edit</button>
+            </a>
+            <button type="button" class="btn btn-danger btn-sm" (click)="open(content, row.username)">Delete</button>
+          </div>
+
+        </ng-template>
+
+      </ngx-datatable-column> 
+
+    </ngx-datatable> -->
+  </div>
+</div>

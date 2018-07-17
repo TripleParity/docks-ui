@@ -1,0 +1,13 @@
+.row
+{
+    margin-top: 30px;
+}
+
+.form-control {
+    font-family: "FontAwesome"
+  }
+  
+#Search{
+    background-color:transparent;
+    border: none;
+}  
