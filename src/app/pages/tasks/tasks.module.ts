@@ -11,18 +11,8 @@ import { TaskService } from '../../services/task/task.service';
 import { MockService } from '../../services/mock/mock.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NgbModalModule,
-    TasksRoutingModule,
-  ],
-  declarations: [
-    TaskCardViewComponent,
-    TaskListViewComponent,
-  ],
-  providers: [
-    TaskService,
-    MockService
-  ]
+  imports: [CommonModule, NgbModalModule, TasksRoutingModule],
+  declarations: [TaskCardViewComponent, TaskListViewComponent],
+  providers: [TaskService, MockService],
 })
-export class TasksModule { }
+export class TasksModule {}

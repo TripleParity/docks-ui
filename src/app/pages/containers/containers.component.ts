@@ -8,12 +8,8 @@ import { TaskService } from '../../services/task/task.service';
   templateUrl: './containers.component.html',
   styleUrls: ['./containers.component.css'],
 })
-
 export class ContainersComponent implements OnInit {
+  constructor(private cs: ContainerService, private ts: TaskService) {}
 
-  constructor(private cs: ContainerService, private ts: TaskService) { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

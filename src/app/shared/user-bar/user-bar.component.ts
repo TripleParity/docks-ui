@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-user-bar',
   templateUrl: './user-bar.component.html',
-  styleUrls: ['./user-bar.component.css']
+  styleUrls: ['./user-bar.component.css'],
 })
 export class UserBarComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;

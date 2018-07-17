@@ -1,3 +1,3 @@
 export interface ApiResponse {
-    data: any;
+  data: any;
 }

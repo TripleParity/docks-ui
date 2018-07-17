@@ -3,7 +3,5 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GraphService {
-
-    constructor() { }
-
+  constructor() {}
 }

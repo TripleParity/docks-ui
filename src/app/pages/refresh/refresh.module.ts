@@ -5,12 +5,7 @@ import { RefreshComponent } from '../../pages/refresh/refresh.component';
 import { RefreshRoutingModule } from '../../pages/refresh/refresh-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RefreshRoutingModule,
-  ],
-  declarations: [
-    RefreshComponent
-  ]
+  imports: [CommonModule, RefreshRoutingModule],
+  declarations: [RefreshComponent],
 })
-export class RefreshModule { }
+export class RefreshModule {}

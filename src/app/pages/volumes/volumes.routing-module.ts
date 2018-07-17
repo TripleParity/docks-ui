@@ -23,7 +23,7 @@ const routes: Routes = [
         path: 'operations',
         pathMatch: 'full',
         component: VolumeOperationsComponent,
-      }
+      },
     ],
   },
 ];

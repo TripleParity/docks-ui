@@ -4,5 +4,5 @@
  * @interface
  */
 export interface ContainerSpecModel {
-    Image: string;
+  Image: string;
 }

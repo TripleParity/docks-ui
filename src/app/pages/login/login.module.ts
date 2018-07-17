@@ -7,19 +7,9 @@ import { AuthService, AuthError } from '../../services/auth/auth.service';
 import { ConfigurationService } from '../../services/configuration/configuration.service';
 import { LoginRoutingModule } from '../../pages/login/login-routing.module';
 
-
 @NgModule({
-  imports: [
-    CommonModule,
-    LoginRoutingModule,
-    NgbModule,
-  ],
-  declarations: [
-    LoginComponent
-  ],
-  providers: [
-    AuthService,
-    ConfigurationService
-  ]
+  imports: [CommonModule, LoginRoutingModule, NgbModule],
+  declarations: [LoginComponent],
+  providers: [AuthService, ConfigurationService],
 })
-export class LoginModule { }
+export class LoginModule {}

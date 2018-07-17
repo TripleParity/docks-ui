@@ -8,12 +8,11 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: RefreshComponent,
-  }
+  },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class RefreshRoutingModule { }
+export class RefreshRoutingModule {}

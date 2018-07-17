@@ -5,7 +5,7 @@ import { GraphService } from './graph.service';
 describe('GraphService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [GraphService]
+      providers: [GraphService],
     });
   });
 

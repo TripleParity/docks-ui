@@ -4,5 +4,5 @@
  * @interface
  */
 export interface HostConfigModel {
-    NetworkMode: string;
+  NetworkMode: string;
 }

@@ -7,14 +7,19 @@ import { VolumeService } from 'services/volume/volume.service';
 import { MockService } from 'services/mock/mock.service';
 
 describe('VolumeCardViewComponent', () => {
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [HttpClientModule, RouterTestingModule],
-            providers: [ConfigurationService, VolumeService, MockService, TokenStorage],
-        });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule, RouterTestingModule],
+      providers: [
+        ConfigurationService,
+        VolumeService,
+        MockService,
+        TokenStorage,
+      ],
     });
+  });
 
-    it('should be created', inject([VolumeService], (service: VolumeService) => {
-        expect(service).toBeTruthy();
-    }));
+  it('should be created', inject([VolumeService], (service: VolumeService) => {
+    expect(service).toBeTruthy();
+  }));
 });

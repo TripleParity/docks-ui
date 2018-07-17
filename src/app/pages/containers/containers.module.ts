@@ -8,16 +8,8 @@ import { TaskService } from '../../services/task/task.service';
 import { ContainersRoutingModule } from '../../pages/containers/containers-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ContainersRoutingModule,
-  ],
-  declarations: [
-    ContainersComponent
-  ],
-  providers: [
-    ContainerService,
-    TaskService
-  ]
+  imports: [CommonModule, ContainersRoutingModule],
+  declarations: [ContainersComponent],
+  providers: [ContainerService, TaskService],
 })
-export class ContainersModule { }
+export class ContainersModule {}

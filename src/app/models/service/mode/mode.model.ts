@@ -4,7 +4,7 @@
  * @interface
  */
 export interface Mode {
-    Replicated: {
-        Replicas: number;
-    };
+  Replicated: {
+    Replicas: number;
+  };
 }

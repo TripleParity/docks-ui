@@ -7,10 +7,10 @@ import { ServiceSpec } from './spec/spec.model';
  * @interface
  */
 export interface Service {
-    ID: string;
-    Version: Version;
-    CreatedAt: string;
-    UpdatedAt: string;
-    Spec: ServiceSpec;
-    Endpoint: JSON;
+  ID: string;
+  Version: Version;
+  CreatedAt: string;
+  UpdatedAt: string;
+  Spec: ServiceSpec;
+  Endpoint: JSON;
 }

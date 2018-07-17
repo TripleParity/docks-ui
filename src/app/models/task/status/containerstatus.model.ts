@@ -4,6 +4,6 @@
  * @interface
  */
 export interface ContainerStatusModel {
-    ContainerID: string;
-    PID: number;
+  ContainerID: string;
+  PID: number;
 }

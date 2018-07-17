@@ -6,13 +6,13 @@ import { Port } from '../port/port.model';
  * @interface
  */
 export interface Endpoint {
-    Spec: {
-        Mode: string;
-        Ports: Port[];
-    };
+  Spec: {
+    Mode: string;
     Ports: Port[];
-    VirtualIPs: {
-        NetworkID: string;
-        Addr: string;
-    }[];
+  };
+  Ports: Port[];
+  VirtualIPs: {
+    NetworkID: string;
+    Addr: string;
+  }[];
 }

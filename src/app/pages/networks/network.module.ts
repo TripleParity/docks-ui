@@ -7,18 +7,9 @@ import { NetworkComponent } from './network.component';
 import { NetworksRoutingModule } from './networks.routing-module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NetworksRoutingModule
-  ],
-  declarations: [
-    NetworkComponent
-  ],
-  providers: [
-    HttpClientModule,
-    MockService,
-    NetworkService
-  ],
+  imports: [CommonModule, NetworksRoutingModule],
+  declarations: [NetworkComponent],
+  providers: [HttpClientModule, MockService, NetworkService],
   // exports: [NetworkComponent]
 })
-export class NetworkModule { }
+export class NetworkModule {}

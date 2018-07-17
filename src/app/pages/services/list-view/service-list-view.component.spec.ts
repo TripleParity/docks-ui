@@ -8,14 +8,22 @@ import { ServicesService } from 'services/services/services.service';
 import { MockService } from 'services/mock/mock.service';
 
 describe('ServicesListViewComponent', () => {
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [HttpClientModule, RouterTestingModule],
-            providers: [ConfigurationService, ServicesService, MockService, TokenStorage],
-        });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule, RouterTestingModule],
+      providers: [
+        ConfigurationService,
+        ServicesService,
+        MockService,
+        TokenStorage,
+      ],
     });
+  });
 
-    it('should be created', inject([ServicesService], (service: ServicesService) => {
-        expect(service).toBeTruthy();
-    }));
+  it('should be created', inject(
+    [ServicesService],
+    (service: ServicesService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });

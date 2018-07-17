@@ -7,19 +7,19 @@ import { UserEditComponent } from '../user-management/user-edit/user-edit.compon
 
 const routes: Routes = [
   {
-        path: '',
-        pathMatch: 'full',
-        component: UserListComponent,
-      },
-      {
-        path: 'create',
-        pathMatch: 'full',
-        component: UserCreateComponent,
-      },
-      {
-        path: ':username/edit',
-        component: UserEditComponent,
-      }
+    path: '',
+    pathMatch: 'full',
+    component: UserListComponent,
+  },
+  {
+    path: 'create',
+    pathMatch: 'full',
+    component: UserCreateComponent,
+  },
+  {
+    path: ':username/edit',
+    component: UserEditComponent,
+  },
 ];
 
 @NgModule({

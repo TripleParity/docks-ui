@@ -13,20 +13,12 @@ import { MockService } from '../../services/mock/mock.service';
 import { ServicesRoutingModule } from '../../pages/services/services-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NgbModalModule,
-    FormsModule,
-    ServicesRoutingModule,
-  ],
+  imports: [CommonModule, NgbModalModule, FormsModule, ServicesRoutingModule],
   declarations: [
     ServiceListViewComponent,
     ServicesCardViewComponent,
-    ServicesOperationsComponent
+    ServicesOperationsComponent,
   ],
-  providers: [
-    ServicesService,
-    MockService
-  ]
+  providers: [ServicesService, MockService],
 })
-export class ServicesModule { }
+export class ServicesModule {}

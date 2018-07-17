@@ -17,13 +17,13 @@ const routes: Routes = [
         path: 'list',
         pathMatch: 'full',
         component: TaskListViewComponent,
-      }
-    ]
+      },
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class TasksRoutingModule { }
+export class TasksRoutingModule {}
