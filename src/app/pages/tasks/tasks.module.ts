@@ -9,9 +9,11 @@ import { TaskListViewComponent } from '../../pages/tasks/list-view/task-list-vie
 
 import { TaskService } from '../../services/task/task.service';
 import { MockService } from '../../services/mock/mock.service';
+import { SpinnerModule } from 'app/shared/spinner/spinner.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  imports: [CommonModule, NgbModalModule, TasksRoutingModule],
+  imports: [CommonModule, NgbModalModule, TasksRoutingModule, SpinnerModule, NgbModule],
   declarations: [TaskCardViewComponent, TaskListViewComponent],
   providers: [TaskService, MockService],
 })

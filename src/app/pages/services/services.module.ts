@@ -12,6 +12,7 @@ import { ServicesService } from '../../services/services/services.service';
 import { MockService } from '../../services/mock/mock.service';
 
 import { ServicesRoutingModule } from '../../pages/services/services-routing.module';
+import { SpinnerModule } from 'app/shared/spinner/spinner.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { ServicesRoutingModule } from '../../pages/services/services-routing.mod
     FormsModule,
     ServicesRoutingModule,
     NgbModule,
+    SpinnerModule
   ],
   declarations: [
     ServiceListViewComponent,

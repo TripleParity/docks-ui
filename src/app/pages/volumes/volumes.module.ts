@@ -11,9 +11,11 @@ import { MockService } from '../../services/mock/mock.service';
 
 import { VolumesRoutingModule } from './volumes.routing-module';
 import { TokenStorage } from '../../classes/tokenstorage/tokenstorage';
+import { SpinnerModule } from 'app/shared/spinner/spinner.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  imports: [CommonModule, VolumesRoutingModule],
+  imports: [CommonModule, VolumesRoutingModule, SpinnerModule, NgbModule],
   declarations: [
     VolumeListViewComponent,
     VolumeCardViewComponent,

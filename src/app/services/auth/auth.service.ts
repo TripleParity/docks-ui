@@ -3,14 +3,14 @@
  *
  */
 import { Injectable } from '@angular/core';
-import { ConfigurationService } from '../../services/configuration/configuration.service';
+import { ConfigurationService } from 'services/configuration/configuration.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { TokenStorage } from '../../classes/tokenstorage/tokenstorage';
+import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 import { JwtHelper } from 'angular2-jwt';
-import { BehaviorSubject } from '../../../../node_modules/rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export enum AuthError {
   AUTH_OK,
