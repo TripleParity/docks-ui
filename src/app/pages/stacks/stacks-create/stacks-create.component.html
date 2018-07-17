@@ -1,3 +1,31 @@
-<p>
-  stacks-create works!
-</p>
+<div class="row">
+  <div class="offset-md-4">
+  </div>
+  <div class="col-md-4">
+    <h2>Deploy Stack</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 offset-md-1">
+    <form #createForm="ngForm" (ngSubmit)="submit()">
+
+      <div class="form-group">
+        <label for="stackName">Stack Name</label>
+        <input type="text" [(ngModel)]="stack.name" class="form-control" id="stackName" placeholder="Insert Stack Name" #stackName="ngModel"
+          required name="stackName" [ngClass]="{'ng-invalid2': alreadyExists && badName === stackName.value}">
+        <div [hidden]="stackName.valid || stackName.pristine" class="alert alert-danger">
+          A Stack name is required
+        </div>
+        <div [hidden]="!(alreadyExists && badUser === stackName.value) || stackName.pristine" class="alert alert-danger">
+          A Stack with that name already exists 
+        </div>
+      </div>
+
+      <a routerLink="/stacks" class="">
+        
+        <button id="btnCancel" type="button" class="btn btn-secondary"> Cancel <i class="fa fa-undo"></i> </button>
+      </a>
+
+    </form>
+  </div>
+</div>

@@ -8,10 +8,12 @@ import { StacksCreateComponent } from 'app/pages/stacks/stacks-create/stacks-cre
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: StacksViewComponent,
   },
   {
     path: 'create',
+    pathMatch: 'full',
     component: StacksCreateComponent,
   }
 ];

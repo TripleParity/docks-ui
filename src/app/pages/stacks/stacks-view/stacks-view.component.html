@@ -1,19 +1,12 @@
 <!-- TODO(pwood): set up stacks in table cells -->
 
-
 <div class="row table-head">
-  <div class="col-md-6">
+  <div class="col-md-8">
     <a routerLink="/stacks/create">
       <button class="btn button-primary">
-        <span class="input-group-text" id="Search">
-          <i class="fa fa-clone"> </i> Create Stack</span>
+          Create Stack <i class="fa fa-clone"> </i>
       </button>
     </a>
-  </div>
-  <div class="col-md-auto">
-    <h4>
-      Search Stacks
-    </h4>
   </div>
   <div class="col-md-4">
     <div class="input-group mb-3">
@@ -30,16 +23,16 @@
 </div>
 <div class="row">
   <div class="col-md-10 offset-md-1">
-    <!-- <ngx-datatable class="bootstrap" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="stacks" [columns]="columns"
+     <ngx-datatable class="bootstrap" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="stacks" [columns] = "column"
       [headerHeight]="'auto'" [rowHeight]="'auto'">
 
        <ngx-datatable-column name="Stack Name">
-        <ng-template let-column="column" ngx-datatable-cell-template class="d-flex align-content-center">
+        <ng-template let-column="value" ngx-datatable-cell-template class="d-flex align-content-center">
           {{value}}
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="Operations">
+      <ngx-datatable-column name="Service Count">
 
         <ng-template let-column="column" ngx-datatable-header-template>
           {{column.name}}
@@ -47,16 +40,14 @@
 
         <ng-template let-row="row" ngx-datatable-cell-template>
           <div>
-            <a routerLink="/users/{{row.username}}/edit">
               <button type="button" class="btn btn-warning btn-sm">Edit</button>
-            </a>
-            <button type="button" class="btn btn-danger btn-sm" (click)="open(content, row.username)">Delete</button>
+            <button type="button" class="btn btn-danger btn-sm">Delete</button>
           </div>
 
         </ng-template>
 
       </ngx-datatable-column> 
 
-    </ngx-datatable> -->
+    </ngx-datatable> 
   </div>
 </div>

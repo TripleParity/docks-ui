@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StacksRoutingModule } from './stacks-routing.module';
 import { StacksViewComponent } from 'app/pages/stacks/stacks-view/stacks-view.component';
 import { StacksCreateComponent } from 'pages/stacks/stacks-create/stacks-create.component';
+import { StackService } from 'services/stack/stack.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { StacksCreateComponent } from 'pages/stacks/stacks-create/stacks-create.
     ReactiveFormsModule,
   ],
   declarations: [StacksViewComponent, StacksCreateComponent],
-  providers: [],
+  providers: [StackService],
 })
 export class StacksModule { }
