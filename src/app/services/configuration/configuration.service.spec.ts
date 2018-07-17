@@ -8,8 +8,8 @@ import { RefreshComponent } from '../../pages/refresh/refresh.component';
 import { Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: 'refresh', component: RefreshComponent},
-  {path: '', redirectTo: '', pathMatch: 'full'},
+  { path: 'refresh', component: RefreshComponent },
+  { path: '', redirectTo: '', pathMatch: 'full' },
 ];
 
 describe('ConfigurationService', () => {

@@ -4,25 +4,23 @@ const authTokenKey = 'auth';
 
 @Injectable()
 export class StorageService {
-
-  constructor() { }
+  constructor() {}
 
   signOut() {
-      window.localStorage.removeItem(authTokenKey);
-      window.localStorage.clear();
+    window.localStorage.removeItem(authTokenKey);
+    window.localStorage.clear();
   }
 
   saveToken(token: string, value: string) {
-      window.localStorage.removeItem(token);
-      window.localStorage.setItem(token,  value);
+    window.localStorage.removeItem(token);
+    window.localStorage.setItem(token, value);
   }
 
   getToken(token: string): string {
-      return window.localStorage.getItem(token);
+    return window.localStorage.getItem(token);
   }
 
   removeToken(token: string) {
-      window.localStorage.removeItem(token);
+    window.localStorage.removeItem(token);
   }
-
 }

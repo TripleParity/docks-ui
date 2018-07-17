@@ -9,12 +9,12 @@ import { EndpointSpec } from '../endpoint/endpointspec.model';
  * @interface
  */
 export interface ServiceSpec {
-    Name: string;
-    Labels: JSON[];
-    TaskTemplate: TaskTemplate;
-    Mode: Mode;
-    UpdateConfig: Config;
-    RollbackConfig: Config;
-    Networks: JSON[];
-    EndpointSpec: EndpointSpec;
+  Name: string;
+  Labels: JSON[];
+  TaskTemplate: TaskTemplate;
+  Mode: Mode;
+  UpdateConfig: Config;
+  RollbackConfig: Config;
+  Networks: JSON[];
+  EndpointSpec: EndpointSpec;
 }

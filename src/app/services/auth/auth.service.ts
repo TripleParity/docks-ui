@@ -41,7 +41,7 @@ export class AuthService {
         }
       )
       .pipe(
-        map(body => {
+        map((body) => {
           if (body['jwt'] === null) {
             console.error(body);
             return ErrorObservable.create(AuthError.AUTH_ERR);

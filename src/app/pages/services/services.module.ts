@@ -24,11 +24,8 @@ import { ServicesRoutingModule } from '../../pages/services/services-routing.mod
   declarations: [
     ServiceListViewComponent,
     ServicesCardViewComponent,
-    ServicesOperationsComponent
+    ServicesOperationsComponent,
   ],
-  providers: [
-    ServicesService,
-    MockService
-  ]
+  providers: [ServicesService, MockService],
 })
-export class ServicesModule { }
+export class ServicesModule {}

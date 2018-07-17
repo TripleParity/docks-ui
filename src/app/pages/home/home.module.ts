@@ -7,15 +7,8 @@ import { HomeRoutingModule } from '../../pages/home/home-routing.module';
 import { GraphService } from '../../services/graphs/graph.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-  ],
-  declarations: [
-    HomeComponent
-  ],
-  providers: [
-    GraphService
-  ]
+  imports: [CommonModule, HomeRoutingModule],
+  declarations: [HomeComponent],
+  providers: [GraphService],
 })
-export class HomeModule { }
+export class HomeModule {}

@@ -21,13 +21,7 @@ import { UserManagementRoutingModule } from '../../pages/user-management/user-ma
     NgbModule,
     ReactiveFormsModule,
   ],
-  declarations: [
-    UserListComponent,
-    UserCreateComponent,
-    UserEditComponent
-  ],
-  providers: [
-    UserService
-  ],
+  declarations: [UserListComponent, UserCreateComponent, UserEditComponent],
+  providers: [UserService],
 })
 export class UserManagementModule {}

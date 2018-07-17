@@ -9,10 +9,9 @@ describe('PageNotFoundComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PageNotFoundComponent, NgbAlert ],
-      providers: [NgbAlertConfig]
-    })
-    .compileComponents();
+      declarations: [PageNotFoundComponent, NgbAlert],
+      providers: [NgbAlertConfig],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

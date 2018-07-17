@@ -8,11 +8,11 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: PageNotFoundComponent,
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PagenotfoundRoutingModule { }
+export class PagenotfoundRoutingModule {}

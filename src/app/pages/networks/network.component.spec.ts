@@ -14,11 +14,15 @@ describe('NetworkComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NetworkComponent ],
+      declarations: [NetworkComponent],
       imports: [HttpClientModule, RouterTestingModule],
-      providers: [NetworkService, MockService, ConfigurationService, TokenStorage]
-    })
-    .compileComponents();
+      providers: [
+        NetworkService,
+        MockService,
+        ConfigurationService,
+        TokenStorage,
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

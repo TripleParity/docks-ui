@@ -8,9 +8,8 @@ describe('RefreshComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RefreshComponent ]
-    })
-    .compileComponents();
+      declarations: [RefreshComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

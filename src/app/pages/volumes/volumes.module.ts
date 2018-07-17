@@ -13,22 +13,12 @@ import { VolumesRoutingModule } from './volumes.routing-module';
 import { TokenStorage } from '../../classes/tokenstorage/tokenstorage';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    VolumesRoutingModule,
-  ],
+  imports: [CommonModule, VolumesRoutingModule],
   declarations: [
     VolumeListViewComponent,
     VolumeCardViewComponent,
-    VolumeOperationsComponent
+    VolumeOperationsComponent,
   ],
-  providers: [
-    HttpClientModule,
-    MockService,
-    VolumeService,
-    TokenStorage
-  ]
+  providers: [HttpClientModule, MockService, VolumeService, TokenStorage],
 })
-export class VolumesModule {
-
-}
+export class VolumesModule {}

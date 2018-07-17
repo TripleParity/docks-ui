@@ -7,27 +7,27 @@ import { MockService } from '../../../services/mock/mock.service';
 @Component({
   selector: 'app-services-operations',
   templateUrl: './services-operations.component.html',
-  styleUrls: ['./services-operations.component.css']
+  styleUrls: ['./services-operations.component.css'],
 })
 export class ServicesOperationsComponent implements OnInit {
+  public spec: ServiceSpec = null;
+  public serviceLog: String;
+  public allDataFetched = false;
+  constructor(
+    private route: ActivatedRoute,
+    private serviceService: ServicesService,
+    private mock: MockService
+  ) {}
 
-    public spec: ServiceSpec = null;
-    public serviceLog: String;
-    public allDataFetched = false;
-    constructor(private route: ActivatedRoute, private serviceService: ServicesService, private mock: MockService) {
-
-    }
-
-    ngOnInit() {
-        this.route.params.subscribe(res => {
-            this.serviceService.inspectService(res.id).subscribe( serv => {
-                this.spec = serv;
-                this.serviceService.getServiceLog(res.id).subscribe(log => {
-                    this.serviceLog = log;
-                    this.allDataFetched = true;
-                });
-            });
+  ngOnInit() {
+    this.route.params.subscribe((res) => {
+      this.serviceService.inspectService(res.id).subscribe((serv) => {
+        this.spec = serv;
+        this.serviceService.getServiceLog(res.id).subscribe((log) => {
+          this.serviceLog = log;
+          this.allDataFetched = true;
         });
-    }
-
+      });
+    });
+  }
 }

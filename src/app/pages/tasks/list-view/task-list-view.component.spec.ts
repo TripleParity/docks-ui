@@ -8,14 +8,14 @@ import { TaskService } from 'services/task/task.service';
 import { MockService } from 'services/mock/mock.service';
 
 describe('TaskListViewComponent', () => {
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [HttpClientModule, RouterTestingModule],
-            providers: [ConfigurationService, TaskService, MockService, TokenStorage],
-        });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule, RouterTestingModule],
+      providers: [ConfigurationService, TaskService, MockService, TokenStorage],
     });
+  });
 
-    it('should be created', inject([TaskService], (service: TaskService) => {
-        expect(service).toBeTruthy();
-    }));
+  it('should be created', inject([TaskService], (service: TaskService) => {
+    expect(service).toBeTruthy();
+  }));
 });

@@ -22,29 +22,25 @@ import { ConfigurationService } from 'app/services/configuration/configuration.s
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        UserBarComponent,
-        NavbarComponent,
-    ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        NgbModule.forRoot(),
-        AppRoutingModule,
-        AngularFontAwesomeModule,
-    ],
-    providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInjector,
-            multi: true
-        },
-        ConfigurationService,
-        TokenStorage,
-        AuthService,
-        AuthGuard,
-    ],
-    bootstrap: [AppComponent],
+  declarations: [AppComponent, UserBarComponent, NavbarComponent],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    NgbModule.forRoot(),
+    AppRoutingModule,
+    AngularFontAwesomeModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInjector,
+      multi: true,
+    },
+    ConfigurationService,
+    TokenStorage,
+    AuthService,
+    AuthGuard,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

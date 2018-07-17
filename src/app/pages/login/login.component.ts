@@ -53,12 +53,12 @@ export class LoginComponent implements OnInit {
     this.busy = true;
 
     this.authService.getToken(username, password).subscribe(
-      response => {
+      (response) => {
         if (response === AuthError.AUTH_OK) {
           this.router.navigate(['/']);
         }
       },
-      err => {
+      (err) => {
         if (err === AuthError.AUTH_ERR_CREDENTIALS) {
           this.statusMessage = 'Invalid username or password';
         } else if (err === AuthError.AUTH_ERR_SERVER) {

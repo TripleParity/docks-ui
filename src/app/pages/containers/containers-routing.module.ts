@@ -9,11 +9,11 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard],
     component: ContainersComponent,
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ContainersRoutingModule { }
+export class ContainersRoutingModule {}

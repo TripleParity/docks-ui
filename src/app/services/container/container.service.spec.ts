@@ -7,14 +7,17 @@ import { TokenStorage } from '../../classes/tokenstorage/tokenstorage';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 
 describe('ContainerService', () => {
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [HttpClientModule, RouterTestingModule],
-            providers: [ConfigurationService, ContainerService, TokenStorage],
-        });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule, RouterTestingModule],
+      providers: [ConfigurationService, ContainerService, TokenStorage],
     });
+  });
 
-    it('should be created', inject([ContainerService], (service: ContainerService) => {
-        expect(service).toBeTruthy();
-    }));
+  it('should be created', inject(
+    [ContainerService],
+    (service: ContainerService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });
