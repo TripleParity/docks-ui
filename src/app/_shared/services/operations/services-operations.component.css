@@ -9,7 +9,7 @@
     border-bottom: none;
 }
 
-#update-tab, #scale-tab, #log-tab{
+.tab-tittle{
     background-color: #212529;
     color: var(--white);
     border: none;
@@ -39,6 +39,7 @@
     margin: auto;
     margin-top: 1%;
 }
+
 
 label{
     color: var(--white);

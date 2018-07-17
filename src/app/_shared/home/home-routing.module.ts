@@ -38,6 +38,11 @@ const routes: Routes = [
         path: 'networks',
         loadChildren: 'app/_shared/networks/network.module#NetworkModule',
       },
+      {
+        path: 'users',
+        loadChildren:
+          'app/user-management/user-management.module#UserManagementModule',
+      },
     ],
   },
 ];

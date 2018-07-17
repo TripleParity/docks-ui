@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^1.1.2",
+    "@swimlane/ngx-datatable": "11.3.2",
     "@types/chart.js": "^2.7.15",
     "@types/chartjs": "0.0.31",
     "angular-font-awesome": "^3.1.2",
