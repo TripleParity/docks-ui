@@ -21,7 +21,7 @@ import { SpinnerModule } from 'app/shared/spinner/spinner.module';
     FormsModule,
     ServicesRoutingModule,
     NgbModule,
-    SpinnerModule
+    SpinnerModule,
   ],
   declarations: [
     ServiceListViewComponent,

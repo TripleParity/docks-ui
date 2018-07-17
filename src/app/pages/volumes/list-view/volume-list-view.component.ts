@@ -17,7 +17,7 @@ export class VolumeListViewComponent implements OnInit {
   public isLoaded = false;
 
   ngOnInit() {
-     /* tslint:disable */
+    /* tslint:disable */
     const data = JSON.parse(
       '{"Name":"tardis2","Labels":{"com.example.some-label":"some-value","com.example.some-other-label":"some-other-value"},"Driver":"local"}'
     );

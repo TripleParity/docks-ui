@@ -16,7 +16,6 @@ import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { ConfigurationService } from '../configuration/configuration.service';
 import { Network } from 'app/models/network/network.model';
 
-
 enum NetworkError {
   ERR_OK = 200,
   ERR_SERVER = 500,

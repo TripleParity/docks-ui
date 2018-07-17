@@ -13,7 +13,13 @@ import { SpinnerModule } from 'app/shared/spinner/spinner.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  imports: [CommonModule, NgbModalModule, TasksRoutingModule, SpinnerModule, NgbModule],
+  imports: [
+    CommonModule,
+    NgbModalModule,
+    TasksRoutingModule,
+    SpinnerModule,
+    NgbModule,
+  ],
   declarations: [TaskCardViewComponent, TaskListViewComponent],
   providers: [TaskService, MockService],
 })

@@ -6,7 +6,6 @@ import { ConfigurationService } from '../configuration/configuration.service';
 import { VolumeService } from 'services/volume/volume.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 
-
 describe('VolumeService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({

@@ -1,7 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 
-
 describe('TokenStorageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({

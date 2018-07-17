@@ -5,5 +5,5 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class StackService {
   private host: string;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 }

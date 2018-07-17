@@ -6,7 +6,6 @@ import { ConfigurationService } from '../configuration/configuration.service';
 import { NetworkService } from 'services/network/network.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 
-
 describe('NetworkService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({

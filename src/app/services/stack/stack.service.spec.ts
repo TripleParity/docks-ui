@@ -6,7 +6,6 @@ import { ConfigurationService } from '../configuration/configuration.service';
 import { StackService } from 'services/stack/stack.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 
-
 describe('StackService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
