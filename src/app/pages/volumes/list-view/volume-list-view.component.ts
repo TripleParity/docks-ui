@@ -13,10 +13,11 @@ export class VolumeListViewComponent implements OnInit {
 
   public volumes: Volume[] = [];
   ngOnInit() {
-    /* tslint:disable-next-line */
+    /* tslint:disable */
     const data = JSON.parse(
       '{"Name":"tardis2","Labels":{"com.example.some-label":"some-value","com.example.some-other-label":"some-other-value"},"Driver":"local"}'
     );
+    /* tslint:enable */
     this.service.createVolume(data).subscribe();
 
     this.service.getVolumes().subscribe(
