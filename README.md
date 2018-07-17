@@ -7,9 +7,23 @@ Web dashboard for Docks
 ## Deploying Docks in Production
 [TripleParity/docks](https://github.com/TripleParity/docks) contains the latest instructions for deploying Docks using images from Docker Hub
 
+To deploy the latest version of Docks UI:
+```
+$ docker stack deploy -c docker-compose.yml docks-ui
+```
+
+The version tp be deployed can be changed in the `docker-compose.yml` file.
+
 ## Configure Docks API Address
-- When deploying docks-ui using Docker, the Docks API address can be set in the `DOCKS_API_ADDRESS` environment variable
-- When using Angular CLI to serve Docks UI, the Docks API address is set in `src/config`
+### Deploying with Docker
+The `DOCKS_API_ADDRESS` environment variable can be set. 
+
+Default: `http://127.0.0.1:8080`
+
+### ng serve
+When using `ng serve` to serve Docks UI, the Docks API address is set in `src/config`
+
+Default: `http://127.0.0.1:8080`
 
 ## Development
 ### Building and Deploying docks-ui to Docker Swarm
