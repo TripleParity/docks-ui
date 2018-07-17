@@ -16,9 +16,9 @@
                             <div ngbDropdown class="d-inline-block" placement="bottom-right">
                                 <button class="btn btn-outline-success" [id]="'operations-' + service.ID" ngbDropdownToggle (click)="voidParentClick($event)">Operations</button>
                                 <div ngbDropdownMenu [attr.aria-labelledby]="'operations-' + service.ID">
-                                    <button class="dropdown-item" [routerLink]="'/operationsServices/'+ service.ID" (click)="voidParentClick($event)"><i class="fa fa-balance-scale"></i> Scale</button>
-                                    <button class="dropdown-item" [routerLink]="'/operationsServices/'+ service.ID" (click)="voidParentClick($event)"><i class="fa fa-sliders"></i> Update</button>
-                                    <button class="dropdown-item" [routerLink]="'/operationsServices/'+ service.ID" (click)="voidParentClick($event)"><i class="fa fa-eye"></i> View Logs</button>
+                                    <button class="dropdown-item" [routerLink]="'/services/operations/'+ service.ID" (click)="voidParentClick($event)"><i class="fa fa-balance-scale"></i> Scale</button>
+                                    <button class="dropdown-item" [routerLink]="'/services/operations/'+ service.ID" (click)="voidParentClick($event)"><i class="fa fa-sliders"></i> Update</button>
+                                    <button class="dropdown-item" [routerLink]="'/services/operations/'+ service.ID" (click)="voidParentClick($event)"><i class="fa fa-eye"></i> View Logs</button>
                                     <button class="dropdown-item dropdown-item-danger" (click)="loadModal(removeConfirm, service.ID, $event)"><i class="fa fa-trash-o"></i> Remove</button>
                                 </div>
                             </div>

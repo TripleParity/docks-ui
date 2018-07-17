@@ -20,8 +20,7 @@ const routes: Routes = [
         component: ServicesCardViewComponent,
       },
       {
-        path: 'operations',
-        pathMatch: 'full',
+        path: 'operations/:id',
         component: ServicesOperationsComponent,
       },
     ],
