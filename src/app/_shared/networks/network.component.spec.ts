@@ -1,22 +1,30 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {HttpClientModule} from '@angular/common/http';
-import { RouterTestingModule } from '@angular/router/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { HttpClientModule } from "@angular/common/http";
+import { RouterTestingModule } from "@angular/router/testing";
 
-import { NetworkComponent } from './network.component';
-import {ConfigurationService, MockService, NetworkService} from '../../_services';
-import { TokenStorage } from '../../_classes';
+import { NetworkComponent } from "./network.component";
+import {
+  ConfigurationService,
+  MockService,
+  NetworkService
+} from "../../_services";
+import { TokenStorage } from "../../_classes";
 
-describe('NetworkComponent', () => {
+describe("NetworkComponent", () => {
   let component: NetworkComponent;
   let fixture: ComponentFixture<NetworkComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NetworkComponent ],
+      declarations: [NetworkComponent],
       imports: [HttpClientModule, RouterTestingModule],
-      providers: [NetworkService, MockService, ConfigurationService, TokenStorage]
-    })
-    .compileComponents();
+      providers: [
+        NetworkService,
+        MockService,
+        ConfigurationService,
+        TokenStorage
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -25,7 +33,7 @@ describe('NetworkComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

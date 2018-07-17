@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import {
   MockService,
   ServicesService,
-  VolumeService,
-} from '../../../_services';
-import { Formatter } from '../../../_classes';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Service, Task, Volume } from '../../../_models';
+  VolumeService
+} from "../../../_services";
+import { Formatter } from "../../../_classes";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Service, Task, Volume } from "../../../_models";
 
 @Component({
-  selector: 'app-volume-card-view',
-  templateUrl: './volume-card-view.component.html',
-  styleUrls: ['./volume-card-view.component.css'],
+  selector: "app-volume-card-view",
+  templateUrl: "./volume-card-view.component.html",
+  styleUrls: ["./volume-card-view.component.css"]
 })
 export class VolumeCardViewComponent implements OnInit {
   constructor(
@@ -27,19 +27,19 @@ export class VolumeCardViewComponent implements OnInit {
   public isLoadedModal = false;
 
   ngOnInit() {
-      this.service.getVolumes().subscribe((volume) => {
-        for (let i = 0; i < volume.length; i++) {
-          this.volumes.push(volume[i]);
-          this.isLoaded = true;
-        }
-      });
-      this.modalObjectTasks = [];
+    this.service.getVolumes().subscribe(volume => {
+      for (let i = 0; i < volume.length; i++) {
+        this.volumes.push(volume[i]);
+        this.isLoaded = true;
+      }
+    });
+    this.modalObjectTasks = [];
   }
 
   public loadModal(content, volume) {
     this.isLoadedModal = false;
     setTimeout(() => {
-      this.service.getVolumes().subscribe((volumes) => {
+      this.service.getVolumes().subscribe(volumes => {
         for (let i = 0; i < volumes.length; i++) {
           if (volumes[i].Name === volume.Name) {
             console.log(volumes[i]);
@@ -50,6 +50,6 @@ export class VolumeCardViewComponent implements OnInit {
       });
     }, 8000);
     this.modalObject = volume;
-    this.modal.open(content, { size: 'lg' });
+    this.modal.open(content, { size: "lg" });
   }
 }

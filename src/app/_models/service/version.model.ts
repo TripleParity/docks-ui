@@ -4,5 +4,5 @@
  * @interface
  */
 export interface Version {
-    Index: number;
+  Index: number;
 }

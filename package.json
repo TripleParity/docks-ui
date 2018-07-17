@@ -7,7 +7,8 @@
     "check": "ng lint;ng build --prod; ng test",
     "serve": "ng serve --aot",
     "fix": "ng lint --fix",
-    "build": "ng build --prod --no-progress"
+    "build": "ng build --prod --no-progress",
+    "prettier": "prettier --write \"src/app/**/*.ts\""
   },
   "private": true,
   "dependencies": {
@@ -51,6 +52,7 @@
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "jsdoc": "^3.5.5",
+    "prettier": "1.13.7",
     "typescript": "~2.5.3"
   }
 }

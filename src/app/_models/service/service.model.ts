@@ -1,5 +1,5 @@
-import {Version} from 'app/_models/service/version.model';
-import {ServiceSpec} from 'app/_models/service/spec.model';
+import { Version } from "app/_models/service/version.model";
+import { ServiceSpec } from "app/_models/service/spec.model";
 
 /**
  * Service interface.
@@ -7,10 +7,10 @@ import {ServiceSpec} from 'app/_models/service/spec.model';
  * @interface
  */
 export interface Service {
-    ID: string;
-    Version: Version;
-    CreatedAt: string;
-    UpdatedAt: string;
-    Spec: ServiceSpec;
-    Endpoint: JSON;
+  ID: string;
+  Version: Version;
+  CreatedAt: string;
+  UpdatedAt: string;
+  Spec: ServiceSpec;
+  Endpoint: JSON;
 }

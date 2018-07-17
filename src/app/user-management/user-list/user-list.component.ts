@@ -1,41 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import {
-  NgbModal,
-  NgbModalRef,
-} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 
 import {
   UserService,
-  DeleteUserStatus,
-} from 'app/user-management/shared/user.service';
-import { User } from 'app/user-management/models/user.model';
+  DeleteUserStatus
+} from "app/user-management/shared/user.service";
+import { User } from "app/user-management/models/user.model";
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css'],
+  selector: "app-user-list",
+  templateUrl: "./user-list.component.html",
+  styleUrls: ["./user-list.component.css"]
 })
 export class UserListComponent implements OnInit {
   // Alert message flags. Displays if value not empty or false
   genericError = false;
 
-  createdUser = '';
+  createdUser = "";
 
-  updatedUser = '';
-  updatedUserNotFound = '';
+  updatedUser = "";
+  updatedUserNotFound = "";
 
   activeModal: NgbModalRef;
 
-  deletedUser = '';
-  deletedUserNotFound = '';
+  deletedUser = "";
+  deletedUserNotFound = "";
 
   selected: User[] = [];
 
   users: User[]; // rows
 
-  columns = [{ prop: 'username' }];
-  usernameToDelete = '';
+  columns = [{ prop: "username" }];
+  usernameToDelete = "";
 
   dataCache = [];
 
@@ -45,16 +42,16 @@ export class UserListComponent implements OnInit {
     private modalService: NgbModal
   ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      if (params.has('createdUser')) {
-        this.createdUser = params.get('createdUser');
+      if (params.has("createdUser")) {
+        this.createdUser = params.get("createdUser");
       }
 
-      if (params.has('updatedUser')) {
-        this.updatedUser = params.get('updatedUser');
+      if (params.has("updatedUser")) {
+        this.updatedUser = params.get("updatedUser");
       }
 
-      if (params.has('updatedUserNotFound')) {
-        this.updatedUserNotFound = params.get('updatedUserNotFound');
+      if (params.has("updatedUserNotFound")) {
+        this.updatedUserNotFound = params.get("updatedUserNotFound");
       }
     });
   }
@@ -65,7 +62,7 @@ export class UserListComponent implements OnInit {
         this.users = users;
         this.dataCache = [...users];
       },
-      (err) => {
+      err => {
         console.error(err);
         this.genericError = true;
       }
@@ -111,12 +108,12 @@ export class UserListComponent implements OnInit {
   }
 
   clearAlerts() {
-    this.createdUser = '';
-    this.deletedUser = '';
-    this.deletedUserNotFound = '';
+    this.createdUser = "";
+    this.deletedUser = "";
+    this.deletedUserNotFound = "";
     this.genericError = false;
-    this.updatedUser = '';
-    this.updatedUserNotFound = '';
+    this.updatedUser = "";
+    this.updatedUserNotFound = "";
   }
 
   updateFilter(event) {

@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { VolumesComponent } from '_shared/volumes/volumes.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { VolumesComponent } from "_shared/volumes/volumes.component";
+import { RouterTestingModule } from "@angular/router/testing";
 
-describe('VolumesComponent', () => {
+describe("VolumesComponent", () => {
   let component: VolumesComponent;
   let fixture: ComponentFixture<VolumesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [VolumesComponent],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule]
     }).compileComponents();
   }));
 
@@ -20,7 +20,7 @@ describe('VolumesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

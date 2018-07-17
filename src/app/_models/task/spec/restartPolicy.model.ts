@@ -4,6 +4,6 @@
  * @interface
  */
 export interface RestartPolicyModel {
-    Condition: string;
-    MaxAttempts: number;
+  Condition: string;
+  MaxAttempts: number;
 }

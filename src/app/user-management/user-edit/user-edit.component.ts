@@ -1,23 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
   Validators,
   ValidatorFn,
-  ValidationErrors,
-} from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+  ValidationErrors
+} from "@angular/forms";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
 import {
   UserService,
-  UpdateUserStatus,
-} from 'app/user-management/shared/user.service';
-import { User } from 'app/user-management/models/user.model';
+  UpdateUserStatus
+} from "app/user-management/shared/user.service";
+import { User } from "app/user-management/models/user.model";
 
 @Component({
-  selector: 'app-user-edit',
-  templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.css'],
+  selector: "app-user-edit",
+  templateUrl: "./user-edit.component.html",
+  styleUrls: ["./user-edit.component.css"]
 })
 export class UserEditComponent implements OnInit {
   userForm: FormGroup;
@@ -32,8 +32,8 @@ export class UserEditComponent implements OnInit {
     private router: Router
   ) {
     this.doublePassword = (control: FormGroup): ValidationErrors | null => {
-      const p1 = control.get('password');
-      const p2 = control.get('password2');
+      const p1 = control.get("password");
+      const p2 = control.get("password2");
 
       return p1 && p2 && p1.value !== p2.value
         ? { passwordsDoNotMatch: true }
@@ -46,9 +46,9 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.userForm.setValue({
-        username: params.get('username'),
-        password: '',
-        password2: '',
+        username: params.get("username"),
+        password: "",
+        password2: ""
       });
     });
   }
@@ -58,20 +58,20 @@ export class UserEditComponent implements OnInit {
 
     const user: User = {
       username: formModel.username,
-      password: formModel.password,
+      password: formModel.password
     };
 
     this.userService.updateUser(user.username, user.password).subscribe(
-      (result) => {
+      result => {
         this.submitted = false;
-        this.router.navigate(['/users', { updatedUser: user.username }]);
+        this.router.navigate(["/users", { updatedUser: user.username }]);
       },
-      (err) => {
+      err => {
         this.submitted = false;
         if (err === UpdateUserStatus.UPDATE_ERR_NOT_FOUND) {
           this.router.navigate([
-            '/users',
-            { updatedUserNotFound: user.username },
+            "/users",
+            { updatedUserNotFound: user.username }
           ]);
         } else {
           this.genericError = true;
@@ -83,19 +83,19 @@ export class UserEditComponent implements OnInit {
   createForm() {
     this.userForm = this.formBuilder.group(
       {
-        username: '',
-        password: ['', Validators.required],
-        password2: '',
+        username: "",
+        password: ["", Validators.required],
+        password2: ""
       },
       { validator: this.doublePassword }
     );
   }
 
   get password() {
-    return this.userForm.get('password');
+    return this.userForm.get("password");
   }
 
   get password2() {
-    return this.userForm.get('password2');
+    return this.userForm.get("password2");
   }
 }

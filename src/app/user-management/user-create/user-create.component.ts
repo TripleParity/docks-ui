@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import {
   UserService,
-  CreateUserStatus,
-} from 'app/user-management/shared/user.service';
-import { User } from 'app/user-management/models/user.model';
+  CreateUserStatus
+} from "app/user-management/shared/user.service";
+import { User } from "app/user-management/models/user.model";
 
 @Component({
-  selector: 'app-user-create',
-  templateUrl: './user-create.component.html',
-  styleUrls: ['./user-create.component.css'],
+  selector: "app-user-create",
+  templateUrl: "./user-create.component.html",
+  styleUrls: ["./user-create.component.css"]
 })
 export class UserCreateComponent implements OnInit {
   usernamePopulated = true;
@@ -18,17 +18,17 @@ export class UserCreateComponent implements OnInit {
 
   alreadyExists = false;
   genericError = false;
-  passwordHolder2 = '';
+  passwordHolder2 = "";
 
   submitted = false;
-  badUser = '';
+  badUser = "";
 
   model: User = null;
 
   constructor(private userService: UserService, private router: Router) {
     this.model = {
-      username: '',
-      password: '',
+      username: "",
+      password: ""
     };
   }
 
@@ -45,8 +45,8 @@ export class UserCreateComponent implements OnInit {
         (result: CreateUserStatus) => {
           this.submitted = false;
           this.router.navigate([
-            '/users',
-            { createdUser: this.model.username },
+            "/users",
+            { createdUser: this.model.username }
           ]);
         },
         (err: CreateUserStatus) => {

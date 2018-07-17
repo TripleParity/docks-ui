@@ -2,23 +2,23 @@
  * Handles authentication with the backend; In particular docks-api
  *
  */
-import { Injectable } from '@angular/core';
-import { ConfigurationService } from '..';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { catchError, map } from 'rxjs/operators';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { TokenStorage } from '../../_classes';
-import { JwtHelper } from 'angular2-jwt';
+import { Injectable } from "@angular/core";
+import { ConfigurationService } from "..";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Observable } from "rxjs/Observable";
+import { catchError, map } from "rxjs/operators";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
+import { TokenStorage } from "../../_classes";
+import { JwtHelper } from "angular2-jwt";
 
 export enum AuthError {
   AUTH_OK,
   AUTH_ERR, // Unknown error
   AUTH_ERR_CREDENTIALS, // Bad username/password
-  AUTH_ERR_SERVER, // Server unreachable
+  AUTH_ERR_SERVER // Server unreachable
 }
 
-const jwtKey = 'auth';
+const jwtKey = "auth";
 
 @Injectable()
 export class AuthService {
@@ -28,30 +28,30 @@ export class AuthService {
     private token: TokenStorage
   ) {}
 
-    /**
-     * Used to get a token from docks-api
-     *
-     * @param {string} username
-     * @param {string} password
-     * @returns {Observable<AuthError>}
-     */
+  /**
+   * Used to get a token from docks-api
+   *
+   * @param {string} username
+   * @param {string} password
+   * @returns {Observable<AuthError>}
+   */
   public getToken(username: string, password: string): Observable<AuthError> {
     return this.http
       .post(
-        this.config.getAPIHostname() + '/api/auth/token',
+        this.config.getAPIHostname() + "/api/auth/token",
         { username: username, password: password },
         {
-          responseType: 'json',
+          responseType: "json"
         }
       )
       .pipe(
         map(body => {
-          if (body['jwt'] === null) {
+          if (body["jwt"] === null) {
             console.error(body);
             return ErrorObservable.create(AuthError.AUTH_ERR);
           }
 
-          this.token.saveToken(jwtKey, body['jwt']);
+          this.token.saveToken(jwtKey, body["jwt"]);
           return AuthError.AUTH_OK;
         }),
         catchError((err: HttpErrorResponse) => {
@@ -68,11 +68,11 @@ export class AuthService {
       );
   }
 
-    /**
-     * Determines whether the token is valid or not.
-     *
-     * @returns {boolean}
-     */
+  /**
+   * Determines whether the token is valid or not.
+   *
+   * @returns {boolean}
+   */
   public isLoggedIn(): boolean {
     const jwtRaw = this.token.getToken(jwtKey);
 

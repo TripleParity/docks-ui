@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { LoginComponent } from './login.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from '_services/auth/auth.service';
-import { HttpClient, HttpHandler } from '@angular/common/http';
-import { ConfigurationService } from '_services/configuration/configuration.service';
-import { TokenStorage } from '_classes/tokenstorage/tokenstorage';
-import { RouterTestingModule } from '@angular/router/testing';
+import { LoginComponent } from "./login.component";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { AuthService } from "_services/auth/auth.service";
+import { HttpClient, HttpHandler } from "@angular/common/http";
+import { ConfigurationService } from "_services/configuration/configuration.service";
+import { TokenStorage } from "_classes/tokenstorage/tokenstorage";
+import { RouterTestingModule } from "@angular/router/testing";
 
-describe('LoginComponent', () => {
+describe("LoginComponent", () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
@@ -21,8 +21,8 @@ describe('LoginComponent', () => {
         HttpClient,
         HttpHandler,
         ConfigurationService,
-        TokenStorage,
-      ],
+        TokenStorage
+      ]
     }).compileComponents();
   }));
 
@@ -32,7 +32,7 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

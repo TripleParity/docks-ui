@@ -1,4 +1,4 @@
-import {Port} from './port.model';
+import { Port } from "./port.model";
 
 /**
  * Endpoint interface for Services.
@@ -6,13 +6,13 @@ import {Port} from './port.model';
  * @interface
  */
 export interface Endpoint {
-    Spec: {
-        Mode: string;
-        Ports: Port[];
-    };
+  Spec: {
+    Mode: string;
     Ports: Port[];
-    VirtualIPs: {
-        NetworkID: string;
-        Addr: string;
-    }[];
+  };
+  Ports: Port[];
+  VirtualIPs: {
+    NetworkID: string;
+    Addr: string;
+  }[];
 }

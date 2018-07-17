@@ -4,6 +4,6 @@
  * @interface
  */
 export interface Ipam {
-    Driver: string;
-    Config: JSON;
+  Driver: string;
+  Config: JSON;
 }

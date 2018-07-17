@@ -1,15 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { FormsModule } from "@angular/forms";
+import { HttpClient, HttpHandler } from "@angular/common/http";
 
-import { UserService } from 'app/user-management/shared/user.service';
-import { ConfigurationService } from 'app/_services';
-import { TokenStorage } from 'app/_classes';
-import { UserCreateComponent } from './user-create.component';
+import { UserService } from "app/user-management/shared/user.service";
+import { ConfigurationService } from "app/_services";
+import { TokenStorage } from "app/_classes";
+import { UserCreateComponent } from "./user-create.component";
 
-describe('UserCreateComponent', () => {
+describe("UserCreateComponent", () => {
   let component: UserCreateComponent;
   let fixture: ComponentFixture<UserCreateComponent>;
 
@@ -22,8 +22,8 @@ describe('UserCreateComponent', () => {
         HttpClient,
         HttpHandler,
         ConfigurationService,
-        TokenStorage,
-      ],
+        TokenStorage
+      ]
     }).compileComponents();
   }));
 
@@ -33,7 +33,7 @@ describe('UserCreateComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

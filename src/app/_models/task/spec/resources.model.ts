@@ -4,6 +4,6 @@
  * @interface
  */
 export interface ResourcesModel {
-    Limits: JSON;
-    Reservations: JSON;
+  Limits: JSON;
+  Reservations: JSON;
 }

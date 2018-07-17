@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClient, HttpHandler } from "@angular/common/http";
 
-import { ConfigurationService } from 'app/_services';
-import { TokenStorage } from 'app/_classes';
-import { UserService } from 'app/user-management/shared/user.service';
-import { UserListComponent } from './user-list.component';
+import { ConfigurationService } from "app/_services";
+import { TokenStorage } from "app/_classes";
+import { UserService } from "app/user-management/shared/user.service";
+import { UserListComponent } from "./user-list.component";
 
-describe('UserListComponent', () => {
+describe("UserListComponent", () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
 
@@ -22,15 +22,15 @@ describe('UserListComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         FormsModule,
-        NgxDatatableModule,
+        NgxDatatableModule
       ],
       providers: [
         UserService,
         HttpClient,
         HttpHandler,
         ConfigurationService,
-        TokenStorage,
-      ],
+        TokenStorage
+      ]
     }).compileComponents();
   }));
 
@@ -40,7 +40,7 @@ describe('UserListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

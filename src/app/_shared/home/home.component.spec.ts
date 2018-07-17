@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { HomeComponent } from './home.component';
-import { UserBarComponent, NavbarComponent } from '_shared/index';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '_services/auth/auth.service';
-import { HttpClientModule } from '@angular/common/http';
-import { ConfigurationService } from '_services/configuration/configuration.service';
-import { TokenStorage } from '_classes/index';
+import { HomeComponent } from "./home.component";
+import { UserBarComponent, NavbarComponent } from "_shared/index";
+import { RouterTestingModule } from "@angular/router/testing";
+import { AuthService } from "_services/auth/auth.service";
+import { HttpClientModule } from "@angular/common/http";
+import { ConfigurationService } from "_services/configuration/configuration.service";
+import { TokenStorage } from "_classes/index";
 
-describe('HomeComponent', () => {
+describe("HomeComponent", () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
@@ -16,7 +16,7 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [HomeComponent, UserBarComponent, NavbarComponent],
       imports: [RouterTestingModule, HttpClientModule],
-      providers: [AuthService, ConfigurationService, TokenStorage],
+      providers: [AuthService, ConfigurationService, TokenStorage]
     }).compileComponents();
   }));
 
@@ -26,7 +26,7 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

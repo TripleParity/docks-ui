@@ -4,5 +4,5 @@
  * @interface
  */
 export interface NetworkSettingsModel {
-    Networks: JSON;
+  Networks: JSON;
 }

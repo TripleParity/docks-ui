@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Formatter } from '../../../_classes';
-import { ServicesService, MockService } from '../../../_services';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Service, Task } from '../../../_models';
+import { Component, OnInit } from "@angular/core";
+import { Formatter } from "../../../_classes";
+import { ServicesService, MockService } from "../../../_services";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Service, Task } from "../../../_models";
 
 @Component({
-  selector: 'app-services-card-view',
-  templateUrl: './services-card-view.component.html',
-  styleUrls: ['./services-card-view.component.css'],
+  selector: "app-services-card-view",
+  templateUrl: "./services-card-view.component.html",
+  styleUrls: ["./services-card-view.component.css"]
 })
 export class ServicesCardViewComponent implements OnInit {
   constructor(
@@ -22,12 +22,12 @@ export class ServicesCardViewComponent implements OnInit {
   public isLoaded = false;
 
   ngOnInit() {
-        this.mockService.getServices().subscribe((service) => {
-            for (let i = 0; i < service.length; i++) {
-              this.services.push(service[i]);
-              this.isLoaded = true;
-            }
-          });
+    this.mockService.getServices().subscribe(service => {
+      for (let i = 0; i < service.length; i++) {
+        this.services.push(service[i]);
+        this.isLoaded = true;
+      }
+    });
     this.modalObjectTasks = [];
   }
 
@@ -35,16 +35,16 @@ export class ServicesCardViewComponent implements OnInit {
     return Formatter.PrettifyDateTime(buff);
   }
 
-    public loadModal(content, service) {
-        this.mockService.getTasks().subscribe( (tasks) => {
-           for (let i = 0; i < tasks.length; i++) {
-               if (tasks[i].ServiceID === service.ID) {
-                   console.log(tasks[i]);
-                   this.modalObjectTasks.push(tasks[i]);
-               }
-           }
-        });
-        this.modalObject = service;
-        this.modalService.open(content, { size: 'lg' });
-    }
+  public loadModal(content, service) {
+    this.mockService.getTasks().subscribe(tasks => {
+      for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].ServiceID === service.ID) {
+          console.log(tasks[i]);
+          this.modalObjectTasks.push(tasks[i]);
+        }
+      }
+    });
+    this.modalObject = service;
+    this.modalService.open(content, { size: "lg" });
+  }
 }
