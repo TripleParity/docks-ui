@@ -28,7 +28,7 @@ export class StackService {
      */
   public getStacks(): Observable<Stack[]>  {
       return this.http
-          .get(this.config.getAPIHostname() + '/docker/stacks', {
+          .get(this.config.getAPIHostname() + '/stacks', {
               responseType: 'json',
           })
           .pipe(
@@ -51,7 +51,7 @@ export class StackService {
         return this.http
             .post(
                 this.config.getAPIHostname() +
-                '/docker/stacks/',
+                '/stacks/',
                 { stackName: name, stackFile: _64params},
                 { responseType: 'json' }
             )
@@ -73,7 +73,7 @@ export class StackService {
      */
   public getStackTasks(stack: string): Observable<JSON> {
       return this.http
-          .get(this.config.getAPIHostname() + '/docker/stacks/' + stack + '/tasks', {
+          .get(this.config.getAPIHostname() + '/stacks/' + stack + '/tasks', {
               responseType: 'json',
           })
           .pipe(
@@ -94,7 +94,7 @@ export class StackService {
      */
     public getStackServices(stack: string): Observable<JSON> {
         return this.http
-            .get(this.config.getAPIHostname() + '/docker/stacks/' + stack + '/services', {
+            .get(this.config.getAPIHostname() + '/stacks/' + stack + '/services', {
                 responseType: 'json',
             })
             .pipe(
@@ -117,7 +117,7 @@ export class StackService {
         return this.http
             .put(
                 this.config.getAPIHostname() +
-                '/docker/stacks/' + name,
+                '/stacks/' + name,
                 { stackName: name, stackFile: _64params},
                 { responseType: 'json' }
             )
@@ -140,7 +140,7 @@ export class StackService {
         return this.http
             .delete(
                 this.config.getAPIHostname() +
-                '/docker/stacks/' + name,
+                '/stacks/' + name,
                 { responseType: 'json' }
             )
             .pipe(
