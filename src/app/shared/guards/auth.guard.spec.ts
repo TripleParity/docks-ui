@@ -1,13 +1,13 @@
-import { TestBed, async, inject } from "@angular/core/testing";
+import { TestBed, async, inject } from '@angular/core/testing';
 
-import { AuthGuard } from "./auth.guard";
-import { RouterTestingModule } from "@angular/router/testing";
-import { AuthService } from "../_services/auth/auth.service";
-import { ConfigurationService } from "../_services";
-import { HttpClient, HttpHandler } from "@angular/common/http";
-import { TokenStorage } from "../_classes";
+import { AuthGuard } from './auth.guard';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AuthService } from '../_services/auth/auth.service';
+import { ConfigurationService } from '../_services';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { TokenStorage } from '../_classes';
 
-describe("AuthGuard", () => {
+describe('AuthGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
@@ -18,12 +18,12 @@ describe("AuthGuard", () => {
         ConfigurationService,
         HttpClient,
         HttpHandler,
-        TokenStorage
-      ]
+        TokenStorage,
+      ],
     });
   });
 
-  it("should ...", inject([AuthGuard], (guard: AuthGuard) => {
+  it('should ...', inject([AuthGuard], (guard: AuthGuard) => {
     expect(guard).toBeTruthy();
   }));
 });

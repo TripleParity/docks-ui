@@ -3,9 +3,9 @@
  *
  * @interface
  */
-import { HostConfigModel } from "app/_models/container/hostConfig/hostConfig.model";
-import { NetworkSettingsModel } from "app/_models/container/networkSettings/networkSettings.model";
-import { Mount } from "app/_models/container/mount/mount.model";
+import { HostConfigModel } from 'app/_models/container/hostConfig/hostConfig.model';
+import { NetworkSettingsModel } from 'app/_models/container/networkSettings/networkSettings.model';
+import { Mount } from 'app/_models/container/mount/mount.model';
 
 export interface Container {
   ID: string;

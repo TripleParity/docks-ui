@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GraphViewComponent } from "./graph-view.component";
+import { GraphViewComponent } from './graph-view.component';
 
-describe("GraphViewComponent", () => {
+describe('GraphViewComponent', () => {
   let component: GraphViewComponent;
   let fixture: ComponentFixture<GraphViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [GraphViewComponent]
+      declarations: [GraphViewComponent],
     }).compileComponents();
   }));
 
@@ -18,7 +18,7 @@ describe("GraphViewComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

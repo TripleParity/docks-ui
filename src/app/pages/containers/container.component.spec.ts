@@ -1,17 +1,17 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContainersComponent } from "_shared/containers/containers.component";
+import { ContainersComponent } from '_shared/containers/containers.component';
 import {
   ConfigurationService,
   ContainerService,
   MockService,
-  TaskService
-} from "app/_services";
-import { RouterTestingModule } from "@angular/router/testing";
-import { TokenStorage } from "app/_classes";
-import { HttpClientModule } from "@angular/common/http";
+  TaskService,
+} from 'app/_services';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TokenStorage } from 'app/_classes';
+import { HttpClientModule } from '@angular/common/http';
 
-describe("ContainerComponent", () => {
+describe('ContainerComponent', () => {
   let component: ContainersComponent;
   let fixture: ComponentFixture<ContainersComponent>;
 
@@ -24,8 +24,8 @@ describe("ContainerComponent", () => {
         TaskService,
         MockService,
         ConfigurationService,
-        TokenStorage
-      ]
+        TokenStorage,
+      ],
     }).compileComponents();
   }));
 
@@ -35,7 +35,7 @@ describe("ContainerComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

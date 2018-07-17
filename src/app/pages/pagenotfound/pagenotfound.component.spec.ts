@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageNotFoundComponent } from "./pagenotfound.component";
-import { NgbAlert, NgbAlertConfig } from "@ng-bootstrap/ng-bootstrap";
+import { PageNotFoundComponent } from './pagenotfound.component';
+import { NgbAlert, NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
 
-describe("PageNotFoundComponent", () => {
+describe('PageNotFoundComponent', () => {
   let component: PageNotFoundComponent;
   let fixture: ComponentFixture<PageNotFoundComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [PageNotFoundComponent, NgbAlert],
-      providers: [NgbAlertConfig]
+      providers: [NgbAlertConfig],
     }).compileComponents();
   }));
 
@@ -20,7 +20,7 @@ describe("PageNotFoundComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

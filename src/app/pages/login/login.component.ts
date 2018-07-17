@@ -1,16 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { AuthService, AuthError } from "_services/auth/auth.service";
-import { Router } from "@angular/router";
-import { ConfigurationService } from "_services/index";
+import { Component, OnInit } from '@angular/core';
+import { AuthService, AuthError } from '_services/auth/auth.service';
+import { Router } from '@angular/router';
+import { ConfigurationService } from '_services/index';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   public busy = false;
-  public statusMessage = "";
+  public statusMessage = '';
   public passwordError = false;
   public usernameError = false;
 
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   public login(username: string, password: string): void {
-    this.statusMessage = "";
+    this.statusMessage = '';
 
     if (!this.validateLogin(username, password)) {
       return;
@@ -53,19 +53,19 @@ export class LoginComponent implements OnInit {
     this.busy = true;
 
     this.authService.getToken(username, password).subscribe(
-      response => {
+      (response) => {
         if (response === AuthError.AUTH_OK) {
-          this.router.navigate(["/"]);
+          this.router.navigate(['/']);
         }
       },
-      err => {
+      (err) => {
         if (err === AuthError.AUTH_ERR_CREDENTIALS) {
-          this.statusMessage = "Invalid username or password";
+          this.statusMessage = 'Invalid username or password';
         } else if (err === AuthError.AUTH_ERR_SERVER) {
           this.statusMessage =
-            "Unable to connect to " + this.configService.getAPIHostname();
+            'Unable to connect to ' + this.configService.getAPIHostname();
         } else {
-          this.statusMessage = "Something went wrong";
+          this.statusMessage = 'Something went wrong';
         }
         this.busy = false;
       }

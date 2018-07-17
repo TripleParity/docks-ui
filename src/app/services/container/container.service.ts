@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
-import { HttpClientModule, HttpClient, HttpParams } from "@angular/common/http";
-import { Container } from "../../_models";
-import { map } from "rxjs/operators";
-import { ConfigurationService } from "../configuration/configuration.service";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { HttpClientModule, HttpClient, HttpParams } from '@angular/common/http';
+import { Container } from '../../_models';
+import { map } from 'rxjs/operators';
+import { ConfigurationService } from '../configuration/configuration.service';
 
 @Injectable()
 export class ContainerService {
@@ -16,11 +16,11 @@ export class ContainerService {
    */
   public getContainer(): Observable<Container[]> {
     return this.http
-      .get<JSON>(this.config.getAPIHostname() + "/docker/containers/json", {
-        responseType: "json"
+      .get<JSON>(this.config.getAPIHostname() + '/docker/containers/json', {
+        responseType: 'json',
       })
       .pipe(
-        map(data => {
+        map((data) => {
           const containers: Container[] = [];
           for (let i = 0; i < Object.keys(data).length; i++) {
             containers.push(data[i]);

@@ -1,27 +1,27 @@
-import { TestBed, inject } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
-import { HttpClientModule } from "@angular/common/http";
+import { TestBed, inject } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
-import { ConfigurationService } from "../configuration/configuration.service";
-import { TokenStorage } from "../../_classes";
-import { NetworkService } from "app/_services";
+import { ConfigurationService } from '../configuration/configuration.service';
+import { TokenStorage } from '../../_classes';
+import { NetworkService } from 'app/_services';
 
-describe("NetworkService", () => {
+describe('NetworkService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterTestingModule],
-      providers: [NetworkService, ConfigurationService, TokenStorage]
+      providers: [NetworkService, ConfigurationService, TokenStorage],
     });
   });
 
-  it("should be created", inject(
+  it('should be created', inject(
     [NetworkService],
     (service: NetworkService) => {
       expect(service).toBeTruthy();
     }
   ));
 
-  it("should have all functions", inject(
+  it('should have all functions', inject(
     [NetworkService],
     (service: NetworkService) => {
       expect(service.connectContainer).toBeTruthy();

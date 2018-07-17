@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   CanActivate,
   ActivatedRouteSnapshot,
-  RouterStateSnapshot
-} from "@angular/router";
-import { Observable } from "rxjs/Observable";
-import { Router } from "@angular/router";
-import { AuthService } from "../_services/auth/auth.service";
+  RouterStateSnapshot,
+} from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
+import { AuthService } from '../_services/auth/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -26,17 +26,17 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.isLoggedIn()) {
-      if (next.url.length !== 0 && next.url[0].path === "login") {
-        this.router.navigate(["/"]);
+      if (next.url.length !== 0 && next.url[0].path === 'login') {
+        this.router.navigate(['/']);
         return false;
       } else {
         return true;
       }
     } else {
-      if (next.url.length !== 0 && next.url[0].path === "login") {
+      if (next.url.length !== 0 && next.url[0].path === 'login') {
         return true;
       } else {
-        this.router.navigate(["/login"]);
+        this.router.navigate(['/login']);
         return false;
       }
     }

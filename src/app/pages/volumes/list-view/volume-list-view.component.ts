@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { Service, Volume } from "../../../_models";
-import { VolumeService, MockService } from "../../../_services";
+import { Component, OnInit } from '@angular/core';
+import { Service, Volume } from '../../../_models';
+import { VolumeService, MockService } from '../../../_services';
 
 @Component({
-  selector: "app-volume-list-view",
-  templateUrl: "./volume-list-view.component.html",
-  styleUrls: ["./volume-list-view.component.css"]
+  selector: 'app-volume-list-view',
+  templateUrl: './volume-list-view.component.html',
+  styleUrls: ['./volume-list-view.component.css'],
 })
 export class VolumeListViewComponent implements OnInit {
   constructor(private mock: MockService, private service: VolumeService) {}
@@ -23,7 +23,7 @@ export class VolumeListViewComponent implements OnInit {
     this.service.createVolume(data).subscribe();
 
     this.service.getVolumes().subscribe(
-      volumes => {
+      (volumes) => {
         this.volumes = volumes;
         // console.log(volumes);
         for (let i = 0; i < this.volumes.length; i++) {
@@ -31,7 +31,7 @@ export class VolumeListViewComponent implements OnInit {
         }
         this.isLoaded = true;
       },
-      error => console.error("Error: " + error)
+      (error) => console.error('Error: ' + error)
     );
   }
 

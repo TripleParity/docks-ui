@@ -1,4 +1,4 @@
-import { Ipam } from "./ipam/ipam.model";
+import { Ipam } from './ipam/ipam.model';
 
 /**
  * Interface for Network

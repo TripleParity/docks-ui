@@ -1,12 +1,12 @@
-import { TestBed, inject } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
-import { HttpClient, HttpHandler } from "@angular/common/http";
+import { TestBed, inject } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
-import { UserService } from "./user.service";
-import { ConfigurationService } from "app/_services";
-import { TokenStorage } from "app/_classes";
+import { UserService } from './user.service';
+import { ConfigurationService } from 'app/_services';
+import { TokenStorage } from 'app/_classes';
 
-describe("UserService", () => {
+describe('UserService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
@@ -15,12 +15,12 @@ describe("UserService", () => {
         HttpClient,
         HttpHandler,
         ConfigurationService,
-        TokenStorage
-      ]
+        TokenStorage,
+      ],
     });
   });
 
-  it("should be created", inject([UserService], (service: UserService) => {
+  it('should be created', inject([UserService], (service: UserService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -1,15 +1,15 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   HttpEvent,
   HttpInterceptor,
   HttpHandler,
-  HttpRequest
-} from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
-import { TokenStorage } from "../tokenstorage/tokenstorage";
-import { tap } from "rxjs/operators";
+  HttpRequest,
+} from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { TokenStorage } from '../tokenstorage/tokenstorage';
+import { tap } from 'rxjs/operators';
 
-const TOKEN_HEADER_KEY = "Authorization";
+const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()
 export class AuthInjector implements HttpInterceptor {
@@ -25,14 +25,14 @@ export class AuthInjector implements HttpInterceptor {
     req = req.clone({
       headers: req.headers.set(
         TOKEN_HEADER_KEY,
-        "Bearer " + this.tokens.getToken("auth")
-      )
+        'Bearer ' + this.tokens.getToken('auth')
+      ),
     });
     return next.handle(req).pipe(
       tap(
         () => {},
-        err => {
-          console.error("AuthInjector::intercept(): Something went wrong");
+        (err) => {
+          console.error('AuthInjector::intercept(): Something went wrong');
         }
       )
     );

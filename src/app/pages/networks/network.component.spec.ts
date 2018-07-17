@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { HttpClientModule } from "@angular/common/http";
-import { RouterTestingModule } from "@angular/router/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { NetworkComponent } from "./network.component";
+import { NetworkComponent } from './network.component';
 import {
   ConfigurationService,
   MockService,
-  NetworkService
-} from "../../_services";
-import { TokenStorage } from "../../_classes";
+  NetworkService,
+} from '../../_services';
+import { TokenStorage } from '../../_classes';
 
-describe("NetworkComponent", () => {
+describe('NetworkComponent', () => {
   let component: NetworkComponent;
   let fixture: ComponentFixture<NetworkComponent>;
 
@@ -22,8 +22,8 @@ describe("NetworkComponent", () => {
         NetworkService,
         MockService,
         ConfigurationService,
-        TokenStorage
-      ]
+        TokenStorage,
+      ],
     }).compileComponents();
   }));
 
@@ -33,7 +33,7 @@ describe("NetworkComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

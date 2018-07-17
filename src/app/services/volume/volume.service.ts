@@ -1,20 +1,20 @@
 /**
  * Volume service implementation.
  */
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpParams
-} from "@angular/common/http";
-import "rxjs/add/operator/map";
-import { catchError, map } from "rxjs/operators";
-import { ErrorObservable } from "rxjs/observable/ErrorObservable";
-import { Volume } from "../../_models";
-import { ConfigurationService } from "../configuration/configuration.service";
-import { RequestOptions } from "@angular/http";
-import { CreateVolume } from "../../_models/volume/createVolume/createVolume.model";
+  HttpParams,
+} from '@angular/common/http';
+import 'rxjs/add/operator/map';
+import { catchError, map } from 'rxjs/operators';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { Volume } from '../../_models';
+import { ConfigurationService } from '../configuration/configuration.service';
+import { RequestOptions } from '@angular/http';
+import { CreateVolume } from '../../_models/volume/createVolume/createVolume.model';
 
 enum VolumeError {
   ERR_STREAM = 101,
@@ -23,7 +23,7 @@ enum VolumeError {
   ERR_NO_OP = 403,
   ERR_NO_VOLUME = 404,
   ERR_VOLUME_IS_USE = 409,
-  ERR_SERVER = 500
+  ERR_SERVER = 500,
 }
 
 @Injectable()
@@ -37,12 +37,12 @@ export class VolumeService {
    */
   public getVolumes(): Observable<Volume[]> {
     return this.http
-      .get(this.config.getAPIHostname() + "/docker/volumes", {
-        responseType: "json"
+      .get(this.config.getAPIHostname() + '/docker/volumes', {
+        responseType: 'json',
       })
       .pipe(
-        map(x => {
-          return <Volume[]>x["Volumes"];
+        map((x) => {
+          return <Volume[]>x['Volumes'];
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create(<VolumeError>err.status);
@@ -56,12 +56,12 @@ export class VolumeService {
    */
   public getWarnings(): Observable<JSON> {
     return this.http
-      .get(this.config.getAPIHostname() + "/docker/volumes", {
-        responseType: "json"
+      .get(this.config.getAPIHostname() + '/docker/volumes', {
+        responseType: 'json',
       })
       .pipe(
-        map(x => {
-          return x["Warnings"];
+        map((x) => {
+          return x['Warnings'];
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create(<VolumeError>err.status);
@@ -79,11 +79,11 @@ export class VolumeService {
    */
   public createVolume(inputs: JSON): Observable<Volume> {
     return this.http
-      .post(this.config.getAPIHostname() + "/docker/volumes/create", inputs, {
-        responseType: "json"
+      .post(this.config.getAPIHostname() + '/docker/volumes/create', inputs, {
+        responseType: 'json',
       })
       .pipe(
-        map(x => {
+        map((x) => {
           return <Volume>x;
         }),
         catchError((err: HttpErrorResponse) => {
@@ -99,11 +99,11 @@ export class VolumeService {
    */
   public inspectVolumes(id: string): Observable<Volume> {
     return this.http
-      .get(this.config.getAPIHostname() + "/docker/volumes/" + id, {
-        responseType: "json"
+      .get(this.config.getAPIHostname() + '/docker/volumes/' + id, {
+        responseType: 'json',
       })
       .pipe(
-        map(x => {
+        map((x) => {
           return <Volume>x;
         }),
         catchError((err: HttpErrorResponse) => {
@@ -120,15 +120,15 @@ export class VolumeService {
    * @returns {Observable<JSON>}
    */
   public deleteVolume(id: string, force: boolean): Observable<JSON> {
-    const params = new HttpParams().set("force", force.toString());
+    const params = new HttpParams().set('force', force.toString());
 
     return this.http
-      .delete(this.config.getAPIHostname() + "/docker/volumes/" + id, {
+      .delete(this.config.getAPIHostname() + '/docker/volumes/' + id, {
         params: params,
-        responseType: "json"
+        responseType: 'json',
       })
       .pipe(
-        map(x => {
+        map((x) => {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
@@ -143,11 +143,11 @@ export class VolumeService {
    */
   public pruneVolume(): Observable<JSON> {
     return this.http
-      .post(this.config.getAPIHostname() + "/docker/volumes/prune", {
-        responseType: "json"
+      .post(this.config.getAPIHostname() + '/docker/volumes/prune', {
+        responseType: 'json',
       })
       .pipe(
-        map(x => {
+        map((x) => {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {

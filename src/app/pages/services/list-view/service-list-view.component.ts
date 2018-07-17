@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { Service } from "../../../_models";
-import { Formatter } from "../../../_classes";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ServicesService, MockService } from "../../../_services";
+import { Component, OnInit } from '@angular/core';
+import { Service } from '../../../_models';
+import { Formatter } from '../../../_classes';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ServicesService, MockService } from '../../../_services';
 
 @Component({
-  selector: "app-service-list-view",
-  templateUrl: "./service-list-view.component.html",
-  styleUrls: ["./service-list-view.component.css"]
+  selector: 'app-service-list-view',
+  templateUrl: './service-list-view.component.html',
+  styleUrls: ['./service-list-view.component.css'],
 })
 export class ServiceListViewComponent implements OnInit {
   constructor(
@@ -23,7 +23,7 @@ export class ServiceListViewComponent implements OnInit {
   public isLoaded = false;
 
   ngOnInit() {
-    this.serviceService.getServices().subscribe(services => {
+    this.serviceService.getServices().subscribe((services) => {
       this.services = services;
       for (let i = 0; i < this.services.length; i++) {
         this.isCollapsed.push(false);
@@ -33,11 +33,11 @@ export class ServiceListViewComponent implements OnInit {
   }
 
   public removeService(id) {
-    this.serviceService.deleteService(id).subscribe(x => {
-      this.services.filter(service => service.ID !== id);
+    this.serviceService.deleteService(id).subscribe((x) => {
+      this.services.filter((service) => service.ID !== id);
     });
     // I (FJMentz) would rather test this with adult supervision
-    console.log("Removing container " + id);
+    console.log('Removing container ' + id);
   }
 
   public voidParentClick(event) {
@@ -51,7 +51,7 @@ export class ServiceListViewComponent implements OnInit {
   public loadModal(removeConfirm, id, event) {
     this.voidParentClick(event);
     this.removeId = id;
-    this.modalService.open(removeConfirm, { size: "sm" });
+    this.modalService.open(removeConfirm, { size: 'sm' });
   }
 
   public Collapse(i) {

@@ -2,26 +2,26 @@
  * Handles integration of the networking components present in docker.
  */
 
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpParams
-} from "@angular/common/http";
-import "rxjs/add/operator/map";
-import { catchError, map } from "rxjs/operators";
-import { ErrorObservable } from "rxjs/observable/ErrorObservable";
-import { Network } from "../../_models";
-import { ConfigurationService } from "../configuration/configuration.service";
-import { RequestOptions } from "@angular/http";
+  HttpParams,
+} from '@angular/common/http';
+import 'rxjs/add/operator/map';
+import { catchError, map } from 'rxjs/operators';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { Network } from '../../_models';
+import { ConfigurationService } from '../configuration/configuration.service';
+import { RequestOptions } from '@angular/http';
 
 enum NetworkError {
   ERR_OK = 200,
   ERR_SERVER = 500,
   ERR_NO_NETWORK = 404,
   ERR_NO_OP = 403,
-  ERR_STREAM = 101
+  ERR_STREAM = 101,
 }
 
 @Injectable()
@@ -33,11 +33,11 @@ export class NetworkService {
    */
   public getNetworks(): Observable<Network[]> {
     return this.http
-      .get(this.config.getAPIHostname() + "/docker/networks", {
-        responseType: "json"
+      .get(this.config.getAPIHostname() + '/docker/networks', {
+        responseType: 'json',
       })
       .pipe(
-        map(x => {
+        map((x) => {
           return <Network>x;
         }),
         catchError((err: HttpErrorResponse) => {
@@ -64,17 +64,17 @@ export class NetworkService {
   ): Observable<Network[]> {
     // TODO:(CDuPlooy) Encoding of json object in params is not correct.
     const params = new HttpParams().set(
-      "filters",
+      'filters',
       JSON.stringify({ id: id, name: name, label: label, mode: mode })
     );
 
     return this.http
-      .get(this.config.getAPIHostname() + "/docker/networks", {
+      .get(this.config.getAPIHostname() + '/docker/networks', {
         params: params,
-        responseType: "json"
+        responseType: 'json',
       })
       .pipe(
-        map(x => {
+        map((x) => {
           return <Network>x;
         }),
         catchError((err: HttpErrorResponse) => {
@@ -93,17 +93,17 @@ export class NetworkService {
   public inspectNetwork(id: string, verbose: boolean): Observable<Network> {
     // TODO:(CDuPlooy) Encoding of json object in params is not correct.
     const params = new HttpParams().set(
-      "filters",
-      JSON.stringify({ verbose: verbose, scope: "" })
+      'filters',
+      JSON.stringify({ verbose: verbose, scope: '' })
     );
 
     return this.http
-      .get(this.config.getAPIHostname() + "/docker/networks/" + id, {
+      .get(this.config.getAPIHostname() + '/docker/networks/' + id, {
         params: params,
-        responseType: "json"
+        responseType: 'json',
       })
       .pipe(
-        map(x => {
+        map((x) => {
           return <Network>x;
         }),
         catchError((err: HttpErrorResponse) => {
@@ -120,11 +120,11 @@ export class NetworkService {
    */
   public deleteNetwork(id: string): Observable<JSON> {
     return this.http
-      .delete(this.config.getAPIHostname() + "/docker/networks/" + id, {
-        responseType: "json"
+      .delete(this.config.getAPIHostname() + '/docker/networks/' + id, {
+        responseType: 'json',
       })
       .pipe(
-        map(x => {
+        map((x) => {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
@@ -150,14 +150,14 @@ export class NetworkService {
     return this.http
       .post(
         this.config.getAPIHostname() +
-          "/docker/networks/" +
+          '/docker/networks/' +
           network_id +
-          "/connect",
+          '/connect',
         { Container: container_id },
-        { responseType: "json" }
+        { responseType: 'json' }
       )
       .pipe(
-        map(x => {
+        map((x) => {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
@@ -185,14 +185,14 @@ export class NetworkService {
     return this.http
       .post(
         this.config.getAPIHostname() +
-          "/docker/networks/" +
+          '/docker/networks/' +
           network_id +
-          "/disconnect",
+          '/disconnect',
         { Container: container_id, Force: force },
-        { responseType: "json" }
+        { responseType: 'json' }
       )
       .pipe(
-        map(x => {
+        map((x) => {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
@@ -208,11 +208,11 @@ export class NetworkService {
    */
   public prune(): Observable<JSON> {
     return this.http
-      .post(this.config.getAPIHostname() + "/docker/networks/prune", {
-        responseType: "json"
+      .post(this.config.getAPIHostname() + '/docker/networks/prune', {
+        responseType: 'json',
       })
       .pipe(
-        map(x => {
+        map((x) => {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {

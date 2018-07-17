@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserBarComponent } from "./user-bar.component";
-import { AuthService } from "../../_services/auth/auth.service";
-import { HttpClient, HttpHandler } from "@angular/common/http";
-import { ConfigurationService } from "../../_services";
-import { TokenStorage } from "../../_classes";
-import { RouterTestingModule } from "@angular/router/testing";
+import { UserBarComponent } from './user-bar.component';
+import { AuthService } from '../../_services/auth/auth.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { ConfigurationService } from '../../_services';
+import { TokenStorage } from '../../_classes';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe("UserBarComponent", () => {
+describe('UserBarComponent', () => {
   let component: UserBarComponent;
   let fixture: ComponentFixture<UserBarComponent>;
 
@@ -20,9 +20,9 @@ describe("UserBarComponent", () => {
         HttpHandler,
         ConfigurationService,
         TokenStorage,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule],
     }).compileComponents();
   }));
 
@@ -32,7 +32,7 @@ describe("UserBarComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

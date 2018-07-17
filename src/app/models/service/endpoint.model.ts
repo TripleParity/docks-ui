@@ -1,4 +1,4 @@
-import { Port } from "./port.model";
+import { Port } from './port.model';
 
 /**
  * Endpoint interface for Services.

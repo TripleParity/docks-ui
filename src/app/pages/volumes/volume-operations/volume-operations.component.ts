@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { MockService, VolumeService } from "app/_services";
-import { Observable } from "rxjs/Observable";
-import { Volume } from "app/_models";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MockService, VolumeService } from 'app/_services';
+import { Observable } from 'rxjs/Observable';
+import { Volume } from 'app/_models';
 
 @Component({
-  selector: "app-volume-operations",
-  templateUrl: "./volume-operations.component.html",
-  styleUrls: ["./volume-operations.component.css"]
+  selector: 'app-volume-operations',
+  templateUrl: './volume-operations.component.html',
+  styleUrls: ['./volume-operations.component.css'],
 })
 export class VolumeOperationsComponent implements OnInit {
   public view: Volume;
@@ -25,9 +25,9 @@ export class VolumeOperationsComponent implements OnInit {
     // console.log("7359fb400f7fa159baa402a249882a7ccfdf0846f8efac30c4528208e554ac5b");
     this.service
       .inspectVolumes(
-        "7359fb400f7fa159baa402a249882a7ccfdf0846f8efac30c4528208e554ac5b"
+        '7359fb400f7fa159baa402a249882a7ccfdf0846f8efac30c4528208e554ac5b'
       )
-      .subscribe(x => {
+      .subscribe((x) => {
         console.log(x);
         alert(x.Name);
       });
@@ -35,10 +35,10 @@ export class VolumeOperationsComponent implements OnInit {
 
   public warnings() {
     this.service.getWarnings().subscribe(
-      x => {
+      (x) => {
         console.log(x);
       },
-      err => {
+      (err) => {
         console.log(err);
       }
     );
