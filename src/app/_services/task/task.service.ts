@@ -1,3 +1,6 @@
+/**
+ * Implementation of the Task service to integrate with docker.
+ */
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
@@ -19,6 +22,10 @@ export class TaskService {
     constructor(private http: HttpClient, private config: ConfigurationService) {
     }
 
+    /**
+     * Returns a list of tasks.
+     * @returns {Observable<Task[]>}
+     */
     public getTasks(): Observable<Task[]> {
         return this.http.get(this.config.getAPIHostname() + '/docker/tasks', {responseType: 'json'})
             .pipe(
@@ -34,6 +41,11 @@ export class TaskService {
             );
     }
 
+    /**
+     * Returns a log associated with the particular task.
+     * @param {string} id
+     * @returns {Observable<string>}
+     */
     public getLog(id: string): Observable<string> {
         return this.http.get(this.config.getAPIHostname() + '/docker/tasks/' + id + '/logs', {responseType: 'text'})
             .pipe(
@@ -45,6 +57,12 @@ export class TaskService {
             );
     }
 
+    /**
+     * Inspects a particular task.
+     *
+     * @param {string} id
+     * @returns {Observable<JSON>}
+     */
     public inspect(id: string): Observable<JSON> {
         return this.http.get<JSON>(this.config.getAPIHostname() + '/docker/tasks/' + id, {responseType: 'json'})
             .pipe(map(x => {

@@ -17,4 +17,10 @@ describe('AuthService', () => {
   it('should be created', inject([AuthService], (service: AuthService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should have all functions', inject([AuthService], (service: AuthService) => {
+    expect(service.getToken).toBeTruthy();
+    expect(service.isLoggedIn).toBeTruthy();
+    expect(service.logout).toBeTruthy();
+  }));
 });

@@ -1,3 +1,6 @@
+/**
+ * Volume service implementation.
+ */
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
@@ -25,7 +28,12 @@ export class VolumeService {
         constructor(private http: HttpClient, private config: ConfigurationService) {
         }
 
-        public getVolumes(): Observable<Volume[]> {
+    /**
+     * Returns a list of volumes.
+     *
+     * @returns {Observable<Volume[]>}
+     */
+    public getVolumes(): Observable<Volume[]> {
            return this.http.get(this.config.getAPIHostname() + '/docker/volumes', {responseType: 'json'})
                 .pipe(map(x => {
                     return <Volume[]>x['Volumes'];
@@ -35,7 +43,11 @@ export class VolumeService {
            );
         }
 
-        public getWarnings(): Observable<JSON> {
+    /**
+     * Returns warnings.
+     * @returns {Observable<JSON>}
+     */
+    public getWarnings(): Observable<JSON> {
             return this.http.get(this.config.getAPIHostname() + '/docker/volumes', {responseType: 'json'})
                 .pipe(map(x => {
                     return x['Warnings'];
@@ -46,8 +58,14 @@ export class VolumeService {
         }
 
         // TODO: (A Helberg) Implement the filter function
-
-        public createVolume(inputs: JSON): Observable<Volume> {
+    /**
+     * Creates a volume based on JSON input.
+     * See the docker documentation for more information.
+     *
+     * @param {JSON} inputs
+     * @returns {Observable<Volume>}
+     */
+    public createVolume(inputs: JSON): Observable<Volume> {
             return this.http.post(this.config.getAPIHostname() + '/docker/volumes/create',
             inputs, {responseType: 'json'})
                 .pipe(map(x => {
@@ -58,7 +76,12 @@ export class VolumeService {
             );
         }
 
-        public inspectVolumes(id: string): Observable<Volume> {
+    /**
+     * Returns detailed information about the target volume.
+     * @param {string} id
+     * @returns {Observable<Volume>}
+     */
+    public inspectVolumes(id: string): Observable<Volume> {
             return this.http.get(this.config.getAPIHostname() + '/docker/volumes/' + id, {responseType: 'json'})
                 .pipe(map(x => {
                     return <Volume>x;
@@ -68,7 +91,14 @@ export class VolumeService {
             );
         }
 
-        public deleteVolume(id: string, force: boolean): Observable<JSON> {
+    /**
+     * Deletes the target volume.
+     *
+     * @param {string} id
+     * @param {boolean} force
+     * @returns {Observable<JSON>}
+     */
+    public deleteVolume(id: string, force: boolean): Observable<JSON> {
             const params = new HttpParams().set('force', force.toString());
 
             return this.http.delete(this.config.getAPIHostname() + '/docker/volumes/' + id, {params: params, responseType: 'json'})
@@ -80,7 +110,11 @@ export class VolumeService {
             );
         }
 
-        public pruneVolume(): Observable<JSON> {
+    /**
+     * Prunes unused volumes.
+     * @returns {Observable<JSON>}
+     */
+    public pruneVolume(): Observable<JSON> {
             return this.http.post(this.config.getAPIHostname() + '/docker/volumes/prune', {responseType: 'json'})
                 .pipe(map(x => {
                     return x;

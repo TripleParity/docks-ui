@@ -17,4 +17,7 @@ describe('ContainerService', () => {
     it('should be created', inject([ContainerService], (service: ContainerService) => {
         expect(service).toBeTruthy();
     }));
+    it('should have all functions', inject([ContainerService], (service: ContainerService) => {
+        expect(service.getContainer).toBeTruthy();
+    }));
 });

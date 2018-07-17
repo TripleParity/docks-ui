@@ -1,3 +1,6 @@
+/**
+ * Implementation of the stack service.
+ */
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpParams} from '@angular/common/http';

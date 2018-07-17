@@ -20,4 +20,14 @@ describe('ServicesService', () => {
       expect(service).toBeTruthy();
     }
   ));
+
+    it('should have all functions', inject([ServicesService], (service: ServicesService) => {
+        expect(service.createService).toBeTruthy();
+        expect(service.deleteService).toBeTruthy();
+        expect(service.getServiceLog).toBeTruthy();
+        expect(service.getServices).toBeTruthy();
+        expect(service.inspectService).toBeTruthy();
+        expect(service.scaleService).toBeTruthy();
+        expect(service.updateService).toBeTruthy();
+    }));
 });
