@@ -7,7 +7,8 @@
     "check": "ng lint;ng build --prod; ng test",
     "serve": "ng serve --aot",
     "fix": "ng lint --fix",
-    "build": "ng build --prod --no-progress"
+    "build": "ng build --prod --no-progress",
+    "prettier": "prettier --write \"src/app/**/*.ts\""
   },
   "private": true,
   "dependencies": {
@@ -33,7 +34,7 @@
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular/cli": "^1.7.4",
+    "@angular/cli": "^1.7.2",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.8.3",
@@ -42,15 +43,16 @@
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
+    "jsdoc": "^3.5.5",
     "karma": "~2.0.0",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "prettier": "1.13.7",
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
-    "jsdoc": "^3.5.5",
     "typescript": "~2.5.3"
   }
 }

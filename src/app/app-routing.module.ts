@@ -1,21 +1,71 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PageNotFoundComponent } from './_shared/pagenotfound/pagenotfound.component';
-import { LoginComponent } from '_shared/login/login.component';
-import { AuthGuard } from './_guards/auth.guard';
-import { RefreshComponent } from 'app/refresh/refresh.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
+// TODO(egeldenhuys): Remove containers module. Not a swarm component
+// TODO(egeldenhuys): Fix: pagenotfound is sometimes displayed with navbar and userbar hidden
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'refresh', component: RefreshComponent },
+  {
+    path: 'login',
+    loadChildren: 'app/pages/login/login.module#LoginModule',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'refresh',
+    loadChildren: 'app/pages/refresh/refresh.module#RefreshModule',
+  },
+  {
+    path: 'home',
+    loadChildren: 'app/pages/home/home.module#HomeModule',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'networks',
+    loadChildren: 'app/pages/networks/network.module#NetworkModule',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'tasks',
+    loadChildren: 'app/pages/tasks/tasks.module#TasksModule',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'services',
+    loadChildren: 'app/pages/services/services.module#ServicesModule',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'volumes',
+    loadChildren: 'app/pages/volumes/volumes.module#VolumesModule',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'containers',
+    loadChildren: 'app/pages/containers/containers.module#ContainersModule',
+  },
+  {
+    path: 'users',
+    loadChildren:
+      'app/pages/user-management/user-management.module#UserManagementModule',
+    canActivate: [AuthGuard],
+  },
   {
     path: '',
-    redirectTo: '',
+    loadChildren: 'app/pages/home/home.module#HomeModule',
     pathMatch: 'full',
+    canActivate: [AuthGuard],
   },
-  { path: '**', component: PageNotFoundComponent },
+  {
+    path: 'pagenotfound',
+    loadChildren:
+      'app/pages/pagenotfound/pagenotfound.module#PagenotfoundModule',
+  },
+  {
+    path: '**',
+    redirectTo: 'pagenotfound',
+  },
 ];
 
 @NgModule({

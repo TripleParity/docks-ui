@@ -14,8 +14,8 @@
     "paths": {
       "_classes/*": ["app/_classes/*"],
       "_guards/*": ["app/_guards/*"],
-      "_shared/*": ["app/_shared/*"],
-      "_services/*": ["app/_services/*"],
+      "pages/*": ["app/pages/*"],
+      "services/*": ["app/services/*"],
       "app/*": ["app/*"],
     }
   }
