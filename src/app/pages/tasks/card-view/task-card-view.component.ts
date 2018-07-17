@@ -17,6 +17,7 @@ export class TaskCardViewComponent implements OnInit {
     private modalService: NgbModal
   ) {}
 
+  public isLoaded = false;
   public tasks: Task[] = [];
   public modalObject: Task;
   public modalObjectLog: string;
@@ -26,6 +27,7 @@ export class TaskCardViewComponent implements OnInit {
       for (let i = 0; i < task.length; i++) {
         this.tasks.push(task[i]);
       }
+      this.isLoaded = true;
     });
   }
 

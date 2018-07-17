@@ -13,6 +13,7 @@ export class ServicesOperationsComponent implements OnInit {
   public spec: ServiceSpec = null;
   public serviceLog: String;
   public allDataFetched = false;
+  public currentJustify = 'justified';
   constructor(
     private route: ActivatedRoute,
     private serviceService: ServicesService,

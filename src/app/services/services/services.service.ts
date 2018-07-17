@@ -1,3 +1,7 @@
+/**
+ * Handles integration of services with docks-api.
+ */
+
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
@@ -28,6 +32,11 @@ export enum ServiceError {
 export class ServicesService {
   constructor(private config: ConfigurationService, private http: HttpClient) {}
 
+  /**
+   * Returns a list of services
+   *
+   * @returns {Observable<Service[]>}
+   */
   public getServices(): Observable<Service[]> {
     return this.http
       .get(this.config.getAPIHostname() + '/docker/services', {
@@ -43,6 +52,12 @@ export class ServicesService {
       );
   }
 
+  /**
+   * Returns more detailed information about a particular service.
+   *
+   * @param {string} id
+   * @returns {Observable<ServiceSpec>}
+   */
   public inspectService(id: string): Observable<ServiceSpec> {
     return this.http
       .get<JSON>(this.config.getAPIHostname() + '/docker/services/' + id, {
@@ -58,6 +73,12 @@ export class ServicesService {
       );
   }
 
+  /**
+   * Deletes a target service.
+   *
+   * @param {string} id
+   * @returns {Observable<JSON>}
+   */
   public deleteService(id: string): Observable<JSON> {
     return this.http
       .delete<JSON>(this.config.getAPIHostname() + '/docker/services/' + id, {
@@ -73,6 +94,12 @@ export class ServicesService {
       );
   }
 
+  /**
+   * Returns the log associated with the target service.
+   *
+   * @param {string} id
+   * @returns {Observable<string>}
+   */
   public getServiceLog(id: string): Observable<string> {
     const params: HttpParams = new HttpParams().set('stdout', 'true');
     // tslint:disable-next-line
@@ -91,6 +118,13 @@ export class ServicesService {
       );
   }
 
+  /**
+   * Makes changes to the target service based on the input service specification.
+   *
+   * @param {string} id
+   * @param {ServiceSpec} params
+   * @returns {Observable<string>}
+   */
   public updateService(id: string, params: ServiceSpec): Observable<string> {
     return this.http
       .post(
@@ -108,6 +142,14 @@ export class ServicesService {
       );
   }
 
+  /**
+   * Helper function utilising updateService(); Meant to show how a particular
+   * field could be changed from the frontend. Perhaps we should verify that this is working.
+   *
+   * @param {string} id
+   * @param {number} replicas
+   * @returns {Observable<string>}
+   */
   public scaleService(id: string, replicas: number): Observable<string> {
     return this.inspectService(id).pipe(
       map((spec: ServiceSpec) => {
@@ -120,6 +162,12 @@ export class ServicesService {
     );
   }
 
+  /**
+   * Creates a service based on the input service specification.
+   *
+   * @param {ServiceSpec} params
+   * @returns {Observable<JSON>}
+   */
   public createService(params: ServiceSpec): Observable<JSON> {
     return this.http
       .post(

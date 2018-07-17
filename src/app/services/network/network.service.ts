@@ -1,3 +1,7 @@
+/**
+ * Handles integration of the networking components present in docker.
+ */
+
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {
@@ -8,8 +12,10 @@ import {
 import 'rxjs/add/operator/map';
 import { catchError, map } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { Network } from '../../models/network/network.model';
+
 import { ConfigurationService } from '../configuration/configuration.service';
+import { Network } from 'app/models/network/network.model';
+
 
 enum NetworkError {
   ERR_OK = 200,
@@ -23,6 +29,9 @@ enum NetworkError {
 export class NetworkService {
   constructor(private http: HttpClient, private config: ConfigurationService) {}
 
+  /**
+   * @returns {Observable<Network[]>}
+   */
   public getNetworks(): Observable<Network[]> {
     return this.http
       .get(this.config.getAPIHostname() + '/docker/networks', {
@@ -38,6 +47,16 @@ export class NetworkService {
       );
   }
 
+  /**
+   * Returns networks matching the parameters, these values can be omitted should
+   * you not want to filter according to them.
+   *
+   * @param {string} id
+   * @param {string} name
+   * @param {string} label
+   * @param {string} mode
+   * @returns {Observable<Network[]>}
+   */
   public getNetworksFiltered(
     id: string,
     name: string,
@@ -65,6 +84,13 @@ export class NetworkService {
       );
   }
 
+  /**
+   * Inspects the target network giving either verbose/non-verbose output.
+   *
+   * @param {string} id
+   * @param {boolean} verbose
+   * @returns {Observable<Network>}
+   */
   public inspectNetwork(id: string, verbose: boolean): Observable<Network> {
     // TODO:(CDuPlooy) Encoding of json object in params is not correct.
     const params = new HttpParams().set(
@@ -87,6 +113,12 @@ export class NetworkService {
       );
   }
 
+  /**
+   * Deletes the target network.
+   *
+   * @param {string} id
+   * @returns {Observable<JSON>}
+   */
   public deleteNetwork(id: string): Observable<JSON> {
     return this.http
       .delete(this.config.getAPIHostname() + '/docker/networks/' + id, {
@@ -103,7 +135,13 @@ export class NetworkService {
   }
 
   // TODO:(CDuPlooy): Create a network query parameters not working. ( Encoding of json object )
-
+  /**
+   * Connects the target container to the target network.
+   *
+   * @param {string} network_id
+   * @param {string} container_id
+   * @returns {Observable<JSON>}
+   */
   public connectContainer(
     network_id: string,
     container_id: string
@@ -129,6 +167,15 @@ export class NetworkService {
       );
   }
 
+  /**
+   * Disconnects the target container from the target network; If disconnection is forced
+   * the connection is not closed gracefully.
+   *
+   * @param {string} network_id
+   * @param {string} container_id
+   * @param {boolean} force
+   * @returns {Observable<JSON>}
+   */
   public disconnectContainer(
     network_id: string,
     container_id: string,
@@ -155,6 +202,11 @@ export class NetworkService {
       );
   }
 
+  /**
+   * Cleans up unused networks.
+   *
+   * @returns {Observable<JSON>}
+   */
   public prune(): Observable<JSON> {
     return this.http
       .post(this.config.getAPIHostname() + '/docker/networks/prune', {

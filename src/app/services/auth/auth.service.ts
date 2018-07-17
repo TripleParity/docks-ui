@@ -1,3 +1,7 @@
+/**
+ * Handles authentication with the backend; In particular docks-api
+ *
+ */
 import { Injectable } from '@angular/core';
 import { ConfigurationService } from '../../services/configuration/configuration.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -31,6 +35,13 @@ export class AuthService {
     return this.loggedIn.asObservable();
   }
 
+  /**
+   * Used to get a token from docks-api
+   *
+   * @param {string} username
+   * @param {string} password
+   * @returns {Observable<AuthError>}
+   */
   public getToken(username: string, password: string): Observable<AuthError> {
     return this.http
       .post(
@@ -65,6 +76,11 @@ export class AuthService {
       );
   }
 
+  /**
+   * Determines whether the token is valid or not.
+   *
+   * @returns {boolean}
+   */
   public isLoggedIn(): boolean {
     const jwtRaw = this.token.getToken(jwtKey);
 

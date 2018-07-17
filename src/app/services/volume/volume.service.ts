@@ -1,3 +1,6 @@
+/**
+ * Volume service implementation.
+ */
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {
@@ -25,6 +28,11 @@ enum VolumeError {
 export class VolumeService {
   constructor(private http: HttpClient, private config: ConfigurationService) {}
 
+  /**
+   * Returns a list of volumes.
+   *
+   * @returns {Observable<Volume[]>}
+   */
   public getVolumes(): Observable<Volume[]> {
     return this.http
       .get(this.config.getAPIHostname() + '/docker/volumes', {
@@ -40,6 +48,10 @@ export class VolumeService {
       );
   }
 
+  /**
+   * Returns warnings.
+   * @returns {Observable<JSON>}
+   */
   public getWarnings(): Observable<JSON> {
     return this.http
       .get(this.config.getAPIHostname() + '/docker/volumes', {
@@ -56,7 +68,13 @@ export class VolumeService {
   }
 
   // TODO: (A Helberg) Implement the filter function
-
+  /**
+   * Creates a volume based on JSON input.
+   * See the docker documentation for more information.
+   *
+   * @param {JSON} inputs
+   * @returns {Observable<Volume>}
+   */
   public createVolume(inputs: JSON): Observable<Volume> {
     return this.http
       .post(this.config.getAPIHostname() + '/docker/volumes/create', inputs, {
@@ -72,6 +90,11 @@ export class VolumeService {
       );
   }
 
+  /**
+   * Returns detailed information about the target volume.
+   * @param {string} id
+   * @returns {Observable<Volume>}
+   */
   public inspectVolumes(id: string): Observable<Volume> {
     return this.http
       .get(this.config.getAPIHostname() + '/docker/volumes/' + id, {
@@ -87,6 +110,13 @@ export class VolumeService {
       );
   }
 
+  /**
+   * Deletes the target volume.
+   *
+   * @param {string} id
+   * @param {boolean} force
+   * @returns {Observable<JSON>}
+   */
   public deleteVolume(id: string, force: boolean): Observable<JSON> {
     const params = new HttpParams().set('force', force.toString());
 
@@ -105,6 +135,10 @@ export class VolumeService {
       );
   }
 
+  /**
+   * Prunes unused volumes.
+   * @returns {Observable<JSON>}
+   */
   public pruneVolume(): Observable<JSON> {
     return this.http
       .post(this.config.getAPIHostname() + '/docker/volumes/prune', {

@@ -1,9 +1,18 @@
+/**
+ * Stub service used when something is wrong
+ * with docks-api during testing; Can perhaps be
+ * used for unit tests.
+ */
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 import 'rxjs/add/operator/map';
-
-import { Service } from '../../models/service/service.model';
-import { Task } from '../../models/task/task.model';
+import { Task } from 'app/models/task/task.model';
+import { Service } from 'app/models/service/service.model';
 
 /*
     This service will be used for testing, for instance
@@ -19,6 +28,14 @@ import { Task } from '../../models/task/task.model';
 export class MockService {
   public myTasks: Task[] = [];
 
+  /**
+   * Returns a log associated with some object.
+   * Probably one blessed by the Inquisition.
+   *
+   * The Emperor protects.
+   * @param {string} id
+   * @returns {Observable<string>}
+   */
   public getLog(id: string): Observable<string> {
     return Observable.create((obvs) => {
       obvs.next(
@@ -29,7 +46,13 @@ export class MockService {
     });
   }
 
-  public inspectService(id: string) {
+  /**
+   * Returns a dummy service inspection.
+   *
+   * @param {string} id
+   * @returns {Observable<JSON>}
+   */
+  public inspectService(id: string): Observable<JSON> {
     /* tslint:disable */
     const temp = JSON.parse(
       '{ "Name": "hopeful_cori", "TaskTemplate": {}, "Mode": { "Replicated": { "Replicas": 1 } }, "UpdateConfig": {}, "RollbackConfig": {}, "EndpointSpec": { "Mode": "dnsrr", "Ports": [] } }'
@@ -40,13 +63,24 @@ export class MockService {
     });
   }
 
-  public getServiceLog(id: string) {
+  /**
+   * Returns a dummy service log.
+   *
+   * @param {string} id
+   * @returns {Observable<JSON>}
+   */
+  public getServiceLog(id: string): Observable<JSON> {
     const temp = 'This is the log';
     return Observable.create((obvs) => {
       obvs.next(temp);
     });
   }
 
+  /**
+   * Returns a dummy task.
+   *
+   * @returns {Observable<Task[]>}
+   */
   public getTasks(): Observable<Task[]> {
     this.myTasks.push(
       JSON.parse(

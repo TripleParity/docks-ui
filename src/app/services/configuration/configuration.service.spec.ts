@@ -27,4 +27,12 @@ describe('ConfigurationService', () => {
       expect(service).toBeTruthy();
     }
   ));
+
+  it('should have all functions', inject(
+    [ConfigurationService],
+    (service: ConfigurationService) => {
+      expect(service.getAPIHostname).toBeTruthy();
+      expect(service.fetchAPIHostname).toBeTruthy();
+    }
+  ));
 });

@@ -21,11 +21,13 @@ export class ServicesCardViewComponent implements OnInit {
   public services: Service[] = [];
   public modalObject: Service;
   public modalObjectTasks: Task[];
+  public isLoaded = false;
 
   ngOnInit() {
     this.mockService.getServices().subscribe((service) => {
       for (let i = 0; i < service.length; i++) {
         this.services.push(service[i]);
+        this.isLoaded = true;
       }
     });
     this.modalObjectTasks = [];
