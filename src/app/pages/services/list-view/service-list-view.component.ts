@@ -4,6 +4,7 @@ import { Formatter } from '../../../classes/formatter/formatter';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServicesService } from '../../../services/services/services.service';
 import { MockService } from '../../../services/mock/mock.service';
+// import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-service-list-view',
@@ -23,14 +24,40 @@ export class ServiceListViewComponent implements OnInit {
   public previous = 0;
   public isLoaded = false;
 
+  public temp = [];
+    public rows: any[] = [];
+    public columns: any = [
+        {prop: 'Name'},
+        {prop: 'ID'},
+        {prop: 'stack'},
+        {prop: 'Image'},
+        {prop: 'Mode'},
+        {prop: 'Replicas'},
+        {prop: 'Ports'},
+        {prop: 'CreatedAt'},
+        {prop: 'UpdatedAt'},
+        {prop: 'Ownership'}
+    ];
+
   ngOnInit() {
     this.serviceService.getServices().subscribe((services) => {
       this.services = services;
+      console.log(services);
+      this.rows = this.services;
+      this.temp = [...this.rows];
       for (let i = 0; i < this.services.length; i++) {
         this.isCollapsed.push(false);
       }
       this.isLoaded = true;
     });
+
+  }
+
+  parseInput(services: Service) {
+    this.rows['Name'] = services.Spec.Name;
+    this.rows['ID'] = services.ID;
+    this.rows['Stack'] = 'Needed';
+    this.rows['Image'] = services.Spec.TaskTemplate.ContainerSpec.Image;
   }
 
   public removeService(id) {
@@ -63,5 +90,12 @@ export class ServiceListViewComponent implements OnInit {
     } else {
       this.isCollapsed[i] = !this.isCollapsed[i];
     }
+  }
+
+  updateFilter(event) {
+  }
+
+  alertme() {
+    console.log('works!');
   }
 }

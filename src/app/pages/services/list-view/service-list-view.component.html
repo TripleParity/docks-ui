@@ -1,6 +1,6 @@
 <app-spinner [hidden]="isLoaded"></app-spinner>
 
-<div id="serviceList">
+<!-- <div id="serviceList">
     <div *ngFor="let service of services; let i = index">
         <div class="card ServiceListCard">
             <div class="card-header" [attr.id]="'heading-'+ i" (click)="Collapse(i)" [attr.aria-controls]="'collapse-' + i" [attr.aria-expanded]="!isCollapsed">
@@ -71,4 +71,34 @@
             <button type="button" class="btn btn-outline-success" (click)="c('Close click')">Cancel</button>
         </div>
     </div>
-</ng-template>
+</ng-template> -->
+
+<!--TODO: inline edit scale + call function -->
+<!--TODO: inline rm button -->
+<!--TODO: docker ls should be columns -->
+<!--TODO: create a page that shows logs, inspect, ps and update -->
+<div>
+    <h3>
+      Services
+    </h3>
+    <div id="test" class="fixed-right">
+        <button type="button" class="btn btn-primary" onclick="alerme()">Create service</button>
+    </div>
+    <br>
+    <div class="fixed-right">
+        <input type='text' placeholder='Filter username...' (keyup)='updateFilter($event)' />
+
+      </div>
+    <ngx-datatable
+      #table
+      class="bootstrap ngx-datatable"
+      [headerHeight]="50"
+      [limit]="5"
+      [columnMode]="'force'"
+      [footerHeight]="50"
+      [rowHeight]="'auto'"
+      [trackByProp]="'updated'"
+      [rows]="rows"
+      [columns]="columns">
+    </ngx-datatable>    
+</div>
