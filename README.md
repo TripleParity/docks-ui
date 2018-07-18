@@ -12,7 +12,7 @@ To deploy the latest version of Docks UI:
 $ docker stack deploy -c docker-compose.yml docks-ui
 ```
 
-The version tp be deployed can be changed in the `docker-compose.yml` file.
+The version to be deployed can be changed in the `docker-compose.yml` file.
 
 ## Configure Docks API Address
 ### Deploying with Docker
