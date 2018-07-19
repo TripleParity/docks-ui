@@ -121,21 +121,29 @@ export class StackService {
    * Updates an existing stack.
    *
    * Note that the _64params field is a base64 encoded file.
-   * @returns {Observable<StackError>}
+   * @returns {Observable<StackResult>}
    */
-  public updateStack(name: string, _64params: string): Observable<StackError> {
+  public updateStack(name: string, _64params: string): Observable<StackResult> {
     return this.http
       .put(
         this.config.getAPIHostname() + '/stacks/' + name,
         { stackFile: _64params },
-        { responseType: 'json' }
+        { responseType: 'text' }
       )
       .pipe(
         map((x) => {
-          return x;
+          return {
+            code: StackError.ERR_OK,
+            message: x
+          };
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<StackError>err.status);
+          return ErrorObservable.create(
+            {
+              code: <StackError>err.status,
+              message: err.message
+            }
+          );
         })
       );
   }
