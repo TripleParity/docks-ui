@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { ConfigurationService } from '../configuration/configuration.service';
 import { TokenStorage } from '../../classes/tokenstorage/tokenstorage';
-import {AuthError} from 'services/auth/auth.service';
+import { AuthError } from 'services/auth/auth.service';
 
 describe('AuthService', () => {
   beforeEach(() => {
@@ -28,17 +28,23 @@ describe('AuthService', () => {
     }
   ));
 
-    it('should login', inject([AuthService], (service: AuthService) => {
-        service.getToken('admin', 'admin').subscribe(() => {
-            expect(service.isLoggedIn()).toEqual(true);
-        });
-    }));
+  it('should login', inject([AuthService], (service: AuthService) => {
+    service.getToken('admin', 'admin').subscribe(() => {
+      expect(service.isLoggedIn()).toEqual(true);
+    });
+  }));
 
-    it('should fail on invalid login', inject([AuthService], (service: AuthService) => {
-        service.getToken('admin2', 'admin').subscribe(() => {
-            // NOP
-        }, (err) => {
-            expect(err).toEqual(AuthError.AUTH_ERR_CREDENTIALS);
-        });
-    }));
+  it('should fail on invalid login', inject(
+    [AuthService],
+    (service: AuthService) => {
+      service.getToken('admin2', 'admin').subscribe(
+        () => {
+          // NOP
+        },
+        (err) => {
+          expect(err).toEqual(AuthError.AUTH_ERR_CREDENTIALS);
+        }
+      );
+    }
+  ));
 });

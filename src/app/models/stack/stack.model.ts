@@ -5,6 +5,6 @@
  */
 
 export interface Stack {
-    name: string;
-    serviceCount: number;
+  name: string;
+  serviceCount: number;
 }
