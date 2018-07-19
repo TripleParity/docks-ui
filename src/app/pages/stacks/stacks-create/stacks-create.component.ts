@@ -45,9 +45,6 @@ export class StacksCreateComponent implements OnInit {
 
     console.log('the stack file' + this.stackModel.stackFile);
 
-    
-
-
     // this.stackService
     //   .createUser(this.model.username, this.model.password)
     //   .subscribe(

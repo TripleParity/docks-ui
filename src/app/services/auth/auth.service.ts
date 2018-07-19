@@ -62,7 +62,7 @@ export class AuthService {
           return AuthError.AUTH_OK;
         }),
         catchError((err: HttpErrorResponse) => {
-            if (err.status === 0) {
+          if (err.status === 0) {
             return ErrorObservable.create(AuthError.AUTH_ERR_SERVER);
           } else if (err.status === 401) {
             return ErrorObservable.create(AuthError.AUTH_ERR_CREDENTIALS);
