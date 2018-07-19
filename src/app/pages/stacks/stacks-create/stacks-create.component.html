@@ -29,7 +29,7 @@
       <div class="form-group">
         <div class="row">
           <div class="col-auto">
-            <textarea rows="15" cols="50" placeholder="View the docker file here.." required #stackContents (change)="setFile($event)">{{fileText}}</textarea>
+            <textarea rows="15" cols="50" placeholder="View the docker file here.." required name = "stackFile" [(ngModel)] = "stackModel.stackFile">{{fileText}}</textarea>
           </div>
           <div class="col-auto">
             <label for="file">

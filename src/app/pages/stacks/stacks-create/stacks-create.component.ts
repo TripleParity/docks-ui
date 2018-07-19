@@ -14,9 +14,8 @@ export class StacksCreateComponent implements OnInit {
   public genericError = false;
   public submitted = false;
   public warning = false;
-  public fileText;
+  public fileText = '';
   public badUser = '';
-  public hasPlacedText = false;
 
   constructor(private router: Router, private stackService: StackService) {
     this.stackModel = {
@@ -36,12 +35,6 @@ export class StacksCreateComponent implements OnInit {
       me.fileText = reader.result;
       me.stackModel.stackFile = me.fileText;
     };
-    this.hasPlacedText = true;
-  }
-
-  setFile(event) {
-
-    this.hasPlacedText = true;
   }
 
   clearAlerts() {
