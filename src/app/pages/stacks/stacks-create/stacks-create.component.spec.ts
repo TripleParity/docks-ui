@@ -15,7 +15,7 @@ describe('StacksCreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StacksCreateComponent ],
+      declarations: [StacksCreateComponent],
       imports: [FormsModule, NgbModule, RouterTestingModule],
       providers: [
         StackService,
@@ -23,10 +23,9 @@ describe('StacksCreateComponent', () => {
         HttpHandler,
         ConfigurationService,
         TokenStorage,
-        NgbAlertConfig
+        NgbAlertConfig,
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -5,7 +5,6 @@ import { StacksViewComponent } from 'app/pages/stacks/stacks-view/stacks-view.co
 import { StacksCreateComponent } from 'app/pages/stacks/stacks-create/stacks-create.component';
 import { StackEditComponent } from 'pages/stacks/stack-edit/stack-edit.component';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -19,13 +18,12 @@ const routes: Routes = [
   },
   {
     path: ':stackName/edit',
-    component: StackEditComponent
-  }
+    component: StackEditComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-
 export class StacksRoutingModule {}

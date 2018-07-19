@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Stack } from 'app/models/stack/stack.model';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { StackService, StackError, StackResult} from 'services/stack/stack.service';
+import {
+  StackService,
+  StackError,
+  StackResult,
+} from 'services/stack/stack.service';
 
 @Component({
   selector: 'app-stack-edit',
@@ -18,10 +22,11 @@ export class StackEditComponent implements OnInit {
   public badUser = '';
   public warningMessage = 'Something went wrong...';
 
-
-  constructor(private router: Router, private stackService: StackService, private route: ActivatedRoute ) {
-
-  }
+  constructor(
+    private router: Router,
+    private stackService: StackService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {

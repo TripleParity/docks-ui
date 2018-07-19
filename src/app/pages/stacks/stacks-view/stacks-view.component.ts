@@ -4,14 +4,12 @@ import { StackService, StackError } from 'services/stack/stack.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
-
 @Component({
   selector: 'app-stacks-view',
   templateUrl: './stacks-view.component.html',
   styleUrls: ['./stacks-view.component.css'],
 })
 export class StacksViewComponent implements OnInit {
-
   public stacks: Stack[];
   public searchString = [];
   public createdStack = '';
@@ -22,18 +20,20 @@ export class StacksViewComponent implements OnInit {
   public activeModal: NgbModalRef;
   public genericError: Boolean;
 
-  constructor(private stackService: StackService,
+  constructor(
+    private stackService: StackService,
     private route: ActivatedRoute,
-    private modalService: NgbModal) {
-      this.route.paramMap.subscribe((params: ParamMap) => {
-        if (params.has('createdStack')) {
-          this.createdStack = params.get('createdStack');
-        }
-        if (params.has('updatedStack')) {
-          this.updatedStack = params.get('updatedStack');
-        }
-      });
-    }
+    private modalService: NgbModal
+  ) {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      if (params.has('createdStack')) {
+        this.createdStack = params.get('createdStack');
+      }
+      if (params.has('updatedStack')) {
+        this.updatedStack = params.get('updatedStack');
+      }
+    });
+  }
 
   ngOnInit() {
     this.genericError = false;
@@ -82,7 +82,6 @@ export class StacksViewComponent implements OnInit {
 
     // update the rows
     this.stacks = temp;
-
   }
 
   removeStack() {

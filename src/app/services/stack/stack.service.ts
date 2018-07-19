@@ -69,7 +69,7 @@ export class StackService {
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
             code: <StackError>err.status,
-            message: err.error
+            message: err.error,
           });
         })
       );
@@ -134,16 +134,14 @@ export class StackService {
         map((x) => {
           return {
             code: StackError.ERR_OK,
-            message: x
+            message: x,
           };
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(
-            {
-              code: <StackError>err.status,
-              message: err.error
-            }
-          );
+          return ErrorObservable.create({
+            code: <StackError>err.status,
+            message: err.error,
+          });
         })
       );
   }

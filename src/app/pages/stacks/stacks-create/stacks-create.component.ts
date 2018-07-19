@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Stack } from 'app/models/stack/stack.model';
 import { Router } from '@angular/router';
-import { StackService, StackError, StackResult} from 'services/stack/stack.service';
+import {
+  StackService,
+  StackError,
+  StackResult,
+} from 'services/stack/stack.service';
 
 @Component({
   selector: 'app-stacks-create',

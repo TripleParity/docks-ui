@@ -20,7 +20,11 @@ import { StackEditComponent } from 'pages/stacks/stack-edit/stack-edit.component
     NgbModule,
     ReactiveFormsModule,
   ],
-  declarations: [StacksViewComponent, StacksCreateComponent, StackEditComponent],
+  declarations: [
+    StacksViewComponent,
+    StacksCreateComponent,
+    StackEditComponent,
+  ],
   providers: [StackService],
 })
-export class StacksModule { }
+export class StacksModule {}

@@ -21,7 +21,6 @@ import { NavbarComponent } from 'app/shared/navbar/navbar.component';
 import { ConfigurationService } from 'app/services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 
-
 @NgModule({
   declarations: [AppComponent, UserBarComponent, NavbarComponent],
   imports: [
