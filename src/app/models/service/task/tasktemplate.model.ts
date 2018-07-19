@@ -15,6 +15,15 @@ export interface TaskTemplate {
     Condition: string;
     MaxAttempts: number;
   };
-  Placement: JSON;
-  ForceUpdate: number;
+  Placement?: {
+    Constraints?: string[];
+    Preferences?: {
+      Spread?: {
+        SpreadDescriptor?: string;
+        [k: string]: any;
+      };
+      [k: string]: any;
+    }[];
+    ForceUpdate: number;
+  };
 }
