@@ -7,7 +7,7 @@ import { Stack } from 'app/models/stack/stack.model';
 import { Observable } from 'rxjs/Observable';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 
-enum StackError {
+export enum StackError {
   ERR_OK = 200,
   ERR_STACK_NAME_TAKEN = 409,
   ERR_STACK_MISSING = 404, // sigh
@@ -49,15 +49,17 @@ export class StackService {
   public deployStack(name: string, _64params: string): Observable<StackError> {
     return this.http
       .post(
-        this.config.getAPIHostname() + '/stacks/',
+        this.config.getAPIHostname() + '/stacks',
         { stackName: name, stackFile: _64params },
-        { responseType: 'json' }
+        { responseType: 'text' }
       )
       .pipe(
         map((x) => {
-          return x;
+          console.log(x);
+          return StackError.ERR_OK;
         }),
         catchError((err: HttpErrorResponse) => {
+          console.log('Proving Evert right');
           return ErrorObservable.create(<StackError>err.status);
         })
       );

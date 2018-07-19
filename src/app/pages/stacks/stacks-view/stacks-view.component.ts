@@ -3,7 +3,6 @@ import { Stack } from 'app/models/stack/stack.model';
 import { StackService } from 'services/stack/stack.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { debug } from 'util';
 
 
 @Component({
@@ -17,6 +16,7 @@ export class StacksViewComponent implements OnInit {
   public stackNotFoundError: Boolean;
 
   public stacks: Stack[];
+  public createdStack = '';
   public searchString = [];
   column = [{ prop: 'stackName' }, { name: 'servicesCount' }];
   activeModal: NgbModalRef;
@@ -24,7 +24,13 @@ export class StacksViewComponent implements OnInit {
 
   constructor(private stackService: StackService,
     private route: ActivatedRoute,
-    private modalService: NgbModal) {}
+    private modalService: NgbModal) {
+      this.route.paramMap.subscribe((params: ParamMap) => {
+        if (params.has('createdStack')) {
+          this.createdStack = params.get('createdStack');
+        }
+      });
+    }
 
   ngOnInit() {
     this.genericError = false;

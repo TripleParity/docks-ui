@@ -1,5 +1,6 @@
 <!-- TODO(pwood): set up stacks in table cells -->
 
+<ngb-alert [hidden]="createdStack.length === 0" (close)="createdStack=''" [type]="'success'">Stack '{{createdStack}}' was successfully deployed</ngb-alert>
 <div class="row table-head">
   <div class="col-md-8">
     <a routerLink="/stacks/create">
