@@ -1,3 +1,6 @@
+# Deploy the Docks API stack using images from Docker Hub
+# Used for developing Docks UI as Docks API is required
+
 version: '3.2'
 
 services:
