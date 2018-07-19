@@ -38,7 +38,7 @@
 
       <div class="row" [hidden]="warning === false">
         <div class="col">
-          <ngb-alert (close)="warning=true" [type]="'danger'">
+          <ngb-alert (close)="warning=false" [type]="'danger'">
             {{warningMessage}}
           </ngb-alert>
         </div>

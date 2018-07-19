@@ -13,12 +13,13 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 export class StacksViewComponent implements OnInit {
 
   public stacks: Stack[];
-  public createdStack = '';
   public searchString = [];
+  public createdStack = '';
   public deletedStack = '';
-  public activeModal: NgbModalRef;
+  public updatedStack = '';
   public stackNameToDelete = '';
   public stackNotFoundError = '';
+  public activeModal: NgbModalRef;
   public genericError: Boolean;
 
   constructor(private stackService: StackService,
@@ -27,6 +28,9 @@ export class StacksViewComponent implements OnInit {
       this.route.paramMap.subscribe((params: ParamMap) => {
         if (params.has('createdStack')) {
           this.createdStack = params.get('createdStack');
+        }
+        if (params.has('updatedStack')) {
+          this.updatedStack = params.get('updatedStack');
         }
       });
     }
