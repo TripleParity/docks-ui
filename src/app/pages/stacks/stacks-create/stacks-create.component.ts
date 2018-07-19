@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Stack } from 'app/models/stack/stack.model';
 import { Router } from '@angular/router';
-import { StackService, StackError } from 'services/stack/stack.service';
+import { StackService, StackError, StackResult} from 'services/stack/stack.service';
 
 @Component({
   selector: 'app-stacks-create',
@@ -16,6 +16,7 @@ export class StacksCreateComponent implements OnInit {
   public warning = false;
   public fileText = '';
   public badUser = '';
+  public warningMessage = 'Something went wrong...';
 
   constructor(private router: Router, private stackService: StackService) {
     this.stackModel = {
@@ -49,7 +50,7 @@ export class StacksCreateComponent implements OnInit {
     this.stackService
       .deployStack(this.stackModel.stackName, btoa(this.stackModel.stackFile))
       .subscribe(
-        (result: StackError) => {
+        (result: StackResult) => {
           this.clearAlerts();
           this.submitted = false;
           this.router.navigate([
@@ -57,14 +58,15 @@ export class StacksCreateComponent implements OnInit {
             { createdStack: this.stackModel.stackName },
           ]);
         },
-        (err: StackError) => {
+        (err: StackResult) => {
           console.error(err);
           this.clearAlerts();
-          if (err === StackError.ERR_STACK_NAME_TAKEN) {
+          if (err.code === StackError.ERR_STACK_NAME_TAKEN) {
             this.alreadyExists = true;
             this.badUser = this.stackModel.stackName;
           } else {
             this.warning = true;
+            this.warningMessage = err.message;
           }
           this.submitted = false;
         }

@@ -13,6 +13,12 @@ export enum StackError {
   ERR_STACK_MISSING = 404, // sigh
 }
 
+// Compound structure
+export interface StackResult {
+  code: StackError;
+  message: string;
+}
+
 // TODO(CDuPlooy): Add helper to encode file
 // TODO(CDuPlooy): Proper modelling of the returned tasks && services.
 
@@ -44,9 +50,9 @@ export class StackService {
    * Creates a new stack.
    *
    * Note that the _64params field is a base64 encoded file.
-   * @returns {Observable<StackError>}
+   * @returns {Observable<StackResult>}
    */
-  public deployStack(name: string, _64params: string): Observable<StackError> {
+  public deployStack(name: string, _64params: string): Observable<StackResult> {
     return this.http
       .post(
         this.config.getAPIHostname() + '/stacks',
@@ -55,10 +61,16 @@ export class StackService {
       )
       .pipe(
         map((x) => {
-          return StackError.ERR_OK;
+          return {
+            code: StackError.ERR_OK,
+            message: x,
+          };
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<StackError>err.status);
+          return ErrorObservable.create({
+            code: <StackError>err.status,
+            message: err.error
+          });
         })
       );
   }
