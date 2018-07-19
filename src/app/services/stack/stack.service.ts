@@ -141,7 +141,7 @@ export class StackService {
           return ErrorObservable.create(
             {
               code: <StackError>err.status,
-              message: err.message
+              message: err.error
             }
           );
         })
