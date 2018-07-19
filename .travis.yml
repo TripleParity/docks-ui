@@ -15,6 +15,7 @@ before_script:
   - docker swarm init
   - docker stack deploy -c docker-compose-api.yml docks-api
   - npm install -g --silent @angular/cli
+  - ./scripts/wait-for-docks.sh
 script:
    - ng lint
    - ng build --prod --no-progress
