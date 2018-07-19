@@ -259,7 +259,47 @@ status styles
     color: var(--primary);
 }
 
+/*
+navbar styles
+ */
 
+.nav-list-group{
+    height: 100vh;
+    background-color: #333;
+    text-align: left;
+}
+
+.nav-list-group-item {
+    border-radius: 0;
+    background-color: #333;
+    color: #ccc;
+    border-left: 0;
+    border-right: 0;
+    border-color: #2c2c2c;
+    white-space: nowrap;
+    padding: 8px;
+    padding-left: 18px;
+}
+
+.nav-list-group-item:hover{
+    background-color: #222;
+    color: #93C54B;
+    text-decoration: none;
+}
+
+/*
+user bar styling
+ */
+
+.logo{
+    border-radius: 50%;
+    width: 50px;
+}
+
+.user-bar{
+    background-color: #333;
+    border-bottom: 5px solid #93C54B;
+}
 
 /*
 bootstrap table theme
