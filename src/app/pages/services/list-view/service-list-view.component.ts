@@ -40,7 +40,7 @@ export class ServiceListViewComponent implements OnInit {
         {prop: 'Ownership'}
     ];
 
-    // public selected = [];
+    public selected = [];
     public isSelected = false;
 
   ngOnInit() {
