@@ -51,6 +51,8 @@ export class ServiceListViewComponent implements OnInit {
         this.parseInput(element);
       });
 
+      console.log(services);
+
       this.temp = [...this.rows];
 
       // Datatables needs to be "notified" about the changes to the 'rows' array.
@@ -65,6 +67,14 @@ export class ServiceListViewComponent implements OnInit {
   }
 
   parseInput(services: Service) {
+    let port = null;
+    if (services.Spec.EndpointSpec.Ports !== undefined) {
+      port = services.Spec.EndpointSpec.Ports[0].PublishedPort;
+    }
+
+    const created = this.PrettifyDateTime(services.CreatedAt);
+    const updated = this.PrettifyDateTime(services.UpdatedAt);
+
     this.myObj = {
     'Name' : services.Spec.Name,
     'ID' : services.ID,
@@ -72,9 +82,9 @@ export class ServiceListViewComponent implements OnInit {
     'Image' : services.Spec.TaskTemplate.ContainerSpec.Image,
     'Mode' : services.Spec.EndpointSpec.Mode,
     'Replicas' : services.Spec.Mode.Replicated.Replicas,
-    'Ports' : services.Spec.EndpointSpec.Ports,
-    'CreatedAt' : services.CreatedAt,
-    'UpdatedAt' : services.UpdatedAt,
+    'Ports' : port,
+    'CreatedAt' : created,
+    'UpdatedAt' : updated,
     'Ownership' : ''
     };
 
