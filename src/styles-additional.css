@@ -141,10 +141,6 @@ lists styles
     background-color: var(--c-light-sep-back);
 }
 
-.text{
-    color: var(--c-dark);
-}
-
 /*
 status styles
 */
@@ -276,6 +272,9 @@ status styles
     color: var(--primary);
 }
 
+.text-light{
+    color: var(--c-light);
+}
 /*
 navbar styles
  */
