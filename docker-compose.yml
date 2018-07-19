@@ -1,13 +1,12 @@
+# Deploy the latest version of Docks UI using an image from Docker Hub
+# Used for production
+
 version: '3.2'
 
 services:
-  angular:
-    build:
-      context: .
-      dockerfile: Dockerfile-dev
-    volumes:
-      - type: bind
-        source: ./
-        target: /app
+  ui:
+    image: tripleparity/docks-ui:latest
     ports:
-      - "4200:4200"
+      - 4200:80
+    environment:
+      - DOCKS_API_ADDRESS=http://127.0.0.1:8080
