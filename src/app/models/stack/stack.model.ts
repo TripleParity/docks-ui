@@ -5,7 +5,7 @@
  */
 
 export interface Stack {
-    name: string;
+    stackName: string;
     serviceCount: number;
     stackFile: string;
 }

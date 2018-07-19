@@ -16,7 +16,7 @@
 
       <div class="form-group">
         <label for="stackName">Stack Name</label>
-        <input type="text" [(ngModel)]="stackModel.name" class="form-control" id="stackName" placeholder="Insert Stack Name" #stackName="ngModel"
+        <input type="text" [(ngModel)]="stackModel.stackName" class="form-control" id="stackName" placeholder="Insert Stack Name" #stackName="ngModel"
           required name="stackName" [ngClass]="{'ng-invalid2': alreadyExists && badName === stackName.value}">
         <div [hidden]="stackName.valid || stackName.pristine" class="alert alert-danger">
           A Stack name is required
@@ -52,7 +52,7 @@
               </a>
           </div>
           <div class="col-2">
-              <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid || !hasPlacedText"> Deploy Stack
+              <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid"> Deploy Stack
                 <i class="fa fa-arrow-circle-o-up"></i>
               </button>
           </div>
