@@ -18,7 +18,7 @@ const routes: Routes = [
     component: StacksCreateComponent,
   },
   {
-    path: 'stackName/edit',
+    path: ':stackName/edit',
     component: StackEditComponent
   }
 ];

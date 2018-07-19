@@ -17,7 +17,7 @@
       <div class="form-group">
         <label for="stackName">Stack Name</label>
         <input type="text" [(ngModel)]="stackModel.stackName" class="form-control" id="stackName" placeholder="Insert Stack Name" #stackName="ngModel"
-          required name="stackName" [ngClass]="{'ng-invalid2': alreadyExists && badName === stackName.value}">
+          required name="stackName" [ngClass]="{'ng-invalid2': alreadyExists && badUser === stackName.value}">
         <div [hidden]="stackName.valid || stackName.pristine" class="alert alert-danger">
           A Stack name is required
         </div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { StackService } from 'services/stack/stack.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-stack-edit',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StackEditComponent implements OnInit {
 
-  constructor() { }
+  public selectedStack = '';
+  userForm: FormGroup;
+
+  constructor(private stackService: StackService,
+    private route: ActivatedRoute, ) {
+  }
 
   ngOnInit() {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.userForm.setValue({
+        stackName: params.get('stackName'),
+      });
+    });
   }
 
 }
