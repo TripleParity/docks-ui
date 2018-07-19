@@ -19,7 +19,7 @@
 
                 </div>
                 <div class="card-text">
-                    <ul class="list-group header">
+                    <ul class="list-group">
                         <li class="list-group-item">
                             <span class="text">ID:</span> {{ task.ID }}
                         </li>
@@ -28,8 +28,7 @@
                             <!--Change to Node name as soon as Node service is implemented-->
                         </li>
                         <li class="list-group-item">
-                            <div class="image">Image:
-                            <span> {{task.Spec.ContainerSpec.Image}} </span></div>
+                            <span class="text">Image: </span>{{task.Spec.ContainerSpec.Image}}
                         </li>
                     </ul>
                     <div class="service">
@@ -38,7 +37,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <div class="up-date">
+                    <div>
                         <span class="text">Last Updated: </span><br />
                         {{PrettifyDateTime(task.UpdatedAt) }}
                     </div>
