@@ -3,7 +3,7 @@
 <div class="row table-head">
   <div class="col-md-8">
     <a routerLink="/stacks/create">
-      <button class="btn button-primary">
+      <button type="button" class="btn btn-info">
           Create Stack <i class="fa fa-clone"> </i>
       </button>
     </a>
@@ -12,7 +12,7 @@
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Search Stacks" aria-label="Recipient's username" aria-describedby="basic-addon2">
       <div class="input-group-append">
-        <button class="btn button-default">
+        <button class="btn btn-default">
           <span class="input-group-text" id="Search">
             <i class="fa fa-search"></i>
           </span>
@@ -34,7 +34,7 @@
 
       <ngx-datatable-column name="Service Count">
 
-        <ng-template let-column="column" ngx-datatable-header-template>
+        <ng-template let-column="column" ngx-datatable-header-template >
           {{column.name}}
         </ng-template>
 

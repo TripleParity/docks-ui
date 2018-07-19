@@ -21,9 +21,23 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <div class="row">
+            <div class="col-auto">
+                <textarea rows="15" cols="50" placeholder="Copy the contents of a docker file here.."></textarea>
+            </div>
+            <div class="col-auto">
+                <label for="file"><h4>Or select a file here: </h4></label>
+                <input type="file" class="form-control-file" id="file" accept=".yml" >
+            </div>
+            <br />
+            
+        </div> 
+      </div>
+
       <a routerLink="/stacks" class="">
         
-        <button id="btnCancel" type="button" class="btn btn-secondary"> Cancel <i class="fa fa-undo"></i> </button>
+        <button id="btnCancel" type="button" class="btn btn-info"> Cancel <i class="fa fa-undo"></i> </button>
       </a>
 
     </form>
