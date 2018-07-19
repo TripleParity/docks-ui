@@ -51,6 +51,10 @@ export class ServiceListViewComponent implements OnInit {
 
       // this.rows = this.services;
       this.temp = [...this.rows];
+
+      // Datatables needs to be "notified" about the changes to the 'rows' array.
+      this.rows = [...this.rows];
+
       for (let i = 0; i < this.services.length; i++) {
         this.isCollapsed.push(false);
       }
