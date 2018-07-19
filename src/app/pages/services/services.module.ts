@@ -13,6 +13,7 @@ import { MockService } from '../../services/mock/mock.service';
 
 import { ServicesRoutingModule } from '../../pages/services/services-routing.module';
 import { SpinnerModule } from 'app/shared/spinner/spinner.module';
+import { ServiceCreateComponent } from './service-create/service-create.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { SpinnerModule } from 'app/shared/spinner/spinner.module';
     ServiceListViewComponent,
     ServicesCardViewComponent,
     ServicesOperationsComponent,
+    ServiceCreateComponent,
   ],
   providers: [ServicesService, MockService],
 })
