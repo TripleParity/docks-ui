@@ -96,11 +96,14 @@ card style
 .modal-list-group-item{
     background: transparent;
     border: none;
-    border-bottom: 0.5px solid #212529;
     padding: 8px;
     color: #707070;
     font-size: medium;
     list-style-type: none;
+}
+
+.modal-list-group-item:nth-child(odd){
+    background-color: var(--c-light-sep-back);
 }
 
 .modal-title, .modal-task-state {
@@ -108,20 +111,9 @@ card style
     margin: auto;
 }
 
-#modal-header {
-    color: var(--white);
-    background: #212529;
-}
-
-.modal-footer{
-    background: #212529;
-}
-
 .modal-textarea{
-    background-color: #32383E;
-    color: var(--white);
     width: 80%;
-    height: 50vh;
+    height: 40vh;
     resize: none;
 }
 
@@ -170,10 +162,6 @@ status styles
     border-top: 2px solid var(--green);
 }
 
-.success-card > .modal-header{
-    border: 3px solid var(--green);
-}
-
 .success-card > .card-title, .success-card > .modal-header{
     color: var(--green);
 }
@@ -193,10 +181,6 @@ status styles
 
 .danger-card > .card-footer{
     border-top: 2px solid var(--red);
-}
-
-.danger-card > .modal-header{
-    border: 3px solid var(--red);
 }
 
 .danger-card > .card-title, .danger-card > .modal-header{
@@ -220,10 +204,6 @@ status styles
     border-top: 2px solid var(--info);
 }
 
-.info-card > .modal-header{
-    border: 3px solid var(--info);
-}
-
 .info-card > .card-title, .info-card > .modal-header{
     color: var(--info);
 }
@@ -245,10 +225,6 @@ status styles
     border-top: 2px solid var(--dark);
 }
 
-.dark-card > .modal-header{
-    border: 3px solid var(--dark);
-}
-
 .dark-card > .card-title, .dark-card > .modal-header{
     color: var(--dark);
 }
@@ -268,10 +244,6 @@ status styles
 
 .primary-card > .card-footer{
     border-top: 2px solid var(--primary);
-}
-
-.primary-card > .modal-header{
-    border: 3px solid var(--primary);
 }
 
 .primary-card > .card-title, .primary-card > .modal-header{
