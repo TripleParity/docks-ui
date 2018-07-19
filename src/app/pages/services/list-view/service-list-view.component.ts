@@ -23,13 +23,15 @@ export class ServiceListViewComponent implements OnInit {
   public isCollapsed: Boolean[] = [];
   public previous = 0;
   public isLoaded = false;
+  private myObj;
+  private num = 0;
 
   public temp = [];
     public rows: any[] = [];
     public columns: any = [
         {prop: 'Name'},
         {prop: 'ID'},
-        {prop: 'stack'},
+        {prop: 'Stack'},
         {prop: 'Image'},
         {prop: 'Mode'},
         {prop: 'Replicas'},
@@ -42,8 +44,12 @@ export class ServiceListViewComponent implements OnInit {
   ngOnInit() {
     this.serviceService.getServices().subscribe((services) => {
       this.services = services;
-      console.log(services);
-      this.rows = this.services;
+
+      services.forEach(element => {
+        this.parseInput(element);
+      });
+
+      // this.rows = this.services;
       this.temp = [...this.rows];
       for (let i = 0; i < this.services.length; i++) {
         this.isCollapsed.push(false);
@@ -54,10 +60,20 @@ export class ServiceListViewComponent implements OnInit {
   }
 
   parseInput(services: Service) {
-    this.rows['Name'] = services.Spec.Name;
-    this.rows['ID'] = services.ID;
-    this.rows['Stack'] = 'Needed';
-    this.rows['Image'] = services.Spec.TaskTemplate.ContainerSpec.Image;
+    this.myObj = {
+    'Name' : services.Spec.Name,
+    'ID' : services.ID,
+    'Stack' : '',
+    'Image' : services.Spec.TaskTemplate.ContainerSpec.Image,
+    'Mode' : services.Spec.Mode,
+    'Replicas' : services.Spec.Mode.Replicated.Replicas,
+    'Ports' : services.Spec.EndpointSpec.Ports,
+    'CreatedAt' : services.CreatedAt,
+    'UpdatedAt' : services.UpdatedAt,
+    'Ownership' : ''
+    };
+
+    this.rows[this.num++] = this.myObj;
   }
 
   public removeService(id) {
