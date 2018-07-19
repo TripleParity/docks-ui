@@ -4,7 +4,6 @@ import { Formatter } from '../../../classes/formatter/formatter';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServicesService } from '../../../services/services/services.service';
 import { MockService } from '../../../services/mock/mock.service';
-// import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-service-list-view',
@@ -41,6 +40,9 @@ export class ServiceListViewComponent implements OnInit {
         {prop: 'Ownership'}
     ];
 
+    private selected = [];
+    public isSelected = false;
+
   ngOnInit() {
     this.serviceService.getServices().subscribe((services) => {
       this.services = services;
@@ -49,7 +51,6 @@ export class ServiceListViewComponent implements OnInit {
         this.parseInput(element);
       });
 
-      // this.rows = this.services;
       this.temp = [...this.rows];
 
       // Datatables needs to be "notified" about the changes to the 'rows' array.
@@ -69,7 +70,7 @@ export class ServiceListViewComponent implements OnInit {
     'ID' : services.ID,
     'Stack' : '',
     'Image' : services.Spec.TaskTemplate.ContainerSpec.Image,
-    'Mode' : services.Spec.Mode,
+    'Mode' : services.Spec.EndpointSpec.Mode,
     'Replicas' : services.Spec.Mode.Replicated.Replicas,
     'Ports' : services.Spec.EndpointSpec.Ports,
     'CreatedAt' : services.CreatedAt,
@@ -113,9 +114,30 @@ export class ServiceListViewComponent implements OnInit {
   }
 
   updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function(d) {
+      return d.Name.toLowerCase().indexOf(val) !== -1 || d.Image.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    // this.table.offset = 0;
   }
 
-  alertme() {
-    console.log('works!');
+  onSelect({ selected }) {
+    // console.log('Select Event', selected, this.selected);
+    if (this.isSelected) {
+      this.isSelected = false;
+    } else {
+      this.isSelected = true;
+    }
   }
+
+  onActivate(event) {
+    console.log('Activate Event', event);
+  }
+
 }
