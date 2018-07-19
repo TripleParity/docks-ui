@@ -55,11 +55,9 @@ export class StackService {
       )
       .pipe(
         map((x) => {
-          console.log(x);
           return StackError.ERR_OK;
         }),
         catchError((err: HttpErrorResponse) => {
-          console.log('Proving Evert right');
           return ErrorObservable.create(<StackError>err.status);
         })
       );
@@ -138,11 +136,11 @@ export class StackService {
   public removeStack(name: string): Observable<StackError> {
     return this.http
       .delete(this.config.getAPIHostname() + '/stacks/' + name, {
-        responseType: 'json',
+        responseType: 'text',
       })
       .pipe(
         map((x) => {
-          return x;
+          return StackError.ERR_OK;
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create(<StackError>err.status);

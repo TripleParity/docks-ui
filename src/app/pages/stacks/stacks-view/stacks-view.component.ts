@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Stack } from 'app/models/stack/stack.model';
-import { StackService } from 'services/stack/stack.service';
+import { StackService, StackError } from 'services/stack/stack.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
@@ -12,15 +12,14 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 })
 export class StacksViewComponent implements OnInit {
 
-  public genericError: Boolean;
-  public stackNotFoundError: Boolean;
-
   public stacks: Stack[];
   public createdStack = '';
   public searchString = [];
-  column = [{ prop: 'stackName' }, { name: 'servicesCount' }];
-  activeModal: NgbModalRef;
-  stackNameToDelete = '';
+  public deletedStack = '';
+  public activeModal: NgbModalRef;
+  public stackNameToDelete = '';
+  public stackNotFoundError = '';
+  public genericError: Boolean;
 
   constructor(private stackService: StackService,
     private route: ActivatedRoute,
@@ -34,7 +33,6 @@ export class StacksViewComponent implements OnInit {
 
   ngOnInit() {
     this.genericError = false;
-    this.stackNotFoundError = true;
     this.fetchStacks();
   }
 
@@ -43,7 +41,6 @@ export class StacksViewComponent implements OnInit {
       (stacks: Stack[]) => {
         this.stacks = stacks;
         this.searchString = [...stacks];
-        console.log(stacks);
       },
       (err) => {
         console.error(err);
@@ -63,7 +60,36 @@ export class StacksViewComponent implements OnInit {
     this.activeModal = this.modalService.open(content);
   }
 
+  clearAlerts() {
+    this.createdStack = '';
+    this.stackNotFoundError = '';
+    this.deletedStack = '';
+    this.genericError = false;
+  }
+
   removeStack() {
-    console.log('hello');
+    this.stackService.removeStack(this.stackNameToDelete).subscribe(
+      (result: StackError) => {
+        this.clearAlerts();
+        if (result === StackError.ERR_OK) {
+          this.deletedStack = this.stackNameToDelete;
+          console.log(this.deletedStack);
+        } else {
+          this.genericError = true;
+        }
+
+        this.activeModal.close();
+        this.fetchStacks();
+      },
+      (err: StackError) => {
+        this.clearAlerts();
+        if (err === StackError.ERR_STACK_MISSING) {
+          this.stackNotFoundError = this.stackNameToDelete;
+        } else {
+          this.genericError = true;
+        }
+        this.activeModal.close();
+      }
+    );
   }
 }
