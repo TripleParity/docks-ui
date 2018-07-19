@@ -16,6 +16,7 @@ export class StacksCreateComponent implements OnInit {
   public warning = false;
   public fileText = '';
   public badUser = '';
+  public warningMessage = 'Something went wrong...';
 
   constructor(private router: Router, private stackService: StackService) {
     this.stackModel = {
@@ -65,6 +66,7 @@ export class StacksCreateComponent implements OnInit {
             this.badUser = this.stackModel.stackName;
           } else {
             this.warning = true;
+            this.warningMessage = err.message;
           }
           this.submitted = false;
         }

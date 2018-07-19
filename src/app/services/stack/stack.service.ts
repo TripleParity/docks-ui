@@ -68,7 +68,7 @@ export class StackService {
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: StackError.ERR_OK,
+            code: <StackError>err.status,
             message: err.error
           });
         })
