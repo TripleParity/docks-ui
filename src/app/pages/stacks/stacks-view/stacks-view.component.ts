@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Stack } from 'app/models/stack/stack.model';
 import { StackService } from 'services/stack/stack.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { debug } from 'util';
+
 
 @Component({
   selector: 'app-stacks-view',
   templateUrl: './stacks-view.component.html',
-  styleUrls: ['./stacks-view.component.css']
+  styleUrls: ['./stacks-view.component.css'],
 })
 export class StacksViewComponent implements OnInit {
 
@@ -14,10 +18,13 @@ export class StacksViewComponent implements OnInit {
 
   public stacks: Stack[];
   public searchString = [];
-  column = [{ prop: 'serviceCount' }];
+  column = [{ prop: 'stackName' }, { name: 'servicesCount' }];
+  activeModal: NgbModalRef;
+  stackNameToDelete = '';
 
-  constructor(
-    private stackService: StackService) { }
+  constructor(private stackService: StackService,
+    private route: ActivatedRoute,
+    private modalService: NgbModal) {}
 
   ngOnInit() {
     this.genericError = false;
@@ -39,4 +46,18 @@ export class StacksViewComponent implements OnInit {
     );
   }
 
+  getRowHeight(row) {
+    return (row.height = 50);
+  }
+
+  open(content, stackName: string) {
+    this.stackNameToDelete = stackName;
+    console.log(content);
+
+    this.activeModal = this.modalService.open(content);
+  }
+
+  removeStack() {
+    console.log('hello');
+  }
 }

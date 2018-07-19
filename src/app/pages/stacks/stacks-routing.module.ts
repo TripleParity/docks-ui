@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { StacksViewComponent } from 'app/pages/stacks/stacks-view/stacks-view.component';
 import { StacksCreateComponent } from 'app/pages/stacks/stacks-create/stacks-create.component';
+import { StackEditComponent } from 'pages/stacks/stack-edit/stack-edit.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,10 @@ const routes: Routes = [
     path: 'create',
     pathMatch: 'full',
     component: StacksCreateComponent,
+  },
+  {
+    path: 'stackName/edit',
+    component: StackEditComponent
   }
 ];
 

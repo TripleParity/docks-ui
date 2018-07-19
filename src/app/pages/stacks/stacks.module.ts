@@ -9,6 +9,7 @@ import { StacksRoutingModule } from './stacks-routing.module';
 import { StacksViewComponent } from 'app/pages/stacks/stacks-view/stacks-view.component';
 import { StacksCreateComponent } from 'pages/stacks/stacks-create/stacks-create.component';
 import { StackService } from 'services/stack/stack.service';
+import { StackEditComponent } from 'pages/stacks/stack-edit/stack-edit.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { StackService } from 'services/stack/stack.service';
     NgbModule,
     ReactiveFormsModule,
   ],
-  declarations: [StacksViewComponent, StacksCreateComponent],
+  declarations: [StacksViewComponent, StacksCreateComponent, StackEditComponent],
   providers: [StackService],
 })
 export class StacksModule { }

@@ -11,3 +11,26 @@
     background-color:transparent;
     border: none;
 }  
+#ops
+{
+    font-size: 120%;
+    color: cadetblue;
+}
+a:hover
+{
+    color: cadetblue;
+}
+#modal-basic-title
+{
+    width: 100%;
+    text-align: center;
+    
+}
+h4
+{
+    color: #ccc;
+}
+.modal-header
+{
+    background-color: #222;
+}

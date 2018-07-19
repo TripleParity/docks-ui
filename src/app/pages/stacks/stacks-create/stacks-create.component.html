@@ -24,11 +24,11 @@
       <div class="form-group">
         <div class="row">
             <div class="col-auto">
-                <textarea rows="15" cols="50" placeholder="Copy the contents of a docker file here.."></textarea>
+                <textarea rows="15" cols="50" placeholder="View the docker file here..">{{fileText}}</textarea>
             </div>
             <div class="col-auto">
-                <label for="file"><h4>Or select a file here: </h4></label>
-                <input type="file" class="form-control-file" id="file" accept=".yml" >
+                <label for="file"><h4>Select a docker-compose file: </h4></label>
+                <input type="file" class="form-control-file" id="file" accept=".yml" (change)="uploadFile($event)">
             </div>
             <br />
             

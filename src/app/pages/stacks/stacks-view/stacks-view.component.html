@@ -23,31 +23,60 @@
 </div>
 <div class="row">
   <div class="col-md-10 offset-md-1">
-     <ngx-datatable class="bootstrap" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="stacks" [columns] = "column"
-      [headerHeight]="'auto'" [rowHeight]="'auto'">
+     <ngx-datatable class="bootstrap" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="stacks"
+      [headerHeight]="'auto'" [rowHeight]="getRowHeight">
 
-       <ngx-datatable-column name="Stack Name">
-        <ng-template let-column="value" ngx-datatable-cell-template class="d-flex align-content-center">
-          {{value}}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="Service Count">
-
-        <ng-template let-column="column" ngx-datatable-header-template >
-          {{column.name}}
-        </ng-template>
-
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <div>
-              <button type="button" class="btn btn-warning btn-sm">Edit</button>
-            <button type="button" class="btn btn-danger btn-sm">Delete</button>
-          </div>
-
-        </ng-template>
-
-      </ngx-datatable-column> 
+      <ngx-datatable-column name="Stack Name" width="300">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <strong>{{value}}</strong>
+          </ng-template>
+        </ngx-datatable-column>
+       
+        <ngx-datatable-column name="Services Count" width="300">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              {{value}}
+            </ng-template>
+        </ngx-datatable-column>
+        
+        <ngx-datatable-column name ="" width="20px;">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              <div>
+                <a routerLink="/stacks/{{row.stackName}}/edit">
+                  <span id="ops">Edit <i class="fa fa-cog"></i></span>
+                </a>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          
+          <ngx-datatable-column name ="" width="20px;">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                  <div>
+                      <button class="btn btn-danger sm" (click)="open(content, row.stackName)">Delete 
+                        <i class="fa fa-trash-o"></i></button>
+                  </div>
+                </ng-template>
+              </ngx-datatable-column>
 
     </ngx-datatable> 
   </div>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header"> 
+      <h4 class="modal-title" id="modal-basic-title">Remove Stack</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" align="center">
+      <h5>Are you sure you want to remove the following Stack?</h5>
+      <h5>
+        <pre>{{stackNameToDelete}}</pre>
+      </h5>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="c('Cancel click')">Cancel</button>
+      <!-- usernameToDelete is set in open(content, row.username)-->
+      <button type="button" class="btn btn-danger" (click)="removeStack(stackNameToDelete)">Delete</button>
+    </div>
+  </ng-template>
