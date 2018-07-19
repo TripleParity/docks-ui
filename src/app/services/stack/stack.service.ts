@@ -115,7 +115,7 @@ export class StackService {
     return this.http
       .put(
         this.config.getAPIHostname() + '/stacks/' + name,
-        { stackName: name, stackFile: _64params },
+        { stackFile: _64params },
         { responseType: 'json' }
       )
       .pipe(
