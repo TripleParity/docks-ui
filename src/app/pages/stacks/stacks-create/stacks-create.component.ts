@@ -19,7 +19,7 @@ export class StacksCreateComponent implements OnInit {
 
   constructor(private router: Router, private stackService: StackService) {
     this.stackModel = {
-      name: '',
+      stackName: '',
       serviceCount: 0,
       stackFile: '',
     };
@@ -47,14 +47,14 @@ export class StacksCreateComponent implements OnInit {
     this.submitted = true;
 
     this.stackService
-      .deployStack(this.stackModel.name, btoa(this.stackModel.stackFile))
+      .deployStack(this.stackModel.stackName, btoa(this.stackModel.stackFile))
       .subscribe(
         (result: StackError) => {
           this.clearAlerts();
           this.submitted = false;
           this.router.navigate([
             '/stacks',
-            { createdStack: this.stackModel.name },
+            { createdStack: this.stackModel.stackName },
           ]);
         },
         (err: StackError) => {
@@ -62,7 +62,7 @@ export class StacksCreateComponent implements OnInit {
           this.clearAlerts();
           if (err === StackError.ERR_STACK_NAME_TAKEN) {
             this.alreadyExists = true;
-            this.badUser = this.stackModel.name;
+            this.badUser = this.stackModel.stackName;
           } else {
             this.warning = true;
           }

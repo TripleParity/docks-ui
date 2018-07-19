@@ -67,6 +67,20 @@ export class StacksViewComponent implements OnInit {
     this.genericError = false;
   }
 
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.searchString.filter((stack: Stack) => {
+      console.log(stack);
+      return stack.stackName.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.stacks = temp;
+
+  }
+
   removeStack() {
     this.stackService.removeStack(this.stackNameToDelete).subscribe(
       (result: StackError) => {
