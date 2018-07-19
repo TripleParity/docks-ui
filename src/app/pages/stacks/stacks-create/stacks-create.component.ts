@@ -13,8 +13,10 @@ export class StacksCreateComponent implements OnInit {
   public alreadyExists = false;
   public genericError = false;
   public submitted = false;
+  public warning = false;
   public fileText;
   public badUser = '';
+  public hasPlacedText = false;
 
   constructor(private router: Router, private stackService: StackService) {
     this.stackModel = {
@@ -34,6 +36,16 @@ export class StacksCreateComponent implements OnInit {
       me.fileText = reader.result;
       me.stackModel.stackFile = me.fileText;
     };
+    this.hasPlacedText = true;
+  }
+
+  setFile(event) {
+
+    this.hasPlacedText = true;
+  }
+
+  clearAlerts() {
+    this.warning = false;
   }
 
   submit() {
@@ -45,6 +57,7 @@ export class StacksCreateComponent implements OnInit {
       .deployStack(this.stackModel.name, btoa(this.stackModel.stackFile))
       .subscribe(
         (result: StackError) => {
+          this.clearAlerts();
           this.submitted = false;
           this.router.navigate([
             '/stacks',
@@ -53,9 +66,12 @@ export class StacksCreateComponent implements OnInit {
         },
         (err: StackError) => {
           console.error(err);
+          this.clearAlerts();
           if (err === StackError.ERR_STACK_NAME_TAKEN) {
             this.alreadyExists = true;
             this.badUser = this.stackModel.name;
+          } else {
+            this.warning = true;
           }
           this.submitted = false;
         }

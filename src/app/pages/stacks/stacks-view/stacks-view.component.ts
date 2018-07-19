@@ -73,7 +73,6 @@ export class StacksViewComponent implements OnInit {
         this.clearAlerts();
         if (result === StackError.ERR_OK) {
           this.deletedStack = this.stackNameToDelete;
-          console.log(this.deletedStack);
         } else {
           this.genericError = true;
         }
