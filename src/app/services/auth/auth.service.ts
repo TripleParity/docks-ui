@@ -54,7 +54,6 @@ export class AuthService {
       .pipe(
         map((body) => {
           if (body['jwt'] === null) {
-            console.error(body);
             return ErrorObservable.create(AuthError.AUTH_ERR);
           }
 
@@ -63,8 +62,6 @@ export class AuthService {
           return AuthError.AUTH_OK;
         }),
         catchError((err: HttpErrorResponse) => {
-          console.error(err);
-
           if (err.status === 0) {
             return ErrorObservable.create(AuthError.AUTH_ERR_SERVER);
           } else if (err.status === 401) {

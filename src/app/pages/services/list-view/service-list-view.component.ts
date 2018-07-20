@@ -26,28 +26,28 @@ export class ServiceListViewComponent implements OnInit {
   private num = 0;
 
   public temp = [];
-    public rows: any[] = [];
-    public columns: any = [
-        {prop: 'Name'},
-        {prop: 'ID'},
-        {prop: 'Stack'},
-        {prop: 'Image'},
-        {prop: 'Mode'},
-        {prop: 'Replicas'},
-        {prop: 'Ports'},
-        {prop: 'CreatedAt'},
-        {prop: 'UpdatedAt'},
-        {prop: 'Ownership'}
-    ];
+  public rows: any[] = [];
+  public columns: any = [
+    { prop: 'Name' },
+    { prop: 'ID' },
+    { prop: 'Stack' },
+    { prop: 'Image' },
+    { prop: 'Mode' },
+    { prop: 'Replicas' },
+    { prop: 'Ports' },
+    { prop: 'CreatedAt' },
+    { prop: 'UpdatedAt' },
+    { prop: 'Ownership' },
+  ];
 
-    public selected = [];
-    public isSelected = false;
+  public selected = [];
+  public isSelected = false;
 
   ngOnInit() {
     this.serviceService.getServices().subscribe((services) => {
       this.services = services;
 
-      services.forEach(element => {
+      services.forEach((element) => {
         this.parseInput(element);
       });
 
@@ -63,7 +63,6 @@ export class ServiceListViewComponent implements OnInit {
       }
       this.isLoaded = true;
     });
-
   }
 
   parseInput(services: Service) {
@@ -76,16 +75,16 @@ export class ServiceListViewComponent implements OnInit {
     const updated = this.PrettifyDateTime(services.UpdatedAt);
 
     this.myObj = {
-    'Name' : services.Spec.Name,
-    'ID' : services.ID,
-    'Stack' : '',
-    'Image' : services.Spec.TaskTemplate.ContainerSpec.Image,
-    'Mode' : services.Spec.EndpointSpec.Mode,
-    'Replicas' : services.Spec.Mode.Replicated.Replicas,
-    'Ports' : port,
-    'CreatedAt' : created,
-    'UpdatedAt' : updated,
-    'Ownership' : ''
+      Name: services.Spec.Name,
+      ID: services.ID,
+      Stack: '',
+      Image: services.Spec.TaskTemplate.ContainerSpec.Image,
+      Mode: services.Spec.EndpointSpec.Mode,
+      Replicas: services.Spec.Mode.Replicated.Replicas,
+      Ports: port,
+      CreatedAt: created,
+      UpdatedAt: updated,
+      Ownership: '',
     };
 
     this.rows[this.num++] = this.myObj;
@@ -128,7 +127,11 @@ export class ServiceListViewComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function(d) {
-      return d.Name.toLowerCase().indexOf(val) !== -1 || d.Image.toLowerCase().indexOf(val) !== -1 || !val;
+      return (
+        d.Name.toLowerCase().indexOf(val) !== -1 ||
+        d.Image.toLowerCase().indexOf(val) !== -1 ||
+        !val
+      );
     });
 
     // update the rows
@@ -149,5 +152,4 @@ export class ServiceListViewComponent implements OnInit {
   onActivate(event) {
     console.log('Activate Event', event);
   }
-
 }
