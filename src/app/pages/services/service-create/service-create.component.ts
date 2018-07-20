@@ -25,9 +25,9 @@ export class ServiceCreateComponent implements OnInit {
     this.genericError = false;
     this.submitted = true;
 
-    this.service
-      .createService()
-      .subscribe(
+    // this.service
+      // .createService()
+      // .subscribe(
         // (result: CreateUserStatus) => {
         //   this.submitted = false;
         //   this.router.navigate([
@@ -46,6 +46,6 @@ export class ServiceCreateComponent implements OnInit {
 
         //   this.submitted = false;
         // }
-      );
+      // );
   }
 }
