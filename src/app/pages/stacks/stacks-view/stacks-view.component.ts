@@ -59,8 +59,6 @@ export class StacksViewComponent implements OnInit {
 
   open(content, stackName: string) {
     this.stackNameToDelete = stackName;
-    console.log(content);
-
     this.activeModal = this.modalService.open(content);
   }
 
@@ -76,7 +74,6 @@ export class StacksViewComponent implements OnInit {
 
     // filter our data
     const temp = this.searchString.filter((stack: Stack) => {
-      console.log(stack);
       return stack.stackName.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
