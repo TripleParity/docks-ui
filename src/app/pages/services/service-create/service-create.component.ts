@@ -10,8 +10,42 @@ import { ServicesService } from '../../../services/services/services.service';
   styleUrls: ['./service-create.component.css']
 })
 export class ServiceCreateComponent implements OnInit {
+  public alreadyExists = false;
+  public genericError = false;
+  public submitted = true;
+  model: CreateService;
+
   constructor(private service: ServicesService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  submit() {
+    this.alreadyExists = false;
+    this.genericError = false;
+    this.submitted = true;
+
+    this.service
+      .createService()
+      .subscribe(
+        // (result: CreateUserStatus) => {
+        //   this.submitted = false;
+        //   this.router.navigate([
+        //     '/users',
+        //     { createdUser: this.model.username },
+        //   ]);
+        // },
+        // (err: CreateUserStatus) => {
+        //   console.error(err);
+        //   if (err === CreateUserStatus.CREATE_ERR_EXISTS) {
+        //     this.alreadyExists = true;
+        //     this.badUser = this.model.username;
+        //   } else {
+        //     this.genericError = true;
+        //   }
+
+        //   this.submitted = false;
+        // }
+      );
   }
 }
