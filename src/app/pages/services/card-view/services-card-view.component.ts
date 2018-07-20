@@ -20,17 +20,17 @@ export class ServicesCardViewComponent implements OnInit {
 
   public services: Service[] = [];
   public modalObject: Service;
-  public modalObjectTasks: Task[];
+  public modalObjectService: Service[];
   public isLoaded = false;
 
   ngOnInit() {
-    this.mockService.getServices().subscribe((service) => {
+    this.servicesService.getServices().subscribe((service) => {
       for (let i = 0; i < service.length; i++) {
         this.services.push(service[i]);
         this.isLoaded = true;
       }
     });
-    this.modalObjectTasks = [];
+    this.modalObjectService = [];
   }
 
   public PrettifyDateTime(buff: string): string {
@@ -38,14 +38,14 @@ export class ServicesCardViewComponent implements OnInit {
   }
 
   public loadModal(content, service) {
-    this.mockService.getTasks().subscribe((tasks) => {
-      for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i].ServiceID === service.ID) {
-          console.log(tasks[i]);
-          this.modalObjectTasks.push(tasks[i]);
+    this.servicesService.getServices().subscribe((services) => {
+      for (let i = 0; i < services.length; i++) {
+        if (services[i].ID === service.ID) {
+          console.log(services[i]);
+          this.modalObjectService.push(services[i]);
         }
       }
-      console.log(this, this.modalObjectTasks);
+      console.log(this, this.modalObjectService);
     });
     this.modalObject = service;
     this.modalService.open(content, { size: 'lg' });
