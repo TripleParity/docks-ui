@@ -1,9 +1,11 @@
 <!-- TODO(pwood): set up stacks in table cells -->
 
-<ngb-alert [hidden]="createdStack.length === 0" (close)="createdStack=''" [type]="'success'">Stack '{{createdStack}}' was successfully deployed</ngb-alert>
-<ngb-alert [hidden]="updatedStack.length === 0" (close)="updatedStack=''" [type]="'success'">Stack '{{updatedStack}}' was successfully updated</ngb-alert>
-<ngb-alert [hidden]="deletedStack.length === 0" (close)="deletedStack=''" [type]="'warning'">Stack '{{deletedStack}}' was successfully deleted</ngb-alert>
-<ngb-alert [hidden]="stackNotFoundError.length === 0" (close)="stackNotFoundError=''" [type]="'danger'">Error '{{stackNotFoundError}}' is not a known stack</ngb-alert>
+<div class="alerts">
+  <ngb-alert [hidden]="createdStack.length === 0" (close)="createdStack=''" [type]="'success'">Stack '{{createdStack}}' was successfully deployed</ngb-alert>
+  <ngb-alert [hidden]="updatedStack.length === 0" (close)="updatedStack=''" [type]="'success'">Stack '{{updatedStack}}' was successfully updated</ngb-alert>
+  <ngb-alert [hidden]="deletedStack.length === 0" (close)="deletedStack=''" [type]="'warning'">Stack '{{deletedStack}}' was successfully deleted</ngb-alert>
+  <ngb-alert [hidden]="stackNotFoundError.length === 0" (close)="stackNotFoundError=''" [type]="'danger'">Error '{{stackNotFoundError}}' is not a known stack</ngb-alert>
+</div>
 <div class="row table-head">
   <div class="col-md-8">
     <a routerLink="/stacks/create">
@@ -35,13 +37,13 @@
             <strong>{{value}}</strong>
           </ng-template>
         </ngx-datatable-column>
-       
+
         <ngx-datatable-column name="Services Count" width="300">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
               {{value}}
             </ng-template>
         </ngx-datatable-column>
-        
+
         <ngx-datatable-column name ="" width="20px;">
           <ng-template let-row="row" ngx-datatable-cell-template>
               <div>
@@ -51,22 +53,22 @@
               </div>
             </ng-template>
           </ngx-datatable-column>
-          
+
           <ngx-datatable-column name ="" width="20px;">
               <ng-template let-row="row" ngx-datatable-cell-template>
                   <div>
-                      <button class="btn btn-danger sm" (click)="open(content, row.stackName)">Delete 
+                      <button class="btn btn-danger sm" (click)="open(content, row.stackName)">Delete
                         <i class="fa fa-trash-o"></i></button>
                   </div>
                 </ng-template>
               </ngx-datatable-column>
 
-    </ngx-datatable> 
+    </ngx-datatable>
   </div>
 </div>
 
 <ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header"> 
+    <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Remove Stack</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
@@ -83,4 +85,4 @@
       <!-- usernameToDelete is set in open(content, row.username)-->
       <button type="button" class="btn btn-danger" (click)="removeStack(stackNameToDelete)">Delete</button>
     </div>
-  </ng-template>
+</ng-template>
