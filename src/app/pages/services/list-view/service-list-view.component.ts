@@ -42,10 +42,17 @@ export class ServiceListViewComponent implements OnInit {
 
     public selected = [];
     public isSelected = false;
+    public row = 0;
 
   ngOnInit() {
+    this.fetchServices();
+  }
+
+  fetchServices() {
     this.serviceService.getServices().subscribe((services) => {
       this.services = services;
+      this.rows = [];
+      this.num = 0;
 
       services.forEach(element => {
         this.parseInput(element);
@@ -53,7 +60,7 @@ export class ServiceListViewComponent implements OnInit {
 
       console.log(services);
 
-      this.temp = [...this.rows];
+      this.temp = [this.rows];
 
       // Datatables needs to be "notified" about the changes to the 'rows' array.
       this.rows = [...this.rows];
@@ -63,7 +70,6 @@ export class ServiceListViewComponent implements OnInit {
       }
       this.isLoaded = true;
     });
-
   }
 
   parseInput(services: Service) {
@@ -94,6 +100,8 @@ export class ServiceListViewComponent implements OnInit {
   public removeService(id) {
     this.serviceService.deleteService(id).subscribe((x) => {
       this.services.filter((service) => service.ID !== id);
+      this.fetchServices();
+      // this.rows = [...this.rows];
     });
     // I (FJMentz) would rather test this with adult supervision
     console.log('Removing container ' + id);
@@ -137,6 +145,14 @@ export class ServiceListViewComponent implements OnInit {
     // this.table.offset = 0;
   }
 
+  findIndex(str: string) {
+    let i = 0;
+    while (this.rows[i]['ID'] !== str) {
+      i++;
+    }
+    return i++;
+  }
+
   onSelect({ selected }) {
     // console.log('Select Event', selected, this.selected);
     if (this.isSelected) {
@@ -144,6 +160,9 @@ export class ServiceListViewComponent implements OnInit {
     } else {
       this.isSelected = true;
     }
+
+    this.row = this.findIndex(this.selected[0]['ID']);
+    // console.log(this.row);
   }
 
   onActivate(event) {
