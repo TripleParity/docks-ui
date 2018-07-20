@@ -21,7 +21,11 @@ describe('StackService', () => {
   it('should have all functions', inject(
     [StackService],
     (service: StackService) => {
-      expect(true).toBeTruthy();
+      expect(service.deployStack).toBeTruthy();
+      expect(service.getStackServices).toBeTruthy();
+      expect(service.getStackTasks).toBeTruthy();
+      expect(service.removeStack).toBeTruthy();
+      expect(service.updateStack).toBeTruthy();
     }
   ));
 });
