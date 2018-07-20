@@ -129,8 +129,11 @@ lists styles
     background: transparent;
     border: none;
     padding: 8px;
-    color: #707070;
+    /*color: #707070;*/
     font-size: smaller;
+    overflow: hidden;
+    overflow-wrap: initial;
+    height: 40px;
 }
 
 .list-group-item:last-child, .list-group-item:first-child{
