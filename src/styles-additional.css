@@ -147,23 +147,23 @@ status styles
 
 /*successful task*/
 .success-card{
-    border: 2px solid var(--green);
+    border: 2px solid var(--c-success);
 }
 
 .success-card > .card-title{
-    border-bottom: 2px solid var(--green);
+    border-bottom: 2px solid var(--c-success);
 }
 
 .success-card > .card-footer{
-    border-top: 2px solid var(--green);
+    border-top: 2px solid var(--c-success);
 }
 
 .success-card > .card-title, .success-card > .modal-header{
-    color: var(--green);
+    color: var(--c-success);
 }
 
 .success-card > .card-title > .card-name > .light-container > .light{
-    background: var(--green);
+    background: var(--c-success);
 }
 
 /*failed task*/
@@ -253,7 +253,7 @@ status styles
 /*status text*/
 
 .text-success{
-    color: var(--green);
+    color: var(--c-success);
 }
 
 .text-danger{
