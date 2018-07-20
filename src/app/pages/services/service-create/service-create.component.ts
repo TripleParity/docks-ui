@@ -10,36 +10,8 @@ import { ServicesService } from '../../../services/services/services.service';
   styleUrls: ['./service-create.component.css']
 })
 export class ServiceCreateComponent implements OnInit {
-
-  namePopulated = true;
-  imagePopulated = true;
-  portPopulated = true;
-
-  alreadyExists = false;
-  genericError = false;
-  passwordHolder2 = '';
-
-  submitted = false;
-  badUser = '';
-
-  model: CreateService = null;
   constructor(private service: ServicesService, private router: Router) { }
 
   ngOnInit() {
-    this.model.Name = '';
-    this.model.image = null;
-    this.model.ports = null;
   }
-
-  submit() {
-    this.alreadyExists = false;
-    this.genericError = false;
-    this.submitted = true;
-
-    this.service
-      .createService()
-      .subscribe(
-        
-  }
-
 }
