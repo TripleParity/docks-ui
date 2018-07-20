@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="offset-md-4">
+  </div>
+  <div class="col-md-4">
+    <h2>Deploy Stack</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 offset-md-1">
+    <form #createForm="ngForm" (ngSubmit)="submit()">
+
+      <div class="form-group">
+        <label for="stackName">Stack Name</label>
+        <input type="text" [(ngModel)]="stackModel.stackName" class="form-control" id="stackName" placeholder="Insert Stack Name"
+          #stackName="ngModel" required name="stackName" [ngClass]="{'ng-invalid2': alreadyExists }">
+        <div [hidden]="stackName.valid || stackName.pristine" class="alert alert-danger">
+          A Stack name is required
+        </div>
+        <div [hidden]="!(alreadyExists && badUser === stackName.value) || stackName.pristine" class="alert alert-danger">
+          A Stack with that name already exists
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-auto">
+            <textarea rows="15" cols="50" placeholder="View the docker file here.." required name="stackFile" [(ngModel)]="stackModel.stackFile">{{fileText}}</textarea>
+          </div>
+          <div class="col-auto">
+            <label for="file">
+              <h4>Select a docker-compose file: </h4>
+            </label>
+            <input type="file" required class="form-control-file" id="file" accept=".yml" (change)="uploadFile($event)">
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row" [hidden]="warning === false">
+        <div class="col">
+          <ngb-alert (close)="warning=false" [type]="'danger'">
+            {{warningMessage}}
+          </ngb-alert>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="offset-md-3">
+        </div>
+        <div class="col-2">
+          <a routerLink="/stacks">
+            <button type="button" class="btn btn-secondary "> Cancel
+              <i class="fa fa-undo"></i>
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid"> Deploy Stack
+            <i class="fa fa-arrow-circle-o-up"></i>
+          </button>
+        </div>
+        <br />
+      </div>
+
+    </form>
+  </div>
+</div>

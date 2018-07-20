@@ -5,18 +5,21 @@ dist: trusty
 sudo: required
 addons:
     chrome: stable
+services:
+   - docker
 cache:
     npm: true
     directories:
         - node_modules
 before_script:
+  - docker swarm init
+  - docker stack deploy -c docker-compose-api.yml docks-api
   - npm install -g --silent @angular/cli
-
+  - ./scripts/wait-for-docks.sh
 script:
    - ng lint
    - ng build --prod --no-progress
    - ng test --no-progress
-   
 notifications:
     on_failure: change
     on_success: change
