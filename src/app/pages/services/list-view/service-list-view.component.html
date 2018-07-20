@@ -53,7 +53,7 @@
 </div> -->
 
 <ng-template #removeConfirm let-c="close" let-d="dismiss">
-    <div id="task-modal" class="dark-modal">
+    <div id="task-modal">
         <div class="modal-header" id="remove-modal-header">
             <h4 class="warning-text">
                 Warning!
@@ -82,13 +82,13 @@
     <div id="test" class="fixed-right">
         <a class="btn btn-primary" style="color: white">Create service</a>
 
-        <button (click)="loadModal(removeConfirm, rows.ID, $event)" class="btn btn-danger" style="float: right;"  *ngIf="isSelected">
+        <button (click)="loadModal(removeConfirm, rows.ID, $event)" class="btn btn-danger" style="float: right; margin-right: 5px;"  *ngIf="isSelected">
             <i class="fa fa-trash-o"></i> Delete service
         </button>
-        <button routerLink="/services/operations/{{rows.ID}}" class="btn btn-info pad" style="float: right;" *ngIf="isSelected">
+        <button routerLink="/services/operations/{{rows.ID}}" class="btn btn-info pad" style="float: right; margin-right: 5px" *ngIf="isSelected">
             <i class="fa fa-sliders"></i> Update service
         </button>
-        <button href="#" class="btn btn-success pad" style="float: right;" *ngIf="isSelected">
+        <button href="#" class="btn btn-success pad" style="float: right; margin-right: 5px" *ngIf="isSelected">
             <i class="fa fa-eye"></i> View detail view
         </button>
     </div>

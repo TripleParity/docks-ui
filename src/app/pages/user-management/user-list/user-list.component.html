@@ -10,6 +10,9 @@
   <ngb-alert [hidden]="deletedUser.length === 0" (close)="deletedUser=''" [type]="'success'">User '{{deletedUser}}' has been deleted successfully</ngb-alert>
   <ngb-alert [hidden]="deletedUserNotFound.length === 0" (close)="deletedUserNotFound=''" [type]="'danger'">Error deleting user '{{deletedUserNotFound}}'. User no longer exists</ngb-alert>
 
+  <h3>
+    Users
+  </h3>
   <a routerLink="/users/create">
     <button type="button" class="btn btn-primary">Create user</button>
   </a>
@@ -26,7 +29,7 @@
 
       </div>
     </div>
-  
+
     <div class="row">
       <div class="col-4">
         <ngx-datatable class="bootstrap" [limit]="10" [footerHeight]="40" [columnMode]="'force'" [rows]="users" [columns]="columns"
