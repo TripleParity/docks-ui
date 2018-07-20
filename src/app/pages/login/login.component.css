@@ -1,0 +1,21 @@
+.card {
+    max-width: 20rem;
+    background-color: rgb(241, 241, 241);
+}
+
+#logo {
+    margin: 15px 15px
+}
+
+#centered {
+  position: fixed;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: auto;
+}
+
+#inner {
+    position: fixed;
+    left: 100%;
+}

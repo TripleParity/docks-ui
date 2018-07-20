@@ -1,0 +1,46 @@
+<!--TODO(FJMentz): Do date stuff (commented)-->
+<app-spinner [hidden]="isLoaded"></app-spinner>
+
+<div id="volumeList">
+  <div *ngFor="let volume of volumes; let i = index">
+    <div class="card VolumeListCard">
+      <div class="card-header" [attr.id]="'heading-'+ i" (click)="Collapse(i)" aria-expanded="true" [attr.aria-controls]="'collapse-' + i">
+        <h5 class="mb-0">
+          <span class="main-item">
+            <div *ngIf="volume.Name !== undefined;then name else notName"></div>
+
+            <ng-template #name>{{volume.Name | slice:0:6}}</ng-template>
+            <!--<ng-template #notName>ID: {{ volume.ID | slice:0:6}}</ng-template>-->
+          </span>
+        </h5>
+      </div>
+
+
+
+      <div [attr.id]="'collapse-' + i" [ngbCollapse]="!isCollapsed[i]" [attr.aria-labelledby]="'heading-'+ i" data-parent="#volumeList">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between sub-item">
+            Driver: {{ volume.Driver }}
+          </li>
+          <li class="list-group-item d-flex justify-content-between sub-item">
+            Mountpoint: {{ volume.Mountpoint }}
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between sub-item">
+            Scope: {{ volume.Scope }}
+          </li>
+          <li class="list-group-item d-flex justify-content-between sub-item">
+            Labels: {{ volume.Labels }}
+          </li>
+          <li class="list-group-item d-flex justify-content-between sub-item">
+            Options: {{ volume.Options }}
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between sub-item">
+            Date Created: {{ volume.CreatedAt }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

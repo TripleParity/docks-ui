@@ -4,10 +4,11 @@
   "license": "MIT",
   "scripts": {
     "start": "ng serve --host=0.0.0.0",
-    "check": "ng lint;ng build --prod --aot; ng test",
+    "check": "docker stack deploy -c docker-compose-api.yml docks-api;ng lint;ng build --prod; ng test",
     "serve": "ng serve --aot",
     "fix": "ng lint --fix",
-    "build": "ng build --prod --no-progress"
+    "build": "ng build --prod --no-progress",
+    "prettier": "prettier --write \"src/app/**/*.ts\""
   },
   "private": true,
   "dependencies": {
@@ -21,11 +22,11 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^1.1.2",
+    "@swimlane/ngx-datatable": "11.3.2",
     "@types/chart.js": "^2.7.15",
     "@types/chartjs": "0.0.31",
     "angular-font-awesome": "^3.1.2",
     "angular2-jwt": "^0.2.3",
-    "cerialize": "^0.1.18",
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
@@ -33,7 +34,7 @@
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular/cli": "^1.7.4",
+    "@angular/cli": "^1.7.2",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.8.3",
@@ -42,11 +43,13 @@
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
+    "jsdoc": "^3.5.5",
     "karma": "~2.0.0",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "prettier": "1.13.7",
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",

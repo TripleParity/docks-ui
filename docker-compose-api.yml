@@ -1,9 +1,12 @@
+# Deploy the Docks API stack using images from Docker Hub
+# Used for developing Docks UI as Docks API is required
+
 version: '3.2'
 
 services:
 
   api:
-    image: tripleparity/docks-api:0.1.0
+    image: tripleparity/docks-api:branch-develop
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:

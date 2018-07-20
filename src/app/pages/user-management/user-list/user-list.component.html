@@ -1,0 +1,84 @@
+<div id="userListComponent">
+  <!-- TODO(egeldenhuys): Improve with using subjectUser and flags[] -->
+  <!-- TODO(egeldenhuys): Pass messages without using URL-->
+  <!-- TODO(egeldenhuys): Align cells vertically in center -->
+
+  <ngb-alert [hidden]="createdUser.length === 0" (close)="createdUser=''" [type]="'success'">User '{{createdUser}}' created successfully</ngb-alert>
+  <ngb-alert [hidden]="updatedUser.length === 0" (close)="updatedUser=''" [type]="'success'">User '{{updatedUser}}' successfully updated</ngb-alert>
+  <ngb-alert [hidden]="updatedUserNotFound.length === 0" (close)="updatedUserNotFound=''" [type]="'danger'">Error updating user '{{updatedUserNotFound}}'. User no longer exists</ngb-alert>
+  <ngb-alert [hidden]="!genericError" (close)="genericError=false" [type]="'danger'">Something went wrong</ngb-alert>
+  <ngb-alert [hidden]="deletedUser.length === 0" (close)="deletedUser=''" [type]="'success'">User '{{deletedUser}}' has been deleted successfully</ngb-alert>
+  <ngb-alert [hidden]="deletedUserNotFound.length === 0" (close)="deletedUserNotFound=''" [type]="'danger'">Error deleting user '{{deletedUserNotFound}}'. User no longer exists</ngb-alert>
+
+  <a routerLink="/users/create">
+    <button type="button" class="btn btn-primary">Create user</button>
+  </a>
+
+  <hr>
+
+  <div id="userList">
+    <div class="row">
+      <div class="col-md-auto">
+        <h4>List of users</h4>
+      </div>
+      <div class="col">
+        <input type='text' placeholder='Filter username...' (keyup)='updateFilter($event)' />
+
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-4">
+        <ngx-datatable class="bootstrap" [limit]="10" [footerHeight]="40" [columnMode]="'force'" [rows]="users" [columns]="columns"
+          [headerHeight]="'auto'" [rowHeight]="'auto'" [selected]="selected">
+
+          <ngx-datatable-column name="Username">
+            <ng-template let-value="value" ngx-datatable-cell-template class="d-flex align-content-center">
+              {{value}}
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Operations">
+
+            <ng-template let-column="column" ngx-datatable-header-template>
+              {{column.name}}
+            </ng-template>
+
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <div>
+                <a routerLink="/users/{{row.username}}/edit">
+                  <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                </a>
+                <button type="button" class="btn btn-danger btn-sm" (click)="open(content, row.username)">Delete</button>
+              </div>
+
+            </ng-template>
+
+          </ngx-datatable-column>
+        </ngx-datatable> 
+      </div>
+    </div>
+
+  </div>
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Delete User</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" align="center">
+      <h5>Are you sure you want to delete the following user?</h5>
+      <h5>
+        <pre>{{usernameToDelete}}</pre>
+      </h5>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="c('Cancel click')">Cancel</button>
+      <!-- usernameToDelete is set in open(content, row.username)-->
+      <button type="button" class="btn btn-danger" (click)="deleteUser(usernameToDelete)">Delete</button>
+    </div>
+  </ng-template>
+
+</div>

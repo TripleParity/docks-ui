@@ -1,0 +1,37 @@
+<div class="list-group panel p-l-0 p-r-0"  *ngIf="isLoggedIn$ | async as isLogged">
+    <a class="navbar-brand brand" href="#">Docks Manager</a>
+
+    <!--Add items as they are implemented-->
+
+    <a href="#" class="list-group-item collapsed main-list-group-item" routerLink="/tasks/list"><i class="fa fa-list"></i> <span class="hidden-sm-down"> Task List View</span></a>
+    <a href="#" class="list-group-item collapsed main-list-group-item" routerLink="/tasks/card"><i class="fa fa-clone"></i><span class="hidden-sm-down"> Task Card View</span></a>
+    <a href="#" class="list-group-item collapsed main-list-group-item" routerLink="/services/list"><i class="fa fa-list"></i><span class="hidden-sm-down"> Service List View</span></a>
+    <a href="#" class="list-group-item collapsed main-list-group-item" routerLink="/services/card"><i class="fa fa-clone"></i><span class="hidden-sm-down"> Service Card View</span></a>
+    <a href="#" class="list-group-item collapsed main-list-group-item" routerLink="/volumes/list"><i class="fa fa-list"></i><span class="hidden-sm-down"> Volumes List View</span></a>
+    <a href="#" class="list-group-item collapsed main-list-group-item" routerLink="/volumes/card"><i class="fa fa-clone"></i><span class="hidden-sm-down"> Volumes Card View</span></a>
+    <a href="#" class="list-group-item collapsed main-list-group-item" routerLink="/stacks"><i class="fa fa-database"></i><span class="hidden-sm-down"> Stacks</span></a>
+    <a href="#" class="list-group-item collapsed main-list-group-item" routerLink="/users"><i class="fa fa-users"></i><span class="hidden-sm-down"> Users</span></a>
+    <!--<a href="#" class="list-group-item collapsed main-list-group-item" routerLink="/networks/list"><i class="fa fa-list"></i><span class="hidden-sm-down"> Networks List View</span></a>-->
+
+    <!--example of submenus-->
+    <!--<a href="#views" class="list-group-item main-list-group-item collapsed" data-toggle="collapse" aria-expanded="false"> <i class="fa fa-eye"></i> <span class="hidden-sm-down">List</span></a>-->
+    <!--<div class="collapse" id="views">-->
+        <!--<a href="#" class="list-group-item collapsed sub-list-group-item" data-parent="#sidebar"><i class="fa fa-list"></i> <span class="hidden-sm-down">List</span></a>-->
+        <!--<a href="#" class="list-group-item collapsed sub-list-group-item" data-parent="#sidebar"><i class="fa fa-th"></i> <span class="hidden-sm-down">Blocks</span></a>-->
+        <!--<a href="#" class="list-group-item collapsed sub-list-group-item" data-parent="#sidebar"><i class="fa fa-bar-chart-o"></i> <span class="hidden-sm-down">Graphs</span></a>-->
+    <!--</div>-->
+
+    <!--<a href="#Add" class="list-group-item collapsed main-list-group-item" data-toggle="collapse" aria-expanded="false"> <i class="fa fa-plus"></i> <span class="hidden-sm-down">Add</span></a>-->
+    <!--<div class="collapse" id="Add">-->
+        <!--<a href="#" class="list-group-item collapsed sub-list-group-item" data-parent="#sidebar"><i class="fa fa-puzzle-piece"></i> <span class="hidden-sm-down">Task</span></a>-->
+        <!--<a href="#" class="list-group-item collapsed sub-list-group-item" data-parent="#sidebar"><i class="fa fa-object-group"></i> <span class="hidden-sm-down">Service</span></a>-->
+        <!--<a href="#" class="list-group-item collapsed sub-list-group-item" data-parent="#sidebar"><i class="fa fa-server"></i> <span class="hidden-sm-down">Stack</span></a>-->
+    <!--</div>-->
+
+    <!--<a href="#manage" class="list-group-item main-list-group-item collapsed" data-toggle="collapse" aria-expanded="false"> <i class="fa fa-cogs"></i> <span class="hidden-sm-down">Manage</span></a>-->
+    <!--<div class="collapse" id="manage">-->
+        <!--<a href="#" class="list-group-item collapsed sub-list-group-item" data-parent="#sidebar"><i class="fa fa-puzzle-piece"></i> <span class="hidden-sm-down">Tasks</span></a>-->
+        <!--<a href="#" class="list-group-item collapsed sub-list-group-item" data-parent="#sidebar"><i class="fa fa-object-group"></i> <span class="hidden-sm-down">Services</span></a>-->
+    <!--</div>-->
+
+</div>
