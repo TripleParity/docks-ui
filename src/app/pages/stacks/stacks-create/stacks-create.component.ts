@@ -76,4 +76,8 @@ export class StacksCreateComponent implements OnInit {
         }
       );
   }
+
+  replaceStackContents(stack) {
+    this.stackModel.stackFile = atob(stack);
+  }
 }
