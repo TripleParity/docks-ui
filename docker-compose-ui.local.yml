@@ -1,3 +1,6 @@
+# Deploy Docks UI using an image from a local registry
+# Used for building and deploying Docks UI to a swarm
+
 version: '3.2'
 
 services:

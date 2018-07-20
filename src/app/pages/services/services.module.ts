@@ -14,6 +14,8 @@ import { MockService } from '../../services/mock/mock.service';
 import { ServicesRoutingModule } from '../../pages/services/services-routing.module';
 import { SpinnerModule } from 'app/shared/spinner/spinner.module';
 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -22,6 +24,7 @@ import { SpinnerModule } from 'app/shared/spinner/spinner.module';
     ServicesRoutingModule,
     NgbModule,
     SpinnerModule,
+    NgxDatatableModule,
   ],
   declarations: [
     ServiceListViewComponent,
