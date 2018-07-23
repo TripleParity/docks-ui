@@ -23,7 +23,11 @@ export class HomeComponent implements OnInit {
   public pauseTask = 0;
   public stopTask = 0;
 
-  constructor(private networkService: NetworkService, private volumeService: VolumeService, private taskService: TaskService) {}
+  constructor(
+    private networkService: NetworkService,
+    private volumeService: VolumeService,
+    private taskService: TaskService
+  ) {}
   chart;
   ngOnInit() {
     this.getStats();
