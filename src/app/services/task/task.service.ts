@@ -3,7 +3,11 @@
  */
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Task } from '../../models/task/task.model';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
@@ -49,9 +53,11 @@ export class TaskService {
    * @returns {Observable<string>}
    */
   public getLog(id: string): Observable<string> {
+    const params: HttpParams = new HttpParams().set('stdout', 'true');
     return this.http
       .get(this.config.getAPIHostname() + '/docker/tasks/' + id + '/logs', {
-        responseType: 'text',
+        params: params,
+        responseType: 'text' as 'text',
       })
       .pipe(
         map((x) => {

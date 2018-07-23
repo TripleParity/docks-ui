@@ -13,7 +13,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class TaskCardViewComponent implements OnInit {
   constructor(
     private taskService: TaskService,
-    private mockService: MockService,
+    // private mockService: MockService,
     private modalService: NgbModal
   ) {}
 
@@ -67,11 +67,11 @@ export class TaskCardViewComponent implements OnInit {
       }
       // COMPLETE	The task exited without an error code.
       case 'COMPLETE': {
-        return 'success';
+        return 'dark';
       }
       // FAILED	The task exited with an error code.
       case 'FAILED': {
-        return 'dark';
+        return 'danger';
       }
       // SHUTDOWN	Docker requested the task to shut down.
       case 'SHUTDOWN': {
@@ -99,7 +99,7 @@ export class TaskCardViewComponent implements OnInit {
   public loadModal(content, task) {
     this.modalObject = task;
     this.modalService.open(content, { size: 'lg' });
-    this.mockService.getLog(this.modalObject.ID).subscribe((log) => {
+    this.taskService.getLog(this.modalObject.ID).subscribe((log) => {
       this.modalObjectLog = log;
     });
   }
