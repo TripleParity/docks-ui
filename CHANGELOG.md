@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.3.0] - 2018-07-28
+### Added
+- Deploy Pre-configured Stacks
+
+### Removed
+- Task List view
+- Volumes list and card view
+
+### Fixed
+- Task card view modal now displays the logs
+- Cards now have consistent width
+- Login page offsets
+
 ## [0.2.0] - 2018-07-20 (Demo 4)
 ### Added
 - User management pages to Create, View, Update and Delete users ([#115])
@@ -47,7 +60,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 0.0.1 - 2018-04-14
 - Demo 1 release
 
-[Unreleased]: https://github.com/TripleParity/docks-ui/compare/0.2.0...HEAD
+[Unreleased]: https://github.com/TripleParity/docks-ui/compare/0.3.0...HEAD
+[0.3.0]: https://github.com/TripleParity/docks-ui/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/TripleParity/docks-ui/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/TripleParity/docks-ui/compare/0.0.2...0.1.0
 [0.0.2]: https://github.com/TripleParity/docks-ui/compare/0.0.1...0.0.2
