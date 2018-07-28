@@ -23,10 +23,10 @@
 
       <div class="form-group">
         <div class="row">
-          <div class="col-auto">
-            <textarea rows="15" cols="50" placeholder="View the docker file here.." required name="stackFile" [(ngModel)]="stackModel.stackFile">{{fileText}}</textarea>
+          <div class="col-6">
+            <textarea rows="15" cols="40s" placeholder="View the docker file here.." required name="stackFile" [(ngModel)]="stackModel.stackFile">{{fileText}}</textarea>
           </div>
-          <div class="col-auto">
+          <div class="col-6">
             <label for="file">
               <h4>Select a docker-compose file: </h4>
             </label>
@@ -52,7 +52,7 @@
       </div>
 
       <div class="row" [hidden]="warning === false">
-        <div class="col">
+        <div class="cols">
           <ngb-alert (close)="warning=false" [type]="'danger'">
             {{warningMessage}}
           </ngb-alert>

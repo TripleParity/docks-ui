@@ -19,7 +19,7 @@
 
                 </div>
                 <div class="card-text">
-                    <ul class="list-group header">
+                    <ul class="list-group">
                         <li class="list-group-item">
                             <span class="text">ID:</span> {{ task.ID }}
                         </li>
@@ -28,8 +28,7 @@
                             <!--Change to Node name as soon as Node service is implemented-->
                         </li>
                         <li class="list-group-item">
-                            <div class="image">Image:
-                            <span> {{task.Spec.ContainerSpec.Image}} </span></div>
+                            <span class="text">Image: </span>{{task.Spec.ContainerSpec.Image}}
                         </li>
                     </ul>
                     <div class="service">
@@ -38,7 +37,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <div class="up-date">
+                    <div>
                         <span class="text">Last Updated: </span><br />
                         {{PrettifyDateTime(task.UpdatedAt) }}
                     </div>
@@ -51,7 +50,7 @@
 <ng-template #content let-c="close" let-d="dismiss">
     <!--TODO: add spinner to modal as soon as modal is off mock service -->
     <div id="task-modal">
-        <div class="modal-header" id="modal-header" [attr.class]="'modal-header ' + ' ' + getState(modalObject.Status.State.toUpperCase()) + '-card'">
+        <div class="modal-header" id="modal-header">
             <h4 >
                 <div *ngIf="modalObject.name !== undefined;then name else notName"></div>
                 <ng-template #name>{{modalObject.Name}}</ng-template>
@@ -82,7 +81,7 @@
                     <br/>
                     <textarea id="modalTextArea" class="modal-textarea" disabled>{{modalObjectLog}}</textarea>
                     <br/>
-                    <button type="button" class="btn btn-outline-success">Copy to clipboard</button>
+                    <button type="button" class="btn btn-outline-info">Copy to clipboard</button>
                 </li>
             </ul>
         </div>

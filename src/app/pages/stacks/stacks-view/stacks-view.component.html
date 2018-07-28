@@ -27,24 +27,23 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-10 offset-md-1">
-     <ngx-datatable class="bootstrap" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="stacks"
+<div>
+     <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="stacks"
       [headerHeight]="'auto'" [rowHeight]="getRowHeight">
 
-      <ngx-datatable-column name="Stack Name" width="300">
+      <ngx-datatable-column name="Stack Name">
           <ng-template let-value="value" ngx-datatable-cell-template>
             <strong>{{value}}</strong>
           </ng-template>
         </ngx-datatable-column>
-
-        <ngx-datatable-column name="Services Count" width="300">
+       
+        <ngx-datatable-column name="Services Count">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
               {{value}}
             </ng-template>
         </ngx-datatable-column>
-
-        <ngx-datatable-column name ="" width="20px;">
+        
+        <ngx-datatable-column name ="Operations">
           <ng-template let-row="row" ngx-datatable-cell-template>
               <div>
                 <a routerLink="/stacks/{{row.stackName}}/edit">
@@ -53,8 +52,8 @@
               </div>
             </ng-template>
           </ngx-datatable-column>
-
-          <ngx-datatable-column name ="" width="20px;">
+          
+          <ngx-datatable-column name ="">
               <ng-template let-row="row" ngx-datatable-cell-template>
                   <div>
                       <button class="btn btn-danger sm" (click)="open(content, row.stackName)">Delete
@@ -64,7 +63,6 @@
               </ngx-datatable-column>
 
     </ngx-datatable>
-  </div>
 </div>
 
 <ng-template #content let-c="close" let-d="dismiss">
