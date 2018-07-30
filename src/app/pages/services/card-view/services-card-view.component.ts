@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Formatter } from '../../../classes/formatter/formatter';
 import { ServicesService } from '../../../services/services/services.service';
-import { MockService } from '../../../services/mock/mock.service';
+
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Service } from '../../../models/service/service.model';
 import { Task } from '../../../models/task/task.model';
@@ -14,7 +14,6 @@ import { Task } from '../../../models/task/task.model';
 export class ServicesCardViewComponent implements OnInit {
   constructor(
     private servicesService: ServicesService,
-    private mockService: MockService,
     private modalService: NgbModal
   ) {}
 

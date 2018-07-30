@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServiceSpec } from '../../../models/service/spec/spec.model';
 import { ServicesService } from '../../../services/services/services.service';
-import { MockService } from '../../../services/mock/mock.service';
 
 @Component({
   selector: 'app-services-operations',
@@ -16,8 +15,7 @@ export class ServicesOperationsComponent implements OnInit {
   public currentJustify = 'justified';
   constructor(
     private route: ActivatedRoute,
-    private serviceService: ServicesService,
-    private mock: MockService
+    private serviceService: ServicesService
   ) {}
 
   ngOnInit() {

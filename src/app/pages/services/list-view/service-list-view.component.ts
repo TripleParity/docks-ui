@@ -3,7 +3,6 @@ import { Service } from '../../../models/service/service.model';
 import { Formatter } from '../../../classes/formatter/formatter';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServicesService } from '../../../services/services/services.service';
-import { MockService } from '../../../services/mock/mock.service';
 
 @Component({
   selector: 'app-service-list-view',
@@ -12,7 +11,6 @@ import { MockService } from '../../../services/mock/mock.service';
 })
 export class ServiceListViewComponent implements OnInit {
   constructor(
-    private mock: MockService,
     private serviceService: ServicesService,
     private modalService: NgbModal
   ) {}
@@ -28,16 +26,16 @@ export class ServiceListViewComponent implements OnInit {
   public temp = [];
   public rows: any[] = [];
   public columns: any = [
-      {prop: 'Name'},
-      {prop: 'ID'},
-      {prop: 'Stack'},
-      {prop: 'Image'},
-      {prop: 'Mode'},
-      {prop: 'Replicas'},
-      {prop: 'Ports'},
-      {prop: 'CreatedAt'},
-      {prop: 'UpdatedAt'},
-      {prop: 'Ownership'}
+    { prop: 'Name' },
+    { prop: 'ID' },
+    { prop: 'Stack' },
+    { prop: 'Image' },
+    { prop: 'Mode' },
+    { prop: 'Replicas' },
+    { prop: 'Ports' },
+    { prop: 'CreatedAt' },
+    { prop: 'UpdatedAt' },
+    { prop: 'Ownership' },
   ];
 
   public selected = [];

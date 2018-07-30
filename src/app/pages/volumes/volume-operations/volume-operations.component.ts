@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VolumeService } from '../../../services/volume/volume.service';
-import { MockService } from '../../../services/mock/mock.service';
+
 import { Observable } from 'rxjs/Observable';
 import { Volume } from '../../../models/volume/volume.model';
 
@@ -14,11 +14,7 @@ export class VolumeOperationsComponent implements OnInit {
   public view: Volume;
   public ins: Observable<Volume>;
 
-  constructor(
-    private route: ActivatedRoute,
-    private service: VolumeService,
-    private mock: MockService
-  ) {}
+  constructor(private route: ActivatedRoute, private service: VolumeService) {}
 
   ngOnInit() {}
 

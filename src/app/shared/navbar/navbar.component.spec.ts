@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from 'app/shared/navbar/navbar.component';
 import { AuthService } from 'services/auth/auth.service';
-import { MockService } from 'services/mock/mock.service';
+
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 
@@ -15,7 +15,7 @@ describe('NavbarComponent', () => {
     TestBed.configureTestingModule({
       declarations: [NavbarComponent],
       imports: [HttpClientModule, RouterTestingModule],
-      providers: [AuthService, MockService, ConfigurationService, TokenStorage],
+      providers: [AuthService, ConfigurationService, TokenStorage],
     }).compileComponents();
   }));
 

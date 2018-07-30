@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../../models/task/task.model';
 import { TaskService } from '../../../services/task/task.service';
-import { MockService } from '../../../services/mock/mock.service';
+
 import { Formatter } from '../../../classes/formatter/formatter';
 
 @Component({
@@ -10,10 +10,7 @@ import { Formatter } from '../../../classes/formatter/formatter';
   styleUrls: ['./task-list-view.component.css'],
 })
 export class TaskListViewComponent implements OnInit {
-  constructor(
-    private taskService: TaskService,
-    private mockService: MockService
-  ) {}
+  constructor(private taskService: TaskService) {}
   public tasks: Task[] = [];
   public isCollapsed: Boolean[] = [];
   public previous = 0;

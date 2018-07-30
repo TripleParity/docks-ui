@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Volume } from '../../../models/volume/volume.model';
 import { VolumeService } from '../../../services/volume/volume.service';
-import { MockService } from '../../../services/mock/mock.service';
 
 @Component({
   selector: 'app-volume-list-view',
@@ -9,7 +8,7 @@ import { MockService } from '../../../services/mock/mock.service';
   styleUrls: ['./volume-list-view.component.css'],
 })
 export class VolumeListViewComponent implements OnInit {
-  constructor(private mock: MockService, private service: VolumeService) {}
+  constructor(private service: VolumeService) {}
 
   public volumes: Volume[] = [];
   public isCollapsed: Boolean[] = [];

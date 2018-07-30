@@ -7,7 +7,6 @@ import { VolumeListViewComponent } from './list-view/volume-list-view.component'
 import { VolumeOperationsComponent } from '../volumes/volume-operations/volume-operations.component';
 
 import { VolumeService } from '../../services/volume/volume.service';
-import { MockService } from '../../services/mock/mock.service';
 
 import { VolumesRoutingModule } from './volumes.routing-module';
 import { TokenStorage } from '../../classes/tokenstorage/tokenstorage';
@@ -21,6 +20,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     VolumeCardViewComponent,
     VolumeOperationsComponent,
   ],
-  providers: [HttpClientModule, MockService, VolumeService, TokenStorage],
+  providers: [HttpClientModule, VolumeService, TokenStorage],
 })
 export class VolumesModule {}

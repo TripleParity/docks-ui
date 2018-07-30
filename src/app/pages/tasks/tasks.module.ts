@@ -8,7 +8,7 @@ import { TaskCardViewComponent } from '../../pages/tasks/card-view/task-card-vie
 import { TaskListViewComponent } from '../../pages/tasks/list-view/task-list-view.component';
 
 import { TaskService } from '../../services/task/task.service';
-import { MockService } from '../../services/mock/mock.service';
+
 import { SpinnerModule } from 'app/shared/spinner/spinner.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -21,6 +21,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
   ],
   declarations: [TaskCardViewComponent, TaskListViewComponent],
-  providers: [TaskService, MockService],
+  providers: [TaskService],
 })
 export class TasksModule {}

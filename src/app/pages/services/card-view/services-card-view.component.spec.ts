@@ -5,18 +5,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TokenStorage } from '../../../classes/tokenstorage/tokenstorage';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { ServicesService } from 'services/services/services.service';
-import { MockService } from 'services/mock/mock.service';
 
 describe('ServicesCardViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterTestingModule],
-      providers: [
-        ConfigurationService,
-        ServicesService,
-        MockService,
-        TokenStorage,
-      ],
+      providers: [ConfigurationService, ServicesService, TokenStorage],
     });
   }));
 

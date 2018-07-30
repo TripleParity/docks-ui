@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VolumeService } from '../../../services/volume/volume.service';
-import { MockService } from '../../../services/mock/mock.service';
+
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Volume } from '../../../models/volume/volume.model';
 
@@ -10,11 +10,7 @@ import { Volume } from '../../../models/volume/volume.model';
   styleUrls: ['./volume-card-view.component.css'],
 })
 export class VolumeCardViewComponent implements OnInit {
-  constructor(
-    private service: VolumeService,
-    private mock: MockService,
-    private modal: NgbModal
-  ) {}
+  constructor(private service: VolumeService, private modal: NgbModal) {}
 
   public volumes: Volume[] = [];
   public modalObject: Volume;

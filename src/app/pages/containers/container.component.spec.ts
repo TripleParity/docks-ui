@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { ContainerService } from 'services/container/container.service';
 import { TaskService } from 'services/task/task.service';
-import { MockService } from 'services/mock/mock.service';
+
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 
@@ -20,7 +20,7 @@ describe('ContainerComponent', () => {
       providers: [
         ContainerService,
         TaskService,
-        MockService,
+
         ConfigurationService,
         TokenStorage,
       ],
