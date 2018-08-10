@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VolumesViewComponent implements OnInit {
 
+  public createdVolume = '';
+  public deletedVolume = '';
+  public volumeNotFoundError = '';
+  public genericError = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  clearAlerts() {
+    this.createdVolume = '';
+    this.volumeNotFoundError = '';
+    this.deletedVolume = '';
+    this.genericError = false;
+  }
 }

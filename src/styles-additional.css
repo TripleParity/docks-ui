@@ -326,7 +326,7 @@ user bar styling
 
 .user-bar{
     background-color: var(--c-dark-background);
-    border-bottom: 5px solid rgba(195, 195, 195, 0.5);;
+    border-bottom: 5px solid rgba(255, 255, 255, 0.8);;
 }
 
 /*
