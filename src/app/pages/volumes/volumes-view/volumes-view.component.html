@@ -8,13 +8,15 @@
   <div class="col-md-8">
     <a routerLink="/volumes/create">
       <button type="button" class="btn btn-info">
-          Create New Volume <i class="fa fa-clone"> </i>
+        Create New Volume
+        <i class="fa fa-clone"> </i>
       </button>
     </a>
   </div>
   <div class="col-md-4">
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search Stacks" aria-label="Recipient's username" aria-describedby="basic-addon2" (keyup)= "updateFilter($event)">
+      <input type="text" class="form-control" placeholder="Search Volumes" aria-label="Recipient's username" aria-describedby="basic-addon2"
+        (keyup)="updateFilter($event)">
       <div class="input-group-append">
         <button class="btn btn-default">
           <span class="input-group-text" id="Search">
@@ -26,3 +28,13 @@
   </div>
 </div>
 <div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="volumes" [headerHeight]="'auto'"
+        [rowHeight]="getRowHeight">
+        
+      
+      </ngx-datatable>
+    </div>
+  </div>

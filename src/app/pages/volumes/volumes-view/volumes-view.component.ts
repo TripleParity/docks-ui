@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Volume } from 'app/models/volume/volume.model';
 
 @Component({
   selector: 'app-volumes-view',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VolumesViewComponent implements OnInit {
 
+  public volumes: Volume[];
   public createdVolume = '';
   public deletedVolume = '';
   public volumeNotFoundError = '';
