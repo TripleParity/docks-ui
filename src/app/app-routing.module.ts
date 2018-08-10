@@ -42,6 +42,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'stacks',
+    loadChildren: 'app/pages/stacks/stacks.module#StacksModule',
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'containers',
     loadChildren: 'app/pages/containers/containers.module#ContainersModule',
   },

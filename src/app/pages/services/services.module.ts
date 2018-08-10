@@ -15,6 +15,8 @@ import { ServicesRoutingModule } from '../../pages/services/services-routing.mod
 import { SpinnerModule } from 'app/shared/spinner/spinner.module';
 import { ServiceCreateComponent } from './service-create/service-create.component';
 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -23,6 +25,7 @@ import { ServiceCreateComponent } from './service-create/service-create.componen
     ServicesRoutingModule,
     NgbModule,
     SpinnerModule,
+    NgxDatatableModule,
   ],
   declarations: [
     ServiceListViewComponent,

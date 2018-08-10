@@ -1,0 +1,403 @@
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+/*
+custom colour theme
+adapted from compiax's slack theme
+*/
+
+:root{
+    --c-light-background :#1180af;
+    --c-dark-background : #27548c;
+    --c-dark : #2C3849;
+    --c-success : #94E864;
+    --c-grey : #4A5664;
+    --c-light : #ffffff;
+    --c-text-grey : #A0A0A0;
+    --c-dark-grey : var(--dark);
+    --c-light-sep-back: #EFF7FB;
+}
+
+a:hover{
+    color: var(--c-light);
+}
+
+/*
+status light styles
+*/
+
+.light-container{
+    padding: 0.5vh;
+}
+
+.light{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/*
+card style
+*/
+
+.card-deck{
+    margin-top: 20px;
+}
+
+.card-title {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 5px;
+    margin-bottom: 0;
+}
+
+.card-footer{
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    font-size: smaller;
+    color: #707070;
+    text-align: center;
+    background: var(--c-light);
+}
+
+.card{
+    margin-top: 10px;
+    background: var(--c-light);
+    border-radius: 5px;
+    width: 250px;
+}
+
+.card-name
+{
+    color: var(--c-dark);
+    font-size: 100%;
+    margin-top: 8px;
+    text-align: center;
+    padding-left: 3px;
+}
+
+.card-text, .modal-body{
+    background: var(--c-light);
+}
+
+.card:hover{
+    cursor: pointer;
+}
+
+/*card modal style*/
+
+.modal-list-group{
+    text-align: center;
+    padding: 0;
+}
+
+.modal-list-group-item{
+    background: transparent;
+    border: none;
+    padding: 8px;
+    color: #707070;
+    font-size: medium;
+    list-style-type: none;
+}
+
+.modal-list-group-item:nth-child(odd){
+    background-color: var(--c-light-sep-back);
+}
+
+.modal-title, .modal-task-state {
+    text-align: center;
+    margin: auto;
+}
+
+.modal-textarea{
+    width: 80%;
+    height: 40vh;
+    resize: none;
+}
+
+/*
+lists styles
+*/
+
+.list-group{
+    text-align: center;
+}
+
+.list-group-item{
+    background: transparent;
+    border: none;
+    padding: 8px;
+    /*color: #707070;*/
+    font-size: small;
+    overflow: hidden;
+    overflow-wrap: initial;
+    height: 50px;
+}
+
+.list-group-item:last-child, .list-group-item:first-child{
+    border-radius: 0;
+}
+
+.list-group-item:nth-child(odd){
+    background-color: var(--c-light-sep-back);
+}
+
+/*
+status styles
+*/
+
+/*successful task*/
+.success-card{
+    border: 2px solid var(--c-success);
+}
+
+.success-card > .card-title{
+    border-bottom: 2px solid var(--c-success);
+}
+
+.success-card > .card-footer{
+    border-top: 2px solid var(--c-success);
+}
+
+.success-card > .card-title, .success-card > .modal-header{
+    color: var(--c-success);
+}
+
+.success-card > .card-title > .card-name > .light-container > .light{
+    background: var(--c-success);
+}
+
+/*failed task*/
+.danger-card{
+    border: 2px solid var(--red);
+}
+
+.danger-card > .card-title{
+    border-bottom: 2px solid var(--red);
+}
+
+.danger-card > .card-footer{
+    border-top: 2px solid var(--red);
+}
+
+.danger-card > .card-title, .danger-card > .modal-header{
+    color: var(--red);
+}
+
+.danger-card > .card-title > .card-name > .light-container > .light{
+    background: var(--red);
+}
+
+/*complete task*/
+.info-card{
+    border: 2px solid var(--info);
+}
+
+.info-card > .card-title{
+    border-bottom: 2px solid var(--info);
+}
+
+.info-card > .card-footer{
+    border-top: 2px solid var(--info);
+}
+
+.info-card > .card-title, .info-card > .modal-header{
+    color: var(--info);
+}
+
+.info-card > .card-title > .card-name > .light-container > .light{
+    background: var(--info);
+}
+
+/*dead task*/
+.dark-card{
+    border: 2px solid var(--dark);
+}
+
+.dark-card > .card-title{
+    border-bottom: 2px solid var(--dark);
+}
+
+.dark-card > .card-footer{
+    border-top: 2px solid var(--dark);
+}
+
+.dark-card > .card-title, .dark-card > .modal-header{
+    color: var(--dark);
+}
+
+.dark-card > .card-title > .card-name > .light-container > .light{
+    background: var(--dark);
+}
+
+/*new task*/
+.primary-card{
+    border: 2px solid var(--primary);
+}
+
+.primary-card > .card-title{
+    border-bottom: 2px solid var(--primary);
+}
+
+.primary-card > .card-footer{
+    border-top: 2px solid var(--primary);
+}
+
+.primary-card > .card-title, .primary-card > .modal-header{
+    color: var(--primary);
+}
+
+.primary-card > .card-title > .card-name > .light-container > .light{
+    background: var(--primary);
+}
+
+/*status text*/
+
+.text-success{
+    color: var(--c-success);
+}
+
+.text-danger{
+    color: var(--red)
+}
+
+.text-info{
+    color: var(--info)
+}
+
+.text-dark{
+    color: var(--dark)
+}
+
+.text-primary{
+    color: var(--primary);
+}
+
+.text-light{
+    color: var(--c-light);
+}
+/*
+navbar styles
+ */
+
+.nav-list-group{
+    height: 100vh;
+    background-color: var(--c-light-background);
+    text-align: left;
+}
+
+.nav-list-group-item {
+    border-radius: 0;
+    /*background-color: #333;*/
+    color: var(--c-light);
+    border-left: 0;
+    border-right: 0;
+    border-color: var(--c-dark-background);
+    white-space: nowrap;
+    padding: 8px;
+    padding-left: 18px;
+}
+
+.nav-list-group-item:hover{
+    background-color: var(--c-dark-background);
+    /*color: var(--c-success);*/
+    text-decoration: none;
+}
+
+/*
+user bar styling
+ */
+
+.logo{
+    border-radius: 50%;
+    width: 50px;
+    color: var(--c-light);
+}
+
+.user-bar{
+    background-color: var(--c-light-background);
+    border-bottom: 5px solid var(--c-success);
+}
+
+/*
+bootstrap table theme
+*/
+.ngx-datatable.bootstrap {
+    box-shadow: none;
+    font-size: 13px;
+}
+.ngx-datatable.bootstrap .datatable-header {
+    height: unset !important;
+    font-weight: bold;
+}
+.ngx-datatable.bootstrap .datatable-header .datatable-header-cell {
+    vertical-align: bottom;
+    padding: 0.75rem;
+    border-bottom: 1px solid #d1d4d7;
+}
+.ngx-datatable.bootstrap .datatable-header .datatable-header-cell .datatable-header-cell-label {
+    line-height: 24px;
+}
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row {
+    vertical-align: top;
+    border-top: 1px solid #d1d4d7;
+}
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row.datatable-row-even {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row.active {
+    background-color: #1483ff;
+    color: #FFF;
+}
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row .datatable-body-cell {
+    padding: 0.75rem;
+    text-align: left;
+    vertical-align: top;
+}
+.ngx-datatable.bootstrap .datatable-footer {
+    background: #424242;
+    color: #ededed;
+    margin-top: -1px;
+}
+.ngx-datatable.bootstrap .datatable-footer .page-count {
+    line-height: 50px;
+    height: 50px;
+    padding: 0 1.2rem;
+}
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager {
+    margin: 0 10px;
+    vertical-align: top;
+}
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li {
+    margin: 10px 0px;
+}
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active a, .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
+    background-color: #545454;
+    font-weight: bold;
+}
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager a {
+    height: 22px;
+    min-width: 24px;
+    line-height: 22px;
+    padding: 0;
+    border-radius: 3px;
+    margin: 0 3px;
+    text-align: center;
+    vertical-align: top;
+    text-decoration: none;
+    vertical-align: bottom;
+    color: #ededed;
+}
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-left,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-skip,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-right,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-prev {
+    font-size: 18px;
+    line-height: 27px;
+    padding: 0 3px;
+}
+.ngx-datatable.bootstrap .datatable-summary-row .datatable-body-row .datatable-body-cell {
+    font-weight: bold;
+}
