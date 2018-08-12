@@ -1,10 +1,10 @@
 {
   "name": "docks-ui",
-  "version": "0.1.0",
-  "license": "MIT",
+  "version": "0.3.0",
+  "license": "GPL-3.0",
   "scripts": {
     "start": "ng serve --host=0.0.0.0",
-    "check": "ng lint;ng build --prod; ng test",
+    "check": "docker stack deploy -c docker-compose-api.yml docks-api;ng lint;ng build --prod; ng test",
     "serve": "ng serve --aot",
     "fix": "ng lint --fix",
     "build": "ng build --prod --no-progress",

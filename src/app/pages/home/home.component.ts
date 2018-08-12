@@ -23,7 +23,11 @@ export class HomeComponent implements OnInit {
   public pauseTask = 0;
   public stopTask = 0;
 
-  constructor(private networkService: NetworkService, private volumeService: VolumeService, private taskService: TaskService) {}
+  constructor(
+    private networkService: NetworkService,
+    private volumeService: VolumeService,
+    private taskService: TaskService
+  ) {}
   chart;
   ngOnInit() {
     this.getStats();
@@ -67,14 +71,20 @@ export class HomeComponent implements OnInit {
         this.volumes.push(volume[i]);
       }
       this.numVol = this.volumes.length;
-    });
+    },
+  (err) => {
+    console.error(err);
+  });
 
     this.networkService.getNetworks().subscribe((network) => {
       for (let i = 0; i < network.length; i++) {
         this.networks.push(network[i]);
       }
       this.numNet = this.networks.length;
-    });
+    },
+  (err) => {
+    console.error(err);
+  });
 
     this.taskService.getTasks().subscribe((task) => {
       for (let i = 0; i < task.length; i++) {
@@ -95,6 +105,9 @@ export class HomeComponent implements OnInit {
         }
       }
       this.numTask = this.tasks.length;
+    },
+    (err) => {
+  console.error(err);
     });
   }
 }

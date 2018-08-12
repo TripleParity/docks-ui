@@ -28,7 +28,7 @@ const routes: Routes = [
         path: 'create',
         pathMatch: 'full',
         component: ServiceCreateComponent,
-      }
+      },
     ],
   },
 ];

@@ -9,10 +9,10 @@
 
 #centered {
   position: fixed;
-  top: 33%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  overflow: auto;
+  top: 0;
+  left: 0;
+  /*transform: translate(-50%, -50%);*/
+  /*overflow: auto;*/
 }
 
 #inner {

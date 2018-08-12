@@ -16,7 +16,7 @@
 
                 </div>
                 <div class="card-text">
-                    <ul class="list-group header">
+                    <ul class="list-group">
                         <li class="list-group-item">
                             <span class="text">ID: </span> {{ service.ID }}
                         </li>
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <div class="up-date">
+                    <div>
                         <span class="text">Last Updated: </span><br/>
                         {{ PrettifyDateTime(service.UpdatedAt) }}
                     </div>
@@ -76,8 +76,8 @@
                 <li class="modal-list-group-item">
                     <span class="text">Ports:</span><br/>
                     <div *ngFor="let port of modalObject.Endpoint.Ports">
-                        <ul class="modal-sub-list-group">
-                            <li class="modal-sub-list-group-item">
+                        <ul class="modal-list-group">
+                            <li class="modal-list-group-item">
                                 Published port: {{ port.PublishedPort }}<br>
                                 Target port: {{ port.TargetPort}}
                             </li>
@@ -86,10 +86,10 @@
                 </li>
                 <li class="modal-list-group-item">
                     <span class="text">Tasks:</span><br/>
-                    <ul class="modal-sub-list-group">
+                    <ul class="modal-list-group">
                         <div *ngFor="let task of modalObjectTasks">
-                            <li class="modal-sub-list-group-item" *ngIf="task.name !== undefined"><i class="fa fa-arrow-right"></i> {{ task.name }}</li>
-                            <li class="modal-sub-list-group-item" *ngIf="task.name === undefined"><i class="fa fa-arrow-right"></i> ID: {{ task.id | slice:0:6}}</li>
+                            <li class="modal-list-group-item" *ngIf="task.Name !== undefined"><i class="fa fa-arrow-right"></i> {{ task.Name }}</li>
+                            <li class="modal-list-group-item" *ngIf="task.Name === undefined"><i class="fa fa-arrow-right"></i> ID: {{ task.ID | slice:0:6}}</li>
 
                         </div>
                     </ul>
