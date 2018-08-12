@@ -47,39 +47,6 @@ export class HomeComponent implements OnInit {
       },
     });
 
-    // this.chart = new Chart('myChartbar', {
-    //   type: 'bar',
-    //   data: {
-    //     labels: [
-    //       'Container1',
-    //       'Container2',
-    //       'Container3',
-    //       'Container4',
-    //       'Container5',
-    //     ],
-    //     datasets: [
-    //       {
-    //         // label: "CPU usage (per Container)",
-    //         backgroundColor: [
-    //           '#FF1000',
-    //           '#FFA510',
-    //           '#008180',
-    //           '#008100',
-    //           '#801080',
-    //         ],
-    //         data: [10, 25, 5, 20, 4],
-    //       },
-    //     ],
-    //   },
-    //   options: {
-    //     legend: { display: false },
-    //     title: {
-    //       display: true,
-    //       text: 'CPU usage (per Container)',
-    //     },
-    //   },
-    // });
-
     this.chart = new Chart('chart2', {
       type: 'doughnut',
       data: {
