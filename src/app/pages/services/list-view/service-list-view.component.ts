@@ -58,8 +58,6 @@ export class ServiceListViewComponent implements OnInit {
         this.parseInput(element);
       });
 
-      console.log(services);
-
       this.temp = [this.rows];
 
       // Datatables needs to be "notified" about the changes to the 'rows' array.
@@ -80,6 +78,14 @@ export class ServiceListViewComponent implements OnInit {
 
     const created = this.PrettifyDateTime(services.CreatedAt);
     const updated = this.PrettifyDateTime(services.UpdatedAt);
+    let replicated: string = null;
+
+    // Handle optional Modes
+    if ('Global' in services.Spec.Mode) {
+      replicated = 'Global';
+    } else if ('Replicated' in services.Spec.Mode) {
+      replicated = services.Spec.Mode.Replicated.Replicas.toString();
+    }
 
     this.myObj = {
       Name: services.Spec.Name,
@@ -87,7 +93,7 @@ export class ServiceListViewComponent implements OnInit {
       Stack: '',
       Image: services.Spec.TaskTemplate.ContainerSpec.Image,
       Mode: services.Spec.EndpointSpec.Mode,
-      Replicas: services.Spec.Mode.Replicated.Replicas,
+      Replicas: replicated,
       Ports: port,
       CreatedAt: created,
       UpdatedAt: updated,
