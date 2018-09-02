@@ -1,3 +1,70 @@
+<div class="row heading">
+  <div class="col-sm-4">
+    <h1>
+      <i class="fa fa-code-fork"></i> Create Volume</h1>
+  </div>
+  <div class="offset-sm-7">
+    <button type="submit" class="btn btn-info" [disabled]="!volumeForm.valid"> Create Volume
+      <i class="fa fa-arrow-circle-o-up"></i>
+    </button>
+  </div>
+</div>
+<form [formGroup]="volumeForm" (ngSubmit)="submit()">
+  <div class="form-group row">
+    <div class="col-sm-1">
+      <label for="volumeName" class="col-form-label">
+        <h4>Name: </h4>
+      </label>
+    </div>
+    <div class="col-sm-10">
+      <input type="text" formControlName="Name" class="form-control" id="volumeName">
+    </div>
+  </div>
+
+  <div class="row break">
+
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-1">
+      <label for="volumeDrive" class="col-form-label">
+        <h4>Driver: </h4>
+      </label>
+    </div>
+    <div class="col-sm-10">
+      <input type="text" formControlName="Driver" class="form-control" id="volumeDrive">
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <button (click)="addOption()" class="btn btn-info offset-sm-1">Add Driver Options
+        <span>
+          <i class="fa fa-plus-circle"></i>
+        </span>
+      </button>
+    </thead>
+    <tbody>
+      <div formArrayName="Options">
+        <div *ngFor="let Driver of Options.controls; let i=index">
+          <td>
+            <div class="form-group">
+              <label for="'OptionName'+i">Name: </label>
+              <input type="text" [formControlName]="i" class="form-control" id="'OptionName'+i">
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="'OptionName'+i">Value: </label>
+              <input type="text" [formControlName]="i" class="form-control" id="'OptionName'+i">
+            </div>
+          </td>
+        </div>
+      </div>
+
+    </tbody>
+  </table>
+</form>
+
 <p>
-  volumes-create works!
-</p>
+    Form Value: {{ volumeForm.value | json }}
+  </p>
