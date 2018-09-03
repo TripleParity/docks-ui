@@ -21,39 +21,77 @@
     </div>
   </div>
 
-  <div class="row break">
-
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-1">
-      <label for="volumeDrive" class="col-form-label">
-        <h4>Driver there me: </h4>
-      </label>
-    </div>
-    <div class="col-sm-8">
-      <input type="text" formControlName="Driver" class="form-control" id="volumeDrive">
-    </div>
-  </div>
-  <button (click)="addOption()" class="btn btn-info offset-sm-1">Add Driver Options
-    <i class="fa fa-plus-circle"></i>
-  </button>
+  <div class="row break"></div>
 
   <div class="row">
-    <div formArrayName="Options">
-      <div *ngFor="let option of Options.controls; let i=index">
-        <div [formGroupName]="i">
-          <div class="form-group heading">
-            <label for="'OptionName'+i">Name: </label>
-            <input type="text" formControlName="Name" class="form-control" id="'OptionName'+i">
-          </div>
-          <div class="form-group heading">
-            <label for="'OptionValue'+i">Value: </label>
-            <input type="text" formControlName="Value" class="form-control" id="'OptionValue'+i">
+    <table class="col-sm-12">
+      <thead>
+        <tr>
+          <th>
+            <div class="form-group row">
+              <div class="col-sm-1">
+                <label for="volumeDrive" class="col-form-label">
+                  <h4>Driver: </h4>
+                </label>
+              </div>
+              <div class="col-sm-10">
+                <input type="text" formControlName="Driver" class="form-control" id="volumeDrive">
+              </div>
+            </div>
+          </th>
+          <th>
+          </th>
+          <th>
+          </th>
+        </tr>
+        <tr>
+          <th id="bottomTable">
+            <span class="spans" (click)="addOption()" id="add">
+                Add Driver Options
+                <i class="fa fa-plus-circle"></i>
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <div formArrayName="Options">
+        <div *ngFor="let option of Options.controls; let i=index">
+          <div [formGroupName]="i">
+            <tbody class="col-sm-12">
+              <tr>
+                <td class="col-sm-6">
+                  <label for="'OptionName'+i">Name: </label>
+                </td>
+                <td class="col-sm-6">
+                  <label for="'OptionValue'+i">Value: </label>
+                </td>
+                <td class="col-sm-2"></td>
+              </tr>
+              <tr>
+                <td class="col-sm-6">
+                  <div class="form-group">
+                    <input type="text" formControlName="Name" class="form-control" id="'OptionName'+i">
+                  </div>
+                </td>
+                <td class="col-sm-6">
+                  <div class="form-group">
+                    <input type="text" formControlName="Value" class="form-control" id="'OptionValue'+i">
+                  </div>
+                </td>
+                <td>
+                  <div class="col-sm-2">
+                    <span (click)="removeOption(i)" class="spans" id="delete">
+                      <i class="fa fa-trash"></i>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
           </div>
         </div>
       </div>
-    </div>
+    </table>
   </div>
+
   <div class="row break"></div>
 </form>
 <p>

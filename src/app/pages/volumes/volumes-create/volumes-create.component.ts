@@ -27,7 +27,7 @@ export class VolumesCreateComponent implements OnInit {
     Name: ['', Validators.required],
     Driver: ['', Validators.required],
     Options: this.fb.array([
-      this.initOptions()
+      // this.initOptions()
     ])
   });
 
@@ -58,7 +58,6 @@ export class VolumesCreateComponent implements OnInit {
   }
 
   addOption() {
-    console.log('hello?');
     const control = <FormArray>this.volumeForm.controls['Options'];
     control.push(this.initOptions());
   }

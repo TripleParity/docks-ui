@@ -21,3 +21,27 @@ h1, .form-group
     height: 40px;
     border-bottom: 1px solid #A9A9A9;
 }
+
+#delete
+{
+    font-size: 150%;
+}
+
+#add
+{
+    font-size: 90%;
+}
+
+.spans
+{
+    color: #797979;
+}
+.spans:hover
+{
+    cursor: pointer;
+}
+
+#bottomTable
+{
+    padding: 20px;
+}
