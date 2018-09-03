@@ -22,16 +22,26 @@ export class VolumesCreateComponent implements OnInit {
   public badUser = '';
   public warningMessage = 'Something went wrong...';
   // TODO: Paul Wood allow an unknown number of Options to be added dynamically, achieved using the formBuilder
+
   volumeForm = this.fb.group({
     Name: ['', Validators.required],
     Driver: ['', Validators.required],
     Options: this.fb.array([
-      this.fb.control('')
+      this.initOptions()
     ])
   });
 
   get Options() {
     return this.volumeForm.get('Options') as FormArray;
+  }
+
+
+  initOptions() {
+    console.log('Setting the array');
+    return this.fb.group({
+      Name: ['', Validators.required],
+      Value: ['']
+    });
   }
 
   constructor(private router: Router, private volumeService: VolumeService, private fb: FormBuilder) {
@@ -48,8 +58,17 @@ export class VolumesCreateComponent implements OnInit {
   }
 
   addOption() {
-    this.Options.push(this.fb.control(''));
+    console.log('hello?');
+    const control = <FormArray>this.volumeForm.controls['Options'];
+    control.push(this.initOptions());
   }
+
+  removeOption(i: number) {
+    // remove address from the list
+    const control = <FormArray>this.volumeForm.controls['Options'];
+    control.removeAt(i);
+}
+
 }
 
 
