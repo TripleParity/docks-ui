@@ -3,21 +3,18 @@
     <h1>
       <i class="fa fa-code-fork"></i> Create Volume</h1>
   </div>
-  <div class="offset-sm-6">
-    <button type="submit" class="btn btn-info" [disabled]="!volumeForm.valid"> Create Volume
-      <i class="fa fa-arrow-circle-o-up"></i>
-    </button>
-  </div>
 </div>
 <form [formGroup]="volumeForm" (ngSubmit)="submit()">
   <div class="form-group row">
-    <div class="col-sm-1">
+    <div class="col-sm-2">
       <label for="volumeName" class="col-form-label">
-        <h4>Name: </h4>
+        <h4>
+          <i class="required fa fa-asterisk"></i> Name: </h4>
       </label>
     </div>
-    <div class="col-sm-10">
-      <input type="text" formControlName="Name" class="form-control" id="volumeName">
+    <div class="col-sm-9">
+      <input type="text" placeholder="Tardis" formControlName="Name" class="form-control" id="volumeName" required>
+      <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A Volume Name is required.</ngb-alert>
     </div>
   </div>
 
@@ -29,13 +26,15 @@
         <tr>
           <th>
             <div class="form-group row">
-              <div class="col-sm-1">
+              <div class="col-sm-2">
                 <label for="volumeDrive" class="col-form-label">
-                  <h4>Driver: </h4>
+                  <h4>
+                    <i class="required fa fa-asterisk"></i> Driver: </h4>
                 </label>
               </div>
-              <div class="col-sm-10">
-                <input type="text" formControlName="Driver" class="form-control" id="volumeDrive">
+              <div class="col-sm-9">
+                <input type="text" formControlName="Driver" class="form-control" placeholder="Custom" id="volumeDrive">
+                <ngb-alert [hidden]="Driver.valid || Driver.pristine" (close)="Driver.markAsPristine()" [type]="'danger'">A Driver is required.</ngb-alert>
               </div>
             </div>
           </th>
@@ -47,8 +46,8 @@
         <tr>
           <th id="bottomTable">
             <span class="spans" (click)="addOption()" id="add">
-                Add Driver Options
-                <i class="fa fa-plus-circle"></i>
+              Add Driver Options
+              <i class="fa fa-plus-circle"></i>
             </span>
           </th>
         </tr>
@@ -59,22 +58,28 @@
             <tbody class="col-sm-12">
               <tr>
                 <td class="col-sm-6">
-                  <label for="'OptionName'+i">Name: </label>
+                  <div class="bottomHeading">
+                    <label for="'OptionName'+i">
+                      <i class="required fa fa-asterisk"></i>Name: </label>
+                  </div>
                 </td>
                 <td class="col-sm-6">
-                  <label for="'OptionValue'+i">Value: </label>
+                  <div class="bottomHeading">
+                    <label for="'OptionValue'+i">Value: </label>
+                  </div>
                 </td>
                 <td class="col-sm-2"></td>
               </tr>
               <tr>
                 <td class="col-sm-6">
                   <div class="form-group">
-                    <input type="text" formControlName="Name" class="form-control" id="'OptionName'+i">
+                    <input type="text" placeholder="Mountpoint" formControlName="OptionName" class="form-control" id="'OptionName'+i" required>
+                    <ngb-alert [hidden]="Options.valid || Options.pristine" (close)="Options.markAsPristine()" [type]="'danger'">If you add an Option a name is required.</ngb-alert>
                   </div>
                 </td>
                 <td class="col-sm-6">
                   <div class="form-group">
-                    <input type="text" formControlName="Value" class="form-control" id="'OptionValue'+i">
+                    <input type="text" placeholder="./volumes/tardis" formControlName="Value" class="form-control" id="'OptionValue'+i">
                   </div>
                 </td>
                 <td>
@@ -93,7 +98,76 @@
   </div>
 
   <div class="row break"></div>
+  <div class="row">
+    <table class="col-sm-12">
+      <thead>
+        <tr>
+          <th id="bottomTable">
+            <span class="spans" (click)="addLabel()">
+              Add a Label
+              <i class="fa fa-plus-circle"></i>
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <div formArrayName="Labels">
+        <div *ngFor="let label of Labels.controls; let i=index">
+          <div [formGroupName]="i">
+            <tbody class="col-sm-12">
+              <tr>
+                <td class="col-sm-6">
+                  <div class="bottomHeading">
+                    <label for="'LabelName'+i">
+                      <i class="required fa fa-asterisk"></i>Name: </label>
+                  </div>
+                </td>
+                <td class="col-sm-6">
+                  <div class="bottomHeading">
+                    <label for="'LabelValue'+i">Value: </label>
+                  </div>
+                </td>
+                <td class="col-sm-2"></td>
+              </tr>
+              <tr>
+                <td class="col-sm-6">
+                  <div class="form-group">
+                    <input type="text" placeholder="com.example.some-label" formControlName="Name" class="form-control" id="'LabelName'+i" required>
+                    <!-- <ngb-alert [hidden]="Labels.valid || Labels.pristine" (close) = "Labels.markAsPristine()" [type]="'danger'">If you add a Label a name is required.</ngb-alert> -->
+                  </div>
+                </td>
+                <td class="col-sm-6">
+                  <div class="form-group">
+                    <input type="text" placeholder="some-value" formControlName="Value" class="form-control" id="'LabelValue'+i">
+                  </div>
+                </td>
+                <td>
+                  <div class="col-sm-2">
+                    <span (click)="removeLabel(i)" class="spans" id="delete">
+                      <i class="fa fa-trash"></i>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </div>
+        </div>
+      </div>
+    </table>
+  </div>
+  <div class="row break"></div>
+  <div class="row">
+    <div class="offset-sm-4 col-sm-2">
+        <a routerLink="/volumes">
+          <button type="button" class="btn btn-secondary "> Cancel
+            <i class="fa fa-undo"></i>
+          </button>
+        </a>
+    </div>
+    <div class="col-2">
+        <button type="submit" class="btn btn-info" [disabled]="!volumeForm.valid"> Create Volume
+            <i class="fa fa-arrow-circle-o-up"></i>
+        </button> 
+      </div>
+  </div>
+  
 </form>
-<p>
-  Form Value: {{ volumeForm.value | json }}
-</p>

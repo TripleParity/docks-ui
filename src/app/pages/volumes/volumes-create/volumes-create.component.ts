@@ -28,18 +28,23 @@ export class VolumesCreateComponent implements OnInit {
     Driver: ['', Validators.required],
     Options: this.fb.array([
       // this.initOptions()
+    ]),
+    Labels: this.fb.array([
+      // this.initLabels();
     ])
   });
 
-  get Options() {
-    return this.volumeForm.get('Options') as FormArray;
-  }
 
-
-  initOptions() {
-    console.log('Setting the array');
+  initLabels() {
     return this.fb.group({
       Name: ['', Validators.required],
+      Value: ['']
+    });
+  }
+
+  initOptions() {
+    return this.fb.group({
+      OptionName: ['', Validators.required],
       Value: ['']
     });
   }
@@ -55,6 +60,14 @@ export class VolumesCreateComponent implements OnInit {
   }
 
   submit() {
+    console.log('Submit is working');
+
+    this.volumeModel.Name = this.volumeForm.get('Name').value;
+    this.volumeModel.Driver = this.volumeForm.get('Driver').value;
+    this.volumeModel.Options = this.volumeForm.get('Options').value;
+    this.volumeModel.Labels = this.volumeForm.get('Labels').value;
+
+    console.log(this.volumeModel);
   }
 
   addOption() {
@@ -63,11 +76,35 @@ export class VolumesCreateComponent implements OnInit {
   }
 
   removeOption(i: number) {
-    // remove address from the list
     const control = <FormArray>this.volumeForm.controls['Options'];
     control.removeAt(i);
-}
+  }
 
+  addLabel() {
+    const control = <FormArray>this.volumeForm.controls['Labels'];
+    control.push(this.initLabels());
+  }
+
+  removeLabel(i: number) {
+    const control = <FormArray>this.volumeForm.controls['Labels'];
+    control.removeAt(i);
+  }
+
+  get Name() {
+    return this.volumeForm.get('Name');
+  }
+
+  get Driver() {
+    return this.volumeForm.get('Driver');
+  }
+
+  get Options() {
+    return this.volumeForm.get('Options') as FormArray;
+  }
+
+  get Labels() {
+    return this.volumeForm.get('Labels') as FormArray;
+  }
 }
 
 
