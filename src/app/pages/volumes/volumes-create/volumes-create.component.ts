@@ -5,6 +5,7 @@ import { VolumeService } from 'services/volume/volume.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-volumes-create',
@@ -23,7 +24,7 @@ export class VolumesCreateComponent implements OnInit {
   public warningMessage = 'Something went wrong...';
   // TODO: Paul Wood allow an unknown number of Options to be added dynamically, achieved using the formBuilder
 
-  volumeForm = this.fb.group({
+  volumeForm: FormGroup = this.fb.group({
     Name: ['', Validators.required],
     Driver: ['', Validators.required],
     Options: this.fb.array([
@@ -59,15 +60,81 @@ export class VolumesCreateComponent implements OnInit {
   ngOnInit() {
   }
 
+  convertOptions() {
+    let i = 0;
+    let temp = '{';
+
+    while (i < this.Options.length) {
+        temp += '"' +  this.Options.at(i).get('OptionName').value + '":"' + this.Options.at(i).get('Value').value + '",';
+        i++;
+    }
+
+    // console.log(JSON.stringify(this.Options));
+    if (this.Options.length > 0) {
+      temp = temp.substring(0, temp.length - 1);
+    }
+
+    temp += '}';
+
+    return temp;
+  }
+
+  convertLabels() {
+    let i = 0;
+    let temp = '{';
+
+    while (i < this.Labels.length) {
+        temp += '"' +  this.Labels.at(i).get('Name').value + '":"' + this.Labels.at(i).get('Value').value + '",';
+        i++;
+    }
+
+    // console.log(JSON.stringify(this.Options));
+    if (this.Labels.length > 0) {
+      temp = temp.substring(0, temp.length - 1);
+    }
+
+    temp += '}';
+
+    return temp;
+  }
+
+
   submit() {
     console.log('Submit is working');
 
     this.volumeModel.Name = this.volumeForm.get('Name').value;
     this.volumeModel.Driver = this.volumeForm.get('Driver').value;
-    this.volumeModel.Options = this.volumeForm.get('Options').value;
-    this.volumeModel.Labels = this.volumeForm.get('Labels').value;
 
-    console.log(this.volumeModel);
+    let string = this.convertOptions();
+    this.volumeModel.DriverOpts = JSON.parse(string);
+    console.log(this.volumeModel.DriverOpts);
+
+    string = this.convertLabels();
+    this.volumeModel.Labels = JSON.parse(string);
+    console.log(this.volumeModel.Labels);
+
+    this.volumeService
+      .createVolume(this.volumeModel)
+      .subscribe(
+        (result: Volume) => {
+          this.clearAlerts();
+          this.submitted = false;
+          this.router.navigate([
+            '/volumes',
+            { createdVolume: this.volumeModel.Name },
+          ]);
+        },
+        (err: any) => {
+          console.error(err);
+          this.clearAlerts();
+            this.warning = true;
+            this.submitted = false;
+        }
+      );
+  }
+
+  clearAlerts() {
+    this.warning = false;
   }
 
   addOption() {
