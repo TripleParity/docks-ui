@@ -1,10 +1,10 @@
-<div class="row heading">
-  <div class="alerts">
+<div class="alerts">
     <ngb-alert [hidden]="createdVolume.length === 0" (close)="createdVolume=''" [type]="'success'">Volume '{{createdVolume}}' was successfully create</ngb-alert>
     <ngb-alert [hidden]="deletedVolume.length === 0" (close)="deletedVolume=''" [type]="'warning'">Volume '{{deletedVolume}}' was successfully deleted</ngb-alert>
-    <ngb-alert [hidden]="volumeNotFoundError.length === 0" (close)="stackNotFoundError=''" [type]="'danger'">Error '{{stackNotFoundError}}' is not a known stack</ngb-alert>
-  </div>
+    <ngb-alert [hidden]="volumeNotFoundError.length === 0" (close)="volumeNotFoundError=''" [type]="'danger'">Error '{{stackNotFoundError}}' is not a known stack</ngb-alert>
+</div>
 
+<div class="row heading">
   <div class="col-md-8">
     <a routerLink="/volumes/create">
       <button type="button" class="btn btn-info">

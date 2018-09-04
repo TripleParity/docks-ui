@@ -107,11 +107,9 @@ export class VolumesCreateComponent implements OnInit {
 
     let string = this.convertOptions();
     this.volumeModel.DriverOpts = JSON.parse(string);
-    console.log(this.volumeModel.DriverOpts);
 
     string = this.convertLabels();
     this.volumeModel.Labels = JSON.parse(string);
-    console.log(this.volumeModel.Labels);
 
     this.volumeService
       .createVolume(this.volumeModel)
@@ -121,7 +119,7 @@ export class VolumesCreateComponent implements OnInit {
           this.submitted = false;
           this.router.navigate([
             '/volumes',
-            { createdVolume: this.volumeModel.Name },
+            { createdVolume: this.volumeForm.get('Name').value },
           ]);
         },
         (err: any) => {

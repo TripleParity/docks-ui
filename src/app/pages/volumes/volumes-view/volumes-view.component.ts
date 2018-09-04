@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Volume } from 'app/models/volume/volume.model';
 import { VolumeService } from 'services/volume/volume.service';
-import { ActivatedRoute } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-volumes-view',
@@ -21,7 +20,13 @@ export class VolumesViewComponent implements OnInit {
   constructor(
     private volumeService: VolumeService,
     private route: ActivatedRoute,
-    ) { }
+    ) {
+      this.route.paramMap.subscribe((params: ParamMap) => {
+        if (params.has('createdVolume')) {
+          this.createdVolume = params.get('createdVolume');
+        }
+      });
+    }
 
   ngOnInit() {
     this.fetchVolumes();
