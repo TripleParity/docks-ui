@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ServicesCardViewComponent } from '../../pages/services/card-view/services-card-view.component';
 import { ServiceListViewComponent } from '../../pages/services/list-view/service-list-view.component';
 import { ServicesOperationsComponent } from '../../pages/services/operations/services-operations.component';
+import { ServiceCreateComponent } from '../../pages/services/service-create/service-create.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
       {
         path: 'operations/:id',
         component: ServicesOperationsComponent,
+      },
+      {
+        path: 'create',
+        pathMatch: 'full',
+        component: ServiceCreateComponent,
       },
     ],
   },
