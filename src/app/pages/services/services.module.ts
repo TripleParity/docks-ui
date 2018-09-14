@@ -13,6 +13,7 @@ import { MockService } from '../../services/mock/mock.service';
 
 import { ServicesRoutingModule } from '../../pages/services/services-routing.module';
 import { SpinnerModule } from 'app/shared/spinner/spinner.module';
+import { ServiceCreateComponent } from './service-create/service-create.component';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
@@ -30,6 +31,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ServiceListViewComponent,
     ServicesCardViewComponent,
     ServicesOperationsComponent,
+    ServiceCreateComponent,
   ],
   providers: [ServicesService, MockService],
 })
