@@ -16,6 +16,7 @@ export class VolumesViewComponent implements OnInit {
   public deletedVolume = '';
   public volumeNotFoundError = '';
   public genericError = false;
+  public isLoaded = false;
 
   constructor(
     private volumeService: VolumeService,
@@ -30,6 +31,7 @@ export class VolumesViewComponent implements OnInit {
 
   ngOnInit() {
     this.fetchVolumes();
+
   }
 
   clearAlerts() {
@@ -48,7 +50,7 @@ export class VolumesViewComponent implements OnInit {
       (volumes: Volume[]) => {
         this.volumes = volumes;
         this.searchString = [...volumes];
-        console.log(this.volumes);
+        this.isLoaded = true;
       },
       (err) => {
         console.error(err);
