@@ -282,6 +282,14 @@ status styles
 navbar styles
  */
 
+ .navHeader{
+     color: rgba(195, 195, 195, 0.8);
+     text-align: left;
+     font-size: 150%;
+     padding-top: 10px;
+     margin: 5px;
+ }
+
 .nav-list-group{
     height: 100vh;
     background-color: var(--c-light-background);
@@ -317,8 +325,8 @@ user bar styling
 }
 
 .user-bar{
-    background-color: var(--c-light-background);
-    border-bottom: 5px solid var(--c-success);
+    background-color: var(--c-dark-background);
+    border-bottom: 5px solid rgba(255, 255, 255, 0.8);;
 }
 
 /*
