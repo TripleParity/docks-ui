@@ -4,7 +4,6 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
 
 import { TasksRoutingModule } from '../../pages/tasks/tasks-routing.module';
 
-import { TaskCardViewComponent } from '../../pages/tasks/card-view/task-card-view.component';
 import { TaskListViewComponent } from '../../pages/tasks/list-view/task-list-view.component';
 
 import { TaskService } from '../../services/task/task.service';
@@ -21,7 +20,7 @@ import { TaskDetailViewComponent } from 'pages/tasks/task-detail-view/task-detai
     SpinnerModule,
     NgbModule,
   ],
-  declarations: [TaskCardViewComponent, TaskListViewComponent, TaskDetailViewComponent],
+  declarations: [ TaskListViewComponent, TaskDetailViewComponent],
   providers: [TaskService, MockService],
 })
 export class TasksModule {}
