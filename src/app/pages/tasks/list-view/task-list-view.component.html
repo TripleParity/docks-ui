@@ -1,2 +1,54 @@
 <!--TODO(FJMentz): NodeID -> NodeName or (ID if !hasName())-->
 <app-spinner [hidden]="isLoaded"></app-spinner>
+<div class="row heading">
+    <div class="offset-8 col-md-4">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search Tasks" aria-label="Recipient's username" aria-describedby="basic-addon2"
+                (keyup)="updateFilter($event)">
+            <div class="input-group-append">
+                <button class="btn btn-default">
+                    <span class="input-group-text" id="Search">
+                        <i class="fa fa-search"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ngx-datatable class="bootstrap ngx-datatable" [limit]="10" [footerHeight]="40" [columnMode]="'force'" [rows]="tasks" [headerHeight]="'auto'"
+            [rowHeight]="getRowHeight">
+
+            <ngx-datatable-column name="Name">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div *ngIf="row.Name; else elseBlock"> {{row.Name}}</div>
+                    <div>
+                        <ng-template #elseBlock>{{row.Spec.ContainerSpec.Labels['com.docker.stack.namespace']}}_{{row.Slot}}</ng-template>
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Image">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div> {{row.Spec.ContainerSpec.Image}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Node">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div> {{row.NodeID}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Status">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div class="{{row.Status.State}} status"> {{row.Status.State}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+
+
+        </ngx-datatable>
+    </div>
+
+</div>
