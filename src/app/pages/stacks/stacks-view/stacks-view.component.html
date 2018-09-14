@@ -1,12 +1,12 @@
 <!-- TODO(pwood): set up stacks in table cells -->
-
-<div class="alerts">
-  <ngb-alert [hidden]="createdStack.length === 0" (close)="createdStack=''" [type]="'success'">Stack '{{createdStack}}' was successfully deployed</ngb-alert>
-  <ngb-alert [hidden]="updatedStack.length === 0" (close)="updatedStack=''" [type]="'success'">Stack '{{updatedStack}}' was successfully updated</ngb-alert>
-  <ngb-alert [hidden]="deletedStack.length === 0" (close)="deletedStack=''" [type]="'warning'">Stack '{{deletedStack}}' was successfully deleted</ngb-alert>
-  <ngb-alert [hidden]="stackNotFoundError.length === 0" (close)="stackNotFoundError=''" [type]="'danger'">Error '{{stackNotFoundError}}' is not a known stack</ngb-alert>
+<div>
+  <ngb-alert class="alerts" [hidden]="createdStack.length === 0" (close)="createdStack=''" [type]="'success'">Stack '{{createdStack}}' was successfully deployed</ngb-alert>
+  <ngb-alert class="alerts" [hidden]="updatedStack.length === 0" (close)="updatedStack=''" [type]="'success'">Stack '{{updatedStack}}' was successfully updated</ngb-alert>
+  <ngb-alert class="alerts" [hidden]="deletedStack.length === 0" (close)="deletedStack=''" [type]="'warning'">Stack '{{deletedStack}}' was successfully deleted</ngb-alert>
+  <ngb-alert class="alerts" [hidden]="stackNotFoundError.length === 0" (close)="stackNotFoundError=''" [type]="'danger'">Error '{{stackNotFoundError}}' is not a known stack</ngb-alert>
 </div>
-<div class="row table-head">
+
+<div class="row heading">
   <div class="col-md-8">
     <a routerLink="/stacks/create">
       <button type="button" class="btn btn-info">

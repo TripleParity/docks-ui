@@ -1,5 +1,5 @@
 .card {
-    max-width: 20rem;
+    width: 100%;
     background-color: rgb(241, 241, 241);
 }
 
@@ -18,4 +18,8 @@
 #inner {
     position: fixed;
     left: 100%;
+}
+.image
+{
+    text-align: center;
 }
