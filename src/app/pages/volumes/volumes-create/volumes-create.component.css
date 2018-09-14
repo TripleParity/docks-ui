@@ -49,3 +49,7 @@ h1, .form-group, .bottomHeading
 {
     font-size: 40%;
 }
+.alerts
+{
+    margin-top: 5px;
+}

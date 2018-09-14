@@ -9,6 +9,7 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { SpinnerModule } from 'app/shared/spinner/spinner.module';
 
 describe('VolumesViewComponent', () => {
   let component: VolumesViewComponent;
@@ -22,7 +23,8 @@ describe('VolumesViewComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         FormsModule,
-        NgxDatatableModule
+        NgxDatatableModule,
+        SpinnerModule
       ],
       providers: [
         VolumeService,

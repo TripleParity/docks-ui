@@ -6,6 +6,7 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-volumes-create',
@@ -21,7 +22,8 @@ export class VolumesCreateComponent implements OnInit {
   public warning = false;
   public fileText = '';
   public badUser = '';
-  public warningMessage = 'Something went wrong...';
+  public warningMessage = 'There was a problem while creating the volume. No new volume created.' +
+  'Ensure type is correct and name contains no special characters';
   // TODO: Paul Wood allow an unknown number of Options to be added dynamically, achieved using the formBuilder
 
   volumeForm: FormGroup = this.fb.group({
@@ -100,7 +102,8 @@ export class VolumesCreateComponent implements OnInit {
 
 
   submit() {
-    console.log('Submit is working');
+    this.submitted = true;
+    console.log(this.submitted);
 
     this.volumeModel.Name = this.volumeForm.get('Name').value;
     this.volumeModel.Driver = this.volumeForm.get('Driver').value;
