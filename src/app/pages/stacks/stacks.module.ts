@@ -10,6 +10,7 @@ import { StacksViewComponent } from 'app/pages/stacks/stacks-view/stacks-view.co
 import { StacksCreateComponent } from 'pages/stacks/stacks-create/stacks-create.component';
 import { StackService } from 'services/stack/stack.service';
 import { StackEditComponent } from 'pages/stacks/stack-edit/stack-edit.component';
+import { StackDetailViewComponent } from 'pages/stacks/stack-detail-view/stack-detail-view.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { StackEditComponent } from 'pages/stacks/stack-edit/stack-edit.component
     StacksViewComponent,
     StacksCreateComponent,
     StackEditComponent,
+    StackDetailViewComponent
   ],
   providers: [StackService],
 })

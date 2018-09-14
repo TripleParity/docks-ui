@@ -11,6 +11,7 @@ import { TaskService } from '../../services/task/task.service';
 import { MockService } from '../../services/mock/mock.service';
 import { SpinnerModule } from 'app/shared/spinner/spinner.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TaskDetailViewComponent } from 'pages/tasks/task-detail-view/task-detail-view.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SpinnerModule,
     NgbModule,
   ],
-  declarations: [TaskCardViewComponent, TaskListViewComponent],
+  declarations: [TaskCardViewComponent, TaskListViewComponent, TaskDetailViewComponent],
   providers: [TaskService, MockService],
 })
 export class TasksModule {}

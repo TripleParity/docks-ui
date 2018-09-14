@@ -75,7 +75,7 @@ export class VolumeService {
    * @param {JSON} inputs
    * @returns {Observable<Volume>}
    */
-  public createVolume(inputs: JSON): Observable<Volume> {
+  public createVolume(inputs: Volume): Observable<Volume> {
     return this.http
       .post(this.config.getAPIHostname() + '/docker/volumes/create', inputs, {
         responseType: 'json',

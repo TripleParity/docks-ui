@@ -38,6 +38,7 @@ status light styles
     display: inline-block;
 }
 
+
 /*
 card style
 */
@@ -282,6 +283,14 @@ status styles
 navbar styles
  */
 
+ .navHeader{
+     color: rgba(195, 195, 195, 0.8);
+     text-align: left;
+     font-size: 150%;
+     padding-top: 10px;
+     margin: 5px;
+ }
+
 .nav-list-group{
     height: 100vh;
     background-color: var(--c-light-background);
@@ -317,8 +326,8 @@ user bar styling
 }
 
 .user-bar{
-    background-color: var(--c-light-background);
-    border-bottom: 5px solid var(--c-success);
+    background-color: var(--c-dark-background);
+    border-bottom: 5px solid rgba(255, 255, 255, 0.8);;
 }
 
 /*
@@ -400,4 +409,38 @@ bootstrap table theme
 }
 .ngx-datatable.bootstrap .datatable-summary-row .datatable-body-row .datatable-body-cell {
     font-weight: bold;
+}
+
+/* Material design for detail views */
+.heading {
+    background-color: #EFEFEF;
+    color: #6E6E6E;
+}
+.break
+{
+    background-color: #F7F7F7;
+    height: 20px;
+    border-bottom: 1px solid #C9C9C9;
+}
+
+.inserts {
+    color: #1180AF;
+    font-size: 14px;
+}
+.statusLabel {
+    border: 2px solid #6E6E6E;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    font-size: 70%;
+}
+.title
+{
+    color: #9F9D97;
+    background-color: #F7F7F7;
+    border-bottom: 1px solid #C9C9C9;
+}
+.innerTitle
+{
+    margin-top: 10px;
 }

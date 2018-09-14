@@ -1,0 +1,51 @@
+<div class="alerts">
+    <ngb-alert [hidden]="createdVolume.length === 0" (close)="createdVolume=''" [type]="'success'">Volume '{{createdVolume}}' was successfully create</ngb-alert>
+    <ngb-alert [hidden]="deletedVolume.length === 0" (close)="deletedVolume=''" [type]="'warning'">Volume '{{deletedVolume}}' was successfully deleted</ngb-alert>
+    <ngb-alert [hidden]="volumeNotFoundError.length === 0" (close)="volumeNotFoundError=''" [type]="'danger'">Error '{{volumeNotFoundError}}' is not a known stack</ngb-alert>
+</div>
+
+<div class="row heading">
+  <div class="col-md-8">
+    <a routerLink="/volumes/create">
+      <button type="button" class="btn btn-info">
+        Create New Volume
+        <i class="fa fa-clone"> </i>
+      </button>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Search Volumes" aria-label="Recipient's username" aria-describedby="basic-addon2"
+        (keyup)="updateFilter($event)">
+      <div class="input-group-append">
+        <button class="btn btn-default">
+          <span class="input-group-text" id="Search">
+            <i class="fa fa-search"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="volumes" [headerHeight]="'auto'"
+        [rowHeight]="getRowHeight">
+
+        <ngx-datatable-column name="Name">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Name}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Driver">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Driver}}
+          </ng-template>
+        </ngx-datatable-column>
+
+      </ngx-datatable>
+    </div>
+  </div>

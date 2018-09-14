@@ -1,0 +1,37 @@
+button
+{
+    margin-top: 10px;
+}
+
+.form-group
+{
+    margin-top: 10px;
+}
+
+#delete
+{
+    font-size: 150%;
+}
+
+#add
+{
+    font-size: 90%;
+}
+
+.spans
+{
+    color: #797979;
+}
+.spans:hover
+{
+    cursor: pointer;
+}
+
+#bottomTable
+{
+    padding: 20px;
+}
+.required
+{
+    font-size: 40%;
+}
