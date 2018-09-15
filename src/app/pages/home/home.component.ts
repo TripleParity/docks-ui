@@ -66,48 +66,54 @@ export class HomeComponent implements OnInit {
   }
 
   getStats() {
-    this.volumeService.getVolumes().subscribe((volume) => {
-      for (let i = 0; i < volume.length; i++) {
-        this.volumes.push(volume[i]);
-      }
-      this.numVol = this.volumes.length;
-    },
-  (err) => {
-    console.error(err);
-  });
-
-    this.networkService.getNetworks().subscribe((network) => {
-      for (let i = 0; i < network.length; i++) {
-        this.networks.push(network[i]);
-      }
-      this.numNet = this.networks.length;
-    },
-  (err) => {
-    console.error(err);
-  });
-
-    this.taskService.getTasks().subscribe((task) => {
-      for (let i = 0; i < task.length; i++) {
-        this.tasks.push(task[i]);
-
-        console.log(task[i].Status.State);
-
-        if (task[i].Status.State === 'running') {
-          this.runTask++;
+    this.volumeService.getVolumes().subscribe(
+      (volume) => {
+        for (let i = 0; i < volume.length; i++) {
+          this.volumes.push(volume[i]);
         }
-
-        if (task[i].Status.State === 'shutdown') {
-          this.stopTask++;
-        }
-
-        if (task[i].Status.State === 'failed') {
-          this.pauseTask++;
-        }
+        this.numVol = this.volumes.length;
+      },
+      (err) => {
+        console.error(err);
       }
-      this.numTask = this.tasks.length;
-    },
-    (err) => {
-  console.error(err);
-    });
+    );
+
+    this.networkService.getNetworks().subscribe(
+      (network) => {
+        for (let i = 0; i < network.length; i++) {
+          this.networks.push(network[i]);
+        }
+        this.numNet = this.networks.length;
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
+
+    this.taskService.getTasks().subscribe(
+      (task) => {
+        for (let i = 0; i < task.length; i++) {
+          this.tasks.push(task[i]);
+
+          console.log(task[i].Status.State);
+
+          if (task[i].Status.State === 'running') {
+            this.runTask++;
+          }
+
+          if (task[i].Status.State === 'shutdown') {
+            this.stopTask++;
+          }
+
+          if (task[i].Status.State === 'failed') {
+            this.pauseTask++;
+          }
+        }
+        this.numTask = this.tasks.length;
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 }
