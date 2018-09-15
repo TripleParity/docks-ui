@@ -23,14 +23,9 @@ enum VolumeErrorCode {
   ERR_SERVER = 500,
 }
 
-export class VolumeError {
+export interface VolumeError {
   ErrorCode: VolumeErrorCode;
   ErrorMessage: string;
-
-  constructor(code: VolumeErrorCode, message: string) {
-    this.ErrorCode = code;
-    this.ErrorMessage = message;
-  }
 }
 
 @Injectable()
@@ -52,9 +47,10 @@ export class VolumeService {
           return <Volume[]>x['Volumes'];
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(
-            new VolumeError(<VolumeErrorCode>err.status, 'stub')
-          );
+          return ErrorObservable.create({
+            ErrorCode: <VolumeErrorCode>err.status,
+            ErrorMessage: err.error['message'],
+          });
         })
       );
   }
@@ -73,9 +69,10 @@ export class VolumeService {
           return x['Warnings'];
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(
-            new VolumeError(<VolumeErrorCode>err.status, err.error['message'])
-          );
+          return ErrorObservable.create({
+            ErrorCode: <VolumeErrorCode>err.status,
+            ErrorMessage: err.error['message'],
+          });
         })
       );
   }
@@ -98,9 +95,10 @@ export class VolumeService {
           return <Volume>x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(
-            new VolumeError(<VolumeErrorCode>err.status, err.error['message'])
-          );
+          return ErrorObservable.create({
+            ErrorCode: <VolumeErrorCode>err.status,
+            ErrorMessage: err.error['message'],
+          });
         })
       );
   }
@@ -120,9 +118,10 @@ export class VolumeService {
           return <Volume>x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(
-            new VolumeError(<VolumeErrorCode>err.status, err.error['message'])
-          );
+          return ErrorObservable.create({
+            ErrorCode: <VolumeErrorCode>err.status,
+            ErrorMessage: err.error['message'],
+          });
         })
       );
   }
@@ -147,9 +146,10 @@ export class VolumeService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(
-            new VolumeError(<VolumeErrorCode>err.status, err.error['message'])
-          );
+          return ErrorObservable.create({
+            ErrorCode: <VolumeErrorCode>err.status,
+            ErrorMessage: err.error['message'],
+          });
         })
       );
   }
@@ -168,9 +168,10 @@ export class VolumeService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(
-            new VolumeError(<VolumeErrorCode>err.status, err.error['message'])
-          );
+          return ErrorObservable.create({
+            ErrorCode: <VolumeErrorCode>err.status,
+            ErrorMessage: err.error['message'],
+          });
         })
       );
   }
