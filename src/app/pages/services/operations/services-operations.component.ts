@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServiceSpec } from '../../../models/service/spec/spec.model';
+import { Service } from '../../../models/service/service.model';
 import { ServicesService } from '../../../services/services/services.service';
 import { MockService } from '../../../services/mock/mock.service';
 
@@ -10,7 +11,7 @@ import { MockService } from '../../../services/mock/mock.service';
   styleUrls: ['./services-operations.component.css'],
 })
 export class ServicesOperationsComponent implements OnInit {
-  public spec: ServiceSpec = null;
+  public serv: Service = null;
   public serviceLog: String;
   public allDataFetched = false;
   public currentJustify = 'justified';
@@ -23,7 +24,7 @@ export class ServicesOperationsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((res) => {
       this.serviceService.inspectService(res.id).subscribe((serv) => {
-        this.spec = serv;
+        this.serv = serv;
         this.serviceService.getServiceLog(res.id).subscribe((log) => {
           this.serviceLog = log;
           this.allDataFetched = true;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Stack } from 'app/models/stack/stack.model';
-import { StackService, StackError } from 'services/stack/stack.service';
+import { StackService, StackError, StackErrorCode } from 'services/stack/stack.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
@@ -85,7 +85,7 @@ export class StacksViewComponent implements OnInit {
     this.stackService.removeStack(this.stackNameToDelete).subscribe(
       (result: StackError) => {
         this.clearAlerts();
-        if (result === StackError.ERR_OK) {
+        if (result.code === StackErrorCode.ERR_OK) {
           this.deletedStack = this.stackNameToDelete;
         } else {
           this.genericError = true;
@@ -96,7 +96,7 @@ export class StacksViewComponent implements OnInit {
       },
       (err: StackError) => {
         this.clearAlerts();
-        if (err === StackError.ERR_STACK_MISSING) {
+        if (err.code === StackErrorCode.ERR_STACK_MISSING) {
           this.stackNotFoundError = this.stackNameToDelete;
         } else {
           this.genericError = true;
