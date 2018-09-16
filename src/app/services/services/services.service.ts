@@ -16,7 +16,7 @@ import { Service } from '../../models/service/service.model';
 import { ConfigurationService } from '../configuration/configuration.service';
 import { ServiceSpec } from '../../models/service/spec/spec.model';
 
-export enum ServiceErrorcode {
+export enum ServiceErrorCode {
   ERR_OK = 200,
   ERR_SERVER = 500,
   ERR_NODE_N_SWARM = 503,
@@ -29,7 +29,7 @@ export enum ServiceErrorcode {
 }
 
 export interface ServiceError {
-  code: ServiceErrorcode;
+  code: ServiceErrorCode;
   message: string;
 }
 
@@ -53,7 +53,7 @@ export class ServicesService {
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <ServiceErrorcode>err.status,
+            code: <ServiceErrorCode>err.status,
             message: err.error['message'],
           });
         })
@@ -64,20 +64,20 @@ export class ServicesService {
    * Returns more detailed information about a particular service.
    *
    * @param {string} id
-   * @returns {Observable<ServiceSpec>}
+   * @returns {Observable<Service>}
    */
-  public inspectService(id: string): Observable<ServiceSpec> {
+  public inspectService(id: string): Observable<Service> {
     return this.http
       .get<JSON>(this.config.getAPIHostname() + '/docker/services/' + id, {
         responseType: 'json',
       })
       .pipe(
         map((x) => {
-          return x['Spec'];
+          return x;
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <ServiceErrorcode>err.status,
+            code: <ServiceErrorCode>err.status,
             message: err.error['message'],
           });
         })
@@ -101,7 +101,7 @@ export class ServicesService {
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <ServiceErrorcode>err.status,
+            code: <ServiceErrorCode>err.status,
             message: err.error['message'],
           });
         })
@@ -128,7 +128,7 @@ export class ServicesService {
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <ServiceErrorcode>err.status,
+            code: <ServiceErrorCode>err.status,
             message: err.error['message'],
           });
         })
@@ -155,7 +155,7 @@ export class ServicesService {
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <ServiceErrorcode>err.status,
+            code: <ServiceErrorCode>err.status,
             message: err.error['message'],
           });
         })
@@ -172,13 +172,13 @@ export class ServicesService {
    */
   public scaleService(id: string, replicas: number): Observable<string> {
     return this.inspectService(id).pipe(
-      map((spec: ServiceSpec) => {
-        spec.Mode.Replicated.Replicas = replicas;
-        return this.updateService(id, spec);
+      map((serv: Service) => {
+        serv.Spec.Mode.Replicated.Replicas = replicas;
+        return this.updateService(id, serv.Spec);
       }),
       catchError((err: HttpErrorResponse) => {
         return ErrorObservable.create({
-          code: <ServiceErrorcode>err.status,
+          code: <ServiceErrorCode>err.status,
           message: err.error['message'],
         });
       })
@@ -206,12 +206,12 @@ export class ServicesService {
               return data;
             })
             .catch(() => {
-              return ServiceErrorcode.ERR_UNKNOWN;
+              return ServiceErrorCode.ERR_UNKNOWN;
             });
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <ServiceErrorcode>err.status,
+            code: <ServiceErrorCode>err.status,
             message: err.error['message'],
           });
         })
