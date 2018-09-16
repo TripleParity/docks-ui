@@ -13,7 +13,7 @@ import { catchError, map } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { Volume } from '../../models/volume/volume.model';
 import { ConfigurationService } from '../../services/configuration/configuration.service';
-enum Volumecode {
+enum VolumeErrorCode {
   ERR_STREAM = 101,
   ERR_OK = 200,
   ERR_OK_DELETED = 204,
@@ -24,7 +24,7 @@ enum Volumecode {
 }
 
 export interface VolumeError {
-  code: Volumecode;
+  code: VolumeErrorCode;
   message: string;
 }
 
@@ -48,7 +48,7 @@ export class VolumeService {
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <Volumecode>err.status,
+            code: <VolumeErrorCode>err.status,
             message: err.error['message'],
           });
         })
@@ -70,7 +70,7 @@ export class VolumeService {
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <Volumecode>err.status,
+            code: <VolumeErrorCode>err.status,
             message: err.error['message'],
           });
         })
@@ -96,7 +96,7 @@ export class VolumeService {
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <Volumecode>err.status,
+            code: <VolumeErrorCode>err.status,
             message: err.error['message'],
           });
         })
@@ -119,7 +119,7 @@ export class VolumeService {
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <Volumecode>err.status,
+            code: <VolumeErrorCode>err.status,
             message: err.error['message'],
           });
         })
@@ -147,7 +147,7 @@ export class VolumeService {
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <Volumecode>err.status,
+            code: <VolumeErrorCode>err.status,
             message: err.error['message'],
           });
         })
@@ -169,7 +169,7 @@ export class VolumeService {
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <Volumecode>err.status,
+            code: <VolumeErrorCode>err.status,
             message: err.error['message'],
           });
         })
