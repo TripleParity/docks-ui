@@ -16,7 +16,7 @@ import { Service } from '../../models/service/service.model';
 import { ConfigurationService } from '../configuration/configuration.service';
 import { ServiceSpec } from '../../models/service/spec/spec.model';
 
-export enum ServiceError {
+export enum ServiceErrorcode {
   ERR_OK = 200,
   ERR_SERVER = 500,
   ERR_NODE_N_SWARM = 503,
@@ -26,6 +26,11 @@ export enum ServiceError {
   ERR_NO_SERVICE = 404,
   ERR_STREAM = 101,
   ERR_UNKNOWN,
+}
+
+export interface ServiceError {
+  code: ServiceErrorcode;
+  message: string;
 }
 
 @Injectable()
@@ -47,7 +52,10 @@ export class ServicesService {
           return <Services[]>data;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<ServiceError>err.status);
+          return ErrorObservable.create({
+            code: <ServiceErrorcode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -68,7 +76,10 @@ export class ServicesService {
           return x['Spec'];
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<ServiceError>err.status);
+          return ErrorObservable.create({
+            code: <ServiceErrorcode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -89,7 +100,10 @@ export class ServicesService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<ServiceError>err.status);
+          return ErrorObservable.create({
+            code: <ServiceErrorcode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -113,7 +127,10 @@ export class ServicesService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<ServiceError>err.status);
+          return ErrorObservable.create({
+            code: <ServiceErrorcode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -137,7 +154,10 @@ export class ServicesService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<ServiceError>err.status);
+          return ErrorObservable.create({
+            code: <ServiceErrorcode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -157,7 +177,10 @@ export class ServicesService {
         return this.updateService(id, spec);
       }),
       catchError((err: HttpErrorResponse) => {
-        return ErrorObservable.create(<ServiceError>err.status);
+        return ErrorObservable.create({
+          code: <ServiceErrorcode>err.status,
+          message: err.error['message'],
+        });
       })
     );
   }
@@ -183,11 +206,14 @@ export class ServicesService {
               return data;
             })
             .catch(() => {
-              return ServiceError.ERR_UNKNOWN;
+              return ServiceErrorcode.ERR_UNKNOWN;
             });
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<ServiceError>err.status);
+          return ErrorObservable.create({
+            code: <ServiceErrorcode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
