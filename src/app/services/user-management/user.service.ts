@@ -15,7 +15,6 @@ export enum UserStatusCode {
   REQUEST_ERR_SERVER = 500,
 }
 
-
 export interface UserError {
   code: UserStatusCode;
   message: string;
@@ -77,9 +76,9 @@ export class UserService {
             return ErrorObservable.create({
               code: <UserStatusCode>err.status,
               message: err.error['message'],
+            });
           }
         );
-      });
     });
   }
 
