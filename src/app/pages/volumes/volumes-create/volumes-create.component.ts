@@ -138,7 +138,7 @@ export class VolumesCreateComponent implements OnInit {
         this.clearAlerts();
         this.warning = true;
         this.submitted = false;
-        this.warningMessage = err.ErrorMessage;
+        this.warningMessage = err.message;
       }
     );
   }
