@@ -1,27 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 import { ApiResponse } from '../../models/api-respone/api-response.model';
 import { User } from '../../models/user-management/user.model';
 import { ConfigurationService } from '../configuration/configuration.service';
+import { map, catchError } from 'rxjs/operators';
 
-export enum CreateUserStatus {
-  CREATE_OK,
-  CREATE_ERR_EXISTS,
-  CREATE_ERR_SERVER,
+export enum UserStatusCode {
+  REQUEST_OK = 200,
+  CREATE_ERR_EXISTS = 409,
+  REQUEST_ERR_NOT_FOUND = 404,
+  REQUEST_ERR_SERVER = 500,
 }
 
-export enum UpdateUserStatus {
-  UPDATE_OK,
-  UPDATE_ERR_NOT_FOUND,
-  UPDATE_ERR_SERVER,
-}
 
-export enum DeleteUserStatus {
-  DELETE_OK,
-  DELETE_ERR_NOT_FOUND,
-  DELETE_ERR_SERVER,
+export interface UserError {
+  code: UserStatusCode;
+  message: string;
 }
 
 @Injectable()
@@ -50,41 +47,57 @@ export class UserService {
     });
   }
 
-  createUser(username: string, password: string): Observable<CreateUserStatus> {
-    return new Observable<CreateUserStatus>((observer) => {
+  // createUser(username: string, password: string): Observable<string> {
+  //   return this.httpClient
+  //     .post(this.userEndpoint, { username: username, password: password })
+  //     .pipe(
+  //       map((x) => {
+  //         const observer = new Observable<UserStatusCode>();
+  //         return observer;
+  //       }),
+  //       catchError((err: HttpErrorResponse) => {
+  //         return ErrorObservable.create({
+  //           code: <UserStatusCode>err.status,
+  //           message: err.error['message'],
+  //         });
+  //    })
+  //   );
+  // }
+
+  createUser(username: string, password: string): Observable<UserStatusCode> {
+    return new Observable<UserStatusCode>((observer) => {
       this.httpClient
         .post(this.userEndpoint, { username: username, password: password })
         .subscribe(
           (body) => {
-            observer.next(CreateUserStatus.CREATE_OK);
+            observer.next(UserStatusCode.REQUEST_OK);
           },
           (err: HttpErrorResponse) => {
             console.error(err);
-            if (err.status === 409) {
-              observer.error(CreateUserStatus.CREATE_ERR_EXISTS);
-            } else {
-              observer.error(CreateUserStatus.CREATE_ERR_SERVER);
-            }
+            return ErrorObservable.create({
+              code: <UserStatusCode>err.status,
+              message: err.error['message'],
           }
         );
+      });
     });
   }
 
   // TODO(egeldenhuys): Update using model
   updateUser(username: string, password: string) {
-    return new Observable<UpdateUserStatus>((observer) => {
+    return new Observable<UserStatusCode>((observer) => {
       this.httpClient
         .put(this.userEndpoint + '/' + username, { password: password })
         .subscribe(
           (body) => {
-            observer.next(UpdateUserStatus.UPDATE_OK);
+            observer.next(UserStatusCode.REQUEST_OK);
           },
           (err: HttpErrorResponse) => {
             console.error(err);
             if (err.status === 404) {
-              observer.error(UpdateUserStatus.UPDATE_ERR_NOT_FOUND);
+              observer.error(UserStatusCode.REQUEST_ERR_NOT_FOUND);
             } else {
-              observer.error(UpdateUserStatus.UPDATE_ERR_SERVER);
+              observer.error(UserStatusCode.REQUEST_ERR_SERVER);
             }
           }
         );
@@ -92,18 +105,18 @@ export class UserService {
   }
 
   deleteUser(username: string) {
-    return new Observable<DeleteUserStatus>((observer) => {
+    return new Observable<UserStatusCode>((observer) => {
       this.httpClient.delete(this.userEndpoint + '/' + username).subscribe(
         (body) => {
-          observer.next(DeleteUserStatus.DELETE_OK);
+          observer.next(UserStatusCode.REQUEST_OK);
         },
         (err: HttpErrorResponse) => {
           console.error(err);
 
           if (err.status === 404) {
-            observer.error(DeleteUserStatus.DELETE_ERR_NOT_FOUND);
+            observer.error(UserStatusCode.REQUEST_ERR_NOT_FOUND);
           } else {
-            observer.error(DeleteUserStatus.DELETE_ERR_SERVER);
+            observer.error(UserStatusCode.REQUEST_ERR_SERVER);
           }
         }
       );

@@ -4,7 +4,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import {
   UserService,
-  DeleteUserStatus,
+  UserStatusCode,
 } from '../../../services/user-management/user.service';
 import { User } from '../../../models/user-management/user.model';
 
@@ -82,9 +82,9 @@ export class UserListComponent implements OnInit {
 
   deleteUser(username: string) {
     this.userService.deleteUser(username).subscribe(
-      (result: DeleteUserStatus) => {
+      (result: UserStatusCode) => {
         this.clearAlerts();
-        if (result === DeleteUserStatus.DELETE_OK) {
+        if (result === UserStatusCode.REQUEST_OK) {
           this.deletedUser = username;
         } else {
           this.genericError = true;
@@ -93,9 +93,9 @@ export class UserListComponent implements OnInit {
         this.activeModal.close();
         this.fetchUsers();
       },
-      (err: DeleteUserStatus) => {
+      (err: UserStatusCode) => {
         this.clearAlerts();
-        if (err === DeleteUserStatus.DELETE_ERR_NOT_FOUND) {
+        if (err === UserStatusCode.REQUEST_ERR_NOT_FOUND) {
           this.deletedUserNotFound = username;
         } else {
           this.genericError = true;

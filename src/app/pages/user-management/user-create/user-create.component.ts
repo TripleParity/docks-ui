@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import {
   UserService,
-  CreateUserStatus,
+  UserStatusCode,
 } from '../../../services/user-management/user.service';
 import { User } from '../../../models/user-management/user.model';
 
@@ -42,16 +42,16 @@ export class UserCreateComponent implements OnInit {
     this.userService
       .createUser(this.model.username, this.model.password)
       .subscribe(
-        (result: CreateUserStatus) => {
+        (result: UserStatusCode) => {
           this.submitted = false;
           this.router.navigate([
             '/users',
             { createdUser: this.model.username },
           ]);
         },
-        (err: CreateUserStatus) => {
+        (err: UserStatusCode) => {
           console.error(err);
-          if (err === CreateUserStatus.CREATE_ERR_EXISTS) {
+          if (err === UserStatusCode.CREATE_ERR_EXISTS) {
             this.alreadyExists = true;
             this.badUser = this.model.username;
           } else {
