@@ -46,40 +46,20 @@ export class UserService {
     });
   }
 
-  // createUser(username: string, password: string): Observable<string> {
-  //   return this.httpClient
-  //     .post(this.userEndpoint, { username: username, password: password })
-  //     .pipe(
-  //       map((x) => {
-  //         const observer = new Observable<UserStatusCode>();
-  //         return observer;
-  //       }),
-  //       catchError((err: HttpErrorResponse) => {
-  //         return ErrorObservable.create({
-  //           code: <UserStatusCode>err.status,
-  //           message: err.error['message'],
-  //         });
-  //    })
-  //   );
-  // }
-
   createUser(username: string, password: string): Observable<UserStatusCode> {
-    return new Observable<UserStatusCode>((observer) => {
-      this.httpClient
-        .post(this.userEndpoint, { username: username, password: password })
-        .subscribe(
-          (body) => {
-            observer.next(UserStatusCode.REQUEST_OK);
-          },
-          (err: HttpErrorResponse) => {
-            console.error(err);
-            return ErrorObservable.create({
-              code: <UserStatusCode>err.status,
-              message: err.error['message'],
-            });
-          }
-        );
-    });
+    return this.httpClient
+      .post(this.userEndpoint, { username: username, password: password })
+      .pipe(
+        map((x) => {
+          return UserStatusCode.REQUEST_OK;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return ErrorObservable.create({
+            code: err.status,
+            message: 'stub',
+          });
+        })
+      );
   }
 
   // TODO(egeldenhuys): Update using model
