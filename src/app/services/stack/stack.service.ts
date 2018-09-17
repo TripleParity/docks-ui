@@ -63,13 +63,13 @@ export class StackService {
         map((x) => {
           return {
             code: StackErrorCode.ERR_OK,
-            message: x,
+            message: 'Stack deployed!',
           };
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
             code: <StackErrorCode>err.status,
-            message: err.error,
+            message: err.error['message'],
           });
         })
       );
@@ -140,13 +140,13 @@ export class StackService {
         map((x) => {
           return {
             code: StackErrorCode.ERR_OK,
-            message: x,
+            message: 'Stack Updated',
           };
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
             code: <StackErrorCode>err.status,
-            message: err.error,
+            message: err.error['message'],
           });
         })
       );
