@@ -46,12 +46,15 @@ export class UserService {
     });
   }
 
-  createUser(username: string, password: string): Observable<UserStatusCode> {
+  createUser(username: string, password: string): Observable<UserError> {
     return this.httpClient
       .post(this.userEndpoint, { username: username, password: password })
       .pipe(
         map((x) => {
-          return UserStatusCode.REQUEST_OK;
+          return ErrorObservable.create({
+            code: UserStatusCode.REQUEST_OK,
+            message: 'stub',
+          });
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
@@ -64,19 +67,28 @@ export class UserService {
 
   // TODO(egeldenhuys): Update using model
   updateUser(username: string, password: string) {
-    return new Observable<UserStatusCode>((observer) => {
+    return new Observable<UserError>((observer) => {
       this.httpClient
         .put(this.userEndpoint + '/' + username, { password: password })
         .subscribe(
           (body) => {
-            observer.next(UserStatusCode.REQUEST_OK);
+            observer.next({
+              code: UserStatusCode.REQUEST_OK,
+              message: 'stub',
+            });
           },
           (err: HttpErrorResponse) => {
             console.error(err);
             if (err.status === 404) {
-              observer.error(UserStatusCode.REQUEST_ERR_NOT_FOUND);
+              observer.error({
+                code: UserStatusCode.REQUEST_ERR_NOT_FOUND,
+                message: 'stub',
+              });
             } else {
-              observer.error(UserStatusCode.REQUEST_ERR_SERVER);
+              observer.error({
+                code: UserStatusCode.REQUEST_ERR_NOT_FOUND,
+                message: 'stub',
+              });
             }
           }
         );

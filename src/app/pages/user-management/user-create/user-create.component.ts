@@ -43,7 +43,7 @@ export class UserCreateComponent implements OnInit {
     this.userService
       .createUser(this.model.username, this.model.password)
       .subscribe(
-        (result: UserStatusCode) => {
+        (result: UserError) => {
           this.submitted = false;
           this.router.navigate([
             '/users',
