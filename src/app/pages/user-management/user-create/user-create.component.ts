@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import {
   UserService,
-  UserStatusCode,
+  UserErrorCode,
   UserError,
 } from '../../../services/user-management/user.service';
 import { User } from '../../../models/user-management/user.model';
@@ -52,7 +52,7 @@ export class UserCreateComponent implements OnInit {
         },
         (err: UserError) => {
           console.error(err);
-          if (err.code === UserStatusCode.CREATE_ERR_EXISTS) {
+          if (err.code === UserErrorCode.CREATE_ERR_EXISTS) {
             this.alreadyExists = true;
             this.badUser = this.model.username;
           } else {

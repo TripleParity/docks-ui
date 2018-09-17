@@ -8,7 +8,7 @@ import { User } from '../../models/user-management/user.model';
 import { ConfigurationService } from '../configuration/configuration.service';
 import { map, catchError } from 'rxjs/operators';
 
-export enum UserStatusCode {
+export enum UserErrorCode {
   REQUEST_OK = 200,
   CREATE_ERR_EXISTS = 409,
   REQUEST_ERR_NOT_FOUND = 404,
@@ -16,7 +16,7 @@ export enum UserStatusCode {
 }
 
 export interface UserError {
-  code: UserStatusCode;
+  code: UserErrorCode;
   message: string;
 }
 
@@ -52,7 +52,7 @@ export class UserService {
       .pipe(
         map((x) => {
           return ErrorObservable.create({
-            code: UserStatusCode.REQUEST_OK,
+            code: UserErrorCode.REQUEST_OK,
             message: 'stub',
           });
         }),
@@ -73,7 +73,7 @@ export class UserService {
         .subscribe(
           (body) => {
             observer.next({
-              code: UserStatusCode.REQUEST_OK,
+              code: UserErrorCode.REQUEST_OK,
               message: 'stub',
             });
           },
@@ -81,12 +81,12 @@ export class UserService {
             console.error(err);
             if (err.status === 404) {
               observer.error({
-                code: UserStatusCode.REQUEST_ERR_NOT_FOUND,
+                code: UserErrorCode.REQUEST_ERR_NOT_FOUND,
                 message: 'stub',
               });
             } else {
               observer.error({
-                code: UserStatusCode.REQUEST_ERR_NOT_FOUND,
+                code: UserErrorCode.REQUEST_ERR_NOT_FOUND,
                 message: 'stub',
               });
             }
@@ -96,18 +96,18 @@ export class UserService {
   }
 
   deleteUser(username: string) {
-    return new Observable<UserStatusCode>((observer) => {
+    return new Observable<UserErrorCode>((observer) => {
       this.httpClient.delete(this.userEndpoint + '/' + username).subscribe(
         (body) => {
-          observer.next(UserStatusCode.REQUEST_OK);
+          observer.next(UserErrorCode.REQUEST_OK);
         },
         (err: HttpErrorResponse) => {
           console.error(err);
 
           if (err.status === 404) {
-            observer.error(UserStatusCode.REQUEST_ERR_NOT_FOUND);
+            observer.error(UserErrorCode.REQUEST_ERR_NOT_FOUND);
           } else {
-            observer.error(UserStatusCode.REQUEST_ERR_SERVER);
+            observer.error(UserErrorCode.REQUEST_ERR_SERVER);
           }
         }
       );

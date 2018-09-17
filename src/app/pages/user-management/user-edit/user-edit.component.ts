@@ -10,7 +10,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import {
   UserService,
-  UserStatusCode,
+  UserErrorCode,
 } from '../../../services/user-management/user.service';
 import { User } from '../../../models/user-management/user.model';
 
@@ -68,7 +68,7 @@ export class UserEditComponent implements OnInit {
       },
       (err) => {
         this.submitted = false;
-        if (err === UserStatusCode.REQUEST_ERR_NOT_FOUND) {
+        if (err === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
           this.router.navigate([
             '/users',
             { updatedUserNotFound: user.username },
