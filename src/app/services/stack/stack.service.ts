@@ -7,20 +7,17 @@ import { Stack } from 'app/models/stack/stack.model';
 import { Observable } from 'rxjs/Observable';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 
-export enum StackError {
+export enum StackErrorCode {
   ERR_OK = 200,
   ERR_STACK_NAME_TAKEN = 409,
   ERR_STACK_MISSING = 404, // sigh
 }
 
 // Compound structure
-export interface StackResult {
-  code: StackError;
+export interface StackError {
+  code: StackErrorCode;
   message: string;
 }
-
-// TODO(CDuPlooy): Add helper to encode file
-// TODO(CDuPlooy): Proper modelling of the returned tasks && services.
 
 @Injectable()
 export class StackService {
@@ -41,7 +38,10 @@ export class StackService {
           return <Stack[]>x['data'];
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<StackError>err.status);
+          return ErrorObservable.create({
+            code: <StackErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -50,9 +50,9 @@ export class StackService {
    * Creates a new stack.
    *
    * Note that the _64params field is a base64 encoded file.
-   * @returns {Observable<StackResult>}
+   * @returns {Observable<StackError>}
    */
-  public deployStack(name: string, _64params: string): Observable<StackResult> {
+  public deployStack(name: string, _64params: string): Observable<StackError> {
     return this.http
       .post(
         this.config.getAPIHostname() + '/stacks',
@@ -62,14 +62,14 @@ export class StackService {
       .pipe(
         map((x) => {
           return {
-            code: StackError.ERR_OK,
-            message: x,
+            code: StackErrorCode.ERR_OK,
+            message: 'Stack deployed!',
           };
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <StackError>err.status,
-            message: err.error,
+            code: <StackErrorCode>err.status,
+            message: err.error['message'],
           });
         })
       );
@@ -91,7 +91,10 @@ export class StackService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<StackError>err.status);
+          return ErrorObservable.create({
+            code: <StackErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -112,7 +115,10 @@ export class StackService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<StackError>err.status);
+          return ErrorObservable.create({
+            code: <StackErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -121,9 +127,9 @@ export class StackService {
    * Updates an existing stack.
    *
    * Note that the _64params field is a base64 encoded file.
-   * @returns {Observable<StackResult>}
+   * @returns {Observable<StackError>}
    */
-  public updateStack(name: string, _64params: string): Observable<StackResult> {
+  public updateStack(name: string, _64params: string): Observable<StackError> {
     return this.http
       .put(
         this.config.getAPIHostname() + '/stacks/' + name,
@@ -133,14 +139,14 @@ export class StackService {
       .pipe(
         map((x) => {
           return {
-            code: StackError.ERR_OK,
-            message: x,
+            code: StackErrorCode.ERR_OK,
+            message: 'Stack Updated',
           };
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
-            code: <StackError>err.status,
-            message: err.error,
+            code: <StackErrorCode>err.status,
+            message: err.error['message'],
           });
         })
       );
@@ -158,10 +164,13 @@ export class StackService {
       })
       .pipe(
         map((x) => {
-          return StackError.ERR_OK;
+          return StackErrorCode.ERR_OK;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<StackError>err.status);
+          return ErrorObservable.create({
+            code: <StackErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }

@@ -16,7 +16,7 @@ import { Service } from '../../models/service/service.model';
 import { ConfigurationService } from '../configuration/configuration.service';
 import { ServiceSpec } from '../../models/service/spec/spec.model';
 
-export enum ServiceError {
+export enum ServiceErrorCode {
   ERR_OK = 200,
   ERR_SERVER = 500,
   ERR_NODE_N_SWARM = 503,
@@ -26,6 +26,11 @@ export enum ServiceError {
   ERR_NO_SERVICE = 404,
   ERR_STREAM = 101,
   ERR_UNKNOWN,
+}
+
+export interface ServiceError {
+  code: ServiceErrorCode;
+  message: string;
 }
 
 @Injectable()
@@ -47,7 +52,10 @@ export class ServicesService {
           return <Services[]>data;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<ServiceError>err.status);
+          return ErrorObservable.create({
+            code: <ServiceErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -56,19 +64,22 @@ export class ServicesService {
    * Returns more detailed information about a particular service.
    *
    * @param {string} id
-   * @returns {Observable<ServiceSpec>}
+   * @returns {Observable<Service>}
    */
-  public inspectService(id: string): Observable<ServiceSpec> {
+  public inspectService(id: string): Observable<Service> {
     return this.http
       .get<JSON>(this.config.getAPIHostname() + '/docker/services/' + id, {
         responseType: 'json',
       })
       .pipe(
         map((x) => {
-          return x['Spec'];
+          return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<ServiceError>err.status);
+          return ErrorObservable.create({
+            code: <ServiceErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -89,7 +100,10 @@ export class ServicesService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<ServiceError>err.status);
+          return ErrorObservable.create({
+            code: <ServiceErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -113,7 +127,10 @@ export class ServicesService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<ServiceError>err.status);
+          return ErrorObservable.create({
+            code: <ServiceErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -137,7 +154,10 @@ export class ServicesService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<ServiceError>err.status);
+          return ErrorObservable.create({
+            code: <ServiceErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -152,12 +172,15 @@ export class ServicesService {
    */
   public scaleService(id: string, replicas: number): Observable<string> {
     return this.inspectService(id).pipe(
-      map((spec: ServiceSpec) => {
-        spec.Mode.Replicated.Replicas = replicas;
-        return this.updateService(id, spec);
+      map((serv: Service) => {
+        serv.Spec.Mode.Replicated.Replicas = replicas;
+        return this.updateService(id, serv.Spec);
       }),
       catchError((err: HttpErrorResponse) => {
-        return ErrorObservable.create(<ServiceError>err.status);
+        return ErrorObservable.create({
+          code: <ServiceErrorCode>err.status,
+          message: err.error['message'],
+        });
       })
     );
   }
@@ -183,11 +206,14 @@ export class ServicesService {
               return data;
             })
             .catch(() => {
-              return ServiceError.ERR_UNKNOWN;
+              return ServiceErrorCode.ERR_UNKNOWN;
             });
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<ServiceError>err.status);
+          return ErrorObservable.create({
+            code: <ServiceErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }

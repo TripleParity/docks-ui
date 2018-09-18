@@ -6,10 +6,9 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'app-volumes-view',
   templateUrl: './volumes-view.component.html',
-  styleUrls: ['./volumes-view.component.css']
+  styleUrls: ['./volumes-view.component.css'],
 })
 export class VolumesViewComponent implements OnInit {
-
   public volumes: Volume[];
   public searchString = [];
   public createdVolume = '';
@@ -20,18 +19,17 @@ export class VolumesViewComponent implements OnInit {
 
   constructor(
     private volumeService: VolumeService,
-    private route: ActivatedRoute,
-    ) {
-      this.route.paramMap.subscribe((params: ParamMap) => {
-        if (params.has('createdVolume')) {
-          this.createdVolume = params.get('createdVolume');
-        }
-      });
-    }
+    private route: ActivatedRoute
+  ) {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      if (params.has('createdVolume')) {
+        this.createdVolume = params.get('createdVolume');
+      }
+    });
+  }
 
   ngOnInit() {
     this.fetchVolumes();
-
   }
 
   clearAlerts() {

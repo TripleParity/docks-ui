@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import {
   StackService,
   StackError,
-  StackResult,
+  StackErrorCode,
 } from 'services/stack/stack.service';
 
 @Component({
@@ -54,7 +54,7 @@ export class StacksCreateComponent implements OnInit {
     this.stackService
       .deployStack(this.stackModel.stackName, btoa(this.stackModel.stackFile))
       .subscribe(
-        (result: StackResult) => {
+        (result: StackError) => {
           this.clearAlerts();
           this.submitted = false;
           this.router.navigate([
@@ -62,10 +62,10 @@ export class StacksCreateComponent implements OnInit {
             { createdStack: this.stackModel.stackName },
           ]);
         },
-        (err: StackResult) => {
+        (err: StackError) => {
           console.error(err);
           this.clearAlerts();
-          if (err.code === StackError.ERR_STACK_NAME_TAKEN) {
+          if (err.code === StackErrorCode.ERR_STACK_NAME_TAKEN) {
             this.alreadyExists = true;
             this.badUser = this.stackModel.stackName;
           } else {
