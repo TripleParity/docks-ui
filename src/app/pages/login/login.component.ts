@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   public statusMessage = '';
   public passwordError = false;
   public usernameError = false;
+  public showTokenInput = false;
 
   constructor(
     private authService: AuthService,

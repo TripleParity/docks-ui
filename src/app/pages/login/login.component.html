@@ -68,6 +68,12 @@
                         </div>
                     </div>
 
+                    <div [hidden]="!showTokenInput" class="form-group">
+                        <label for="token">Two-Factor Token</label>
+                        <input type="text" class="form-control" placeholder="Two-Factor Token" aria-label="Two-Factor Token" id="token" (keyup.enter)="login(username.value, password.value)"
+                               #token>
+                    </div>
+
                     <div *ngIf="statusMessage !== ''">
                         <ngb-alert type="danger" (close)="statusMessage = ''">{{statusMessage}}</ngb-alert>
                     </div>
