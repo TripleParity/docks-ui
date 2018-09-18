@@ -27,24 +27,4 @@ describe('AuthService', () => {
       expect(service.logout).toBeTruthy();
     }
   ));
-
-  it('should login', inject([AuthService], (service: AuthService) => {
-    service.getToken('admin', 'admin').subscribe(() => {
-      expect(service.isLoggedIn()).toEqual(true);
-    });
-  }));
-
-  it('should fail on invalid login', inject(
-    [AuthService],
-    (service: AuthService) => {
-      service.getToken('admin2', 'admin').subscribe(
-        () => {
-          // NOP
-        },
-        (err) => {
-          expect(err).toEqual(AuthError.AUTH_ERR_CREDENTIALS);
-        }
-      );
-    }
-  ));
 });

@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { VolumesViewComponent } from 'pages/volumes/volumes-view/volumes-view.component';
 import { VolumesCreateComponent } from 'pages/volumes/volumes-create/volumes-create.component';
 
-
-
 const routes: Routes = [
   {
     path: '',
@@ -15,7 +13,7 @@ const routes: Routes = [
     path: 'create',
     pathMatch: 'full',
     component: VolumesCreateComponent,
-  }
+  },
 ];
 
 @NgModule({

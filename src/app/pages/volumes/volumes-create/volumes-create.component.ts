@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Volume } from 'app/models/volume/volume.model';
 import { Router } from '@angular/router';
-import { VolumeService } from 'services/volume/volume.service';
+import { VolumeService, VolumeError } from 'services/volume/volume.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
@@ -14,7 +14,6 @@ import { debug } from 'util';
   styleUrls: ['./volumes-create.component.css'],
 })
 export class VolumesCreateComponent implements OnInit {
-
   public volumeModel: Volume;
   public alreadyExists = false;
   public genericError = false;
@@ -22,8 +21,9 @@ export class VolumesCreateComponent implements OnInit {
   public warning = false;
   public fileText = '';
   public badUser = '';
-  public warningMessage = 'There was a problem while creating the volume. No new volume created.' +
-  'Ensure type is correct and name contains no special characters';
+  public warningMessage =
+    'There was a problem while creating the volume. No new volume created.' +
+    'Ensure type is correct and name contains no special characters';
   // TODO: Paul Wood allow an unknown number of Options to be added dynamically, achieved using the formBuilder
 
   volumeForm: FormGroup = this.fb.group({
@@ -34,41 +34,48 @@ export class VolumesCreateComponent implements OnInit {
     ]),
     Labels: this.fb.array([
       // this.initLabels();
-    ])
+    ]),
   });
-
 
   initLabels() {
     return this.fb.group({
       Name: ['', Validators.required],
-      Value: ['']
+      Value: [''],
     });
   }
 
   initOptions() {
     return this.fb.group({
       OptionName: ['', Validators.required],
-      Value: ['']
+      Value: [''],
     });
   }
 
-  constructor(private router: Router, private volumeService: VolumeService, private fb: FormBuilder) {
+  constructor(
+    private router: Router,
+    private volumeService: VolumeService,
+    private fb: FormBuilder
+  ) {
     this.volumeModel = {
       Name: '',
       Driver: '',
     };
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   convertOptions() {
     let i = 0;
     let temp = '{';
 
     while (i < this.Options.length) {
-        temp += '"' +  this.Options.at(i).get('OptionName').value + '":"' + this.Options.at(i).get('Value').value + '",';
-        i++;
+      temp +=
+        '"' +
+        this.Options.at(i).get('OptionName').value +
+        '":"' +
+        this.Options.at(i).get('Value').value +
+        '",';
+      i++;
     }
 
     // console.log(JSON.stringify(this.Options));
@@ -86,8 +93,13 @@ export class VolumesCreateComponent implements OnInit {
     let temp = '{';
 
     while (i < this.Labels.length) {
-        temp += '"' +  this.Labels.at(i).get('Name').value + '":"' + this.Labels.at(i).get('Value').value + '",';
-        i++;
+      temp +=
+        '"' +
+        this.Labels.at(i).get('Name').value +
+        '":"' +
+        this.Labels.at(i).get('Value').value +
+        '",';
+      i++;
     }
 
     // console.log(JSON.stringify(this.Options));
@@ -99,7 +111,6 @@ export class VolumesCreateComponent implements OnInit {
 
     return temp;
   }
-
 
   submit() {
     this.submitted = true;
@@ -114,24 +125,22 @@ export class VolumesCreateComponent implements OnInit {
     string = this.convertLabels();
     this.volumeModel.Labels = JSON.parse(string);
 
-    this.volumeService
-      .createVolume(this.volumeModel)
-      .subscribe(
-        (result: Volume) => {
-          this.clearAlerts();
-          this.submitted = false;
-          this.router.navigate([
-            '/volumes',
-            { createdVolume: this.volumeForm.get('Name').value },
-          ]);
-        },
-        (err: any) => {
-          console.error(err);
-          this.clearAlerts();
-            this.warning = true;
-            this.submitted = false;
-        }
-      );
+    this.volumeService.createVolume(this.volumeModel).subscribe(
+      (result: Volume) => {
+        this.clearAlerts();
+        this.submitted = false;
+        this.router.navigate([
+          '/volumes',
+          { createdVolume: this.volumeForm.get('Name').value },
+        ]);
+      },
+      (err: VolumeError) => {
+        this.clearAlerts();
+        this.warning = true;
+        this.submitted = false;
+        this.warningMessage = err.message;
+      }
+    );
   }
 
   clearAlerts() {
@@ -174,5 +183,3 @@ export class VolumesCreateComponent implements OnInit {
     return this.volumeForm.get('Labels') as FormArray;
   }
 }
-
-

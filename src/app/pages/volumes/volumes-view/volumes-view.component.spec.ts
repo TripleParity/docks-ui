@@ -24,7 +24,7 @@ describe('VolumesViewComponent', () => {
         RouterTestingModule,
         FormsModule,
         NgxDatatableModule,
-        SpinnerModule
+        SpinnerModule,
       ],
       providers: [
         VolumeService,
