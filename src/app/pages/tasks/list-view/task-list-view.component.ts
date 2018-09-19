@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../../models/task/task.model';
-import { TaskService } from '../../../services/task/task.service';
+import { TaskService, TaskError } from '../../../services/task/task.service';
 import { MockService } from '../../../services/mock/mock.service';
 import { Formatter } from '../../../classes/formatter/formatter';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-task-list-view',
@@ -12,7 +13,8 @@ import { Formatter } from '../../../classes/formatter/formatter';
 export class TaskListViewComponent implements OnInit {
   constructor(
     private taskService: TaskService,
-    private mockService: MockService
+    private mockService: MockService,
+    private toastr: ToastrService
   ) {}
   public tasks: Task[] = [];
   public isCollapsed: Boolean[] = [];
@@ -26,6 +28,8 @@ export class TaskListViewComponent implements OnInit {
         this.isCollapsed.push(false);
       }
       this.isLoaded = true;
+    }, (err: TaskError) => {
+      this.toastr.error(err.message, 'An error occured');
     });
   }
 

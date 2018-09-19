@@ -31,7 +31,6 @@ export class TaskCardViewComponent implements OnInit {
         this.tasks.push(task[i]);
       }
       this.isLoaded = true;
-      this.toastr.success('Loaded ' + task.length + ' tasks', 'Success!');
     }, (err: TaskError) => {
       this.toastr.error(err.message, 'An error occured');
     });

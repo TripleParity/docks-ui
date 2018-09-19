@@ -34,7 +34,7 @@ import { ToastrModule } from 'ngx-toastr';
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut : 5000,
+      timeOut : 10000,
       positionClass : 'toast-top-center',
       preventDuplicates : true,
       resetTimeoutOnDuplicate: true,

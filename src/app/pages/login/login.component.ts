@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService, AuthError } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { ConfigurationService } from '../../services/configuration/configuration.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private configService: ConfigurationService
+    private configService: ConfigurationService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {}
@@ -47,6 +49,7 @@ export class LoginComponent implements OnInit {
     this.statusMessage = '';
 
     if (!this.validateLogin(username, password)) {
+      this.toastr.error('Invalid username or password', 'Login error');
       return;
     }
 
@@ -60,12 +63,11 @@ export class LoginComponent implements OnInit {
       },
       (err) => {
         if (err === AuthError.AUTH_ERR_CREDENTIALS) {
-          this.statusMessage = 'Invalid username or password';
+          this.toastr.error('Invalid username or password', 'Login error');
         } else if (err === AuthError.AUTH_ERR_SERVER) {
-          this.statusMessage =
-            'Unable to connect to ' + this.configService.getAPIHostname();
+          this.toastr.error('Unable to connect to ' + this.configService.getAPIHostname(), 'Server error');
         } else {
-          this.statusMessage = 'Something went wrong';
+          this.toastr.error('Something went wrong', 'An error occured');
         }
         this.busy = false;
       }
