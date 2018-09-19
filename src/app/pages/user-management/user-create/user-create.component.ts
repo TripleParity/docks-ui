@@ -13,12 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class UserCreateComponent implements OnInit {
   usernamePopulated = true;
   passwordPopulated = true;
-
-  alreadyExists = false;
-  genericError = false;
   passwordHolder2 = '';
-
-  submitted = false;
   badUser = '';
 
   model: User = null;
@@ -37,31 +32,15 @@ export class UserCreateComponent implements OnInit {
   ngOnInit() {}
 
   submit() {
-    this.alreadyExists = false;
-    this.genericError = false;
-    this.submitted = true;
-
     this.userService
       .createUser(this.model.username, this.model.password)
       .subscribe(
         (result: UserError) => {
-          this.submitted = false;
-          this.router.navigate([
-            '/users',
-            { createdUser: this.model.username },
-          ]);
-          this.toastr.success('User created!', 'Success!');
+          this.toastr.success('User ' + this.model.username + ' created!', 'Success!');
+          this.router.navigate(['/users']);
         },
         (err: UserError) => {
           this.toastr.error(err.message, 'Could not create user');
-          if (err.code === UserErrorCode.CREATE_ERR_EXISTS) {
-            this.alreadyExists = true;
-            this.badUser = this.model.username;
-          } else {
-            this.genericError = true;
-          }
-
-          this.submitted = false;
         }
       );
   }

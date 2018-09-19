@@ -11,28 +11,19 @@ It can be made modular using the Angular validation techniques -->
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text" [(ngModel)]="model.username" class="form-control" id="username" placeholder="Username" #username="ngModel"
-        required name="username" [ngClass]="{'ng-invalid2': alreadyExists && badUser === username.value}">
-      <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
-        Username is required
-      </div>
-      <div [hidden]="!(alreadyExists && badUser === username.value) || username.pristine" class="alert alert-danger">
-        Username already exists
-      </div>
+        required name="username">
     </div>
 
     <div class="form-group">
       <label for="password">Password</label>
       <input type="password" [(ngModel)]="model.password" class="form-control" id="password" placeholder="Password" #password="ngModel"
         required name="password">
-      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
-        Password is required
-      </div>
     </div>
 
     <div class="form-group">
       <label for="password2">Password</label>
       <input type="password" class="form-control" id="password2" [(ngModel)]="passwordHolder2" placeholder="Confirm password" #password2="ngModel"
-        required name="password2" [ngClass]="{'ng-invalid2': password.value !== passwordHolder2}">
+        required name="password2"  [ngClass]="{'ng-invalid2': password.value !== passwordHolder2}">
       <div [hidden]="passwordHolder2 === password.value || password2.pristine" class="alert alert-danger">
         Passwords do not match
       </div>
@@ -45,7 +36,7 @@ It can be made modular using the Angular validation techniques -->
     <a routerLink="/users">
       <button id="btnCancel" type="button" class="btn btn-secondary">Cancel</button>
     </a>
-    <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid || submitted || password.value !== password2.value">Submit</button>
+    <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid || password.value !== password2.value">Submit</button>
 
   </form>
 </div>

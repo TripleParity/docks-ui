@@ -23,9 +23,7 @@ import { User } from '../../../models/user-management/user.model';
 })
 export class UserEditComponent implements OnInit {
   userForm: FormGroup;
-  genericError = false;
   doublePassword: ValidatorFn = null;
-  submitted: boolean;
 
   constructor(
     private userService: UserService,
@@ -66,20 +64,16 @@ export class UserEditComponent implements OnInit {
 
     this.userService.updateUser(user.username, user.password).subscribe(
       (result) => {
-        this.submitted = false;
-        this.router.navigate(['/users', { updatedUser: user.username }]);
-        this.toastr.success('User successfully updated', 'Success!');
+        this.toastr.success('User ' + user.username + ' successfully updated', 'Success!');
+        this.router.navigate(['/users']);
       },
       (err: UserError) => {
         this.toastr.error(err.message, 'Could not update user');
-        this.submitted = false;
         if (err.code === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
-          this.router.navigate([
-            '/users',
-            { updatedUserNotFound: user.username },
-          ]);
+          this.toastr.error('Could not find user', 'An error occured!');
+          this.router.navigate(['/users']);
         } else {
-          this.genericError = true;
+          this.toastr.error('Something went wrong...', 'An error occured!');
         }
       }
     );

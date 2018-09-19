@@ -19,15 +19,10 @@ export class UserListComponent implements OnInit {
   // Alert message flags. Displays if value not empty or false
   genericError = false;
 
-  createdUser = '';
-
   updatedUser = '';
   updatedUserNotFound = '';
 
   activeModal: NgbModalRef;
-
-  deletedUser = '';
-  deletedUserNotFound = '';
 
   selected: User[] = [];
 
@@ -45,17 +40,6 @@ export class UserListComponent implements OnInit {
     private toastr: ToastrService,
   ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      if (params.has('createdUser')) {
-        this.createdUser = params.get('createdUser');
-      }
-
-      if (params.has('updatedUser')) {
-        this.updatedUser = params.get('updatedUser');
-      }
-
-      if (params.has('updatedUserNotFound')) {
-        this.updatedUserNotFound = params.get('updatedUserNotFound');
-      }
     });
   }
 
@@ -67,7 +51,6 @@ export class UserListComponent implements OnInit {
       },
       (err: UserError) => {
         this.toastr.error(err.message, 'An error occured');
-        this.genericError = true;
       }
     );
   }
@@ -86,11 +69,10 @@ export class UserListComponent implements OnInit {
   deleteUser(username: string) {
     this.userService.deleteUser(username).subscribe(
       (result: UserErrorCode) => {
-        this.clearAlerts();
         if (result === UserErrorCode.REQUEST_OK) {
-          this.deletedUser = username;
+          this.toastr.success('User ' + username + ' removed.', 'Success!');
         } else {
-          this.genericError = true;
+          this.toastr.error('Something went wrong...', 'An error occured!');
         }
 
         this.activeModal.close();
@@ -98,26 +80,16 @@ export class UserListComponent implements OnInit {
       },
       (err: UserError) => {
         this.toastr.error(err.message, 'Could not delete user');
-        this.clearAlerts();
         if (err.code === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
-          this.deletedUserNotFound = username;
+          this.toastr.error('Could not find user', 'An error occured!');
         } else {
-          this.genericError = true;
+          this.toastr.error('Something went wrong...', 'An error occured!');
         }
 
         this.activeModal.close();
         this.fetchUsers();
       }
     );
-  }
-
-  clearAlerts() {
-    this.createdUser = '';
-    this.deletedUser = '';
-    this.deletedUserNotFound = '';
-    this.genericError = false;
-    this.updatedUser = '';
-    this.updatedUserNotFound = '';
   }
 
   updateFilter(event) {
