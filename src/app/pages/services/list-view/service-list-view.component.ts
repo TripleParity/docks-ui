@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../models/service/service.model';
 import { Formatter } from '../../../classes/formatter/formatter';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ServicesService } from '../../../services/services/services.service';
+import { ServicesService, ServiceError } from '../../../services/services/services.service';
 import { MockService } from '../../../services/mock/mock.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-service-list-view',
@@ -14,7 +15,8 @@ export class ServiceListViewComponent implements OnInit {
   constructor(
     private mock: MockService,
     private serviceService: ServicesService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastrService,
   ) {}
 
   public services: Service[] = [];
@@ -67,6 +69,8 @@ export class ServiceListViewComponent implements OnInit {
         this.isCollapsed.push(false);
       }
       this.isLoaded = true;
+    }, (err: ServiceError) => {
+      this.toastr.error(err.message, 'An error has occured');
     });
   }
 
@@ -107,10 +111,10 @@ export class ServiceListViewComponent implements OnInit {
     this.serviceService.deleteService(id).subscribe((x) => {
       this.services.filter((service) => service.ID !== id);
       this.fetchServices();
-      // this.rows = [...this.rows];
+      this.toastr.success('Service was successfully removed', 'Success!');
+    }, (err: ServiceError) => {
+      this.toastr.error(err.message, 'Could not remove service');
     });
-    // I (FJMentz) would rather test this with adult supervision
-    console.log('Removing container ' + id);
   }
 
   public voidParentClick(event) {
