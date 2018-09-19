@@ -7,6 +7,7 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ConfigurationService } from '../../services/configuration/configuration.service';
 import { TokenStorage } from '../../classes/tokenstorage/tokenstorage';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ToastrService } from 'ngx-toastr';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -22,6 +23,7 @@ describe('LoginComponent', () => {
         HttpHandler,
         ConfigurationService,
         TokenStorage,
+        ToastrService,
       ],
     }).compileComponents();
   }));
