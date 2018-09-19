@@ -50,6 +50,7 @@ export class UserCreateComponent implements OnInit {
             '/users',
             { createdUser: this.model.username },
           ]);
+          this.toastr.success('User created!', 'Success!');
         },
         (err: UserError) => {
           this.toastr.error(err.message, 'Could not create user');

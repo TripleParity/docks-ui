@@ -135,6 +135,7 @@ export class VolumesCreateComponent implements OnInit {
           '/volumes',
           { createdVolume: this.volumeForm.get('Name').value },
         ]);
+        this.toastr.success('Volume created!', 'Success!');
       },
       (err: VolumeError) => {
         this.toastr.error(err.message, 'Could not create volume');

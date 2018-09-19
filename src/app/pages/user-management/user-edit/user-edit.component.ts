@@ -68,6 +68,7 @@ export class UserEditComponent implements OnInit {
       (result) => {
         this.submitted = false;
         this.router.navigate(['/users', { updatedUser: user.username }]);
+        this.toastr.success('User successfully updated', 'Success!');
       },
       (err: UserError) => {
         this.toastr.error(err.message, 'Could not update user');

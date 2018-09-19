@@ -62,6 +62,7 @@ export class StacksCreateComponent implements OnInit {
             '/stacks',
             { createdStack: this.stackModel.stackName },
           ]);
+          this.toastr.success('Stack successfully created!', 'Success!');
         },
         (err: StackError) => {
           this.toastr.error(err.message, 'Error while deploying stack');

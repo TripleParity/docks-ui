@@ -64,6 +64,7 @@ export class StackEditComponent implements OnInit {
             '/stacks',
             { updatedStack: this.stackModel.stackName },
           ]);
+          this.toastr.success('Stack successfully updated!', 'Success!');
         },
         (err: StackError) => {
           this.toastr.error(err.message, 'Error updating stack');
