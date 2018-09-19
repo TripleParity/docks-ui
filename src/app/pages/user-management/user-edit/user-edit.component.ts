@@ -7,10 +7,12 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import {
   UserService,
   UserErrorCode,
+  UserError,
 } from '../../../services/user-management/user.service';
 import { User } from '../../../models/user-management/user.model';
 
@@ -29,7 +31,8 @@ export class UserEditComponent implements OnInit {
     private userService: UserService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
   ) {
     this.doublePassword = (control: FormGroup): ValidationErrors | null => {
       const p1 = control.get('password');
@@ -66,9 +69,10 @@ export class UserEditComponent implements OnInit {
         this.submitted = false;
         this.router.navigate(['/users', { updatedUser: user.username }]);
       },
-      (err) => {
+      (err: UserError) => {
+        this.toastr.error(err.message, 'Could not update user');
         this.submitted = false;
-        if (err === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
+        if (err.code === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
           this.router.navigate([
             '/users',
             { updatedUserNotFound: user.username },

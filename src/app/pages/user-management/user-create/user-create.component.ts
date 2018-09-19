@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import {
-  UserService,
-  UserErrorCode,
-  UserError,
-} from '../../../services/user-management/user.service';
+import { UserService, UserErrorCode, UserError } from '../../../services/user-management/user.service';
 import { User } from '../../../models/user-management/user.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-create',
@@ -26,7 +23,11 @@ export class UserCreateComponent implements OnInit {
 
   model: User = null;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private toastr: ToastrService,
+    ) {
     this.model = {
       username: '',
       password: '',
@@ -51,7 +52,7 @@ export class UserCreateComponent implements OnInit {
           ]);
         },
         (err: UserError) => {
-          console.error(err);
+          this.toastr.error(err.message, 'Could not create user');
           if (err.code === UserErrorCode.CREATE_ERR_EXISTS) {
             this.alreadyExists = true;
             this.badUser = this.model.username;

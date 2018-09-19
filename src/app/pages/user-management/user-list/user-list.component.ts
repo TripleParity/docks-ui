@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 import {
   UserService,
   UserErrorCode,
+  UserError,
 } from '../../../services/user-management/user.service';
 import { User } from '../../../models/user-management/user.model';
 
@@ -39,7 +41,8 @@ export class UserListComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastrService,
   ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       if (params.has('createdUser')) {
@@ -62,8 +65,8 @@ export class UserListComponent implements OnInit {
         this.users = users;
         this.dataCache = [...users];
       },
-      (err) => {
-        console.error(err);
+      (err: UserError) => {
+        this.toastr.error(err.message, 'An error occured');
         this.genericError = true;
       }
     );
@@ -93,9 +96,10 @@ export class UserListComponent implements OnInit {
         this.activeModal.close();
         this.fetchUsers();
       },
-      (err: UserErrorCode) => {
+      (err: UserError) => {
+        this.toastr.error(err.message, 'Could not delete user');
         this.clearAlerts();
-        if (err === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
+        if (err.code === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
           this.deletedUserNotFound = username;
         } else {
           this.genericError = true;
