@@ -21,6 +21,7 @@ import { NavbarComponent } from 'app/shared/navbar/navbar.component';
 import { ConfigurationService } from 'app/services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 
+import { ClipboardModule } from 'ngx-clipboard';
 @NgModule({
   declarations: [AppComponent, UserBarComponent, NavbarComponent],
   imports: [
@@ -28,6 +29,7 @@ import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
     HttpClientModule,
     NgbModule.forRoot(),
     AppRoutingModule,
+    ClipboardModule,
     AngularFontAwesomeModule,
   ],
   providers: [
