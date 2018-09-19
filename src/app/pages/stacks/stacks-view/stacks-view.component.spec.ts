@@ -9,6 +9,7 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 describe('StacksViewComponent', () => {
   let component: StacksViewComponent;
@@ -22,6 +23,7 @@ describe('StacksViewComponent', () => {
         NgbModule.forRoot(),
         RouterTestingModule,
         NgxDatatableModule,
+        ToastrModule.forRoot(),
       ],
       providers: [
         StackService,
@@ -30,6 +32,7 @@ describe('StacksViewComponent', () => {
         ConfigurationService,
         TokenStorage,
         NgbAlertConfig,
+        ToastrService,
       ],
     }).compileComponents();
   }));

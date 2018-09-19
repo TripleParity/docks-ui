@@ -8,6 +8,7 @@ import { StackService } from 'services/stack/stack.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 describe('StacksCreateComponent', () => {
   let component: StacksCreateComponent;
@@ -16,7 +17,7 @@ describe('StacksCreateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [StacksCreateComponent],
-      imports: [FormsModule, NgbModule, RouterTestingModule],
+      imports: [FormsModule, NgbModule, RouterTestingModule, ToastrModule.forRoot()],
       providers: [
         StackService,
         HttpClient,
@@ -24,6 +25,7 @@ describe('StacksCreateComponent', () => {
         ConfigurationService,
         TokenStorage,
         NgbAlertConfig,
+        ToastrService,
       ],
     }).compileComponents();
   }));
