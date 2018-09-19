@@ -4,6 +4,7 @@ import { TaskService } from '../../../services/task/task.service';
 import { MockService } from '../../../services/mock/mock.service';
 import { Task } from '../../../models/task/task.model';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-card-view',
@@ -14,7 +15,8 @@ export class TaskCardViewComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     // private mockService: MockService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private clipboard: ClipboardService
   ) {}
 
   public isLoaded = false;
@@ -105,6 +107,6 @@ export class TaskCardViewComponent implements OnInit {
   }
 
   public copyToClip() {
-    // TODO(FJMentz) : Implement this
+    this.clipboard.copyFromContent(this.modalObjectLog);
   }
 }
