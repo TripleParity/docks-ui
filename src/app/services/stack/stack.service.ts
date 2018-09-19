@@ -40,7 +40,7 @@ export class StackService {
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
             code: <StackErrorCode>err.status,
-            message: err.error['message'],
+            message: err.error,
           });
         })
       );
@@ -69,7 +69,7 @@ export class StackService {
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
             code: <StackErrorCode>err.status,
-            message: err.error['message'],
+            message: err.error,
           });
         })
       );
@@ -93,7 +93,7 @@ export class StackService {
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
             code: <StackErrorCode>err.status,
-            message: err.error['message'],
+            message: err.error,
           });
         })
       );
@@ -117,7 +117,7 @@ export class StackService {
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
             code: <StackErrorCode>err.status,
-            message: err.error['message'],
+            message: err.error,
           });
         })
       );
@@ -146,7 +146,7 @@ export class StackService {
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
             code: <StackErrorCode>err.status,
-            message: err.error['message'],
+            message: err.error,
           });
         })
       );
@@ -169,7 +169,7 @@ export class StackService {
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
             code: <StackErrorCode>err.status,
-            message: err.error['message'],
+            message: err.error,
           });
         })
       );
