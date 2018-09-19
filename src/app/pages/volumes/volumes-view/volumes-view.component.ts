@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Volume } from 'app/models/volume/volume.model';
-import { VolumeService } from 'services/volume/volume.service';
+import { VolumeService, VolumeError } from 'services/volume/volume.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-volumes-view',
@@ -19,7 +20,8 @@ export class VolumesViewComponent implements OnInit {
 
   constructor(
     private volumeService: VolumeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
   ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       if (params.has('createdVolume')) {
@@ -50,8 +52,8 @@ export class VolumesViewComponent implements OnInit {
         this.searchString = [...volumes];
         this.isLoaded = true;
       },
-      (err) => {
-        console.error(err);
+      (err: VolumeError) => {
+        this.toastr.error(err.message, 'An error occured');
         this.genericError = true;
       }
     );

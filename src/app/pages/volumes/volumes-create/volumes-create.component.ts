@@ -7,6 +7,7 @@ import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { debug } from 'util';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-volumes-create',
@@ -54,7 +55,8 @@ export class VolumesCreateComponent implements OnInit {
   constructor(
     private router: Router,
     private volumeService: VolumeService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService,
   ) {
     this.volumeModel = {
       Name: '',
@@ -135,6 +137,7 @@ export class VolumesCreateComponent implements OnInit {
         ]);
       },
       (err: VolumeError) => {
+        this.toastr.error(err.message, 'Could not create volume');
         this.clearAlerts();
         this.warning = true;
         this.submitted = false;
