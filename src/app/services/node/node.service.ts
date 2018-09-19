@@ -1,5 +1,5 @@
 /**
- * Handles integration of the networking components present in docker.
+ * Handles integration of the node component present in docker.
  */
 
 import { Injectable } from '@angular/core';

@@ -15,11 +15,9 @@ export interface Spec {
   Name: string;
   Role: string;
   Availability: string;
-  Labels: Labels;
+  Labels: JSON;
 }
-export interface Labels {
-  foo: string;
-}
+
 export interface Description {
   Hostname: string;
   Platform: Platform;
@@ -36,7 +34,7 @@ export interface Resources {
 }
 export interface Engine {
   EngineVersion: string;
-  Labels: Labels;
+  Labels: JSON;
   Plugins?: (PluginsEntity)[] | null;
 }
 export interface PluginsEntity {
