@@ -41,11 +41,11 @@ export class StackEditComponent implements OnInit {
   }
 
   submit() {
-
     this.stackService
       .updateStack(this.stackModel.stackName, btoa(this.stackModel.stackFile))
       .subscribe((result) => {
-          this.toastr.success('Stack successfully updated!', 'Success!');
+        this.toastr.success('Successfully updated stack ' + this.stackModel.stackName, 'Success!');
+          this.router.navigate(['/stacks']);
         },
         (err: StackError) => {
           this.toastr.error(err.message, 'Error updating stack');

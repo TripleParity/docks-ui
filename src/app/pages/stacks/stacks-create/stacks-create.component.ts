@@ -42,7 +42,8 @@ export class StacksCreateComponent implements OnInit {
       .deployStack(this.stackModel.stackName, btoa(this.stackModel.stackFile))
       .subscribe(
         (result: StackError) => {
-          this.toastr.success('Stack successfully deployed!', 'Success!');
+          this.toastr.success('Successfully deployed stack ' + this.stackModel.stackName, 'Success!');
+          this.router.navigate(['/stacks']);
         },
         (err: StackError) => {
           this.toastr.error(err.message, 'Error while deploying stack');
