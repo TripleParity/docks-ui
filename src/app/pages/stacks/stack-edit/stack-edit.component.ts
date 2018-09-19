@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Stack } from 'app/models/stack/stack.model';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import {
-  StackService,
-  StackError,
-  StackErrorCode,
-} from 'services/stack/stack.service';
+import { StackService, StackError, StackErrorCode } from 'services/stack/stack.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-stack-edit',
@@ -25,7 +22,8 @@ export class StackEditComponent implements OnInit {
   constructor(
     private router: Router,
     private stackService: StackService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit() {
@@ -59,8 +57,7 @@ export class StackEditComponent implements OnInit {
 
     this.stackService
       .updateStack(this.stackModel.stackName, btoa(this.stackModel.stackFile))
-      .subscribe(
-        (result) => {
+      .subscribe((result) => {
           this.clearAlerts();
           this.submitted = false;
           this.router.navigate([
@@ -69,7 +66,7 @@ export class StackEditComponent implements OnInit {
           ]);
         },
         (err: StackError) => {
-          console.error(err);
+          this.toastr.error(err.message, 'Error updating stack');
           this.clearAlerts();
           if (err.code === StackErrorCode.ERR_STACK_NAME_TAKEN) {
             this.alreadyExists = true;
