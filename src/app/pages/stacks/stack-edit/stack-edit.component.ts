@@ -11,13 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class StackEditComponent implements OnInit {
   public stackModel: Stack;
-  public alreadyExists = false;
-  public genericError = false;
-  public submitted = false;
-  public warning = false;
   public fileText = '';
-  public badUser = '';
-  public warningMessage = 'Something went wrong...';
 
   constructor(
     private router: Router,
@@ -46,37 +40,15 @@ export class StackEditComponent implements OnInit {
     };
   }
 
-  clearAlerts() {
-    this.warning = false;
-  }
-
   submit() {
-    this.alreadyExists = false;
-    this.genericError = false;
-    this.submitted = true;
 
     this.stackService
       .updateStack(this.stackModel.stackName, btoa(this.stackModel.stackFile))
       .subscribe((result) => {
-          this.clearAlerts();
-          this.submitted = false;
-          this.router.navigate([
-            '/stacks',
-            { updatedStack: this.stackModel.stackName },
-          ]);
           this.toastr.success('Stack successfully updated!', 'Success!');
         },
         (err: StackError) => {
           this.toastr.error(err.message, 'Error updating stack');
-          this.clearAlerts();
-          if (err.code === StackErrorCode.ERR_STACK_NAME_TAKEN) {
-            this.alreadyExists = true;
-            this.badUser = this.stackModel.stackName;
-          } else {
-            this.warning = true;
-            this.warningMessage = err.message;
-          }
-          this.submitted = false;
         }
       );
   }

@@ -13,12 +13,6 @@
         <label for="stackName">Stack Name</label>
         <input type="text" [(ngModel)]="stackModel.stackName" class="form-control" id="stackName" placeholder="Insert Stack Name"
           #stackName="ngModel" required name="stackName" [ngClass]="{'ng-invalid2': alreadyExists }">
-        <div [hidden]="stackName.valid || stackName.pristine" class="alert alert-danger">
-          A Stack name is required
-        </div>
-        <div [hidden]="!(alreadyExists && badUser === stackName.value) || stackName.pristine" class="alert alert-danger">
-          A Stack with that name already exists
-        </div>
       </div>
 
       <div class="form-group">
@@ -48,14 +42,6 @@
             </a>
 
           </div>
-        </div>
-      </div>
-
-      <div class="row" [hidden]="warning === false">
-        <div class="cols">
-          <ngb-alert (close)="warning=false" [type]="'danger'">
-            {{warningMessage}}
-          </ngb-alert>
         </div>
       </div>
 
