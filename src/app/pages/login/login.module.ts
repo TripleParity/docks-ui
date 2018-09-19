@@ -6,6 +6,7 @@ import { LoginComponent } from '../../pages/login/login.component';
 import { AuthService, AuthError } from '../../services/auth/auth.service';
 import { ConfigurationService } from '../../services/configuration/configuration.service';
 import { LoginRoutingModule } from '../../pages/login/login-routing.module';
+import { ToastrService } from 'ngx-toastr';
 
 @NgModule({
   imports: [CommonModule, LoginRoutingModule, NgbModule],

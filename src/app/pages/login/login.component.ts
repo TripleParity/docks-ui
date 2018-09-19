@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
     this.authService.getToken(username, password).subscribe(
       (response) => {
         if (response === AuthError.AUTH_OK) {
+          this.toastr.clear();
           this.router.navigate(['/']);
         }
       },
