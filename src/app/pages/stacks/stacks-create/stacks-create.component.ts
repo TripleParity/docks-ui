@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Stack } from 'app/models/stack/stack.model';
 import { Router } from '@angular/router';
-import { StackService, StackError, StackErrorCode, } from 'services/stack/stack.service';
+import {
+  StackService,
+  StackError,
+  StackErrorCode,
+} from 'services/stack/stack.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,8 +20,8 @@ export class StacksCreateComponent implements OnInit {
   constructor(
     private router: Router,
     private stackService: StackService,
-    private toastr: ToastrService,
-    ) {
+    private toastr: ToastrService
+  ) {
     this.stackModel = {
       stackName: '',
       serviceCount: 0,
@@ -42,7 +46,10 @@ export class StacksCreateComponent implements OnInit {
       .deployStack(this.stackModel.stackName, btoa(this.stackModel.stackFile))
       .subscribe(
         (result: StackError) => {
-          this.toastr.success('Successfully deployed stack ' + this.stackModel.stackName, 'Success!');
+          this.toastr.success(
+            'Successfully deployed stack ' + this.stackModel.stackName,
+            'Success!'
+          );
           this.router.navigate(['/stacks']);
         },
         (err: StackError) => {

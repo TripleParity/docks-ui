@@ -30,7 +30,7 @@ export class UserEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {
     this.doublePassword = (control: FormGroup): ValidationErrors | null => {
       const p1 = control.get('password');
@@ -64,7 +64,10 @@ export class UserEditComponent implements OnInit {
 
     this.userService.updateUser(user.username, user.password).subscribe(
       (result) => {
-        this.toastr.success('User ' + user.username + ' successfully updated', 'Success!');
+        this.toastr.success(
+          'User ' + user.username + ' successfully updated',
+          'Success!'
+        );
         this.router.navigate(['/users']);
       },
       (err: UserError) => {

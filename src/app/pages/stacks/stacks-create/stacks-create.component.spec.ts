@@ -17,7 +17,12 @@ describe('StacksCreateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [StacksCreateComponent],
-      imports: [FormsModule, NgbModule, RouterTestingModule, ToastrModule.forRoot()],
+      imports: [
+        FormsModule,
+        NgbModule,
+        RouterTestingModule,
+        ToastrModule.forRoot(),
+      ],
       providers: [
         StackService,
         HttpClient,

@@ -66,7 +66,10 @@ export class LoginComponent implements OnInit {
         if (err === AuthError.AUTH_ERR_CREDENTIALS) {
           this.toastr.error('Invalid username or password', 'Login error');
         } else if (err === AuthError.AUTH_ERR_SERVER) {
-          this.toastr.error('Unable to connect to ' + this.configService.getAPIHostname(), 'Server error');
+          this.toastr.error(
+            'Unable to connect to ' + this.configService.getAPIHostname(),
+            'Server error'
+          );
         } else {
           this.toastr.error('Something went wrong', 'An error occured');
         }

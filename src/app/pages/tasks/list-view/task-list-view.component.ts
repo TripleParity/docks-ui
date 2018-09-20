@@ -22,15 +22,18 @@ export class TaskListViewComponent implements OnInit {
   public isLoaded = false;
 
   ngOnInit() {
-    this.taskService.getTasks().subscribe((task) => {
-      for (let i = 0; i < task.length; i++) {
-        this.tasks.push(task[i]);
-        this.isCollapsed.push(false);
+    this.taskService.getTasks().subscribe(
+      (task) => {
+        for (let i = 0; i < task.length; i++) {
+          this.tasks.push(task[i]);
+          this.isCollapsed.push(false);
+        }
+        this.isLoaded = true;
+      },
+      (err: TaskError) => {
+        this.toastr.error(err.message, 'An error occured');
       }
-      this.isLoaded = true;
-    }, (err: TaskError) => {
-      this.toastr.error(err.message, 'An error occured');
-    });
+    );
   }
 
   public PrettifyDateTime(buff: string): string {

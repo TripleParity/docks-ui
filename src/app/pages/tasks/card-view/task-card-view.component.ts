@@ -26,14 +26,17 @@ export class TaskCardViewComponent implements OnInit {
   public modalObjectLog: string;
 
   ngOnInit() {
-    this.taskService.getTasks().subscribe((task) => {
-      for (let i = 0; i < task.length; i++) {
-        this.tasks.push(task[i]);
+    this.taskService.getTasks().subscribe(
+      (task) => {
+        for (let i = 0; i < task.length; i++) {
+          this.tasks.push(task[i]);
+        }
+        this.isLoaded = true;
+      },
+      (err: TaskError) => {
+        this.toastr.error(err.message, 'An error occured');
       }
-      this.isLoaded = true;
-    }, (err: TaskError) => {
-      this.toastr.error(err.message, 'An error occured');
-    });
+    );
   }
 
   public PrettifyDateTime(buff: string): string {

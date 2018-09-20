@@ -49,7 +49,7 @@ export class VolumesCreateComponent implements OnInit {
     private router: Router,
     private volumeService: VolumeService,
     private fb: FormBuilder,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {
     this.volumeModel = {
       Name: '',
@@ -119,7 +119,10 @@ export class VolumesCreateComponent implements OnInit {
 
     this.volumeService.createVolume(this.volumeModel).subscribe(
       (result: Volume) => {
-        this.toastr.success('Volume ' + this.volumeForm.get('Name').value + ' created!', 'Success!');
+        this.toastr.success(
+          'Volume ' + this.volumeForm.get('Name').value + ' created!',
+          'Success!'
+        );
         this.router.navigate(['/volumes']);
       },
       (err: VolumeError) => {
