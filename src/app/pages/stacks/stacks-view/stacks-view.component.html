@@ -7,15 +7,7 @@
 </div>
 
 <div class="row heading">
-  <div class="col-md-8">
-    <a routerLink="/stacks/create">
-      <button type="button" class="btn btn-info">
-        Deploy Stack
-        <i class="fa fa-clone"> </i>
-      </button>
-    </a>
-  </div>
-  <div class="col-md-4">
+  <div class="col-sm-4">
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Search Stacks" aria-label="Recipient's username" aria-describedby="basic-addon2"
         (keyup)="updateFilter($event)">
@@ -28,46 +20,58 @@
       </div>
     </div>
   </div>
+  <div class="offset-sm-6 col-sm-2">
+    <a routerLink="/stacks/create">
+      <button type="button" class="btn btn-info">
+        Deploy Stack
+        <i class="fa fa-clone"> </i>
+      </button>
+    </a>
+  </div>
 </div>
-<div>
-  <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="stacks" [headerHeight]="'auto'"
-    [rowHeight]="getRowHeight">
 
-    <ngx-datatable-column name="Stack Name">
-      <ng-template let-value="value" ngx-datatable-cell-template>
-        <strong>{{value}}</strong>
-      </ng-template>
-    </ngx-datatable-column>
 
-    <ngx-datatable-column name="Services Count">
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        {{value}}
-      </ng-template>
-    </ngx-datatable-column>
+<div class="row">
+  <div class="col-md-12">
+    <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="stacks" [headerHeight]="'auto'"
+      [rowHeight]="getRowHeight">
 
-    <ngx-datatable-column name="Operations">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        <div>
-          <a routerLink="/stacks/{{row.stackName}}/edit">
-            <span id="ops">Edit
-              <i class="fa fa-cog"></i>
-            </span>
-          </a>
-        </div>
-      </ng-template>
-    </ngx-datatable-column>
+      <ngx-datatable-column name="Stack Name">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{value}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
 
-    <ngx-datatable-column name="">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        <div>
-          <button class="btn btn-danger sm" (click)="open(content, row.stackName)">Delete
-            <i class="fa fa-trash-o"></i>
-          </button>
-        </div>
-      </ng-template>
-    </ngx-datatable-column>
+      <ngx-datatable-column name="Services Count">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
 
-  </ngx-datatable>
+      <ngx-datatable-column name="Operations">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div>
+            <a routerLink="/stacks/{{row.stackName}}/edit">
+              <span id="ops">Edit
+                <i class="fa fa-cog"></i>
+              </span>
+            </a>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div>
+            <button class="btn btn-danger sm" (click)="open(content, row.stackName)">Delete
+              <i class="fa fa-trash-o"></i>
+            </button>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+    </ngx-datatable>
+  </div>
 </div>
 
 <ng-template #content let-c="close" let-d="dismiss">
