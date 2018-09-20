@@ -8,6 +8,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HttpHandler, HttpClient } from '@angular/common/http';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('NetworkListComponent', () => {
   let component: NetworkListComponent;
@@ -16,7 +17,12 @@ describe('NetworkListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [NetworkListComponent],
-      imports: [NgbModule.forRoot(), RouterTestingModule, NgxDatatableModule],
+      imports: [
+        NgbModule.forRoot(),
+        RouterTestingModule,
+        NgxDatatableModule,
+        ToastrModule.forRoot(),
+      ],
       providers: [
         NetworkService,
         HttpClient,
