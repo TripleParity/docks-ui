@@ -47,6 +47,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'nodes',
+    loadChildren: 'app/pages/nodes/nodes.module#NodesModule',
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'containers',
     loadChildren: 'app/pages/containers/containers.module#ContainersModule',
   },
