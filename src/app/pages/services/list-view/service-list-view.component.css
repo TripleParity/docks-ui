@@ -1,16 +1,6 @@
 .warning-text{
     color: var(--red);
-}
-
-.heading
-{
-    background-color: #F7F7F7;
-    padding: 10px;
-}
-#Search{
-    background-color:transparent;
-    border: none;
-}  
+} 
 .col-sm-4
 {
     padding-left: 0px;

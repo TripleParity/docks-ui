@@ -423,9 +423,14 @@ bootstrap table theme
 }
 
 /* Material design for detail views */
-.heading {
-    background-color: #EFEFEF;
-    color: #6E6E6E;
+#Search{
+    background-color:transparent;
+    border: none;
+}
+.heading
+{
+    background-color: #F7F7F7;
+    padding: 10px;
 }
 .break
 {
