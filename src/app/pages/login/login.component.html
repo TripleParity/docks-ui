@@ -79,10 +79,6 @@
                     </div>
                 </div>
 
-                <div *ngIf="statusMessage !== ''">
-                    <ngb-alert type="danger" (close)="statusMessage = ''">{{statusMessage}}</ngb-alert>
-                </div>
-
                 <div align="center">
                     <button type="button" id="loginButton" class="btn btn-success btn-block" [disabled]="busy" (click)="login(username.value, password.value)">Login</button>
                 </div>
