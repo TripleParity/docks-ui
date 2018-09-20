@@ -28,21 +28,51 @@
           </ng-template>
         </ngx-datatable-column>
 
+        <ngx-datatable-column name="Name">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Spec.Name}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Engine version">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Description.Engine.EngineVersion}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="IP address">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Status.Addr}}
+          </ng-template>
+        </ngx-datatable-column>
+
         <ngx-datatable-column name="Availability">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.Spec.Availability}}
+            <div class="{{row.Spec.Availability}} status">{{row.Spec.Availability}}</div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Role">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Spec.Role}}
           </ng-template>
         </ngx-datatable-column>
 
         <ngx-datatable-column name="State">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.Status.State}}
+            <div class="{{row.Status.State}} status">{{row.Status.State}}</div>
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Last updated">
+        <ngx-datatable-column name="CPUs">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ PrettifyDateTime(row.UpdatedAt) }}
+            {{ getCPU(row.Description.Resources.NanoCPUs) }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Memory">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ getRam(row.Description.Resources.MemoryBytes) }}
           </ng-template>
         </ngx-datatable-column>
 

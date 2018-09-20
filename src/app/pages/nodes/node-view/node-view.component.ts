@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Formatter } from '../../../classes/formatter/formatter';
 import { Node } from 'app/models/node/node.model';
 import { NodeService, NodeError } from 'services/node/node.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -50,8 +49,11 @@ export class NodeViewComponent implements OnInit {
     this.nodes = temp;
   }
 
-  public PrettifyDateTime(buff: string): string {
-    return Formatter.PrettifyDateTime(buff);
+  public getCPU(nano: string) {
+    return Math.round((+nano / 107341824) * 100) / 100;
   }
 
+  public getRam(mem: string) {
+    return Math.round((+mem / 107341824) * 100) / 100;
+  }
 }
