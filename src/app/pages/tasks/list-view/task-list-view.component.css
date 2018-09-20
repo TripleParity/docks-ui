@@ -1,44 +1,4 @@
-.status
-{
-    width: 70px;
-    text-align: center;
-    border-radius: 5px;
-}
 
-.failed, shutdown, rejected, orphaned, remove
-{
-    color: red;
-    border: 1px solid red; 
-}
-.running
-{
-    color: green;
-    border: 1px solid green; 
-}
-.new
-{
-    color: darkslateblue;
-    border: 1px solid darkslateblue;     
-}
-.pending
-{
-    color: darkgoldenrod;
-    border: 1px solid darkgoldenrod; 
-}
-.assigned, .accepted, preparing, starting
-{
-    color: dodgerblue;
-    border: 1px solid dodgerblue;  
-}
-.dark
-{
-    color: darkgray;
-}
-.default
-{
-    color: black;
-    border: 1px solid black;
-}
 .col-sm-4
 {
   padding-left: 0px;

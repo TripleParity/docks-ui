@@ -4,6 +4,7 @@ import { TaskService, TaskError } from 'services/task/task.service';
 import { ToastrService } from 'ngx-toastr';
 import { Task } from 'app/models/task/task.model';
 import { ServicesService } from 'services/services/services.service';
+import { Formatter } from 'classes/formatter/formatter';
 
 @Component({
   selector: 'app-task-detail-view',
@@ -15,6 +16,7 @@ export class TaskDetailViewComponent implements OnInit {
   private taskID: string;
   public taskModel: Task;
   public taskName: string;
+  public image: string;
   public serviceName: string;
   public isLoaded = false;
 
@@ -39,6 +41,7 @@ export class TaskDetailViewComponent implements OnInit {
         this.taskModel = task;
         this.taskName = this.getTaskName();
         this.getServiceName();
+        this.getImage();
         this.isLoaded = true;
       },
       (err: TaskError ) => {
@@ -63,4 +66,13 @@ export class TaskDetailViewComponent implements OnInit {
       }
     );
   }
+
+  getImage() {
+    const taskImage = this.taskModel.Spec.ContainerSpec.Image.split('a');
+    this.image = taskImage[0];
+  }
+
+  public PrettifyDateTime(buff: string): string {
+    return Formatter.PrettifyDateTime(buff);
+}
 }
