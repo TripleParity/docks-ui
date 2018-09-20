@@ -59,7 +59,7 @@ const routes: Routes = [
   {
     path: 'webhooks',
     loadChildren:
-      'app/pages/webhook/webhook.module#WebhookModule',
+      'app/pages/webhooks/webhook.module#WebhookModule',
     canActivate: [AuthGuard],
   },
   {
