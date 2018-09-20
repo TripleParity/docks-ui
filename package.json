@@ -4,7 +4,7 @@
   "license": "GPL-3.0",
   "scripts": {
     "start": "ng serve --host=0.0.0.0",
-    "check": "docker stack deploy -c docker-compose-api.yml docks-api;ng lint;ng build --prod; ng test",
+    "check": "ng lint;ng build --prod; ng test",
     "serve": "ng serve --aot",
     "fix": "ng lint --fix",
     "build": "ng build --prod --no-progress",
@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^5.2.0",
+    "@angular/animations": "^5.2.11",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
     "@angular/core": "^5.2.0",
@@ -23,13 +23,14 @@
     "@angular/router": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^1.1.2",
     "@swimlane/ngx-datatable": "11.3.2",
-    "@types/chart.js": "^2.7.15",
+    "@types/chart.js": "^2.7.34",
     "@types/chartjs": "0.0.31",
     "angular-font-awesome": "^3.1.2",
     "angular2-jwt": "^0.2.3",
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
+    "ngx-toastr": "^8.10.2",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

@@ -16,12 +16,17 @@ import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { ConfigurationService } from '../configuration/configuration.service';
 import { Network } from 'app/models/network/network.model';
 
-enum NetworkError {
+enum NetworkErrorCode {
   ERR_OK = 200,
   ERR_SERVER = 500,
   ERR_NO_NETWORK = 404,
   ERR_NO_OP = 403,
   ERR_STREAM = 101,
+}
+
+export interface NetworkError {
+  code: NetworkErrorCode;
+  message: string;
 }
 
 @Injectable()
@@ -41,7 +46,10 @@ export class NetworkService {
           return <Network>x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<NetworkError>err.status);
+          return ErrorObservable.create({
+            code: <NetworkErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -78,7 +86,10 @@ export class NetworkService {
           return <Network>x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<NetworkError>err.status);
+          return ErrorObservable.create({
+            code: <NetworkErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -100,7 +111,10 @@ export class NetworkService {
           return <Network>x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<NetworkError>err.status);
+          return ErrorObservable.create({
+            code: <NetworkErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -121,7 +135,10 @@ export class NetworkService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<NetworkError>err.status);
+          return ErrorObservable.create({
+            code: <NetworkErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -154,7 +171,10 @@ export class NetworkService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<NetworkError>err.status);
+          return ErrorObservable.create({
+            code: <NetworkErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -189,7 +209,10 @@ export class NetworkService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<NetworkError>err.status);
+          return ErrorObservable.create({
+            code: <NetworkErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -209,7 +232,10 @@ export class NetworkService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<NetworkError>err.status);
+          return ErrorObservable.create({
+            code: <NetworkErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }

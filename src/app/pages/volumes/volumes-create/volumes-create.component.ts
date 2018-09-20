@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Volume } from 'app/models/volume/volume.model';
 import { Router } from '@angular/router';
-import { VolumeService } from 'services/volume/volume.service';
+import { VolumeService, VolumeError } from 'services/volume/volume.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { debug } from 'util';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-volumes-create',
@@ -14,13 +16,9 @@ import { FormGroup } from '@angular/forms';
 })
 export class VolumesCreateComponent implements OnInit {
   public volumeModel: Volume;
-  public alreadyExists = false;
-  public genericError = false;
-  public submitted = false;
-  public warning = false;
+
   public fileText = '';
   public badUser = '';
-  public warningMessage = 'Something went wrong...';
   // TODO: Paul Wood allow an unknown number of Options to be added dynamically, achieved using the formBuilder
 
   volumeForm: FormGroup = this.fb.group({
@@ -51,7 +49,8 @@ export class VolumesCreateComponent implements OnInit {
   constructor(
     private router: Router,
     private volumeService: VolumeService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {
     this.volumeModel = {
       Name: '',
@@ -110,8 +109,6 @@ export class VolumesCreateComponent implements OnInit {
   }
 
   submit() {
-    console.log('Submit is working');
-
     this.volumeModel.Name = this.volumeForm.get('Name').value;
     this.volumeModel.Driver = this.volumeForm.get('Driver').value;
 
@@ -123,24 +120,16 @@ export class VolumesCreateComponent implements OnInit {
 
     this.volumeService.createVolume(this.volumeModel).subscribe(
       (result: Volume) => {
-        this.clearAlerts();
-        this.submitted = false;
-        this.router.navigate([
-          '/volumes',
-          { createdVolume: this.volumeForm.get('Name').value },
-        ]);
+        this.toastr.success(
+          'Volume ' + this.volumeForm.get('Name').value + ' created!',
+          'Success!'
+        );
+        this.router.navigate(['/volumes']);
       },
-      (err: any) => {
-        console.error(err);
-        this.clearAlerts();
-        this.warning = true;
-        this.submitted = false;
+      (err: VolumeError) => {
+        this.toastr.error(err.message, 'Could not create volume');
       }
     );
-  }
-
-  clearAlerts() {
-    this.warning = false;
   }
 
   addOption() {

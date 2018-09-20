@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../models/service/service.model';
 import { Formatter } from '../../../classes/formatter/formatter';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ServicesService } from '../../../services/services/services.service';
+import {
+  ServicesService,
+  ServiceError,
+} from '../../../services/services/services.service';
 import { MockService } from '../../../services/mock/mock.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-service-list-view',
@@ -14,7 +18,8 @@ export class ServiceListViewComponent implements OnInit {
   constructor(
     private mock: MockService,
     private serviceService: ServicesService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastrService
   ) {}
 
   public services: Service[] = [];
@@ -49,25 +54,30 @@ export class ServiceListViewComponent implements OnInit {
   }
 
   fetchServices() {
-    this.serviceService.getServices().subscribe((services) => {
-      this.services = services;
-      this.rows = [];
-      this.num = 0;
+    this.serviceService.getServices().subscribe(
+      (services) => {
+        this.services = services;
+        this.rows = [];
+        this.num = 0;
 
-      services.forEach((element) => {
-        this.parseInput(element);
-      });
+        services.forEach((element) => {
+          this.parseInput(element);
+        });
 
-      this.temp = [this.rows];
+        this.temp = [this.rows];
 
-      // Datatables needs to be "notified" about the changes to the 'rows' array.
-      this.rows = [...this.rows];
+        // Datatables needs to be "notified" about the changes to the 'rows' array.
+        this.rows = [...this.rows];
 
-      for (let i = 0; i < this.services.length; i++) {
-        this.isCollapsed.push(false);
+        for (let i = 0; i < this.services.length; i++) {
+          this.isCollapsed.push(false);
+        }
+        this.isLoaded = true;
+      },
+      (err: ServiceError) => {
+        this.toastr.error(err.message, 'An error has occured');
       }
-      this.isLoaded = true;
-    });
+    );
   }
 
   parseInput(services: Service) {
@@ -104,13 +114,16 @@ export class ServiceListViewComponent implements OnInit {
   }
 
   public removeService(id) {
-    this.serviceService.deleteService(id).subscribe((x) => {
-      this.services.filter((service) => service.ID !== id);
-      this.fetchServices();
-      // this.rows = [...this.rows];
-    });
-    // I (FJMentz) would rather test this with adult supervision
-    console.log('Removing container ' + id);
+    this.serviceService.deleteService(id).subscribe(
+      (x) => {
+        this.services.filter((service) => service.ID !== id);
+        this.fetchServices();
+        this.toastr.success('Service was successfully removed', 'Success!');
+      },
+      (err: ServiceError) => {
+        this.toastr.error(err.message, 'Could not remove service');
+      }
+    );
   }
 
   public voidParentClick(event) {

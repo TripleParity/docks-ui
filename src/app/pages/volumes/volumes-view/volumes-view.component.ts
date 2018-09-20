@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Volume } from 'app/models/volume/volume.model';
-import { VolumeService } from 'services/volume/volume.service';
+import { VolumeService, VolumeError } from 'services/volume/volume.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-volumes-view',
@@ -11,31 +12,16 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class VolumesViewComponent implements OnInit {
   public volumes: Volume[];
   public searchString = [];
-  public createdVolume = '';
-  public deletedVolume = '';
-  public volumeNotFoundError = '';
-  public genericError = false;
+  public isLoaded = false;
 
   constructor(
     private volumeService: VolumeService,
-    private route: ActivatedRoute
-  ) {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      if (params.has('createdVolume')) {
-        this.createdVolume = params.get('createdVolume');
-      }
-    });
-  }
+    private route: ActivatedRoute,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.fetchVolumes();
-  }
-
-  clearAlerts() {
-    this.createdVolume = '';
-    this.volumeNotFoundError = '';
-    this.deletedVolume = '';
-    this.genericError = false;
   }
 
   getRowHeight(row) {
@@ -47,11 +33,10 @@ export class VolumesViewComponent implements OnInit {
       (volumes: Volume[]) => {
         this.volumes = volumes;
         this.searchString = [...volumes];
-        console.log(this.volumes);
+        this.isLoaded = true;
       },
-      (err) => {
-        console.error(err);
-        this.genericError = true;
+      (err: VolumeError) => {
+        this.toastr.error(err.message, 'An error occured');
       }
     );
   }

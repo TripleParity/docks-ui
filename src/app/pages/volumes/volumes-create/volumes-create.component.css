@@ -1,11 +1,25 @@
+.heading
+{
+    background-color: #F7F7F7;
+}
 button
 {
     margin-top: 10px;
 }
-
+h1, .form-group, .bottomHeading
+{
+    padding: 10px;
+    color: #797979;
+}
 .form-group
 {
     margin-top: 10px;
+}
+.break
+{
+    background-color: #F7F7F7;
+    height: 20px;
+    border-bottom: 1px solid #C9C9C9;
 }
 
 #delete
@@ -34,4 +48,8 @@ button
 .required
 {
     font-size: 40%;
+}
+.alerts
+{
+    margin-top: 5px;
 }

@@ -8,6 +8,7 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { UserEditComponent } from './user-edit.component';
 import { ConfigurationService } from '../../../services/configuration/configuration.service';
 import { TokenStorage } from '../../../classes/tokenstorage/tokenstorage';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 describe('UserEditComponent', () => {
   let component: UserEditComponent;
@@ -21,6 +22,7 @@ describe('UserEditComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         FormsModule,
+        ToastrModule.forRoot(),
       ],
       providers: [
         UserService,
@@ -28,6 +30,7 @@ describe('UserEditComponent', () => {
         HttpHandler,
         ConfigurationService,
         TokenStorage,
+        ToastrService,
       ],
     }).compileComponents();
   }));

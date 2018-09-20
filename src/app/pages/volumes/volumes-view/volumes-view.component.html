@@ -1,8 +1,4 @@
-<div class="alerts">
-    <ngb-alert [hidden]="createdVolume.length === 0" (close)="createdVolume=''" [type]="'success'">Volume '{{createdVolume}}' was successfully create</ngb-alert>
-    <ngb-alert [hidden]="deletedVolume.length === 0" (close)="deletedVolume=''" [type]="'warning'">Volume '{{deletedVolume}}' was successfully deleted</ngb-alert>
-    <ngb-alert [hidden]="volumeNotFoundError.length === 0" (close)="volumeNotFoundError=''" [type]="'danger'">Error '{{volumeNotFoundError}}' is not a known stack</ngb-alert>
-</div>
+<app-spinner [hidden]="isLoaded"></app-spinner>
 
 <div class="row heading">
   <div class="col-md-8">
