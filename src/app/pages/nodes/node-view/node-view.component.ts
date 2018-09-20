@@ -42,7 +42,7 @@ export class NodeViewComponent implements OnInit {
 
     // filter our data
     const temp = this.searchString.filter((node: Node) => {
-      return node.ID.toLowerCase().indexOf(val) !== -1 || !val;
+      return node.Description.Hostname.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the rows
@@ -50,10 +50,10 @@ export class NodeViewComponent implements OnInit {
   }
 
   public getCPU(nano: string) {
-    return Math.round((+nano / 107341824) * 100) / 100;
+    return (+nano /  1000000000);
   }
 
   public getRam(mem: string) {
-    return Math.round((+mem / 107341824) * 100) / 100;
+    return Math.round((+mem / 1073741824) * 100) / 100;
   }
 }

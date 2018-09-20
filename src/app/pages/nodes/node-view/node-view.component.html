@@ -22,15 +22,9 @@
       <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="nodes" [headerHeight]="'auto'"
         [rowHeight]="getRowHeight">
 
-        <ngx-datatable-column name="ID">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.ID}}
-          </ng-template>
-        </ngx-datatable-column>
-
         <ngx-datatable-column name="Name">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.Spec.Name}}
+            {{row.Description.Hostname}}
           </ng-template>
         </ngx-datatable-column>
 
@@ -72,7 +66,7 @@
 
         <ngx-datatable-column name="Memory">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ getRam(row.Description.Resources.MemoryBytes) }}
+            {{ getRam(row.Description.Resources.MemoryBytes) }} GB
           </ng-template>
         </ngx-datatable-column>
 
