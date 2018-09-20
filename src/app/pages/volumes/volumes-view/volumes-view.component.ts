@@ -12,33 +12,16 @@ import { ToastrService } from 'ngx-toastr';
 export class VolumesViewComponent implements OnInit {
   public volumes: Volume[];
   public searchString = [];
-  public createdVolume = '';
-  public deletedVolume = '';
-  public volumeNotFoundError = '';
-  public genericError = false;
   public isLoaded = false;
 
   constructor(
     private volumeService: VolumeService,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-  ) {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      if (params.has('createdVolume')) {
-        this.createdVolume = params.get('createdVolume');
-      }
-    });
-  }
+  ) { }
 
   ngOnInit() {
     this.fetchVolumes();
-  }
-
-  clearAlerts() {
-    this.createdVolume = '';
-    this.volumeNotFoundError = '';
-    this.deletedVolume = '';
-    this.genericError = false;
   }
 
   getRowHeight(row) {
@@ -54,7 +37,6 @@ export class VolumesViewComponent implements OnInit {
       },
       (err: VolumeError) => {
         this.toastr.error(err.message, 'An error occured');
-        this.genericError = true;
       }
     );
   }

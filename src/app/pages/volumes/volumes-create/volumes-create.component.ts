@@ -16,15 +16,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class VolumesCreateComponent implements OnInit {
   public volumeModel: Volume;
-  public alreadyExists = false;
-  public genericError = false;
-  public submitted = false;
-  public warning = false;
   public fileText = '';
   public badUser = '';
-  public warningMessage =
-    'There was a problem while creating the volume. No new volume created.' +
-    'Ensure type is correct and name contains no special characters';
   // TODO: Paul Wood allow an unknown number of Options to be added dynamically, achieved using the formBuilder
 
   volumeForm: FormGroup = this.fb.group({
@@ -115,9 +108,6 @@ export class VolumesCreateComponent implements OnInit {
   }
 
   submit() {
-    this.submitted = true;
-    console.log(this.submitted);
-
     this.volumeModel.Name = this.volumeForm.get('Name').value;
     this.volumeModel.Driver = this.volumeForm.get('Driver').value;
 
@@ -129,26 +119,13 @@ export class VolumesCreateComponent implements OnInit {
 
     this.volumeService.createVolume(this.volumeModel).subscribe(
       (result: Volume) => {
-        this.clearAlerts();
-        this.submitted = false;
-        this.router.navigate([
-          '/volumes',
-          { createdVolume: this.volumeForm.get('Name').value },
-        ]);
-        this.toastr.success('Volume created!', 'Success!');
+        this.toastr.success('Volume ' + this.volumeForm.get('Name').value + ' created!', 'Success!');
+        this.router.navigate(['/volumes']);
       },
       (err: VolumeError) => {
         this.toastr.error(err.message, 'Could not create volume');
-        this.clearAlerts();
-        this.warning = true;
-        this.submitted = false;
-        this.warningMessage = err.message;
       }
     );
-  }
-
-  clearAlerts() {
-    this.warning = false;
   }
 
   addOption() {
