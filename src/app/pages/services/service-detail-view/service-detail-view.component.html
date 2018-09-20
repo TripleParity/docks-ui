@@ -44,7 +44,7 @@
             Image:
           </td>
           <td class="col-sm-9 value">
-            <div class="inserts"> {{serviceModel.Spec.TaskTemplate.ContainerSpec.Image}}</div>
+            <div class="inserts"> {{image}}</div>
           </td>
         </tr>
         <tr>
@@ -68,7 +68,7 @@
             Port:
           </td>
           <td class="value">
-            <div class="inserts"> {{serviceModel.Spec.EndpointSpec.Ports[0].PublishedPort}} </div>
+            <div class="inserts"> {{port}} </div>
           </td>
         </tr>
         <tr>
@@ -77,7 +77,7 @@
           </td>
           <td class="col-sm-9 value">
             <a href="#">
-              <div class="inserts">  </div>
+              <div class="inserts">  {{stackName}}</div>
             </a>
           </td>
         </tr>

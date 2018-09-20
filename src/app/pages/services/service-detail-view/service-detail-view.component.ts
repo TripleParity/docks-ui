@@ -20,6 +20,8 @@ export class ServiceDetailViewComponent implements OnInit {
   public isLoaded = false;
   public mode: string;
   public replicas: string;
+  public port: string;
+  public image: string;
 
   constructor(
     private router: Router,
@@ -45,6 +47,8 @@ export class ServiceDetailViewComponent implements OnInit {
         this.isLoaded = true;
         this.getMode();
         this.getReplicas();
+        this.getPort();
+        this.getImage();
       },
       (err: ServiceError) => {
         this.toastr.error(err.message, 'An error occured');
@@ -83,5 +87,17 @@ export class ServiceDetailViewComponent implements OnInit {
 
   public PrettifyDateTime(buff: string): string {
     return Formatter.PrettifyDateTime(buff);
+  }
+
+  getPort() {
+    if (this.serviceModel.Spec.EndpointSpec.hasOwnProperty('Ports') && this.serviceModel.Spec.EndpointSpec.Ports[0]) {
+      this.port = this.serviceModel.Spec.EndpointSpec.Ports[0].PublishedPort.toString();
+    } else {
+      this.port = '-';
+    }
+  }
+
+  getImage() {
+    this.image = this.serviceModel.Spec.TaskTemplate.ContainerSpec.Image.split('@')[0];
   }
 }
