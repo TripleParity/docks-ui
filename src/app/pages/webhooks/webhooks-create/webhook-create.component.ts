@@ -25,7 +25,10 @@ export class WebhookCreateComponent implements OnInit {
     private wh: WebhookService,
     private toastr: ToastrService,
     private router: Router
-  ) {}
+  ) {
+    this.name = '';
+    this.url = '';
+  }
 
   ngOnInit() {}
 
@@ -68,6 +71,13 @@ export class WebhookCreateComponent implements OnInit {
         this.toastr.error(err.message, 'Error while creating webhook');
       }
     );
+  }
+
+  public hasNameAndURL() {
+    if (this.name.length > 0 && this.url.length > 0) {
+      return true;
+    }
+    return false;
   }
 
   onChange() {}

@@ -59,7 +59,7 @@
             <label for="stackName">Config</label>
             <input type="checkbox" value="NameEight"  [(ngModel)]="configs" name="configs">
         </div>
-        <input type="submit">
+        <input type="submit" [disabled]=" name.length == 0 || url.length == 0">
       </form>
     </div>
   </div>
