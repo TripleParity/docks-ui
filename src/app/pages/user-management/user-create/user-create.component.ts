@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserService, UserErrorCode, UserError } from '../../../services/user-management/user.service';
+import {
+  UserService,
+  UserErrorCode,
+  UserError,
+} from '../../../services/user-management/user.service';
 import { User } from '../../../models/user-management/user.model';
 import { ToastrService } from 'ngx-toastr';
 
@@ -21,8 +25,8 @@ export class UserCreateComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private toastr: ToastrService,
-    ) {
+    private toastr: ToastrService
+  ) {
     this.model = {
       username: '',
       password: '',
@@ -36,7 +40,10 @@ export class UserCreateComponent implements OnInit {
       .createUser(this.model.username, this.model.password)
       .subscribe(
         (result: UserError) => {
-          this.toastr.success('User ' + this.model.username + ' created!', 'Success!');
+          this.toastr.success(
+            'User ' + this.model.username + ' created!',
+            'Success!'
+          );
           this.router.navigate(['/users']);
         },
         (err: UserError) => {

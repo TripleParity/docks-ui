@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Stack } from 'app/models/stack/stack.model';
-import { StackService, StackError, StackErrorCode } from 'services/stack/stack.service';
+import {
+  StackService,
+  StackError,
+  StackErrorCode,
+} from 'services/stack/stack.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,8 +23,8 @@ export class StacksViewComponent implements OnInit {
   constructor(
     private stackService: StackService,
     private modalService: NgbModal,
-    private toastr: ToastrService,
-  ) { }
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.fetchStacks();
@@ -64,7 +69,10 @@ export class StacksViewComponent implements OnInit {
         if (result.code !== StackErrorCode.ERR_OK) {
           this.toastr.success('Stack successfully removed', 'Success!');
         } else {
-          this.toastr.error('Something went wrong...', 'Could not remove stack');
+          this.toastr.error(
+            'Something went wrong...',
+            'Could not remove stack'
+          );
         }
         this.activeModal.close();
         this.fetchStacks();

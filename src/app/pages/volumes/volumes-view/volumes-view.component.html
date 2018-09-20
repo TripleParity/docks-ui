@@ -1,28 +1,28 @@
 <app-spinner [hidden]="isLoaded"></app-spinner>
 
 <div class="row heading">
-  <div class="col-md-8">
-    <a routerLink="/volumes/create">
-      <button type="button" class="btn btn-info">
-        Create New Volume
-        <i class="fa fa-clone"> </i>
-      </button>
-    </a>
-  </div>
-  <div class="col-md-4">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search Volumes" aria-label="Recipient's username" aria-describedby="basic-addon2"
-        (keyup)="updateFilter($event)">
-      <div class="input-group-append">
-        <button class="btn btn-default">
-          <span class="input-group-text Search" id="Search">
-            <i class="fa fa-search"></i>
-          </span>
-        </button>
+    <div class="col-sm-4">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search Volumes" aria-label="Recipient's username" aria-describedby="basic-addon2"
+          (keyup)="updateFilter($event)">
+        <div class="input-group-append">
+          <button class="btn btn-default">
+            <span class="input-group-text" id="Search">
+              <i class="fa fa-search"></i>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
+    <div class="offset-sm-6 col-sm-2">
+      <a routerLink="/volumes/create">
+        <button type="button" class="btn btn-info">
+          Create New Volume
+          <i class="fa fa-clone"> </i>
+        </button>
+      </a>
+    </div>
   </div>
-</div>
 <div>
 
   <div class="row">

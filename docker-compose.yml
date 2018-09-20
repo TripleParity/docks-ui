@@ -5,7 +5,7 @@ version: '3.2'
 
 services:
   ui:
-    image: tripleparity/docks-ui:latest
+    image: tripleparity/docks-ui:branch-develop
     ports:
       - 4200:80
     environment:

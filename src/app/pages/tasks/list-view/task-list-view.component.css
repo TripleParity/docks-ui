@@ -1,41 +1,45 @@
-#taskList{
-    padding: 10px;
+.status
+{
+    width: 70px;
+    text-align: center;
+    border-radius: 5px;
 }
 
-.card-header {
-    background-color: #212529;
-    color: #FFF;
+.failed, shutdown, rejected, orphaned, remove
+{
+    color: red;
+    border: 1px solid red; 
 }
-
-.list-group-item {
-    background-color: #32383E;
-    color: #d3d3d0;
+.running
+{
+    color: green;
+    border: 1px solid green; 
 }
-
-.badge{
-    position: absolute;
-    right: 20px;
+.new
+{
+    color: darkslateblue;
+    border: 1px solid darkslateblue;     
 }
-
-.main-item{
-    color: var(--green);
+.pending
+{
+    color: darkgoldenrod;
+    border: 1px solid darkgoldenrod; 
 }
-
-.sub-item:hover{
-    color: var(--green);
-    background-color: #212529;
+.assigned, .accepted, preparing, starting
+{
+    color: dodgerblue;
+    border: 1px solid dodgerblue;  
 }
-
-.list-group{
-    margin-left: 20px;
-    margin-right: 20px;
+.dark
+{
+    color: darkgray;
 }
-
-.card-header{
-    cursor: pointer;
+.default
+{
+    color: black;
+    border: 1px solid black;
 }
-
-.taskListCard{
-    border: none;
+.col-sm-4
+{
+  padding-left: 0px;
 }
-

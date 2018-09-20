@@ -37,10 +37,9 @@ export class UserListComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private modalService: NgbModal,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-    });
+    this.route.paramMap.subscribe((params: ParamMap) => {});
   }
 
   fetchUsers() {

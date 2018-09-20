@@ -1,0 +1,31 @@
+<!-- TODO(egeldenhuys): Move CSS to higher level-->
+<!-- TODO(egeldenhuys): Search function -->
+
+<div id="networkList">
+  <h3>Networks</h3>
+  <div class="row">
+    <div class="col-md-12">
+      <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [headerHeight]="'auto'" [columnMode]="'force'"
+        [rows]="rows" [rowHeight]="50">
+
+
+        <ngx-datatable-column name="Name">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            {{column.name}}
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.Name}}
+          </ng-template>
+
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Driver">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.Driver}}
+          </ng-template>
+        </ngx-datatable-column>
+
+      </ngx-datatable>
+    </div>
+  </div>
+</div>
