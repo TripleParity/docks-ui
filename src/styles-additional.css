@@ -23,6 +23,16 @@ a:hover{
     color: var(--c-light);
 }
 
+.heading
+{
+    background-color: #F7F7F7;
+    padding: 10px;
+}
+.Search{
+    background-color:transparent;
+    border: none;
+}
+
 /*
 status light styles
 */
@@ -37,6 +47,7 @@ status light styles
     border-radius: 50%;
     display: inline-block;
 }
+
 
 /*
 card style
@@ -294,6 +305,7 @@ navbar styles
     height: 100vh;
     background-color: var(--c-light-background);
     text-align: left;
+    border-right: 2px solid #D1D4D7;
 }
 
 .nav-list-group-item {
@@ -335,6 +347,7 @@ bootstrap table theme
 .ngx-datatable.bootstrap {
     box-shadow: none;
     font-size: 13px;
+    padding-left: 0;
 }
 .ngx-datatable.bootstrap .datatable-header {
     height: unset !important;
@@ -354,6 +367,10 @@ bootstrap table theme
 }
 .ngx-datatable.bootstrap .datatable-body .datatable-body-row.datatable-row-even {
     background-color: rgba(0, 0, 0, 0.05);
+}
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row:hover {
+    background-color: #C5E3ED;
+    cursor: pointer;
 }
 .ngx-datatable.bootstrap .datatable-body .datatable-body-row.active {
     background-color: #1483ff;
@@ -408,6 +425,50 @@ bootstrap table theme
 }
 .ngx-datatable.bootstrap .datatable-summary-row .datatable-body-row .datatable-body-cell {
     font-weight: bold;
+}
+
+.col-md-12
+{
+    padding-left: 0;
+}
+
+/* Material design for detail views */
+#Search{
+    background-color:transparent;
+    border: none;
+}
+.heading
+{
+    background-color: #F7F7F7;
+    padding: 10px;
+}
+.break
+{
+    background-color: #F7F7F7;
+    height: 20px;
+    border-bottom: 1px solid #C9C9C9;
+}
+
+.inserts {
+    color: #1180AF;
+    font-size: 14px;
+}
+.statusLabel {
+    border: 2px solid #6E6E6E;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    font-size: 70%;
+}
+.title
+{
+    color: #9F9D97;
+    background-color: #F7F7F7;
+    border-bottom: 1px solid #C9C9C9;
+}
+.innerTitle
+{
+    margin-top: 10px;
 }
 
 /* Toast styling from https://github.com/scttcper/ngx-toastr/blob/HEAD/src/lib/toastr.css */

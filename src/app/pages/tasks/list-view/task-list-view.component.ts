@@ -17,33 +17,34 @@ export class TaskListViewComponent implements OnInit {
     private toastr: ToastrService
   ) {}
   public tasks: Task[] = [];
-  public isCollapsed: Boolean[] = [];
   public previous = 0;
   public isLoaded = false;
 
   ngOnInit() {
-    this.taskService.getTasks().subscribe((task) => {
-      for (let i = 0; i < task.length; i++) {
-        this.tasks.push(task[i]);
-        this.isCollapsed.push(false);
+    this.fetchTasks();
+  }
+
+  fetchTasks() {
+    this.taskService.getTasks().subscribe(
+      (task) => {
+        this.tasks = task;
+        this.isLoaded = true;
+      },
+      (err: TaskError) => {
+        this.toastr.error(err.message, 'An error occured');
       }
-      this.isLoaded = true;
-    }, (err: TaskError) => {
-      this.toastr.error(err.message, 'An error occured');
-    });
+    );
   }
 
-  public PrettifyDateTime(buff: string): string {
-    return Formatter.PrettifyDateTime(buff);
+  getRowHeight(row) {
+    return (row.height = 50);
   }
 
-  public Collapse(i) {
-    if (i !== this.previous) {
-      this.isCollapsed[this.previous] = false;
-      this.isCollapsed[i] = !this.isCollapsed[i];
-      this.previous = i;
+  getTaskName(labels: Object, slot: number, id: string): string {
+    if (labels && labels.hasOwnProperty('com.docker.stack.namespace')) {
+      return labels['com.docker.stack.namespace'] + '.' + slot;
     } else {
-      this.isCollapsed[i] = !this.isCollapsed[i];
+      return id;
     }
   }
 }

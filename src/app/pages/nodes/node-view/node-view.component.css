@@ -1,0 +1,21 @@
+.status
+{
+    width: 70px;
+    text-align: center;
+    border-radius: 5px;
+}
+.ready, .active
+{
+    color: green;
+    border: 1px solid green; 
+}
+.drain, .down, .disconnected
+{
+    color: red;
+    border: 1px solid red; 
+}
+.pause, .unknown
+{
+    color: darkgrey;
+    border: 1px solid darkgrey; 
+}

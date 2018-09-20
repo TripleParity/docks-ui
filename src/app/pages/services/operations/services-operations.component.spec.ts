@@ -11,7 +11,8 @@ describe('ServicesOperationsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterTestingModule, ToastrModule.forRoot()],
-      providers: [ConfigurationService,
+      providers: [
+        ConfigurationService,
         ServicesService,
         TokenStorage,
         ToastrService,

@@ -11,6 +11,7 @@ import { VolumesViewComponent } from './volumes-view/volumes-view.component';
 import { VolumesRoutingModule } from './volumes.routing-module';
 import { SpinnerModule } from 'app/shared/spinner/spinner.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VolumeDetailViewComponent } from 'pages/volumes/volume-detail-view/volume-detail-view.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     NgxDatatableModule,
   ],
-  declarations: [VolumesCreateComponent, VolumesViewComponent],
+  declarations: [
+    VolumesCreateComponent,
+    VolumesViewComponent,
+    VolumeDetailViewComponent,
+  ],
   providers: [VolumeService],
 })
 export class VolumesModule {}

@@ -6,11 +6,12 @@ import { TokenStorage } from '../../../classes/tokenstorage/tokenstorage';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TaskService } from 'services/task/task.service';
 import { MockService } from 'services/mock/mock.service';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 describe('TaskListViewComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule],
+      imports: [HttpClientModule, RouterTestingModule, NgxDatatableModule],
       providers: [ConfigurationService, TaskService, MockService, TokenStorage],
     });
   });

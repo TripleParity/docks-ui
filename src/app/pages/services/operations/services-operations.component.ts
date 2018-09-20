@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServiceSpec } from '../../../models/service/spec/spec.model';
 import { Service } from '../../../models/service/service.model';
-import { ServicesService, ServiceError } from '../../../services/services/services.service';
+import {
+  ServicesService,
+  ServiceError,
+} from '../../../services/services/services.service';
 import { MockService } from '../../../services/mock/mock.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -20,22 +23,28 @@ export class ServicesOperationsComponent implements OnInit {
     private route: ActivatedRoute,
     private serviceService: ServicesService,
     private mock: MockService,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe((res) => {
-      this.serviceService.inspectService(res.id).subscribe((serv) => {
-        this.serv = serv;
-        this.serviceService.getServiceLog(res.id).subscribe((log) => {
-          this.serviceLog = log;
-          this.allDataFetched = true;
-        }, (err: ServiceError) => {
-          this.toastr.error(err.message, 'Error retrieving logs');
-        });
-      }, (err: ServiceError) => {
-        this.toastr.error(err.message, 'Error getting details');
-      });
+      this.serviceService.inspectService(res.id).subscribe(
+        (serv) => {
+          this.serv = serv;
+          this.serviceService.getServiceLog(res.id).subscribe(
+            (log) => {
+              this.serviceLog = log;
+              this.allDataFetched = true;
+            },
+            (err: ServiceError) => {
+              this.toastr.error(err.message, 'Error retrieving logs');
+            }
+          );
+        },
+        (err: ServiceError) => {
+          this.toastr.error(err.message, 'Error getting details');
+        }
+      );
     });
   }
 }

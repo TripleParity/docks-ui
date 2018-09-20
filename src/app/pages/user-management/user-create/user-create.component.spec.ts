@@ -17,7 +17,12 @@ describe('UserCreateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [UserCreateComponent],
-      imports: [NgbModule, FormsModule, RouterTestingModule, ToastrModule.forRoot()],
+      imports: [
+        NgbModule,
+        FormsModule,
+        RouterTestingModule,
+        ToastrModule.forRoot(),
+      ],
       providers: [
         UserService,
         HttpClient,

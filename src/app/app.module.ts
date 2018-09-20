@@ -34,13 +34,13 @@ import { ToastrModule } from 'ngx-toastr';
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut : 10000,
-      positionClass : 'toast-top-center',
-      preventDuplicates : true,
+      timeOut: 10000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
       resetTimeoutOnDuplicate: true,
-      maxOpened : 1,
+      maxOpened: 1,
       autoDismiss: true,
-    })
+    }),
   ],
   providers: [
     {

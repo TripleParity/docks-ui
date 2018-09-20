@@ -34,7 +34,7 @@ describe('VolumesViewComponent', () => {
         HttpHandler,
         ConfigurationService,
         TokenStorage,
-        ToastrService
+        ToastrService,
       ],
     }).compileComponents();
   }));
