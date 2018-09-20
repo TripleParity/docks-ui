@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServiceSpec } from '../../../models/service/spec/spec.model';
 import { Service } from '../../../models/service/service.model';
-import { ServicesService } from '../../../services/services/services.service';
+import { ServicesService, ServiceError } from '../../../services/services/services.service';
 import { MockService } from '../../../services/mock/mock.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-services-operations',
@@ -18,7 +19,8 @@ export class ServicesOperationsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private serviceService: ServicesService,
-    private mock: MockService
+    private mock: MockService,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit() {
@@ -28,7 +30,11 @@ export class ServicesOperationsComponent implements OnInit {
         this.serviceService.getServiceLog(res.id).subscribe((log) => {
           this.serviceLog = log;
           this.allDataFetched = true;
+        }, (err: ServiceError) => {
+          this.toastr.error(err.message, 'Error retrieving logs');
         });
+      }, (err: ServiceError) => {
+        this.toastr.error(err.message, 'Error getting details');
       });
     });
   }

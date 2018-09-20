@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Stack } from 'app/models/stack/stack.model';
-import {
-  StackService,
-  StackError,
-  StackErrorCode,
-} from 'services/stack/stack.service';
+import { StackService, StackError, StackErrorCode } from 'services/stack/stack.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-stacks-view',
@@ -16,31 +13,17 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 export class StacksViewComponent implements OnInit {
   public stacks: Stack[];
   public searchString = [];
-  public createdStack = '';
-  public deletedStack = '';
-  public updatedStack = '';
   public stackNameToDelete = '';
-  public stackNotFoundError = '';
   public activeModal: NgbModalRef;
-  public genericError: Boolean;
 
   constructor(
     private stackService: StackService,
     private route: ActivatedRoute,
-    private modalService: NgbModal
-  ) {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      if (params.has('createdStack')) {
-        this.createdStack = params.get('createdStack');
-      }
-      if (params.has('updatedStack')) {
-        this.updatedStack = params.get('updatedStack');
-      }
-    });
-  }
+    private modalService: NgbModal,
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit() {
-    this.genericError = false;
     this.fetchStacks();
   }
 
@@ -50,9 +33,8 @@ export class StacksViewComponent implements OnInit {
         this.stacks = stacks;
         this.searchString = [...stacks];
       },
-      (err) => {
-        console.error(err);
-        this.genericError = true;
+      (err: StackError) => {
+        this.toastr.error(err.message, 'An error occured');
       }
     );
   }
@@ -64,13 +46,6 @@ export class StacksViewComponent implements OnInit {
   open(content, stackName: string) {
     this.stackNameToDelete = stackName;
     this.activeModal = this.modalService.open(content);
-  }
-
-  clearAlerts() {
-    this.createdStack = '';
-    this.stackNotFoundError = '';
-    this.deletedStack = '';
-    this.genericError = false;
   }
 
   updateFilter(event) {
@@ -88,23 +63,16 @@ export class StacksViewComponent implements OnInit {
   removeStack() {
     this.stackService.removeStack(this.stackNameToDelete).subscribe(
       (result: StackError) => {
-        this.clearAlerts();
-        if (result.code === StackErrorCode.ERR_OK) {
-          this.deletedStack = this.stackNameToDelete;
+        if (result.code !== StackErrorCode.ERR_OK) {
+          this.toastr.success('Stack successfully removed', 'Success!');
         } else {
-          this.genericError = true;
+          this.toastr.error('Something went wrong...', 'Could not remove stack');
         }
-
         this.activeModal.close();
         this.fetchStacks();
       },
       (err: StackError) => {
-        this.clearAlerts();
-        if (err.code === StackErrorCode.ERR_STACK_MISSING) {
-          this.stackNotFoundError = this.stackNameToDelete;
-        } else {
-          this.genericError = true;
-        }
+        this.toastr.error(err.message, 'Could not remove stack');
         this.activeModal.close();
       }
     );

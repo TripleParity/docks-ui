@@ -3,13 +3,6 @@
   <!-- TODO(egeldenhuys): Pass messages without using URL-->
   <!-- TODO(egeldenhuys): Align cells vertically in center -->
 
-  <ngb-alert [hidden]="createdUser.length === 0" (close)="createdUser=''" [type]="'success'">User '{{createdUser}}' created successfully</ngb-alert>
-  <ngb-alert [hidden]="updatedUser.length === 0" (close)="updatedUser=''" [type]="'success'">User '{{updatedUser}}' successfully updated</ngb-alert>
-  <ngb-alert [hidden]="updatedUserNotFound.length === 0" (close)="updatedUserNotFound=''" [type]="'danger'">Error updating user '{{updatedUserNotFound}}'. User no longer exists</ngb-alert>
-  <ngb-alert [hidden]="!genericError" (close)="genericError=false" [type]="'danger'">Something went wrong</ngb-alert>
-  <ngb-alert [hidden]="deletedUser.length === 0" (close)="deletedUser=''" [type]="'success'">User '{{deletedUser}}' has been deleted successfully</ngb-alert>
-  <ngb-alert [hidden]="deletedUserNotFound.length === 0" (close)="deletedUserNotFound=''" [type]="'danger'">Error deleting user '{{deletedUserNotFound}}'. User no longer exists</ngb-alert>
-
   <h3>
     Users
   </h3>

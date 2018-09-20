@@ -15,6 +15,20 @@ export enum UserErrorCode {
   REQUEST_ERR_SERVER = 500,
 }
 
+function code_to_message(code: UserErrorCode): string {
+  switch (code) {
+    case UserErrorCode.CREATE_ERR_EXISTS: {
+      return 'User already exists!';
+    }
+    case UserErrorCode.REQUEST_ERR_NOT_FOUND: {
+      return 'User not found.';
+    }
+    case UserErrorCode.REQUEST_ERR_SERVER: {
+      return 'Something went wrong (Server 500)';
+    }
+  }
+}
+
 export interface UserError {
   code: UserErrorCode;
   message: string;
@@ -40,7 +54,10 @@ export class UserService {
         },
         (err) => {
           console.error(err);
-          observer.error(err);
+          observer.error({
+            code: <UserErrorCode>err.status,
+            message: code_to_message(err.status),
+          });
         }
       );
     });
@@ -53,13 +70,13 @@ export class UserService {
         map((x) => {
           return ErrorObservable.create({
             code: UserErrorCode.REQUEST_OK,
-            message: 'stub',
+            message: 'User created!',
           });
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({
             code: err.status,
-            message: 'stub',
+            message: code_to_message(err.status),
           });
         })
       );
@@ -74,7 +91,7 @@ export class UserService {
           (body) => {
             observer.next({
               code: UserErrorCode.REQUEST_OK,
-              message: 'stub',
+              message: 'User created!',
             });
           },
           (err: HttpErrorResponse) => {
@@ -82,12 +99,12 @@ export class UserService {
             if (err.status === 404) {
               observer.error({
                 code: UserErrorCode.REQUEST_ERR_NOT_FOUND,
-                message: 'stub',
+                message: code_to_message(err.status),
               });
             } else {
               observer.error({
                 code: UserErrorCode.REQUEST_ERR_NOT_FOUND,
-                message: 'stub',
+                message: code_to_message(err.status),
               });
             }
           }
@@ -105,9 +122,15 @@ export class UserService {
           console.error(err);
 
           if (err.status === 404) {
-            observer.error(UserErrorCode.REQUEST_ERR_NOT_FOUND);
+            observer.error({
+              code: UserErrorCode.REQUEST_ERR_NOT_FOUND,
+              message: code_to_message(err.status),
+            });
           } else {
-            observer.error(UserErrorCode.REQUEST_ERR_SERVER);
+            observer.error({
+              code: UserErrorCode.REQUEST_ERR_SERVER,
+              message: code_to_message(err.status),
+            });
           }
         }
       );

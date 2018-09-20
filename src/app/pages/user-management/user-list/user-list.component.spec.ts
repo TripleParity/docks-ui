@@ -9,6 +9,7 @@ import { ConfigurationService } from '../../../services/configuration/configurat
 import { TokenStorage } from '../../../classes/tokenstorage/tokenstorage';
 import { UserService } from '../../../services/user-management/user.service';
 import { UserListComponent } from './user-list.component';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
@@ -23,6 +24,7 @@ describe('UserListComponent', () => {
         RouterTestingModule,
         FormsModule,
         NgxDatatableModule,
+        ToastrModule.forRoot(),
       ],
       providers: [
         UserService,
@@ -30,6 +32,7 @@ describe('UserListComponent', () => {
         HttpHandler,
         ConfigurationService,
         TokenStorage,
+        ToastrService,
       ],
     }).compileComponents();
   }));

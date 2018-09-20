@@ -7,10 +7,12 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import {
   UserService,
   UserErrorCode,
+  UserError,
 } from '../../../services/user-management/user.service';
 import { User } from '../../../models/user-management/user.model';
 
@@ -21,15 +23,14 @@ import { User } from '../../../models/user-management/user.model';
 })
 export class UserEditComponent implements OnInit {
   userForm: FormGroup;
-  genericError = false;
   doublePassword: ValidatorFn = null;
-  submitted: boolean;
 
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
   ) {
     this.doublePassword = (control: FormGroup): ValidationErrors | null => {
       const p1 = control.get('password');
@@ -63,18 +64,16 @@ export class UserEditComponent implements OnInit {
 
     this.userService.updateUser(user.username, user.password).subscribe(
       (result) => {
-        this.submitted = false;
-        this.router.navigate(['/users', { updatedUser: user.username }]);
+        this.toastr.success('User ' + user.username + ' successfully updated', 'Success!');
+        this.router.navigate(['/users']);
       },
-      (err) => {
-        this.submitted = false;
-        if (err === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
-          this.router.navigate([
-            '/users',
-            { updatedUserNotFound: user.username },
-          ]);
+      (err: UserError) => {
+        this.toastr.error(err.message, 'Could not update user');
+        if (err.code === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
+          this.toastr.error('Could not find user', 'An error occured!');
+          this.router.navigate(['/users']);
         } else {
-          this.genericError = true;
+          this.toastr.error('Something went wrong...', 'An error occured!');
         }
       }
     );

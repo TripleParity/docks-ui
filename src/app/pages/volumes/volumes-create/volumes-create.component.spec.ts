@@ -9,6 +9,7 @@ import { VolumeService } from 'services/volume/volume.service';
 import { HttpHandler, HttpClient } from '@angular/common/http';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 describe('VolumesCreateComponent', () => {
   let component: VolumesCreateComponent;
@@ -22,6 +23,7 @@ describe('VolumesCreateComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         FormsModule,
+        ToastrModule.forRoot(),
       ],
       providers: [
         VolumeService,
@@ -29,6 +31,7 @@ describe('VolumesCreateComponent', () => {
         HttpHandler,
         ConfigurationService,
         TokenStorage,
+        ToastrService
       ],
     }).compileComponents();
   }));
