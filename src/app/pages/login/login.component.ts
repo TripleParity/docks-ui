@@ -11,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   public busy = false;
-  public statusMessage = '';
   public passwordError = false;
   public usernameError = false;
 
@@ -46,7 +45,6 @@ export class LoginComponent implements OnInit {
   }
 
   public login(username: string, password: string): void {
-    this.statusMessage = '';
 
     if (!this.validateLogin(username, password)) {
       this.toastr.error('Invalid username or password', 'Login error');

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Volume } from 'app/models/volume/volume.model';
 import { VolumeService, VolumeError } from 'services/volume/volume.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,9 +15,8 @@ export class VolumesViewComponent implements OnInit {
 
   constructor(
     private volumeService: VolumeService,
-    private route: ActivatedRoute,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit() {
     this.fetchVolumes();

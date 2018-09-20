@@ -101,16 +101,9 @@ export class NetworkService {
    * @param {boolean} verbose
    * @returns {Observable<Network>}
    */
-  public inspectNetwork(id: string, verbose: boolean): Observable<Network> {
-    // TODO:(CDuPlooy) Encoding of json object in params is not correct.
-    const params = new HttpParams().set(
-      'filters',
-      JSON.stringify({ verbose: verbose, scope: '' })
-    );
-
+  public inspectNetwork(id: String): Observable<Network> {
     return this.http
       .get(this.config.getAPIHostname() + '/docker/networks/' + id, {
-        params: params,
         responseType: 'json',
       })
       .pipe(
