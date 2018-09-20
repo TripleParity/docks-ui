@@ -29,71 +29,71 @@
   </div>
 
   <div class="row">
-    <table>
+    <table class="detailTable">
       <tbody>
         <tr>
-          <td class="name">
+          <td class="detailName">
             ID:
           </td>
-          <td class="value">
+          <td class="detailValue">
             <div class="inserts"> {{serviceModel.ID}} </div>
           </td>
         </tr>
         <tr>
-          <td class="col-sm-3 name">
+          <td class="detailName">
             Image:
           </td>
-          <td class="col-sm-9 value">
+          <td class="detailValue">
             <div class="inserts"> {{image}}</div>
           </td>
         </tr>
         <tr>
-          <td class="name">
+          <td class="detailName">
             Mode:
           </td>
-          <td class="value">
+          <td class="detailValue">
             <div class="inserts"> {{mode}} </div>
           </td>
         </tr>
         <tr>
-          <td class="name">
+          <td class="detailName">
             Replicas:
           </td>
-          <td class="value">
+          <td class="detailValue">
             <div class="inserts"> {{replicas}} </div>
           </td>
         </tr>
         <tr>
-          <td class="name">
+          <td class="detailName">
             Port:
           </td>
-          <td class="value">
+          <td class="detailValue">
             <div class="inserts"> {{port}} </div>
           </td>
         </tr>
         <tr>
-          <td class="col-sm-3 name">
+          <td class="detailName">
             Stack:
           </td>
-          <td class="col-sm-9 value">
+          <td class="detailValue">
             <a href="stacks/{{stackName}}">
-              <div class="inserts">  {{stackName}}</div>
+              <div class="detailLinks">  {{stackName}}</div>
             </a>
           </td>
         </tr>
         <tr>
-          <td class="col-sm-3 name">
+          <td class="detailName">
             Created At:
           </td>
-          <td class="col-sm-9 value">
+          <td class="detailValue">
             <div class="inserts"> {{PrettifyDateTime(serviceModel.CreatedAt)}} </div>
           </td>
         </tr>
         <tr>
-          <td class="col-sm-3 name">
+          <td class="detailName">
             Last Modified At:
           </td>
-          <td class="col-sm-9 value">
+          <td class="detailValue">
             <div class="inserts"> {{PrettifyDateTime(serviceModel.UpdatedAt)}} </div>
           </td>
         </tr>

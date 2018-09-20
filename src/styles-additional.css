@@ -739,3 +739,8 @@ button.toast-close-button {
     color: black;
     border: 1px solid black;
 }
+.detailLinks {
+    color: #27548C;
+    text-decoration: underline;
+    text-decoration-color: #27548C;
+}

@@ -65,27 +65,6 @@ export class StacksViewComponent implements OnInit {
     this.stacks = temp;
   }
 
-  removeStack() {
-    this.stackService.removeStack(this.stackNameToDelete).subscribe(
-      (result: StackError) => {
-        if (result.code !== StackErrorCode.ERR_OK) {
-          this.toastr.success('Stack successfully removed', 'Success!');
-        } else {
-          this.toastr.error(
-            'Something went wrong...',
-            'Could not remove stack'
-          );
-        }
-        this.activeModal.close();
-        this.fetchStacks();
-      },
-      (err: StackError) => {
-        this.toastr.error(err.message, 'Could not remove stack');
-        this.activeModal.close();
-      }
-    );
-  }
-
   onSelect({ selected }) {
     // console.log('Select Event', selected, this.selected);
     console.log(selected);
