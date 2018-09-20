@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Formatter } from '../../../classes/formatter/formatter';
 import { Node } from 'app/models/node/node.model';
-import { NodeService } from 'services/node/node.service';
+import { NodeService, NodeError } from 'services/node/node.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
@@ -10,10 +11,47 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./node-view.component.css']
 })
 export class NodeViewComponent implements OnInit {
+  public nodes: Node[];
+  public searchString = [];
+  public isLoaded = false;
 
-  constructor() { }
+  constructor(
+    private nodeService: NodeService,
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit() {
+    this.fetchNodes();
+  }
+
+  getRowHeight(row) {
+    return (row.height = 50);
+  }
+
+  fetchNodes() {
+    this.nodeService.getNodes().subscribe((nodes: Node[]) => {
+      this.nodes = nodes;
+      this.searchString = [...nodes];
+      this.isLoaded = true;
+    }, (err: NodeError) => {
+      this.toastr.error(err.message, 'An error occured');
+    });
+  }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.searchString.filter((node: Node) => {
+      return node.ID.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.nodes = temp;
+  }
+
+  public PrettifyDateTime(buff: string): string {
+    return Formatter.PrettifyDateTime(buff);
   }
 
 }

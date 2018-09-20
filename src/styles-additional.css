@@ -23,6 +23,16 @@ a:hover{
     color: var(--c-light);
 }
 
+.heading
+{
+    background-color: #F7F7F7;
+    padding: 10px;
+}
+.Search{
+    background-color:transparent;
+    border: none;
+}
+
 /*
 status light styles
 */

@@ -9,12 +9,15 @@ import { NodesRoutingModule } from './nodes-routing.module';
 import { NodeService } from 'services/node/node.service';
 import { NodeViewComponent } from 'app/pages/nodes/node-view/node-view.component';
 
+import { SpinnerModule } from 'app/shared/spinner/spinner.module';
+
 @NgModule({
   imports: [
     CommonModule,
     NodesRoutingModule,
     NgxDatatableModule,
     FormsModule,
+    SpinnerModule,
     NgbModule,
     ReactiveFormsModule,
   ],
