@@ -54,18 +54,12 @@
                     <h3 class="card-title" align="center">Login</h3>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" id="username" #username>
-                        <div [hidden]="!usernameError" class="alert alert-danger">
-                            Username is required
-                        </div>
+                        <input type="text" class="form-control" [ngClass]="{'is-invalid'  : usernameError}" placeholder="Username" aria-label="Username" id="username" #username>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" placeholder="Password" aria-label="Password" id="password" (keyup.enter)="login(username.value, password.value)"
+                        <input type="password" class="form-control" [ngClass]="{'is-invalid'  : passwordError}" placeholder="Password" aria-label="Password" id="password" (keyup.enter)="login(username.value, password.value)"
                                #password>
-                        <div [hidden]="!passwordError" class="alert alert-danger">
-                            Password is required
-                        </div>
                     </div>
 
                     <div [hidden]="!showTokenInput" class="form-group">

@@ -8,6 +8,7 @@ import { UserService } from '../../../services/user-management/user.service';
 import { ConfigurationService } from '../../../services/configuration/configuration.service';
 import { TokenStorage } from '../../../classes/tokenstorage/tokenstorage';
 import { UserCreateComponent } from './user-create.component';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 describe('UserCreateComponent', () => {
   let component: UserCreateComponent;
@@ -16,13 +17,14 @@ describe('UserCreateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [UserCreateComponent],
-      imports: [NgbModule, FormsModule, RouterTestingModule],
+      imports: [NgbModule, FormsModule, RouterTestingModule, ToastrModule.forRoot()],
       providers: [
         UserService,
         HttpClient,
         HttpHandler,
         ConfigurationService,
         TokenStorage,
+        ToastrService,
       ],
     }).compileComponents();
   }));

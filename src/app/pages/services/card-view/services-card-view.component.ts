@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Formatter } from '../../../classes/formatter/formatter';
-import { ServicesService } from '../../../services/services/services.service';
+import { ServicesService, ServiceError } from '../../../services/services/services.service';
 import { MockService } from '../../../services/mock/mock.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Service } from '../../../models/service/service.model';
 import { Task } from '../../../models/task/task.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-services-card-view',
@@ -15,7 +16,8 @@ export class ServicesCardViewComponent implements OnInit {
   constructor(
     private servicesService: ServicesService,
     private mockService: MockService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastrService,
   ) {}
 
   public services: Service[] = [];
@@ -29,6 +31,8 @@ export class ServicesCardViewComponent implements OnInit {
         this.services.push(service[i]);
         this.isLoaded = true;
       }
+    }, (err: ServiceError) => {
+      this.toastr.error(err.message, 'An error occured');
     });
     this.modalObjectService = [];
   }

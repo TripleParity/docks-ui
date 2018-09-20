@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Formatter } from '../../../classes/formatter/formatter';
-import { TaskService } from '../../../services/task/task.service';
+import { TaskService, TaskError } from '../../../services/task/task.service';
 import { MockService } from '../../../services/mock/mock.service';
 import { Task } from '../../../models/task/task.model';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 @Component({
   selector: 'app-card-view',
@@ -14,7 +16,8 @@ export class TaskCardViewComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     // private mockService: MockService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastrService
   ) {}
 
   public isLoaded = false;
@@ -28,6 +31,8 @@ export class TaskCardViewComponent implements OnInit {
         this.tasks.push(task[i]);
       }
       this.isLoaded = true;
+    }, (err: TaskError) => {
+      this.toastr.error(err.message, 'An error occured');
     });
   }
 

@@ -10,6 +10,7 @@ import { ConfigurationService } from 'services/configuration/configuration.servi
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SpinnerModule } from 'app/shared/spinner/spinner.module';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 describe('VolumesViewComponent', () => {
   let component: VolumesViewComponent;
@@ -25,6 +26,7 @@ describe('VolumesViewComponent', () => {
         FormsModule,
         NgxDatatableModule,
         SpinnerModule,
+        ToastrModule.forRoot(),
       ],
       providers: [
         VolumeService,
@@ -32,6 +34,7 @@ describe('VolumesViewComponent', () => {
         HttpHandler,
         ConfigurationService,
         TokenStorage,
+        ToastrService
       ],
     }).compileComponents();
   }));

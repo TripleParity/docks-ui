@@ -6,6 +6,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ServiceCreateComponent } from './service-create.component';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 describe('ServiceCreateComponent', () => {
   let component: ServiceCreateComponent;
@@ -14,13 +15,14 @@ describe('ServiceCreateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ServiceCreateComponent],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, ToastrModule.forRoot()],
       providers: [
         ServicesService,
         ConfigurationService,
         TokenStorage,
         HttpClient,
         HttpHandler,
+        ToastrService,
       ],
     }).compileComponents();
   }));
