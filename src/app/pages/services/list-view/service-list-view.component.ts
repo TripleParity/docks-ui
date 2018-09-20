@@ -184,11 +184,10 @@ export class ServiceListViewComponent implements OnInit {
       this.isSelected = true;
     }
 
-    this.row = this.findIndex(this.selected[0]['ID']);
-    // console.log(this.row);
+    console.log('Select Event', selected, this.selected[0]);
   }
-
-  onActivate(event) {
-    console.log('Activate Event', event);
+  onHover({ selected }) {
+    // console.log('Select Event', selected, this.selected);
+    console.log('Select Event', selected, this.selected[0]);
   }
 }
