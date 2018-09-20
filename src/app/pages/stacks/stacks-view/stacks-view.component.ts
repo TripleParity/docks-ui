@@ -22,7 +22,6 @@ export class StacksViewComponent implements OnInit {
 
   constructor(
     private stackService: StackService,
-    private route: ActivatedRoute,
     private modalService: NgbModal,
     private toastr: ToastrService
   ) {}
