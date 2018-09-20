@@ -21,13 +21,13 @@ export class WebhookCreateComponent implements OnInit {
   public images: boolean;
   public nodes: boolean;
 
+  constructor(
+    private wh: WebhookService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
-
-  constructor(private wh: WebhookService, private toastr: ToastrService, private router: Router) {
-  }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   submit() {
     const t: DockerEventTypes[] = [];
@@ -56,26 +56,19 @@ export class WebhookCreateComponent implements OnInit {
       t.push(DockerEventTypes.NODE);
     }
 
-    const webby: Webhook = {name: this.name, url: this.url, types: t};
+    const webby: Webhook = { name: this.name, url: this.url, types: t };
     console.table(t);
 
-    this.wh
-      .createWebhook(webby)
-      .subscribe(
-        (result: WebhookError) => {
-          this.toastr.success(
-            'Created webhook ' + webby['name'],
-            'Success!'
-          );
-          this.router.navigate(['/webhooks']);
-        },
-        (err: WebhookError) => {
-          this.toastr.error(err.message, 'Error while creating webhook');
-        }
-      );
+    this.wh.createWebhook(webby).subscribe(
+      (result: WebhookError) => {
+        this.toastr.success('Created webhook ' + webby['name'], 'Success!');
+        this.router.navigate(['/webhooks']);
+      },
+      (err: WebhookError) => {
+        this.toastr.error(err.message, 'Error while creating webhook');
+      }
+    );
   }
 
-  onChange() {
-
-  }
+  onChange() {}
 }

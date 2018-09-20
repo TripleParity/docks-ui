@@ -4,7 +4,11 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { catchError, map } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
@@ -52,7 +56,6 @@ export class WebhookService {
   }
 
   public deleteWebhook(name: string): Observable<WebhookError> {
-
     const params = new HttpParams().set('name', name);
     return this.http
       .delete(this.config.getAPIHostname() + '/webhooks', {
