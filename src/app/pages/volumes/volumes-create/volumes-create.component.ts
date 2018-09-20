@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class VolumesCreateComponent implements OnInit {
   public volumeModel: Volume;
+
   public fileText = '';
   public badUser = '';
   // TODO: Paul Wood allow an unknown number of Options to be added dynamically, achieved using the formBuilder

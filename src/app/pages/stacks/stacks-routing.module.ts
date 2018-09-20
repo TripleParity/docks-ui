@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { StacksViewComponent } from 'app/pages/stacks/stacks-view/stacks-view.component';
 import { StacksCreateComponent } from 'app/pages/stacks/stacks-create/stacks-create.component';
 import { StackEditComponent } from 'pages/stacks/stack-edit/stack-edit.component';
+import { StackDetailViewComponent } from 'pages/stacks/stack-detail-view/stack-detail-view.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: ':stackName/edit',
     component: StackEditComponent,
+  },
+  {
+    path: 'detail',
+    component: StackDetailViewComponent,
   },
 ];
 

@@ -5,4 +5,5 @@
  */
 export interface ContainerSpecModel {
   Image: string;
+  Labels?: JSON;
 }

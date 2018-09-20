@@ -16,6 +16,7 @@ import { SpinnerModule } from 'app/shared/spinner/spinner.module';
 import { ServiceCreateComponent } from './service-create/service-create.component';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ServiceDetailViewComponent } from 'pages/services/service-detail-view/service-detail-view.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ServicesCardViewComponent,
     ServicesOperationsComponent,
     ServiceCreateComponent,
+    ServiceDetailViewComponent,
   ],
   providers: [ServicesService, MockService],
 })

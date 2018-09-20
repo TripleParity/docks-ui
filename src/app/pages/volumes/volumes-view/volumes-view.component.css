@@ -1,13 +1,4 @@
-#Search{
-    background-color:transparent;
-    border: none;
-}
-.heading
+.col-sm-4
 {
-    background-color: #F7F7F7;
-    padding: 10px;
-}
-.alerts
-{
-    margin-top: 5px;
+    padding-left: 0px;
 }
