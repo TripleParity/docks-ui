@@ -17,6 +17,11 @@ export enum AuthError {
   AUTH_ERR, // Unknown error
   AUTH_ERR_CREDENTIALS, // Bad username/password
   AUTH_ERR_SERVER, // Server unreachable
+  AUTH_ERR_INITIAL_TWO_FACTOR_TOKEN, // The two-factor token barcode still has to be shown
+}
+
+export interface QRReturn {
+  qrImageData: string;
 }
 
 const jwtKey = 'auth';
@@ -40,13 +45,14 @@ export class AuthService {
    *
    * @param {string} username
    * @param {string} password
+   * @param {string} token
    * @returns {Observable<AuthError>}
    */
-  public getToken(username: string, password: string): Observable<AuthError> {
+  public getToken(username: string, password: string, token: string): Observable<AuthError> {
     return this.http
       .post(
         this.config.getAPIHostname() + '/api/auth/token',
-        { username: username, password: password },
+        { username: username, password: password, token: token },
         {
           responseType: 'json',
         }
@@ -66,6 +72,8 @@ export class AuthService {
             return ErrorObservable.create(AuthError.AUTH_ERR_SERVER);
           } else if (err.status === 401) {
             return ErrorObservable.create(AuthError.AUTH_ERR_CREDENTIALS);
+          } else if (err.status === 402) {
+            return ErrorObservable.create(AuthError.AUTH_ERR_INITIAL_TWO_FACTOR_TOKEN);
           } else {
             return ErrorObservable.create(AuthError.AUTH_ERR);
           }
@@ -93,5 +101,38 @@ export class AuthService {
   public logout() {
     this.token.signOut();
     this.loggedIn.next(false);
+  }
+
+    /**
+   * Used to get a token from docks-api
+   *
+   * @param {string} username
+   * @param {string} password
+   * @returns {Observable<AuthError>}
+   */
+  public getQRCode(username: string, password: string): Observable<QRReturn> {
+    return this.http
+      .post(
+        this.config.getAPIHostname() + '/api/auth/qr',
+        { username: username, password: password},
+        {
+          responseType: 'json',
+        }
+      )
+      .pipe(
+        map((body) => {
+          if (body['qr'] === null) {
+            // return ErrorObservable.create(AuthError.AUTH_ERR);
+          }
+          return Observable.create({
+            qrImageData: body['qr']
+          });
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return Observable.create({
+            qrImageData: ''
+          });
+        })
+      );
   }
 }

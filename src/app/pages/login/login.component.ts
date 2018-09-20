@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   public passwordError = false;
   public usernameError = false;
   public showTokenInput = false;
+  public showTokenQR = false;
+  public tokenQRImageSource = '';
 
   constructor(
     private authService: AuthService,
@@ -45,7 +47,7 @@ export class LoginComponent implements OnInit {
     return !(this.passwordError || this.usernameError);
   }
 
-  public login(username: string, password: string): void {
+  public login(username: string, password: string, token: string): void {
 
     if (!this.validateLogin(username, password)) {
       this.toastr.error('Invalid username or password', 'Login error');
@@ -54,7 +56,7 @@ export class LoginComponent implements OnInit {
 
     this.busy = true;
 
-    this.authService.getToken(username, password).subscribe(
+    this.authService.getToken(username, password, token).subscribe(
       (response) => {
         if (response === AuthError.AUTH_OK) {
           this.toastr.clear();
@@ -69,6 +71,24 @@ export class LoginComponent implements OnInit {
             'Unable to connect to ' + this.configService.getAPIHostname(),
             'Server error'
           );
+        } else if (err === AuthError.AUTH_ERR_INITIAL_TWO_FACTOR_TOKEN) {
+          this.toastr.info(
+            'Scan the Two-Factor token.',
+            'Token',
+          );
+          this.showTokenInput = true;
+
+          console.log(username);
+          console.log(password);
+          this.authService.getQRCode(username, password).subscribe(
+            (response) => {
+              console.log('GOTEM' + response.qrImageData);
+            },
+            (error) => {
+              console.log('ERR: ' + error);
+            }
+          );
+
         } else {
           this.toastr.error('Something went wrong', 'An error occured');
         }
