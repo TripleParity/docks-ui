@@ -45,6 +45,12 @@
                     <a routerLink="/users/{{row.username}}/edit">
                       <button type="button" class="btn btn-warning btn-sm">Edit</button>
                     </a>
+
+                      <button *ngIf="row.twofactorenabled" (click)="updateUserTwoFactorStatus(row.username, false)" 
+                        type="button" class="btn btn-warning btn-sm">Disable Two-Factor</button>
+                      <button *ngIf="!row.twofactorenabled" (click)="updateUserTwoFactorStatus(row.username, true)" 
+                        type="button" class="btn btn-info btn-sm">Enable Two-Factor</button>
+
                     <button type="button" class="btn btn-danger btn-sm" (click)="open(content, row.username)">Delete</button>
                   </div>
 
