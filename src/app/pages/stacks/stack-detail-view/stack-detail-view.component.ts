@@ -13,6 +13,7 @@ export class StackDetailViewComponent implements OnInit {
 
   public stackName: string;
   public service: Service;
+  public isLoaded = false;
 
   constructor(
     private router: Router,
@@ -29,6 +30,6 @@ export class StackDetailViewComponent implements OnInit {
   }
 
   fetchStackServices() {
-
+    this.isLoaded = true;
   }
 }
