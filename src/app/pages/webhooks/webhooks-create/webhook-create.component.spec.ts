@@ -10,6 +10,7 @@ import { HttpHandler, HttpClient } from '@angular/common/http';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 import { ToastrService, ToastrModule } from 'ngx-toastr';
+import { WebhookService } from 'services/webhook/webhook.service';
 
 describe('WebhookCreateComponent', () => {
   let component: WebhookCreateComponent;
@@ -31,6 +32,7 @@ describe('WebhookCreateComponent', () => {
         HttpHandler,
         ConfigurationService,
         TokenStorage,
+        WebhookService,
         ToastrService,
       ],
     }).compileComponents();
