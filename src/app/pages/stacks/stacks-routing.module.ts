@@ -23,8 +23,8 @@ const routes: Routes = [
   },
   {
     path: 'detail',
-    component: StackDetailViewComponent
-  }
+    component: StackDetailViewComponent,
+  },
 ];
 
 @NgModule({

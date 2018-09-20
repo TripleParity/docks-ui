@@ -5,14 +5,13 @@ import { Network } from 'app/models/network/network.model';
 @Component({
   selector: 'app-network-list',
   templateUrl: './network-list.component.html',
-  styleUrls: ['./network-list.component.css']
+  styleUrls: ['./network-list.component.css'],
 })
 export class NetworkListComponent implements OnInit {
-
   public rows: Network[] = [];
   public loadingIndicator = true;
 
-  constructor(private networksService: NetworkService) { }
+  constructor(private networksService: NetworkService) {}
 
   ngOnInit() {
     this.networksService.getNetworks().subscribe(

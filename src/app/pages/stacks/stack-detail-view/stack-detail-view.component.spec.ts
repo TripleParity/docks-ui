@@ -8,9 +8,8 @@ describe('StackDetailViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StackDetailViewComponent ]
-    })
-    .compileComponents();
+      declarations: [StackDetailViewComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

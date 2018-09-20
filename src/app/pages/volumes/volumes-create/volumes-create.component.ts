@@ -13,7 +13,6 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./volumes-create.component.css'],
 })
 export class VolumesCreateComponent implements OnInit {
-
   public volumeModel: Volume;
   public alreadyExists = false;
   public genericError = false;
@@ -32,41 +31,48 @@ export class VolumesCreateComponent implements OnInit {
     ]),
     Labels: this.fb.array([
       // this.initLabels();
-    ])
+    ]),
   });
-
 
   initLabels() {
     return this.fb.group({
       Name: ['', Validators.required],
-      Value: ['']
+      Value: [''],
     });
   }
 
   initOptions() {
     return this.fb.group({
       OptionName: ['', Validators.required],
-      Value: ['']
+      Value: [''],
     });
   }
 
-  constructor(private router: Router, private volumeService: VolumeService, private fb: FormBuilder) {
+  constructor(
+    private router: Router,
+    private volumeService: VolumeService,
+    private fb: FormBuilder
+  ) {
     this.volumeModel = {
       Name: '',
       Driver: '',
     };
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   convertOptions() {
     let i = 0;
     let temp = '{';
 
     while (i < this.Options.length) {
-        temp += '"' +  this.Options.at(i).get('OptionName').value + '":"' + this.Options.at(i).get('Value').value + '",';
-        i++;
+      temp +=
+        '"' +
+        this.Options.at(i).get('OptionName').value +
+        '":"' +
+        this.Options.at(i).get('Value').value +
+        '",';
+      i++;
     }
 
     // console.log(JSON.stringify(this.Options));
@@ -84,8 +90,13 @@ export class VolumesCreateComponent implements OnInit {
     let temp = '{';
 
     while (i < this.Labels.length) {
-        temp += '"' +  this.Labels.at(i).get('Name').value + '":"' + this.Labels.at(i).get('Value').value + '",';
-        i++;
+      temp +=
+        '"' +
+        this.Labels.at(i).get('Name').value +
+        '":"' +
+        this.Labels.at(i).get('Value').value +
+        '",';
+      i++;
     }
 
     // console.log(JSON.stringify(this.Options));
@@ -97,7 +108,6 @@ export class VolumesCreateComponent implements OnInit {
 
     return temp;
   }
-
 
   submit() {
     console.log('Submit is working');
@@ -111,24 +121,22 @@ export class VolumesCreateComponent implements OnInit {
     string = this.convertLabels();
     this.volumeModel.Labels = JSON.parse(string);
 
-    this.volumeService
-      .createVolume(this.volumeModel)
-      .subscribe(
-        (result: Volume) => {
-          this.clearAlerts();
-          this.submitted = false;
-          this.router.navigate([
-            '/volumes',
-            { createdVolume: this.volumeForm.get('Name').value },
-          ]);
-        },
-        (err: any) => {
-          console.error(err);
-          this.clearAlerts();
-            this.warning = true;
-            this.submitted = false;
-        }
-      );
+    this.volumeService.createVolume(this.volumeModel).subscribe(
+      (result: Volume) => {
+        this.clearAlerts();
+        this.submitted = false;
+        this.router.navigate([
+          '/volumes',
+          { createdVolume: this.volumeForm.get('Name').value },
+        ]);
+      },
+      (err: any) => {
+        console.error(err);
+        this.clearAlerts();
+        this.warning = true;
+        this.submitted = false;
+      }
+    );
   }
 
   clearAlerts() {
@@ -171,5 +179,3 @@ export class VolumesCreateComponent implements OnInit {
     return this.volumeForm.get('Labels') as FormArray;
   }
 }
-
-

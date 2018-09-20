@@ -11,8 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'detail',
-    component: NetworkDetailViewComponent
-  }
+    component: NetworkDetailViewComponent,
+  },
 ];
 
 @NgModule({

@@ -8,9 +8,8 @@ describe('NetworkDetailViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NetworkDetailViewComponent ]
-    })
-    .compileComponents();
+      declarations: [NetworkDetailViewComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

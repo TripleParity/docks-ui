@@ -20,9 +20,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     TasksRoutingModule,
     SpinnerModule,
     NgbModule,
-    NgxDatatableModule
+    NgxDatatableModule,
   ],
-  declarations: [ TaskListViewComponent, TaskDetailViewComponent],
+  declarations: [TaskListViewComponent, TaskDetailViewComponent],
   providers: [TaskService, MockService],
 })
 export class TasksModule {}

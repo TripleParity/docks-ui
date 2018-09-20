@@ -16,7 +16,7 @@ const routes: Routes = [
       {
         path: 'detail',
         component: TaskDetailViewComponent,
-      }
+      },
     ],
   },
 ];

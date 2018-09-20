@@ -8,5 +8,5 @@ export interface Mode {
     Replicas: number;
   };
 
-  Global?: { };
+  Global?: {};
 }

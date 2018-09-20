@@ -8,9 +8,7 @@ import { TaskService } from '../../../services/task/task.service';
   styleUrls: ['./task-list-view.component.css'],
 })
 export class TaskListViewComponent implements OnInit {
-  constructor(
-    private taskService: TaskService,
-  ) {}
+  constructor(private taskService: TaskService) {}
   public tasks: Task[] = [];
   public previous = 0;
   public isLoaded = false;
