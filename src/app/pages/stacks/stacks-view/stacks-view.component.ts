@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Stack } from 'app/models/stack/stack.model';
 import { StackService, StackError, StackErrorCode } from 'services/stack/stack.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,7 +17,6 @@ export class StacksViewComponent implements OnInit {
 
   constructor(
     private stackService: StackService,
-    private route: ActivatedRoute,
     private modalService: NgbModal,
     private toastr: ToastrService,
   ) { }
