@@ -10,44 +10,56 @@
       <form #createForm="ngForm" (ngSubmit)="submit()">
   
         <div class="form-group">
-          <label for="stackName">First text box</label>
-          <input disabled type="text" class="form-control" id="first">
+          <label for="stackName">Name</label>
+          <input type="text" class="form-control" id="first" [(ngModel)]="name" name="name">
         </div>
 
         <div class="form-group">
-            <label for="stackName">Second text box</label>
-            <input disabled type="text" class="form-control" id="second">
+            <label for="stackName">Webhook URL</label>
+            <input type="text" class="form-control" id="second" [(ngModel)]="url" name="url">
         </div>
 
         <div class="form-group">
-            <label for="stackName">First checkbox</label>
-            <input type="checkbox" value="Name">
+            <label for="stackName">Volumes</label>
+            <input type="checkbox" value="Name" [(ngModel)]="volumes" name="volumes">
         </div>
 
         <div class="form-group">
-            <label for="stackName">Second checkbox</label>
-            <input type="checkbox" value="NameSecond">
+            <label for="stackName">Network</label>
+            <input type="checkbox" value="NameSecond"  [(ngModel)]="networks" name="networks">
         </div>
 
         <div class="form-group">
-            <label for="stackName">Third checkbox</label>
-            <input type="checkbox" value="NameThird">
+            <label for="stackName">Service</label>
+            <input type="checkbox" value="NameThird"  [(ngModel)]="services" name="services">
         </div>
 
         <div class="form-group">
-            <label for="stackName">Fourth checkbox</label>
-            <input type="checkbox" value="NameFourth">
+            <label for="stackName">Node</label>
+            <input type="checkbox" value="NameFourth"  [(ngModel)]="nodes" name="nodes">
         </div>
 
         <div class="form-group">
-            <label for="stackName">Five checkbox</label>
-            <input type="checkbox" value="NameFive">
+            <label for="stackName">Image</label>
+            <input type="checkbox" value="NameFive"  [(ngModel)]="images" name="images">
         </div>
 
         <div class="form-group">
-            <label for="stackName">Sixth checkbox</label>
-            <input type="checkbox" value="NameSix">
+            <label for="stackName">Daemon</label>
+            <input type="checkbox" value="NameSix"  [(ngModel)]="daemons" name="daemons">
         </div>
+
+        <div class="form-group">
+            <label for="stackName">Secret</label>
+            <input type="checkbox" value="NameSeven"  [(ngModel)]="secrets" name="secrets">
+        </div>
+
+        
+        <div class="form-group">
+            <label for="stackName">Config</label>
+            <input type="checkbox" value="NameEight"  [(ngModel)]="configs" name="configs">
+        </div>
+        <input type="submit">
       </form>
     </div>
   </div>

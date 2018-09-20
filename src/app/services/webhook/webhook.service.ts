@@ -10,7 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 import { ConfigurationService } from '../configuration/configuration.service';
-import { Webhook } from 'app/models/webhook/webhook.module';
+import { Webhook } from 'app/models/webhook/webhook.model';
 
 export enum WebhookErrorCode {
   WEBHOOKE_OK = 200,
