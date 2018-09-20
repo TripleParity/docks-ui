@@ -12,6 +12,7 @@ import { SpinnerModule } from 'app/shared/spinner/spinner.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TaskDetailViewComponent } from 'pages/tasks/task-detail-view/task-detail-view.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ServicesService } from 'services/services/services.service';
 
 @NgModule({
   imports: [
@@ -23,6 +24,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     NgxDatatableModule,
   ],
   declarations: [TaskListViewComponent, TaskDetailViewComponent],
-  providers: [TaskService, MockService],
+  providers: [TaskService, MockService, ServicesService],
 })
 export class TasksModule {}

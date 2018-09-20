@@ -1,86 +1,96 @@
-<div class="row heading">
-  <div class="col-sm-10">
-    <h1>
-      <i class="fa fa-pencil-square-o"></i>
-      Task:
-      <i class="inserts"> "insert task id here" </i> Detail
-    </h1>
-  </div>
-  <div class="col-sm-2 label">
-    <span class="statusLabel"> "insert task status" </span>
-  </div>
-</div>
-
-<div class="row title">
-  <div class="innerTitle col-sm-12">
-    <h3>General</h3>
-  </div>
-</div>
-
-<div class="row">
-  <table>
-    <tbody>
-      <tr>
-        <td class="name">
-          ID:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert task id here" </i>
-        </td>
-      </tr>
-      <tr>
-        <td class="col-sm-3 name">
-          Image:
-        </td>
-        <td class="col-sm-9 value">
-          <i class="inserts"> "insert task image here" </i>
-        </td>
-      </tr>
-      <tr>
-        <td class="col-sm-3 name">
-          Created At:
-        </td>
-        <td class="col-sm-9 value">
-          <i class="inserts"> "insert task "CA date" here" </i>
-        </td>
-      </tr>
-      <tr>
-          <td class="col-sm-3 name">
-            Last Modified At:
-          </td>
-          <td class="col-sm-9 value">
-            <i class="inserts"> "insert task "LM date" here" </i>
-          </td>
-        </tr>
-        <tr>
-            <td class="col-sm-3 name">
-              Service:
-            </td>
-            <td class="col-sm-9 value">
-              <a href="#"><i class="inserts"> "insert a link to service detail page" </i></a>
-            </td>
-          </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="row title">
-  <div class="innerTitle col-sm-12">
-    <h3>Status</h3>
-  </div>
-</div>
-
-<div class="row">
-  <table>
-    <tbody>
-      <tr>
-        <td class="name">
-          Status:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert task status here" </i>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<div *ngIf="isLoaded">
+    <div class="row heading">
+        <div class="col-sm-10">
+          <h1>
+            <i class="fa fa-pencil-square-o"></i>
+            Task:
+            <i class="inserts"> {{taskName}} </i> Detail
+          </h1>
+        </div>
+        <div class="col-sm-2 label">
+          <span class="statusLabel"> "insert task status" </span>
+        </div>
+      </div>
+      
+      <div class="row title">
+        <div class="innerTitle col-sm-12">
+          <h3>General</h3>
+        </div>
+      </div>
+      
+      <div class="row">
+        <table>
+          <tbody>
+            <tr>
+              <td class="name">
+                ID:
+              </td>
+              <td class="value">
+                <i class="inserts"> "insert task id here" </i>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-sm-3 name">
+                Image:
+              </td>
+              <td class="col-sm-9 value">
+                <i class="inserts"> "insert task image here" </i>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-sm-3 name">
+                Created At:
+              </td>
+              <td class="col-sm-9 value">
+                <i class="inserts"> "insert task "CA date" here" </i>
+              </td>
+            </tr>
+            <tr>
+                <td class="col-sm-3 name">
+                  Last Modified At:
+                </td>
+                <td class="col-sm-9 value">
+                  <i class="inserts"> "insert task "LM date" here" </i>
+                </td>
+              </tr>
+              <tr>
+                  <td class="col-sm-3 name">
+                    Service:
+                  </td>
+                  <td class="col-sm-9 value">
+                    <a href="#"><i class="inserts"> {{serviceName}} </i></a>
+                  </td>
+                </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="row title">
+        <div class="innerTitle col-sm-12">
+          <h3>Status</h3>
+        </div>
+      </div>
+      
+      <div class="row">
+        <table>
+          <tbody>
+            <tr>
+              <td class="name">
+                Status:
+              </td>
+              <td class="value">
+                <i class="inserts"> "insert task status here" </i>
+              </td>
+            </tr>
+            <tr>
+                <td class="name">
+                  Desired Status:
+                </td>
+                <td class="value">
+                  <i class="inserts"> "insert task status here" </i>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+</div>>
