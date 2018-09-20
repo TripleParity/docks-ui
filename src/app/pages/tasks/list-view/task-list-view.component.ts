@@ -39,4 +39,12 @@ export class TaskListViewComponent implements OnInit {
   getRowHeight(row) {
     return (row.height = 50);
   }
+
+  getTaskName(labels: Object, slot: number, id: string): string {
+    if (labels && labels.hasOwnProperty('com.docker.stack.namespace')) {
+      return labels['com.docker.stack.namespace'] + '.' + slot;
+    } else {
+      return id;
+    }
+  }
 }
