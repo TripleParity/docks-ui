@@ -12,7 +12,6 @@ import { Formatter } from 'classes/formatter/formatter';
   styleUrls: ['./task-detail-view.component.css'],
 })
 export class TaskDetailViewComponent implements OnInit {
-
   private taskID: string;
   public taskModel: Task;
   public taskName: string;
@@ -35,7 +34,7 @@ export class TaskDetailViewComponent implements OnInit {
     });
   }
 
-  fetchTask () {
+  fetchTask() {
     this.taskService.inspect(this.taskID).subscribe(
       (task) => {
         this.taskModel = task;
@@ -44,27 +43,35 @@ export class TaskDetailViewComponent implements OnInit {
         this.getImage();
         this.isLoaded = true;
       },
-      (err: TaskError ) => {
+      (err: TaskError) => {
         this.toastr.error(err.message, 'An error occured');
       }
     );
   }
 
   getTaskName(): string {
-    if (this.taskModel.Spec.ContainerSpec.Labels &&
-  this.taskModel.Spec.ContainerSpec.Labels.hasOwnProperty('com.docker.stack.namespace')) {
-      return this.taskModel.Spec.ContainerSpec.Labels['com.docker.stack.namespace'] + '.' + this.taskModel.Slot;
+    if (
+      this.taskModel.Spec.ContainerSpec.Labels &&
+      this.taskModel.Spec.ContainerSpec.Labels.hasOwnProperty(
+        'com.docker.stack.namespace'
+      )
+    ) {
+      return (
+        this.taskModel.Spec.ContainerSpec.Labels['com.docker.stack.namespace'] +
+        '.' +
+        this.taskModel.Slot
+      );
     } else {
       return this.taskModel.ID;
     }
   }
 
   getServiceName() {
-    this.taskServiceSercice.inspectService(this.taskModel.ServiceID).subscribe(
-      (service) => {
+    this.taskServiceSercice
+      .inspectService(this.taskModel.ServiceID)
+      .subscribe((service) => {
         this.serviceName = service.Spec.Name;
-      }
-    );
+      });
   }
 
   getImage() {
@@ -74,5 +81,5 @@ export class TaskDetailViewComponent implements OnInit {
 
   public PrettifyDateTime(buff: string): string {
     return Formatter.PrettifyDateTime(buff);
-}
+  }
 }
