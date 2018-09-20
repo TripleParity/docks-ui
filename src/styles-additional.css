@@ -632,7 +632,7 @@ button.toast-close-button {
 
 .break
 {
-    background-color: #F7F7F7;
+    background-color: #F5F5F5;
     height: 20px;
     border-bottom: 1px solid #C9C9C9;
 }
@@ -647,8 +647,9 @@ button.toast-close-button {
 .title
 {
     color: #9F9D97;
-    background-color: #F0F0F0;
+    background-color: #F2F2F2;
     border-bottom: 1px solid #C9C9C9;
+    border-top: 1px solid #C9C9C9;
 }
 .innerTitle
 {

@@ -1,13 +1,13 @@
 <div *ngIf="isLoaded">
   <div class="row heading">
-    <div class="col-sm-10">
+    <div class="col-md-10">
       <h2>
         <span class="fa fa-pencil-square-o"></span>
         Task:
         <span class="detailID"> {{taskName}} </span> Detail
       </h2>
     </div>
-    <div class="col-sm-2 detailLabel">
+    <div class="col-md-2 detailLabel">
       <div class="status {{taskModel.Status.State}}" id="headingState"> {{taskModel.Status.State}} </div>
     </div>
   </div>
@@ -58,8 +58,8 @@
             Service:
           </td>
           <td class=" detailValue">
-            <a href="#">
-              <div class="inserts"> {{serviceName}} </div>
+            <a routerLink="/services/{{taskModel.ServiceID}}">
+              <div> {{serviceName}} </div>
             </a>
           </td>
         </tr>

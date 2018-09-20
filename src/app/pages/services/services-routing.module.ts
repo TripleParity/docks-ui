@@ -31,7 +31,7 @@ const routes: Routes = [
         component: ServiceCreateComponent,
       },
       {
-        path: 'detail',
+        path: ':serviceID',
         component: ServiceDetailViewComponent,
       },
     ],

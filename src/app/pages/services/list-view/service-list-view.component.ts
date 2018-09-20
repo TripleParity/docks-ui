@@ -8,6 +8,7 @@ import {
 } from '../../../services/services/services.service';
 import { MockService } from '../../../services/mock/mock.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-service-list-view',
@@ -19,7 +20,8 @@ export class ServiceListViewComponent implements OnInit {
     private mock: MockService,
     private serviceService: ServicesService,
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   public services: Service[] = [];
@@ -178,13 +180,7 @@ export class ServiceListViewComponent implements OnInit {
 
   onSelect({ selected }) {
     // console.log('Select Event', selected, this.selected);
-    if (this.isSelected) {
-      this.isSelected = false;
-    } else {
-      this.isSelected = true;
-    }
-
-    console.log('Select Event', selected, this.selected[0]);
+    this.router.navigate(['/services/' + selected[0].ID]);
   }
 
 }
