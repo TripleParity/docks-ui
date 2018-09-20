@@ -8,9 +8,8 @@ describe('VolumeDetailViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VolumeDetailViewComponent ]
-    })
-    .compileComponents();
+      declarations: [VolumeDetailViewComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -16,11 +16,7 @@ describe('NetworkListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [NetworkListComponent],
-      imports: [
-        NgbModule.forRoot(),
-        RouterTestingModule,
-        NgxDatatableModule,
-      ],
+      imports: [NgbModule.forRoot(), RouterTestingModule, NgxDatatableModule],
       providers: [
         NetworkService,
         HttpClient,
@@ -28,8 +24,7 @@ describe('NetworkListComponent', () => {
         ConfigurationService,
         TokenStorage,
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

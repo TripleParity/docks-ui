@@ -22,7 +22,7 @@ describe('VolumesViewComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         FormsModule,
-        NgxDatatableModule
+        NgxDatatableModule,
       ],
       providers: [
         VolumeService,

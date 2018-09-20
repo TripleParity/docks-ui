@@ -33,7 +33,7 @@ const routes: Routes = [
       {
         path: 'detail',
         component: ServiceDetailViewComponent,
-      }
+      },
     ],
   },
 ];

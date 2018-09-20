@@ -4,8 +4,6 @@ import { VolumesViewComponent } from 'pages/volumes/volumes-view/volumes-view.co
 import { VolumesCreateComponent } from 'pages/volumes/volumes-create/volumes-create.component';
 import { VolumeDetailViewComponent } from 'pages/volumes/volume-detail-view/volume-detail-view.component';
 
-
-
 const routes: Routes = [
   {
     path: '',
@@ -20,7 +18,7 @@ const routes: Routes = [
   {
     path: 'detail',
     component: VolumeDetailViewComponent,
-  }
+  },
 ];
 
 @NgModule({

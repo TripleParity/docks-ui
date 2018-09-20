@@ -25,7 +25,7 @@ import { StackDetailViewComponent } from 'pages/stacks/stack-detail-view/stack-d
     StacksViewComponent,
     StacksCreateComponent,
     StackEditComponent,
-    StackDetailViewComponent
+    StackDetailViewComponent,
   ],
   providers: [StackService],
 })

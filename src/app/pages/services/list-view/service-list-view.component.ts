@@ -28,16 +28,16 @@ export class ServiceListViewComponent implements OnInit {
   public temp = [];
   public rows: any[] = [];
   public columns: any = [
-      {prop: 'Name'},
-      {prop: 'ID'},
-      {prop: 'Stack'},
-      {prop: 'Image'},
-      {prop: 'Mode'},
-      {prop: 'Replicas'},
-      {prop: 'Ports'},
-      {prop: 'CreatedAt'},
-      {prop: 'UpdatedAt'},
-      {prop: 'Ownership'}
+    { prop: 'Name' },
+    { prop: 'ID' },
+    { prop: 'Stack' },
+    { prop: 'Image' },
+    { prop: 'Mode' },
+    { prop: 'Replicas' },
+    { prop: 'Ports' },
+    { prop: 'CreatedAt' },
+    { prop: 'UpdatedAt' },
+    { prop: 'Ownership' },
   ];
 
   public selected = [];
