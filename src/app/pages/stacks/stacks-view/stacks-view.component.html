@@ -27,7 +27,7 @@
 <div class="row">
   <div class="col-md-12">
     <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="stacks" [headerHeight]="'auto'"
-      [rowHeight]="getRowHeight">
+      [rowHeight]="getRowHeight" [selected]="selected" [selectionType]="'single'" (select)='onSelect($event)'>
 
       <ngx-datatable-column name="Stack Name">
         <ng-template let-value="value" ngx-datatable-cell-template>

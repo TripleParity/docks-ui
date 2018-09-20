@@ -5,7 +5,7 @@ import {
   StackError,
   StackErrorCode,
 } from 'services/stack/stack.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
@@ -19,10 +19,11 @@ export class StacksViewComponent implements OnInit {
   public searchString = [];
   public stackNameToDelete = '';
   public activeModal: NgbModalRef;
+  public selected = [];
 
   constructor(
     private stackService: StackService,
-    private route: ActivatedRoute,
+    private router: Router,
     private modalService: NgbModal,
     private toastr: ToastrService
   ) {}
@@ -83,5 +84,11 @@ export class StacksViewComponent implements OnInit {
         this.activeModal.close();
       }
     );
+  }
+
+  onSelect({ selected }) {
+    // console.log('Select Event', selected, this.selected);
+    console.log(selected);
+    this.router.navigate(['/stacks/' + selected[0].ID]);
   }
 }
