@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 import {
   UserService,
-  DeleteUserStatus,
+  UserErrorCode,
+  UserError,
 } from '../../../services/user-management/user.service';
 import { User } from '../../../models/user-management/user.model';
 
@@ -17,15 +19,10 @@ export class UserListComponent implements OnInit {
   // Alert message flags. Displays if value not empty or false
   genericError = false;
 
-  createdUser = '';
-
   updatedUser = '';
   updatedUserNotFound = '';
 
   activeModal: NgbModalRef;
-
-  deletedUser = '';
-  deletedUserNotFound = '';
 
   selected: User[] = [];
 
@@ -39,21 +36,10 @@ export class UserListComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastrService
   ) {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      if (params.has('createdUser')) {
-        this.createdUser = params.get('createdUser');
-      }
-
-      if (params.has('updatedUser')) {
-        this.updatedUser = params.get('updatedUser');
-      }
-
-      if (params.has('updatedUserNotFound')) {
-        this.updatedUserNotFound = params.get('updatedUserNotFound');
-      }
-    });
+    this.route.paramMap.subscribe((params: ParamMap) => {});
   }
 
   fetchUsers() {
@@ -62,9 +48,8 @@ export class UserListComponent implements OnInit {
         this.users = users;
         this.dataCache = [...users];
       },
-      (err) => {
-        console.error(err);
-        this.genericError = true;
+      (err: UserError) => {
+        this.toastr.error(err.message, 'An error occured');
       }
     );
   }
@@ -82,23 +67,22 @@ export class UserListComponent implements OnInit {
 
   deleteUser(username: string) {
     this.userService.deleteUser(username).subscribe(
-      (result: DeleteUserStatus) => {
-        this.clearAlerts();
-        if (result === DeleteUserStatus.DELETE_OK) {
-          this.deletedUser = username;
+      (result: UserErrorCode) => {
+        if (result === UserErrorCode.REQUEST_OK) {
+          this.toastr.success('User ' + username + ' removed.', 'Success!');
         } else {
-          this.genericError = true;
+          this.toastr.error('Something went wrong...', 'An error occured!');
         }
 
         this.activeModal.close();
         this.fetchUsers();
       },
-      (err: DeleteUserStatus) => {
-        this.clearAlerts();
-        if (err === DeleteUserStatus.DELETE_ERR_NOT_FOUND) {
-          this.deletedUserNotFound = username;
+      (err: UserError) => {
+        this.toastr.error(err.message, 'Could not delete user');
+        if (err.code === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
+          this.toastr.error('Could not find user', 'An error occured!');
         } else {
-          this.genericError = true;
+          this.toastr.error('Something went wrong...', 'An error occured!');
         }
 
         this.activeModal.close();
@@ -107,13 +91,29 @@ export class UserListComponent implements OnInit {
     );
   }
 
-  clearAlerts() {
-    this.createdUser = '';
-    this.deletedUser = '';
-    this.deletedUserNotFound = '';
-    this.genericError = false;
-    this.updatedUser = '';
-    this.updatedUserNotFound = '';
+  // TODO(devosray): Auto-rerender table when status change was successfull?
+  updateUserTwoFactorStatus(username: string, status: boolean) {
+    this.userService.updateUserTwoFactorStatus(username, status).subscribe(
+      (result: UserError) => {
+        if (result.code === UserErrorCode.REQUEST_OK) {
+          this.toastr.success('Updated Two-Factor authentication status for ' + username + '.',  'Success!');
+        } else {
+          this.toastr.error('Something went wrong...', 'An error occured!');
+        }
+
+        this.fetchUsers();
+      },
+      (err: UserError) => {
+        this.toastr.error(err.message, 'Could not update user\'s two-factor authentication status');
+        if (err.code === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
+          this.toastr.error('Could not find user', 'An error occured!');
+        } else {
+          this.toastr.error('Something went wrong...', 'An error occured!');
+        }
+
+        this.fetchUsers();
+      }
+    );
   }
 
   updateFilter(event) {

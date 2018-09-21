@@ -13,8 +13,12 @@ import { MockService } from '../../services/mock/mock.service';
 
 import { ServicesRoutingModule } from '../../pages/services/services-routing.module';
 import { SpinnerModule } from 'app/shared/spinner/spinner.module';
+import { ServiceCreateComponent } from './service-create/service-create.component';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ServiceDetailViewComponent } from 'pages/services/service-detail-view/service-detail-view.component';
+import { StackService } from 'services/stack/stack.service';
+import { ServiceLogsComponent } from 'pages/services/service-logs/service-logs.component';
 
 @NgModule({
   imports: [
@@ -30,7 +34,10 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ServiceListViewComponent,
     ServicesCardViewComponent,
     ServicesOperationsComponent,
+    ServiceCreateComponent,
+    ServiceDetailViewComponent,
+    ServiceLogsComponent
   ],
-  providers: [ServicesService, MockService],
+  providers: [ServicesService, MockService, StackService],
 })
 export class ServicesModule {}

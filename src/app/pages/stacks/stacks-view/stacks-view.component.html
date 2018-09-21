@@ -1,22 +1,9 @@
 <!-- TODO(pwood): set up stacks in table cells -->
-
-<div class="alerts">
-  <ngb-alert [hidden]="createdStack.length === 0" (close)="createdStack=''" [type]="'success'">Stack '{{createdStack}}' was successfully deployed</ngb-alert>
-  <ngb-alert [hidden]="updatedStack.length === 0" (close)="updatedStack=''" [type]="'success'">Stack '{{updatedStack}}' was successfully updated</ngb-alert>
-  <ngb-alert [hidden]="deletedStack.length === 0" (close)="deletedStack=''" [type]="'warning'">Stack '{{deletedStack}}' was successfully deleted</ngb-alert>
-  <ngb-alert [hidden]="stackNotFoundError.length === 0" (close)="stackNotFoundError=''" [type]="'danger'">Error '{{stackNotFoundError}}' is not a known stack</ngb-alert>
-</div>
-<div class="row table-head">
-  <div class="col-md-8">
-    <a routerLink="/stacks/create">
-      <button type="button" class="btn btn-info">
-          Deploy Stack <i class="fa fa-clone"> </i>
-      </button>
-    </a>
-  </div>
-  <div class="col-md-4">
+<div class="row heading">
+  <div class="col-sm-4">
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search Stacks" aria-label="Recipient's username" aria-describedby="basic-addon2" (keyup)= "updateFilter($event)">
+      <input type="text" class="form-control" placeholder="Search Stacks" aria-label="Recipient's username" aria-describedby="basic-addon2"
+        (keyup)="updateFilter($event)">
       <div class="input-group-append">
         <button class="btn btn-default">
           <span class="input-group-text" id="Search">
@@ -26,61 +13,34 @@
       </div>
     </div>
   </div>
+  <div class="offset-sm-6 col-sm-2">
+    <a routerLink="/stacks/create">
+      <button type="button" class="btn btn-info">
+        Deploy Stack
+        <i class="fa fa-clone"> </i>
+      </button>
+    </a>
+  </div>
 </div>
-<div>
-     <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="stacks"
-      [headerHeight]="'auto'" [rowHeight]="getRowHeight">
+
+
+<div class="row">
+  <div class="col-md-12">
+    <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="stacks" [headerHeight]="'auto'"
+      [rowHeight]="getRowHeight" [selected]="selected" [selectionType]="'single'" (select)='onSelect($event)'>
 
       <ngx-datatable-column name="Stack Name">
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <strong>{{value}}</strong>
-          </ng-template>
-        </ngx-datatable-column>
-       
-        <ngx-datatable-column name="Services Count">
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-        
-        <ngx-datatable-column name ="Operations">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-              <div>
-                <a routerLink="/stacks/{{row.stackName}}/edit">
-                  <span id="ops">Edit <i class="fa fa-cog"></i></span>
-                </a>
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-          
-          <ngx-datatable-column name ="">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                  <div>
-                      <button class="btn btn-danger sm" (click)="open(content, row.stackName)">Delete
-                        <i class="fa fa-trash-o"></i></button>
-                  </div>
-                </ng-template>
-              </ngx-datatable-column>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
 
+      <ngx-datatable-column name="Services Count">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
     </ngx-datatable>
+  </div>
 </div>
 
-<ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Remove Stack</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body" align="center">
-      <h5>Are you sure you want to remove the following Stack?</h5>
-      <h5>
-        <pre>{{stackNameToDelete}}</pre>
-      </h5>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="c('Cancel click')">Cancel</button>
-      <!-- usernameToDelete is set in open(content, row.username)-->
-      <button type="button" class="btn btn-danger" (click)="removeStack(stackNameToDelete)">Delete</button>
-    </div>
-</ng-template>

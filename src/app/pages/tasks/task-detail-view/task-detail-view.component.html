@@ -1,0 +1,98 @@
+<div *ngIf="isLoaded">
+  <div class="row heading">
+    <div class="col-md-10">
+      <h2>
+        <span class="fa fa-pencil-square-o"></span>
+        Task:
+        <span class="detailID"> {{taskName}} </span> Detail
+      </h2>
+    </div>
+    <div class="col-md-2 detailLabel">
+      <div class="status {{taskModel.Status.State}}" id="headingState"> {{taskModel.Status.State}} </div>
+    </div>
+  </div>
+
+  <div class="row title">
+    <div class="innerTitle col-sm-12">
+      <h3>General</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="detailTable">
+      <tbody>
+        <tr>
+          <td class="detailName">
+            ID:
+          </td>
+          <td class="detailValue">
+            <div class="inserts"> {{taskModel.ID}} </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="detailName">
+            Image:
+          </td>
+          <td class=" detailValue">
+            <div class="inserts"> {{image}} </div>
+          </td>
+        </tr>
+        <tr>
+          <td class=" detailName">
+            Created At:
+          </td>
+          <td class=" detailValue">
+            <div class="inserts"> {{PrettifyDateTime(taskModel.CreatedAt)}} </div>
+          </td>
+        </tr>
+        <tr>
+          <td class=" detailName">
+            Last Modified At:
+          </td>
+          <td class=" detailValue">
+            <div class="inserts"> {{PrettifyDateTime(taskModel.UpdatedAt)}} </div>
+          </td>
+        </tr>
+        <tr>
+          <td class=" detailName">
+            Service:
+          </td>
+          <td class=" detailValue">
+            <a routerLink="/services/{{taskModel.ServiceID}}">
+              <div class="detailLinks"> {{serviceName}} </div>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row title">
+    <div class="innerTitle col-sm-12">
+      <h3>Status</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="detailTable">
+      <tbody>
+        <tr>
+          <td class=" detailName">
+            Status:
+          </td>
+          <td class=" detailValue">
+            <div class="{{taskModel.Status.State}} status"> {{taskModel.Status.State}}</div>
+          </td>
+        </tr>
+        <tr>
+          <td class=" detailName">
+            Desired Status:
+          </td>
+          <td class=" detailValue">
+            <div class="{{taskModel.DesiredState}} status"> {{taskModel.DesiredState}}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

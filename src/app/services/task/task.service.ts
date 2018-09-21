@@ -13,11 +13,16 @@ import { Task } from '../../models/task/task.model';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { ConfigurationService } from '../configuration/configuration.service';
 
-export enum TaskError {
+export enum TaskErrorCode {
   ERR_OK = 200,
   ERR_SERVER = 500,
   ERR_NODE_N_SWARM = 503,
   ERR_NO_TASK = 404,
+}
+
+export interface TaskError {
+  code: TaskErrorCode;
+  message: string;
 }
 
 @Injectable()
@@ -42,7 +47,10 @@ export class TaskService {
           return tasks;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<TaskError>err.status);
+          return ErrorObservable.create({
+            code: <TaskErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -64,7 +72,10 @@ export class TaskService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<TaskError>err.status);
+          return ErrorObservable.create({
+            code: <TaskErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }
@@ -75,7 +86,7 @@ export class TaskService {
    * @param {string} id
    * @returns {Observable<JSON>}
    */
-  public inspect(id: string): Observable<JSON> {
+  public inspect(id: string): Observable<Task> {
     return this.http
       .get<JSON>(this.config.getAPIHostname() + '/docker/tasks/' + id, {
         responseType: 'json',
@@ -85,7 +96,10 @@ export class TaskService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
-          return ErrorObservable.create(<TaskError>err.status);
+          return ErrorObservable.create({
+            code: <TaskErrorCode>err.status,
+            message: err.error['message'],
+          });
         })
       );
   }

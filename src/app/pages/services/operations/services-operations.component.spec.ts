@@ -5,12 +5,18 @@ import { ServicesService } from '../../../services/services/services.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TokenStorage } from '../../../classes/tokenstorage/tokenstorage';
 import { ConfigurationService } from 'services/configuration/configuration.service';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 describe('ServicesOperationsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule],
-      providers: [ConfigurationService, ServicesService, TokenStorage],
+      imports: [HttpClientModule, RouterTestingModule, ToastrModule.forRoot()],
+      providers: [
+        ConfigurationService,
+        ServicesService,
+        TokenStorage,
+        ToastrService,
+      ],
     });
   }));
 

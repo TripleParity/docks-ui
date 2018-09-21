@@ -1,111 +1,51 @@
 <!--TODO(FJMentz): NodeID -> NodeName or (ID if !hasName())-->
 <app-spinner [hidden]="isLoaded"></app-spinner>
-<div id="taskList">
-    <div *ngFor="let task of tasks; let i = index">
-        <div class="card taskListCard">
-            <div class="card-header" [attr.id]="'heading-'+ i" (click)="Collapse(i)" [attr.aria-controls]="'collapse-' + i" [attr.aria-expanded]="!isCollapsed">
-                <h5 class="mb-0">
-                    <span class="main-item">
-                        <div *ngIf="task.Name !== undefined;then name else notName"></div>
-
-                        <ng-template #name>{{ task.Name }}</ng-template>
-                        <ng-template #notName>ID: {{ task.ID | slice:0:6}}</ng-template>
+<div class="row heading">
+    <div class="col-sm-4">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search Tasks" aria-label="Recipient's username" aria-describedby="basic-addon2"
+                >
+            <div class="input-group-append">
+                <button class="btn btn-default">
+                    <span class="input-group-text" id="Search">
+                        <i class="fa fa-search"></i>
                     </span>
-
-                    <span class="main-item" [ngSwitch]='task.Status.State.toUpperCase()'>
-                        <!--NEW	The task was initialized.-->
-                        <ng-template [ngSwitchCase]="'NEW'">
-                            <span class="badge badge-primary badge-pill">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--PENDING	Resources for the task were allocated.-->
-                        <ng-template [ngSwitchCase]="'PENDING'">
-                            <span class="badge badge-warning badge-pill">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--ASSIGNED	Docker assigned the task to nodes.-->
-                        <ng-template [ngSwitchCase]="'ASSIGNED'">
-                            <span class="badge badge-info badge-pill">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--ACCEPTED	The task was accepted by a worker node. If a worker node rejects the task, the state changes to REJECTED.-->
-                        <ng-template [ngSwitchCase]="'ACCEPTED'">
-                            <span class="badge badge-info badge-pill">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--PREPARING	Docker is preparing the task.-->
-                        <ng-template [ngSwitchCase]="'PREPARING'">
-                            <span class="badge badge-info badge-pill">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--STARTING	Docker is starting the task.-->
-                        <ng-template [ngSwitchCase]="'STARTING'">
-                            <span class="badge badge-info badge-pill">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--RUNNING	The task is executing.-->
-                        <ng-template [ngSwitchCase]="'RUNNING'">
-                            <span class="badge badge-success badge-pill">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--COMPLETE	The task exited without an error code.-->
-                        <ng-template [ngSwitchCase]="'COMPLETE'">
-                            <span class="badge badge-success badge-pill">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--FAILED	The task exited with an error code.-->
-                        <ng-template [ngSwitchCase]="'FAILED'">
-                            <span class="badge badge-dark badge-pill">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--SHUTDOWN	Docker requested the task to shut down.-->
-                        <ng-template [ngSwitchCase]="'SHUTDOWN'">
-                            <span class="badge badge-danger badge-pill">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--REJECTED	The worker node rejected the task.-->
-                        <ng-template [ngSwitchCase]="'REJECTED'">
-                            <span class="badge badge-danger badge-pill">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--ORPHANED	The node was down for too long.-->
-                        <ng-template [ngSwitchCase]="'ORPHANED'">
-                            <span class="badge badge-danger badge-pill">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--REMOVE	The task is not terminal but the associated service was removed or scaled down.-->
-                        <ng-template [ngSwitchCase]="'REMOVE'">
-                            <span class="badge badge-danger badge-pill'">{{task.Status.State}}</span>
-                        </ng-template>
-
-                        <!--Something went wrong-->
-                        <span *ngSwitchDefault>
-                            <span class="badge badge-light badge-pill">Error</span>
-                        </span>
-                    </span>
-                </h5>
-            </div>
-
-            <div [attr.id]="'collapse-' + i" [ngbCollapse]="!isCollapsed[i]" [attr.aria-labelledby]="'heading-'+ i" data-parent="#taskList">
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between sub-item">
-                        ID: {{ task.ID }}
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between sub-item">
-                        NodeID: {{ task.NodeID }}
-                        <!--Change to Node name as soon as Node service is implemented-->
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between sub-item">
-                        Image: {{ task.Spec.ContainerSpec.Image }}
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between sub-item">
-                        Date Created: {{ this.PrettifyDateTime(task.CreatedAt) }}
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between sub-item">
-                        Last Updated: {{ this.PrettifyDateTime(task.UpdatedAt) }}
-                    </li>
-                </ul>
+                </button>
             </div>
         </div>
     </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ngx-datatable class="bootstrap ngx-datatable" [limit]="9" [footerHeight]="40" [columnMode]="'force'" [rows]="tasks" [headerHeight]="'auto'"
+            [rowHeight]="getRowHeight" [selectionType]="'single'" (select)='onSelect($event)'>
+
+            <ngx-datatable-column name="Name">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div>{{getTaskName(row.Spec.ContainerSpec.Labels, row.Slot, row.ID)}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Image">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div> {{row.Spec.ContainerSpec.Image}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Node">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div> {{row.NodeID}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Status">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div class="{{row.Status.State}} status"> {{row.Status.State}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+
+
+        </ngx-datatable>
+    </div>
+
 </div>

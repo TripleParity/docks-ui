@@ -12,7 +12,7 @@
     "lib": ["es2017", "dom"],
     "baseUrl": "src",
     "paths": {
-      "_classes/*": ["app/_classes/*"],
+      "classes/*": ["app/classes/*"],
       "_guards/*": ["app/_guards/*"],
       "pages/*": ["app/pages/*"],
       "services/*": ["app/services/*"],

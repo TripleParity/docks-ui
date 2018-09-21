@@ -3,13 +3,6 @@
   <!-- TODO(egeldenhuys): Pass messages without using URL-->
   <!-- TODO(egeldenhuys): Align cells vertically in center -->
 
-  <ngb-alert [hidden]="createdUser.length === 0" (close)="createdUser=''" [type]="'success'">User '{{createdUser}}' created successfully</ngb-alert>
-  <ngb-alert [hidden]="updatedUser.length === 0" (close)="updatedUser=''" [type]="'success'">User '{{updatedUser}}' successfully updated</ngb-alert>
-  <ngb-alert [hidden]="updatedUserNotFound.length === 0" (close)="updatedUserNotFound=''" [type]="'danger'">Error updating user '{{updatedUserNotFound}}'. User no longer exists</ngb-alert>
-  <ngb-alert [hidden]="!genericError" (close)="genericError=false" [type]="'danger'">Something went wrong</ngb-alert>
-  <ngb-alert [hidden]="deletedUser.length === 0" (close)="deletedUser=''" [type]="'success'">User '{{deletedUser}}' has been deleted successfully</ngb-alert>
-  <ngb-alert [hidden]="deletedUserNotFound.length === 0" (close)="deletedUserNotFound=''" [type]="'danger'">Error deleting user '{{deletedUserNotFound}}'. User no longer exists</ngb-alert>
-
   <h3>
     Users
   </h3>
@@ -30,8 +23,8 @@
       </div>
     </div>
 
-    <div class="container-fluid">
-        <div >
+    <div class="row">
+        <div class="col-md-12">
             <ngx-datatable class="bootstrap ngx-datatable" [limit]="10" [footerHeight]="40" [columnMode]="'force'" [rows]="users" [columns]="columns"
               [headerHeight]="'auto'" [rowHeight]="'auto'" [selected]="selected">
 
@@ -52,6 +45,12 @@
                     <a routerLink="/users/{{row.username}}/edit">
                       <button type="button" class="btn btn-warning btn-sm">Edit</button>
                     </a>
+
+                    <button *ngIf="row.twofactorenabled" (click)="updateUserTwoFactorStatus(row.username, false)" 
+                      type="button" class="btn btn-warning btn-sm">Disable Two-Factor</button>
+                    <button *ngIf="!row.twofactorenabled" (click)="updateUserTwoFactorStatus(row.username, true)" 
+                      type="button" class="btn btn-info btn-sm">Enable Two-Factor</button>
+
                     <button type="button" class="btn btn-danger btn-sm" (click)="open(content, row.username)">Delete</button>
                   </div>
 

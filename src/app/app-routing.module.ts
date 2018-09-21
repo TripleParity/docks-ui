@@ -47,6 +47,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'nodes',
+    loadChildren: 'app/pages/nodes/nodes.module#NodesModule',
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'containers',
     loadChildren: 'app/pages/containers/containers.module#ContainersModule',
   },
@@ -54,6 +59,11 @@ const routes: Routes = [
     path: 'users',
     loadChildren:
       'app/pages/user-management/user-management.module#UserManagementModule',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'webhooks',
+    loadChildren: 'app/pages/webhooks/webhook.module#WebhookModule',
     canActivate: [AuthGuard],
   },
   {

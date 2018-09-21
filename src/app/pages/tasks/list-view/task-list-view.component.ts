@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../../models/task/task.model';
-import { TaskService } from '../../../services/task/task.service';
-import { MockService } from '../../../services/mock/mock.service';
-import { Formatter } from '../../../classes/formatter/formatter';
+import { TaskService, TaskError } from '../../../services/task/task.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-list-view',
@@ -12,34 +12,43 @@ import { Formatter } from '../../../classes/formatter/formatter';
 export class TaskListViewComponent implements OnInit {
   constructor(
     private taskService: TaskService,
-    private mockService: MockService
+    private router: Router,
+    private toastr: ToastrService
   ) {}
   public tasks: Task[] = [];
-  public isCollapsed: Boolean[] = [];
   public previous = 0;
   public isLoaded = false;
+  public selected = [];
 
   ngOnInit() {
-    this.taskService.getTasks().subscribe((task) => {
-      for (let i = 0; i < task.length; i++) {
-        this.tasks.push(task[i]);
-        this.isCollapsed.push(false);
+    this.fetchTasks();
+  }
+
+  fetchTasks() {
+    this.taskService.getTasks().subscribe(
+      (task) => {
+        this.tasks = task;
+        this.isLoaded = true;
+      },
+      (err: TaskError) => {
+        this.toastr.error(err.message, 'An error occured');
       }
-      this.isLoaded = true;
-    });
+    );
   }
 
-  public PrettifyDateTime(buff: string): string {
-    return Formatter.PrettifyDateTime(buff);
+  getRowHeight(row) {
+    return (row.height = 50);
   }
 
-  public Collapse(i) {
-    if (i !== this.previous) {
-      this.isCollapsed[this.previous] = false;
-      this.isCollapsed[i] = !this.isCollapsed[i];
-      this.previous = i;
+  getTaskName(labels: Object, slot: number, id: string): string {
+    if (labels && labels.hasOwnProperty('com.docker.stack.namespace')) {
+      return labels['com.docker.stack.namespace'] + '.' + slot;
     } else {
-      this.isCollapsed[i] = !this.isCollapsed[i];
+      return id;
     }
+  }
+
+  onSelect({ selected }) {
+    this.router.navigate(['/tasks/' + selected[0].ID]);
   }
 }

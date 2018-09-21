@@ -1,9 +1,10 @@
 export interface Volume {
-  CreatedAt: string;
+  CreatedAt?: string;
   Name: string;
   Driver: string;
-  Mountpoint: string;
-  Scope: string;
-  Labels: JSON;
-  Options: JSON;
+  Mountpoint?: string;
+  Scope?: string;
+  Labels?: JSON;
+  Options?: JSON;
+  DriverOpts?: JSON;
 }

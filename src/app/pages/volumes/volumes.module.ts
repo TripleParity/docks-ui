@@ -1,26 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-
-import { VolumeCardViewComponent } from './card-view/volume-card-view.component';
-import { VolumeListViewComponent } from './list-view/volume-list-view.component';
-import { VolumeOperationsComponent } from '../volumes/volume-operations/volume-operations.component';
-
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { VolumeService } from '../../services/volume/volume.service';
-import { MockService } from '../../services/mock/mock.service';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { VolumesCreateComponent } from './volumes-create/volumes-create.component';
+import { VolumesViewComponent } from './volumes-view/volumes-view.component';
 
 import { VolumesRoutingModule } from './volumes.routing-module';
-import { TokenStorage } from '../../classes/tokenstorage/tokenstorage';
 import { SpinnerModule } from 'app/shared/spinner/spinner.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VolumeDetailViewComponent } from 'pages/volumes/volume-detail-view/volume-detail-view.component';
 
 @NgModule({
-  imports: [CommonModule, VolumesRoutingModule, SpinnerModule, NgbModule],
-  declarations: [
-    VolumeListViewComponent,
-    VolumeCardViewComponent,
-    VolumeOperationsComponent,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    VolumesRoutingModule,
+    SpinnerModule,
+    NgbModule,
+    NgxDatatableModule,
   ],
-  providers: [HttpClientModule, MockService, VolumeService, TokenStorage],
+  declarations: [
+    VolumesCreateComponent,
+    VolumesViewComponent,
+    VolumeDetailViewComponent,
+  ],
+  providers: [VolumeService],
 })
 export class VolumesModule {}

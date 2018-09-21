@@ -1,0 +1,47 @@
+<app-spinner [hidden]="isLoaded"></app-spinner>
+
+<div class="row heading">
+    <div class="col-sm-4">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search Volumes" aria-label="Recipient's username" aria-describedby="basic-addon2"
+          (keyup)="updateFilter($event)">
+        <div class="input-group-append">
+          <button class="btn btn-default">
+            <span class="input-group-text" id="Search">
+              <i class="fa fa-search"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="offset-sm-6 col-sm-2">
+      <a routerLink="/volumes/create">
+        <button type="button" class="btn btn-info">
+          Create New Volume
+          <i class="fa fa-clone"> </i>
+        </button>
+      </a>
+    </div>
+  </div>
+<div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="volumes" [headerHeight]="'auto'"
+        [rowHeight]="getRowHeight">
+
+        <ngx-datatable-column name="Name">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Name}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Driver">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Driver}}
+          </ng-template>
+        </ngx-datatable-column>
+
+      </ngx-datatable>
+    </div>
+  </div>

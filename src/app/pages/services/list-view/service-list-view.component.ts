@@ -2,8 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../models/service/service.model';
 import { Formatter } from '../../../classes/formatter/formatter';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ServicesService } from '../../../services/services/services.service';
+import {
+  ServicesService,
+  ServiceError,
+} from '../../../services/services/services.service';
 import { MockService } from '../../../services/mock/mock.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-service-list-view',
@@ -14,7 +19,9 @@ export class ServiceListViewComponent implements OnInit {
   constructor(
     private mock: MockService,
     private serviceService: ServicesService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   public services: Service[] = [];
@@ -28,16 +35,16 @@ export class ServiceListViewComponent implements OnInit {
   public temp = [];
   public rows: any[] = [];
   public columns: any = [
-      {prop: 'Name'},
-      {prop: 'ID'},
-      {prop: 'Stack'},
-      {prop: 'Image'},
-      {prop: 'Mode'},
-      {prop: 'Replicas'},
-      {prop: 'Ports'},
-      {prop: 'CreatedAt'},
-      {prop: 'UpdatedAt'},
-      {prop: 'Ownership'}
+    { prop: 'Name' },
+    // { prop: 'ID' },
+    // { prop: 'Stack' },
+    { prop: 'Image' },
+    { prop: 'Mode' },
+    { prop: 'Replicas' },
+    { prop: 'Ports' },
+    // { prop: 'CreatedAt' },
+    // { prop: 'UpdatedAt' },
+    // { prop: 'Ownership' },
   ];
 
   public selected = [];
@@ -49,45 +56,58 @@ export class ServiceListViewComponent implements OnInit {
   }
 
   fetchServices() {
-    this.serviceService.getServices().subscribe((services) => {
-      this.services = services;
-      this.rows = [];
-      this.num = 0;
+    this.serviceService.getServices().subscribe(
+      (services) => {
+        this.services = services;
+        this.rows = [];
+        this.num = 0;
 
-      services.forEach((element) => {
-        this.parseInput(element);
-      });
+        services.forEach((element) => {
+          this.parseInput(element);
+        });
 
-      console.log(services);
+        this.temp = [this.rows];
 
-      this.temp = [this.rows];
+        // Datatables needs to be "notified" about the changes to the 'rows' array.
+        this.rows = [...this.rows];
 
-      // Datatables needs to be "notified" about the changes to the 'rows' array.
-      this.rows = [...this.rows];
-
-      for (let i = 0; i < this.services.length; i++) {
-        this.isCollapsed.push(false);
+        for (let i = 0; i < this.services.length; i++) {
+          this.isCollapsed.push(false);
+        }
+        this.isLoaded = true;
+      },
+      (err: ServiceError) => {
+        this.toastr.error(err.message, 'An error has occured');
       }
-      this.isLoaded = true;
-    });
+    );
   }
 
   parseInput(services: Service) {
     let port = null;
     if (services.Spec.EndpointSpec.Ports !== undefined) {
       port = services.Spec.EndpointSpec.Ports[0].PublishedPort;
+    } else {
+      port = '-';
     }
 
     const created = this.PrettifyDateTime(services.CreatedAt);
     const updated = this.PrettifyDateTime(services.UpdatedAt);
+    let replicated: string = null;
+
+    // Handle optional Modes
+    if ('Global' in services.Spec.Mode) {
+      replicated = 'Global';
+    } else if ('Replicated' in services.Spec.Mode) {
+      replicated = services.Spec.Mode.Replicated.Replicas.toString();
+    }
 
     this.myObj = {
       Name: services.Spec.Name,
       ID: services.ID,
       Stack: '',
-      Image: services.Spec.TaskTemplate.ContainerSpec.Image,
+      Image: services.Spec.TaskTemplate.ContainerSpec.Image.split('@')[0],
       Mode: services.Spec.EndpointSpec.Mode,
-      Replicas: services.Spec.Mode.Replicated.Replicas,
+      Replicas: replicated,
       Ports: port,
       CreatedAt: created,
       UpdatedAt: updated,
@@ -98,13 +118,16 @@ export class ServiceListViewComponent implements OnInit {
   }
 
   public removeService(id) {
-    this.serviceService.deleteService(id).subscribe((x) => {
-      this.services.filter((service) => service.ID !== id);
-      this.fetchServices();
-      // this.rows = [...this.rows];
-    });
-    // I (FJMentz) would rather test this with adult supervision
-    console.log('Removing container ' + id);
+    this.serviceService.deleteService(id).subscribe(
+      (x) => {
+        this.services.filter((service) => service.ID !== id);
+        this.fetchServices();
+        this.toastr.success('Service was successfully removed', 'Success!');
+      },
+      (err: ServiceError) => {
+        this.toastr.error(err.message, 'Could not remove service');
+      }
+    );
   }
 
   public voidParentClick(event) {
@@ -159,17 +182,7 @@ export class ServiceListViewComponent implements OnInit {
 
   onSelect({ selected }) {
     // console.log('Select Event', selected, this.selected);
-    if (this.isSelected) {
-      this.isSelected = false;
-    } else {
-      this.isSelected = true;
-    }
-
-    this.row = this.findIndex(this.selected[0]['ID']);
-    // console.log(this.row);
+    this.router.navigate(['/services/' + selected[0].ID]);
   }
 
-  onActivate(event) {
-    console.log('Activate Event', event);
-  }
 }

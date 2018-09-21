@@ -8,6 +8,7 @@ import { StackService } from 'services/stack/stack.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 describe('StackEditComponent', () => {
   let component: StackEditComponent;
@@ -16,7 +17,12 @@ describe('StackEditComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [StackEditComponent],
-      imports: [FormsModule, NgbModule.forRoot(), RouterTestingModule],
+      imports: [
+        FormsModule,
+        NgbModule.forRoot(),
+        RouterTestingModule,
+        ToastrModule.forRoot(),
+      ],
       providers: [
         StackService,
         HttpClient,
@@ -24,6 +30,7 @@ describe('StackEditComponent', () => {
         ConfigurationService,
         TokenStorage,
         NgbAlertConfig,
+        ToastrService,
       ],
     }).compileComponents();
   }));

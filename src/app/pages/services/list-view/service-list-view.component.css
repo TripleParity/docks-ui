@@ -1,3 +1,7 @@
 .warning-text{
     color: var(--red);
+} 
+.col-sm-4
+{
+    padding-left: 0px;
 }

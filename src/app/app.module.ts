@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-
-import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 
@@ -21,14 +20,27 @@ import { NavbarComponent } from 'app/shared/navbar/navbar.component';
 import { ConfigurationService } from 'app/services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 
+import { ToastrModule } from 'ngx-toastr';
+
+import { AppRoutingModule } from './app-routing.module';
+
 @NgModule({
   declarations: [AppComponent, UserBarComponent, NavbarComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    AppRoutingModule,
     AngularFontAwesomeModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+      resetTimeoutOnDuplicate: true,
+      maxOpened: 1,
+      autoDismiss: true,
+    }),
+    AppRoutingModule,
   ],
   providers: [
     {
