@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="offset-md-4">
+    </div>
+    <div class="col-md-4">
+      <h2>Webhooks</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <form #createForm="ngForm" (ngSubmit)="submit()">
+  
+        <div class="form-group">
+          <label for="stackName">Name</label>
+          <input type="text" class="form-control" id="first" [(ngModel)]="name" name="name">
+        </div>
+
+        <div class="form-group">
+            <label for="stackName">Webhook URL</label>
+            <input type="text" class="form-control" id="second" [(ngModel)]="url" name="url">
+        </div>
+
+        <div class="form-group">
+            <label for="stackName">Volumes</label>
+            <input type="checkbox" value="Name" [(ngModel)]="volumes" name="volumes">
+        </div>
+
+        <div class="form-group">
+            <label for="stackName">Network</label>
+            <input type="checkbox" value="NameSecond"  [(ngModel)]="networks" name="networks">
+        </div>
+
+        <div class="form-group">
+            <label for="stackName">Service</label>
+            <input type="checkbox" value="NameThird"  [(ngModel)]="services" name="services">
+        </div>
+
+        <div class="form-group">
+            <label for="stackName">Node</label>
+            <input type="checkbox" value="NameFourth"  [(ngModel)]="nodes" name="nodes">
+        </div>
+
+        <div class="form-group">
+            <label for="stackName">Image</label>
+            <input type="checkbox" value="NameFive"  [(ngModel)]="images" name="images">
+        </div>
+
+        <div class="form-group">
+            <label for="stackName">Daemon</label>
+            <input type="checkbox" value="NameSix"  [(ngModel)]="daemons" name="daemons">
+        </div>
+
+        <div class="form-group">
+            <label for="stackName">Secret</label>
+            <input type="checkbox" value="NameSeven"  [(ngModel)]="secrets" name="secrets">
+        </div>
+
+        
+        <div class="form-group">
+            <label for="stackName">Config</label>
+            <input type="checkbox" value="NameEight"  [(ngModel)]="configs" name="configs">
+        </div>
+        <input type="submit" [disabled]=" name.length == 0 || url.length == 0">
+      </form>
+    </div>
+  </div>
