@@ -76,7 +76,7 @@ export class TaskDetailViewComponent implements OnInit {
   }
 
   getImage() {
-    const taskImage = this.taskModel.Spec.ContainerSpec.Image.split('a');
+    const taskImage = this.taskModel.Spec.ContainerSpec.Image.split('@');
     this.image = taskImage[0];
   }
 
