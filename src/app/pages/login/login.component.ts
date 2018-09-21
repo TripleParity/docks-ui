@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
         }
       },
       (err) => {
+        this.showTokenQR = false;
         if (err === AuthError.AUTH_ERR_CREDENTIALS) {
           this.toastr.error('Invalid username or password', 'Login error');
         } else if (err === AuthError.AUTH_ERR_SERVER) {
@@ -77,9 +78,6 @@ export class LoginComponent implements OnInit {
             'Token',
           );
           this.showTokenInput = true;
-
-          console.log(username);
-          console.log(password);
           this.authService.getQRCode(username, password).subscribe(
             (response) => {
               this.tokenQRImageSource = response.qrImageData;
