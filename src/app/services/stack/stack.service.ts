@@ -6,6 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Stack } from 'app/models/stack/stack.model';
 import { Observable } from 'rxjs/Observable';
 import { ConfigurationService } from 'services/configuration/configuration.service';
+import { Service } from 'app/models/service/service.model';
 
 export enum StackErrorCode {
   ERR_OK = 200,
@@ -103,9 +104,9 @@ export class StackService {
    * Returns a list of services associated with the stack.
    *
    * @param {string} stack
-   * @returns {Observable<JSON>}
+   * @returns {Observable<Service[]>}
    */
-  public getStackServices(stack: string): Observable<JSON> {
+  public getStackServices(stack: string): Observable<Service[]> {
     return this.http
       .get(this.config.getAPIHostname() + '/stacks/' + stack + '/services', {
         responseType: 'json',

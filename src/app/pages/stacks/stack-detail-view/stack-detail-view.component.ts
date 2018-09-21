@@ -4,6 +4,7 @@ import { StackService, StackError, StackErrorCode } from 'services/stack/stack.s
 import { ToastrService } from 'ngx-toastr';
 import { Service } from 'app/models/service/service.model';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ServiceError } from 'services/services/services.service';
 
 @Component({
   selector: 'app-stack-detail-view',
@@ -13,7 +14,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 export class StackDetailViewComponent implements OnInit {
 
   public stackName: string;
-  public service: Service;
+  public service: Service[];
   public isLoaded = false;
   public activeModal: NgbModalRef;
 
@@ -28,12 +29,23 @@ export class StackDetailViewComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.stackName = params.get('stackName');
-      this.fetchStackServices();
     });
   }
 
+
   fetchStackServices() {
-    this.isLoaded = true;
+    console.log('In here with the timer');
+    this.stackService.getStackServices(this.stackName).subscribe(
+      (service) => {
+        console.log(service);
+        this.service = service;
+        this.isLoaded = true;
+      }, (err: ServiceError) => {
+          this.toastr.error(
+          'Something went wrong...',
+          'Could not retrieve services' );
+      }
+    );
   }
 
   removeStack() {

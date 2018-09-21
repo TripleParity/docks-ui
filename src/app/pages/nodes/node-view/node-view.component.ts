@@ -21,6 +21,7 @@ export class NodeViewComponent implements OnInit {
 
   ngOnInit() {
     this.fetchNodes();
+    setInterval(() => { this.fetchNodes(); }, 1000 * 5);
   }
 
   getRowHeight(row) {
@@ -28,6 +29,7 @@ export class NodeViewComponent implements OnInit {
   }
 
   fetchNodes() {
+    console.log('Fetching nodes');
     this.nodeService.getNodes().subscribe((nodes: Node[]) => {
       this.nodes = nodes;
       this.searchString = [...nodes];
