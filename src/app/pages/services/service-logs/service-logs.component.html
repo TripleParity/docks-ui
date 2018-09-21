@@ -1,0 +1,21 @@
+<div *ngIf="isLoaded">
+
+  <div class="row">
+    <div class="col-md-12 title">
+      <div class="offset-md-4 ">
+        <h2>
+          View {{serviceName}} Logs
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  <app-spinner [hidden]="isLoadedLog"></app-spinner>
+  <div *ngIf="isLoadedLog">
+  <div class="row">
+    <div class="offset-sm-1 col-sm-10">
+        <textarea id="logArea" title="LogFrame" disabled> {{Log}}  </textarea>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,9 +1,6 @@
-.label
-{
-    margin-top: 5px;
+#deleteButton:hover {
+    cursor: pointer;
 }
-.dropdown-item
-{
-    line-height: 30px;
-    font-size: 12px;
+#serviceTable {
+    margin-top: 20px;
 }

@@ -442,34 +442,7 @@ bootstrap table theme
     background-color: #F7F7F7;
     padding: 10px;
 }
-.break
-{
-    background-color: #F7F7F7;
-    height: 20px;
-    border-bottom: 1px solid #C9C9C9;
-}
 
-.inserts {
-    color: #1180AF;
-    font-size: 14px;
-}
-.statusLabel {
-    border: 2px solid #6E6E6E;
-    border-radius: 5px;
-    padding: 5px;
-    text-align: center;
-    font-size: 70%;
-}
-.title
-{
-    color: #9F9D97;
-    background-color: #F7F7F7;
-    border-bottom: 1px solid #C9C9C9;
-}
-.innerTitle
-{
-    margin-top: 10px;
-}
 
 /* Toast styling from https://github.com/scttcper/ngx-toastr/blob/HEAD/src/lib/toastr.css */
 
@@ -664,4 +637,110 @@ button.toast-close-button {
     padding: 15px 15px 15px 50px;
     width: 25em;
     }
+}
+/* ################################Detail Page styling####################################### */
+
+.break
+{
+    background-color: #F5F5F5;
+    height: 20px;
+    border-bottom: 1px solid #C9C9C9;
+}
+
+.statusLabel {
+    border: 2px solid #6E6E6E;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    font-size: 70%;
+}
+.title
+{
+    color: #9F9D97;
+    background-color: #F2F2F2;
+    border-bottom: 1px solid #C9C9C9;
+    border-top: 1px solid #C9C9C9;
+}
+.innerTitle
+{
+    margin-top: 10px;
+}
+
+.inserts {
+    color: #1180AF;
+    font-size: 14px;
+}
+.detailLabel
+{
+    margin-top: 10px;
+}
+.detailTable
+{
+    width: 100%;
+    margin: 20px 0px;
+}
+.detailName 
+{
+    color: #6E6E6E;
+    width: 30%;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.detailValue
+{
+    width: 60%;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.detailID
+{
+    color: #1180AF;
+    font-size: 80%;
+}
+.status
+{
+    width: 70px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.failed, .rejected, .orphaned, .remove
+{
+    color: red;
+    border: 1px solid red; 
+}
+.running
+{
+    color: green;
+    border: 1px solid green; 
+}
+.new
+{
+    color: darkslateblue;
+    border: 1px solid darkslateblue;     
+}
+.pending
+{
+    color: darkgoldenrod;
+    border: 1px solid darkgoldenrod; 
+}
+.assigned, .accepted, .preparing, .starting
+{
+    color: dodgerblue;
+    border: 1px solid dodgerblue;  
+}
+.dark, .shutdown
+{
+    color: 6E6E6E;
+    border: 1px solid darkgray;
+}
+.default
+{
+    color: black;
+    border: 1px solid black;
+}
+.detailLinks {
+    color: #27548C;
+    text-decoration: underline;
+    text-decoration-color: #27548C;
 }
