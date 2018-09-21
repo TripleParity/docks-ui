@@ -101,7 +101,6 @@ export class UserListComponent implements OnInit {
           this.toastr.error('Something went wrong...', 'An error occured!');
         }
 
-        this.activeModal.close();
         this.fetchUsers();
       },
       (err: UserError) => {
@@ -112,7 +111,6 @@ export class UserListComponent implements OnInit {
           this.toastr.error('Something went wrong...', 'An error occured!');
         }
 
-        this.activeModal.close();
         this.fetchUsers();
       }
     );
