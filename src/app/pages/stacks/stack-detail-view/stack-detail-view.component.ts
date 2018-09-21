@@ -19,6 +19,7 @@ export class StackDetailViewComponent implements OnInit {
   public service: Service[];
   public isLoaded = false;
   public activeModal: NgbModalRef;
+  public selected = [];
 
   constructor(
     private router: Router,
@@ -106,5 +107,9 @@ export class StackDetailViewComponent implements OnInit {
     } else {
       return '-';
     }
+  }
+
+  onSelect({ selected }) {
+    this.router.navigate(['/services/' + selected[0].ID]);
   }
 }
