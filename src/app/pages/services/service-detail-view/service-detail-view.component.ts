@@ -66,8 +66,6 @@ export class ServiceDetailViewComponent implements OnInit {
     }
   }
 
-  getLog() {}
-
   getMode() {
     if (this.serviceModel.Spec.Mode.hasOwnProperty('Replicated')) {
       this.mode = 'Replicated';
@@ -102,6 +100,6 @@ export class ServiceDetailViewComponent implements OnInit {
 
   viewLogs() {
     console.log('stacks/' + this.stackName + '/logs');
-    this.router.navigate(['services/' + this.stackName + '/logs']);
+    this.router.navigate(['services/' + this.serviceID + '/logs']);
   }
 }
