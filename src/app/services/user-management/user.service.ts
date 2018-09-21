@@ -136,4 +136,33 @@ export class UserService {
       );
     });
   }
+
+  updateUserTwoFactorStatus(username: string, status: boolean) {
+    return new Observable<UserError>((observer) => {
+      this.httpClient
+        .put(this.userEndpoint + '/' + username + '/2fa', { status: status })
+        .subscribe(
+          (body) => {
+            observer.next({
+              code: UserErrorCode.REQUEST_OK,
+              message: 'Two-Factor status updated!',
+            });
+          },
+          (err: HttpErrorResponse) => {
+            console.error(err);
+            if (err.status === 404) {
+              observer.error({
+                code: UserErrorCode.REQUEST_ERR_NOT_FOUND,
+                message: code_to_message(err.status),
+              });
+            } else {
+              observer.error({
+                code: UserErrorCode.REQUEST_ERR_NOT_FOUND,
+                message: code_to_message(err.status),
+              });
+            }
+          }
+        );
+    });
+  }
 }

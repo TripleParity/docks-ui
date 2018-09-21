@@ -33,7 +33,7 @@ import { AppRoutingModule } from './app-routing.module';
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 10000,
+      timeOut: 4000,
       positionClass: 'toast-top-center',
       preventDuplicates: true,
       resetTimeoutOnDuplicate: true,

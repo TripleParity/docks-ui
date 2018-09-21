@@ -72,15 +72,25 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" placeholder="Password" aria-label="Password" id="password" (keyup.enter)="login(username.value, password.value)"
+                    <input type="password" class="form-control" placeholder="Password" aria-label="Password" id="password" (keyup.enter)="login(username.value, password.value, token.value)"
                         #password>
                     <div [hidden]="!passwordError" class="alert alert-danger">
                         Password is required
                     </div>
                 </div>
 
+                <div [hidden]="!showTokenInput" class="form-group">
+                    <label for="token">Two-Factor Token</label>
+                    <input type="text" class="form-control" placeholder="Two-Factor Token" aria-label="Two-Factor Token" id="token" (keyup.enter)="login(username.value, password.value, token.value)"
+                           #token>
+                </div>
+
+                <div [hidden]="!showTokenQR" class="form-group">
+                        <img src="{{tokenQRImageSource}}" alt="QR Code" id="qrImage">
+                </div>
+
                 <div align="center">
-                    <button type="button" id="loginButton" class="btn btn-success btn-block" [disabled]="busy" (click)="login(username.value, password.value)">Login</button>
+                    <button type="button" id="loginButton" class="btn btn-success btn-block" [disabled]="busy" (click)="login(username.value, password.value, token.value)">Login</button>
                 </div>
 
             </div>
