@@ -113,7 +113,7 @@ export class StackService {
       })
       .pipe(
         map((x) => {
-          return x;
+          return x['data'];
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create({

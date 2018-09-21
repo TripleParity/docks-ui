@@ -32,6 +32,44 @@
 </div>
 
 
+<div class="row">
+    <div class="col-md-12" id="serviceTable">
+      <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="service" [headerHeight]="'auto'"
+        [rowHeight]="getRowHeight">
+
+        <ngx-datatable-column name="Name">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Spec.Name}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Image">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{getImage(row.Spec.TaskTemplate.ContainerSpec.Image)}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Mode">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{getMode(row.Spec.Mode)}}
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Replicas">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{getReplicas(row.Spec.Mode)}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Replicas">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{getPort(row.Spec.EndpointSpec)}}
+                </ng-template>
+              </ngx-datatable-column>
+
+      </ngx-datatable>
+    </div>
+  </div>
 
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">

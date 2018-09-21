@@ -1,3 +1,6 @@
 #deleteButton:hover {
     cursor: pointer;
 }
+#serviceTable {
+    margin-top: 20px;
+}

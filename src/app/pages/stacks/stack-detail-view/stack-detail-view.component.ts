@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Service } from 'app/models/service/service.model';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceError } from 'services/services/services.service';
+import { Mode } from 'app/models/service/mode/mode.model';
+import { EndpointSpec } from 'app/models/service/endpoint/endpointspec.model';
 
 @Component({
   selector: 'app-stack-detail-view',
@@ -29,6 +31,7 @@ export class StackDetailViewComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.stackName = params.get('stackName');
+      this.fetchStackServices();
     });
   }
 
@@ -37,9 +40,9 @@ export class StackDetailViewComponent implements OnInit {
     console.log('In here with the timer');
     this.stackService.getStackServices(this.stackName).subscribe(
       (service) => {
-        console.log(service);
         this.service = service;
         this.isLoaded = true;
+        console.log(this.service);
       }, (err: ServiceError) => {
           this.toastr.error(
           'Something went wrong...',
@@ -73,4 +76,35 @@ export class StackDetailViewComponent implements OnInit {
     this.activeModal = this.modalService.open(content);
   }
 
+  getRowHeight(): number {
+    return 50;
+  }
+
+  getImage(image: string): string {
+    return image.split('@')[0];
+  }
+
+  getMode(mode: Mode): string {
+    if (mode.hasOwnProperty('Replicated')) {
+      return 'Replicated';
+    } else {
+      return 'Global';
+    }
+  }
+
+  getReplicas(mode: Mode): string {
+    if (mode.hasOwnProperty('Replicated')) {
+      return mode.Replicated.Replicas.toString();
+    } else {
+      return 'gloabal';
+    }
+  }
+
+  getPort(endPoint: EndpointSpec): string {
+    if (endPoint.hasOwnProperty('Ports') && endPoint.Ports[0]) {
+      return endPoint.Ports[0].PublishedPort.toString();
+    } else {
+      return '-';
+    }
+  }
 }
