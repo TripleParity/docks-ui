@@ -76,9 +76,21 @@ export class ServicesService {
           return x;
         }),
         catchError((err: HttpErrorResponse) => {
+          // On some unknown condition:
+          // TypeError: Cannot read property 'message' of undefined
+          // TODO(egeldenhuys): Fix error here...
+          let message = 'SHOULD BE A MESSAGE';
+
+          if (err.error === undefined) {
+            console.error('Error, but no message was returned!');
+            message = 'Something went wrong. (From: services.service.ts:~81)';
+          } else {
+            message = err.error['message'];
+          }
+
           return ErrorObservable.create({
             code: <ServiceErrorCode>err.status,
-            message: err.error['message'],
+            message: message,
           });
         })
       );

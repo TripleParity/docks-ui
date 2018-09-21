@@ -17,6 +17,8 @@ import { ServiceCreateComponent } from './service-create/service-create.componen
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ServiceDetailViewComponent } from 'pages/services/service-detail-view/service-detail-view.component';
+import { StackService } from 'services/stack/stack.service';
+import { ServiceLogsComponent } from 'pages/services/service-logs/service-logs.component';
 
 @NgModule({
   imports: [
@@ -34,7 +36,8 @@ import { ServiceDetailViewComponent } from 'pages/services/service-detail-view/s
     ServicesOperationsComponent,
     ServiceCreateComponent,
     ServiceDetailViewComponent,
+    ServiceLogsComponent
   ],
-  providers: [ServicesService, MockService],
+  providers: [ServicesService, MockService, StackService],
 })
 export class ServicesModule {}

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../../models/task/task.model';
 import { TaskService, TaskError } from '../../../services/task/task.service';
-import { MockService } from '../../../services/mock/mock.service';
-import { Formatter } from '../../../classes/formatter/formatter';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-list-view',
@@ -13,12 +12,13 @@ import { ToastrService } from 'ngx-toastr';
 export class TaskListViewComponent implements OnInit {
   constructor(
     private taskService: TaskService,
-    private mockService: MockService,
+    private router: Router,
     private toastr: ToastrService
   ) {}
   public tasks: Task[] = [];
   public previous = 0;
   public isLoaded = false;
+  public selected = [];
 
   ngOnInit() {
     this.fetchTasks();
@@ -46,5 +46,9 @@ export class TaskListViewComponent implements OnInit {
     } else {
       return id;
     }
+  }
+
+  onSelect({ selected }) {
+    this.router.navigate(['/tasks/' + selected[0].ID]);
   }
 }

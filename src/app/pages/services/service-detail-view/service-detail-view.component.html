@@ -1,106 +1,107 @@
-<div class="row heading">
-  <div class="col-sm-9">
-    <h1>
-      <i class="fa fa-suitcase"></i>
-      Service:
-      <i class="inserts"> "insert service name here" </i> Detail
-    </h1>
-  </div>
-  <div class="col-sm-3 label">
-    <button class="btn btn-info">
-      <i class="fa fa-archive"></i> View Logs</button>
-    <div ngbDropdown class="d-inline-block">
-      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Actions</button>
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button class="dropdown-item">
-          <i class="fa fa-pencil"></i> Edit</button>
-        <button class="dropdown-item">
-          <i class="fa fa-trash"></i> Delete</button>
+<div *ngIf="isLoaded">
+  <div class="row heading">
+    <div class="col-sm-9">
+      <h1>
+        <div class="fa fa-suitcase"></div>
+        Service:
+        <span class="detailID"> {{serviceModel.Spec.Name}} </span>
+      </h1>
+    </div>
+    <div class="col-sm-3 label">
+      <button class="btn btn-info" (click)="viewLogs()">
+        <div class="fa fa-archive"></div> View Logs</button>
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle >Actions</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button class="dropdown-item">
+            <div class="fa fa-pencil"></div> Edit</button>
+          <button class="dropdown-item">
+            <div class="fa fa-trash"></div> Delete</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="row title">
-  <div class="innerTitle col-sm-12">
-    <h3>General</h3>
+  <div class="row title">
+    <div class="innerTitle col-sm-12">
+      <h3>General</h3>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <table>
-    <tbody>
-      <tr>
-        <td class="name">
-          ID:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert service id here" </i>
-        </td>
-      </tr>
-      <tr>
-        <td class="col-sm-3 name">
-          Image:
-        </td>
-        <td class="col-sm-9 value">
-          <i class="inserts"> "insert service image here" </i>
-        </td>
-      </tr>
-      <tr>
-        <td class="name">
-          Mode:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert service mode here" </i>
-        </td>
-      </tr>
-      <tr>
-        <td class="name">
-          Replicas:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert service replicas here" </i>
-        </td>
-      </tr>
-      <tr>
-        <td class="name">
-          Port:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert service port here" </i>
-        </td>
-      </tr>
-      <tr>
-        <td class="col-sm-3 name">
-          Stack:
-        </td>
-        <td class="col-sm-9 value">
-          <a href="#">
-            <i class="inserts"> "insert a link to stack detail page" </i>
-          </a>
-        </td>
-      </tr>
-      <tr>
-          <td class="col-sm-3 name">
-            Created At:
+  <div class="row">
+    <table class="detailTable">
+      <tbody>
+        <tr>
+          <td class="detailName">
+            ID:
           </td>
-          <td class="col-sm-9 value">
-            <i class="inserts"> "insert Service "CA date" here" </i>
+          <td class="detailValue">
+            <div class="inserts"> {{serviceModel.ID}} </div>
           </td>
         </tr>
         <tr>
-          <td class="col-sm-3 name">
-            Last Modified At:
+          <td class="detailName">
+            Image:
           </td>
-          <td class="col-sm-9 value">
-            <i class="inserts"> "insert Service "LM date" here" </i>
+          <td class="detailValue">
+            <div class="inserts"> {{image}}</div>
           </td>
         </tr>
-    </tbody>
-  </table>
-</div>
+        <tr>
+          <td class="detailName">
+            Mode:
+          </td>
+          <td class="detailValue">
+            <div class="inserts"> {{mode}} </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="detailName">
+            Replicas:
+          </td>
+          <td class="detailValue">
+            <div class="inserts"> {{replicas}} </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="detailName">
+            Port:
+          </td>
+          <td class="detailValue">
+            <div class="inserts"> {{port}} </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="detailName">
+            Stack:
+          </td>
+          <td class="detailValue">
+            <a routerLink="/stacks/{{stackName}}">
+              <div class="detailLinks">  {{stackName}}</div>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td class="detailName">
+            Created At:
+          </td>
+          <td class="detailValue">
+            <div class="inserts"> {{PrettifyDateTime(serviceModel.CreatedAt)}} </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="detailName">
+            Last Modified At:
+          </td>
+          <td class="detailValue">
+            <div class="inserts"> {{PrettifyDateTime(serviceModel.UpdatedAt)}} </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<!-- <div class="row title">
+  <!-- <div class="row title">
   <div class="innerTitle col-sm-12">
     <h3>Meta</h3>
   </div>
@@ -113,7 +114,7 @@
           Ownership:
         </td>
         <td class="value">
-          <i class="inserts"> "insert service Ownership here" </i>
+          <div class="inserts"> "insert service Ownership here" </div>
         </td>
       </tr>
       <tr>
@@ -121,7 +122,7 @@
           Created by:
         </td>
         <td class="value">
-          <i class="inserts"> "insert service owner here" </i>
+          <div class="inserts"> "insert service owner here" </div>
         </td>
       </tr>
       <tr>
@@ -129,7 +130,7 @@
           Used by these teams:
         </td>
         <td class="value">
-          <i class="inserts"> "insert service teams here" </i>
+          <div class="inserts"> "insert service teams here" </div>
         </td>
       </tr>
     </tbody>
@@ -137,8 +138,9 @@
 </div> -->
 
 
-<div class="row title">
-  <div class="innerTitle col-sm-12">
-    <h3>Tasks</h3>
+  <div class="row title">
+    <div class="innerTitle col-sm-12">
+      <h3>Tasks</h3>
+    </div>
   </div>
 </div>

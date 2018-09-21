@@ -86,7 +86,7 @@ export class TaskService {
    * @param {string} id
    * @returns {Observable<JSON>}
    */
-  public inspect(id: string): Observable<JSON> {
+  public inspect(id: string): Observable<Task> {
     return this.http
       .get<JSON>(this.config.getAPIHostname() + '/docker/tasks/' + id, {
         responseType: 'json',
