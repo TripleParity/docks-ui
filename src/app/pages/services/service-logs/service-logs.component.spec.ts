@@ -5,7 +5,7 @@ import { ServicesService } from 'services/services/services.service';
 import { NgbModule, NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 import { HttpHandler, HttpClient } from '@angular/common/http';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TokenStorage } from 'classes/tokenstorage/tokenstorage';
@@ -23,6 +23,7 @@ describe('ServiceLogsComponent', () => {
         RouterTestingModule,
         NgxDatatableModule,
         SpinnerModule,
+        ToastrModule.forRoot(),
       ],
       providers: [
         ServicesService,

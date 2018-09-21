@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { ServicesService } from 'services/services/services.service';
+import { ServicesService, ServiceError } from 'services/services/services.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-service-logs',
@@ -18,6 +19,7 @@ export class ServiceLogsComponent implements OnInit {
   constructor(
     private serviceService: ServicesService,
     private route: ActivatedRoute,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -25,6 +27,8 @@ export class ServiceLogsComponent implements OnInit {
       this.serviceID = params.get('serviceID');
       this.fetchService();
       this.fetchServiceLog();
+    }, (err: ServiceError) => {
+      this.toastr.error(err.message, 'An error occured');
     });
   }
 
@@ -33,6 +37,8 @@ export class ServiceLogsComponent implements OnInit {
       (service) => {
           this.serviceName = service.Spec.Name;
           this.isLoaded = true;
+      }, (err: ServiceError) => {
+        this.toastr.error(err.message, 'An error occured');
       }
     );
   }
@@ -46,6 +52,8 @@ export class ServiceLogsComponent implements OnInit {
           this.Log = 'The service ' + this.serviceName + ' returned no log';
         }
         this.isLoadedLog = true;
+      }, (err: ServiceError) => {
+        this.toastr.error(err.message, 'An error occured');
       }
     );
   }
