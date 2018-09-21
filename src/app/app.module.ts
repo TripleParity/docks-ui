@@ -5,8 +5,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 
 import { AuthInjector } from './classes/authinjector/authinjector';
@@ -24,6 +22,7 @@ import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 
 import { ToastrModule } from 'ngx-toastr';
 
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent, UserBarComponent, NavbarComponent],
@@ -31,7 +30,6 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    AppRoutingModule,
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
@@ -42,6 +40,7 @@ import { ToastrModule } from 'ngx-toastr';
       maxOpened: 1,
       autoDismiss: true,
     }),
+    AppRoutingModule,
   ],
   providers: [
     {
