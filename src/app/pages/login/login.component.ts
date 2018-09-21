@@ -82,9 +82,11 @@ export class LoginComponent implements OnInit {
           console.log(password);
           this.authService.getQRCode(username, password).subscribe(
             (response) => {
-              console.log('GOTEM' + response.qrImageData);
+              this.tokenQRImageSource = response.qrImageData;
+              this.showTokenQR = true;
             },
             (error) => {
+              // TODO(devosray): Error handling
               console.log('ERR: ' + error);
             }
           );

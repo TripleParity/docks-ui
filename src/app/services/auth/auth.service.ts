@@ -122,16 +122,12 @@ export class AuthService {
       .pipe(
         map((body) => {
           if (body['qr'] === null) {
-            // return ErrorObservable.create(AuthError.AUTH_ERR);
+            return <QRReturn> {qrImageData: ''};
           }
-          return Observable.create({
-            qrImageData: body['qr']
-          });
+          return <QRReturn> {qrImageData: body['qr']};
         }),
         catchError((err: HttpErrorResponse) => {
-          return Observable.create({
-            qrImageData: ''
-          });
+          return ErrorObservable.create(AuthError.AUTH_ERR);
         })
       );
   }

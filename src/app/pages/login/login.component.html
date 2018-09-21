@@ -85,6 +85,10 @@
                            #token>
                 </div>
 
+                <div [hidden]="!showTokenQR" class="form-group">
+                        <img src="{{tokenQRImageSource}}" alt="QR Code" id="qrImage">
+                </div>
+
                 <div align="center">
                     <button type="button" id="loginButton" class="btn btn-success btn-block" [disabled]="busy" (click)="login(username.value, password.value, token.value)">Login</button>
                 </div>
