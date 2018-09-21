@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-md-12">
         <ngx-datatable class="bootstrap ngx-datatable" [limit]="9" [footerHeight]="40" [columnMode]="'force'" [rows]="tasks" [headerHeight]="'auto'"
-            [rowHeight]="getRowHeight">
+            [rowHeight]="getRowHeight" [selectionType]="'single'" (select)='onSelect($event)'>
 
             <ngx-datatable-column name="Name">
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>

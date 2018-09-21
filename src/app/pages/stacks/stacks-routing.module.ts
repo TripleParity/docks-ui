@@ -22,7 +22,7 @@ const routes: Routes = [
     component: StackEditComponent,
   },
   {
-    path: 'detail',
+    path: ':stackName',
     component: StackDetailViewComponent,
   },
 ];

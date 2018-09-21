@@ -8,6 +8,7 @@ import {
 } from '../../../services/services/services.service';
 import { MockService } from '../../../services/mock/mock.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-service-list-view',
@@ -19,7 +20,8 @@ export class ServiceListViewComponent implements OnInit {
     private mock: MockService,
     private serviceService: ServicesService,
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   public services: Service[] = [];
@@ -34,15 +36,15 @@ export class ServiceListViewComponent implements OnInit {
   public rows: any[] = [];
   public columns: any = [
     { prop: 'Name' },
-    { prop: 'ID' },
-    { prop: 'Stack' },
+    // { prop: 'ID' },
+    // { prop: 'Stack' },
     { prop: 'Image' },
     { prop: 'Mode' },
     { prop: 'Replicas' },
     { prop: 'Ports' },
-    { prop: 'CreatedAt' },
-    { prop: 'UpdatedAt' },
-    { prop: 'Ownership' },
+    // { prop: 'CreatedAt' },
+    // { prop: 'UpdatedAt' },
+    // { prop: 'Ownership' },
   ];
 
   public selected = [];
@@ -84,6 +86,8 @@ export class ServiceListViewComponent implements OnInit {
     let port = null;
     if (services.Spec.EndpointSpec.Ports !== undefined) {
       port = services.Spec.EndpointSpec.Ports[0].PublishedPort;
+    } else {
+      port = '-';
     }
 
     const created = this.PrettifyDateTime(services.CreatedAt);
@@ -101,7 +105,7 @@ export class ServiceListViewComponent implements OnInit {
       Name: services.Spec.Name,
       ID: services.ID,
       Stack: '',
-      Image: services.Spec.TaskTemplate.ContainerSpec.Image,
+      Image: services.Spec.TaskTemplate.ContainerSpec.Image.split('@')[0],
       Mode: services.Spec.EndpointSpec.Mode,
       Replicas: replicated,
       Ports: port,
@@ -178,16 +182,7 @@ export class ServiceListViewComponent implements OnInit {
 
   onSelect({ selected }) {
     // console.log('Select Event', selected, this.selected);
-    if (this.isSelected) {
-      this.isSelected = false;
-    } else {
-      this.isSelected = true;
-    }
+    this.router.navigate(['/services/' + selected[0].ID]);
+  }
 
-    console.log('Select Event', selected, this.selected[0]);
-  }
-  onHover({ selected }) {
-    // console.log('Select Event', selected, this.selected);
-    console.log('Select Event', selected, this.selected[0]);
-  }
 }

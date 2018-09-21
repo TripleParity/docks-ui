@@ -14,7 +14,8 @@ const routes: Routes = [
         component: TaskListViewComponent,
       },
       {
-        path: 'detail',
+        // path: ':stackName/edit',
+        path: ':taskID',
         component: TaskDetailViewComponent,
       },
     ],
