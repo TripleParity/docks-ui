@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { TaskService, TaskError } from 'services/task/task.service';
 import { ToastrService } from 'ngx-toastr';
 import { Task } from 'app/models/task/task.model';
-import { ServicesService } from 'services/services/services.service';
+import { ServicesService, ServiceError } from 'services/services/services.service';
 import { Formatter } from 'classes/formatter/formatter';
 
 @Component({
@@ -20,7 +20,6 @@ export class TaskDetailViewComponent implements OnInit {
   public isLoaded = false;
 
   constructor(
-    private router: Router,
     private taskService: TaskService,
     private taskServiceSercice: ServicesService,
     private route: ActivatedRoute,
@@ -71,6 +70,8 @@ export class TaskDetailViewComponent implements OnInit {
       .inspectService(this.taskModel.ServiceID)
       .subscribe((service) => {
         this.serviceName = service.Spec.Name;
+      }, (err: ServiceError) => {
+        this.toastr.error(err.message, 'An error occured');
       });
   }
 

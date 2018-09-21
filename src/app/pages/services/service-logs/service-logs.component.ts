@@ -27,8 +27,6 @@ export class ServiceLogsComponent implements OnInit {
       this.serviceID = params.get('serviceID');
       this.fetchService();
       this.fetchServiceLog();
-    }, (err: ServiceError) => {
-      this.toastr.error(err.message, 'An error occured');
     });
   }
 
