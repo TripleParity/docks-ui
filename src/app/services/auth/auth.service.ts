@@ -18,6 +18,7 @@ export enum AuthError {
   AUTH_ERR_CREDENTIALS, // Bad username/password
   AUTH_ERR_SERVER, // Server unreachable
   AUTH_ERR_INITIAL_TWO_FACTOR_TOKEN, // The two-factor token barcode still has to be shown
+  AUTH_ERR_TWO_FACTOR_TOKEN_REQUIRED,
 }
 
 export interface QRReturn {
@@ -74,6 +75,8 @@ export class AuthService {
             return ErrorObservable.create(AuthError.AUTH_ERR_CREDENTIALS);
           } else if (err.status === 402) {
             return ErrorObservable.create(AuthError.AUTH_ERR_INITIAL_TWO_FACTOR_TOKEN);
+          } else if (err.status === 400) {
+            return ErrorObservable.create(AuthError.AUTH_ERR_TWO_FACTOR_TOKEN_REQUIRED);
           } else {
             return ErrorObservable.create(AuthError.AUTH_ERR);
           }

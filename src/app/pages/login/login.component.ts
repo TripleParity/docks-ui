@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
   public login(username: string, password: string, token: string): void {
 
     if (!this.validateLogin(username, password)) {
-      this.toastr.error('Invalid username or password', 'Login error');
+      this.toastr.error('Invalid credentials', 'Login error', {timeOut: 4000});
       return;
     }
 
@@ -66,7 +66,10 @@ export class LoginComponent implements OnInit {
       (err) => {
         this.showTokenQR = false;
         if (err === AuthError.AUTH_ERR_CREDENTIALS) {
-          this.toastr.error('Invalid username or password', 'Login error');
+          this.toastr.error('Invalid username or password', 'Login error', {timeOut: 4000});
+        } else if (err === AuthError.AUTH_ERR_TWO_FACTOR_TOKEN_REQUIRED) {
+          this.toastr.info('Please supply your two-factor token', 'Token Required', {timeOut: 4000});
+          this.showTokenInput = true;
         } else if (err === AuthError.AUTH_ERR_SERVER) {
           this.toastr.error(
             'Unable to connect to ' + this.configService.getAPIHostname(),
@@ -76,6 +79,7 @@ export class LoginComponent implements OnInit {
           this.toastr.info(
             'Scan the Two-Factor token.',
             'Token',
+            {timeOut: 4000}
           );
           this.showTokenInput = true;
           this.authService.getQRCode(username, password).subscribe(
