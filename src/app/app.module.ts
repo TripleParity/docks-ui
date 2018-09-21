@@ -24,6 +24,7 @@ import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 
 import { ToastrModule } from 'ngx-toastr';
 
+
 @NgModule({
   declarations: [AppComponent, UserBarComponent, NavbarComponent],
   imports: [

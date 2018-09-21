@@ -41,7 +41,6 @@ export class ServiceDetailViewComponent implements OnInit {
   fetchService() {
     this.serviceService.inspectService(this.serviceID).subscribe(
       (service) => {
-        console.log(service);
         this.serviceModel = service;
         this.getStackName();
         this.isLoaded = true;
@@ -99,5 +98,10 @@ export class ServiceDetailViewComponent implements OnInit {
 
   getImage() {
     this.image = this.serviceModel.Spec.TaskTemplate.ContainerSpec.Image.split('@')[0];
+  }
+
+  viewLogs() {
+    console.log('stacks/' + this.stackName + '/logs');
+    this.router.navigate(['services/' + this.stackName + '/logs']);
   }
 }

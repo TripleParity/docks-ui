@@ -6,6 +6,7 @@ import { ServiceListViewComponent } from '../../pages/services/list-view/service
 import { ServicesOperationsComponent } from '../../pages/services/operations/services-operations.component';
 import { ServiceCreateComponent } from '../../pages/services/service-create/service-create.component';
 import { ServiceDetailViewComponent } from 'pages/services/service-detail-view/service-detail-view.component';
+import { ServiceLogsComponent } from 'pages/services/service-logs/service-logs.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
       {
         path: ':serviceID',
         component: ServiceDetailViewComponent,
+      },
+      {
+        path: ':serviceID/logs',
+        component: ServiceLogsComponent,
       },
     ],
   },
