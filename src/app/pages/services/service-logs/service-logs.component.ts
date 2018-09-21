@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ServicesService } from 'services/services/services.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-service-logs',
