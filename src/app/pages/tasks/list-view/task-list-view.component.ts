@@ -34,7 +34,6 @@ export class TaskListViewComponent implements OnInit {
       (task) => {
         this.tasks = task;
         this.isLoaded = true;
-        this.getNodeName();
       },
       (err: TaskError) => {
         this.toastr.error(err.message, 'An error occured');
@@ -61,38 +60,5 @@ export class TaskListViewComponent implements OnInit {
   getImage(image: String): string {
     const taskImage = image.split('@');
     return taskImage[0];
-  }
-
-  getNodeName() {
-    this.tasks.forEach( task => {
-      const nodeName = this.contains(task.NodeID);
-
-      if (nodeName !== null) { // if a node with this ID has already been found
-        task.NodeName = nodeName.Description.Hostname;
-      } else {
-        // console.log('Only see this once');
-        this.nodeService.inspectNode(task.NodeID).subscribe(
-          (node) => {
-            task.NodeName = node.Description.Hostname;
-            this.NodeNames.push(node); // add the node to the list of node names
-            // console.log(this.NodeNames.length);
-          },
-          (err: NodeError) => {
-            this.toastr.error(err.message, 'An error retrieving Node name occured');
-          }
-        );
-      }
-    });
-  }
-
-  contains(nodeID: String): Node {
-    // console.log('length at search ' + this.NodeNames.length);
-    this.NodeNames.forEach(node => {
-
-      if (nodeID === node.ID) {
-        return node;
-      }
-    });
-    return null;
   }
 }
