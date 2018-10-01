@@ -51,4 +51,22 @@ export class NodeService {
         })
       );
   }
+
+  public inspectNode(id: String): Observable<Node> {
+    return this.http
+      .get(this.config.getAPIHostname() + '/docker/nodes/' + id, {
+        responseType: 'json',
+      })
+      .pipe(
+        map((x) => {
+          return <Node>x;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return ErrorObservable.create({
+            code: <NodeErrorCode>err.status,
+            message: err.error['message'],
+          });
+        })
+      );
+  }
 }

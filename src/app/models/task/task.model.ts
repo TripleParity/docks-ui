@@ -33,4 +33,5 @@ export interface Task {
   DesiredState: string;
   NetworksAttachments: NetworkAttachment[];
   Name?: string;
+  NodeName?: string;
 }

@@ -3,6 +3,9 @@ import { Task } from '../../../models/task/task.model';
 import { TaskService, TaskError } from '../../../services/task/task.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { NodeService, NodeError } from 'services/node/node.service';
+import { Node } from 'app/models/node/node.model';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-task-list-view',
@@ -12,6 +15,7 @@ import { Router } from '@angular/router';
 export class TaskListViewComponent implements OnInit {
   constructor(
     private taskService: TaskService,
+    private nodeService: NodeService,
     private router: Router,
     private toastr: ToastrService
   ) {}
@@ -19,6 +23,7 @@ export class TaskListViewComponent implements OnInit {
   public previous = 0;
   public isLoaded = false;
   public selected = [];
+  private NodeNames: Node[] = [];
 
   ngOnInit() {
     this.fetchTasks();
@@ -29,6 +34,7 @@ export class TaskListViewComponent implements OnInit {
       (task) => {
         this.tasks = task;
         this.isLoaded = true;
+        this.getNodeName();
       },
       (err: TaskError) => {
         this.toastr.error(err.message, 'An error occured');
@@ -55,5 +61,38 @@ export class TaskListViewComponent implements OnInit {
   getImage(image: String): string {
     const taskImage = image.split('@');
     return taskImage[0];
+  }
+
+  getNodeName() {
+    this.tasks.forEach( task => {
+      const nodeName = this.contains(task.NodeID);
+
+      if (nodeName !== null) { // if a node with this ID has already been found
+        task.NodeName = nodeName.Description.Hostname;
+      } else {
+        // console.log('Only see this once');
+        this.nodeService.inspectNode(task.NodeID).subscribe(
+          (node) => {
+            task.NodeName = node.Description.Hostname;
+            this.NodeNames.push(node); // add the node to the list of node names
+            // console.log(this.NodeNames.length);
+          },
+          (err: NodeError) => {
+            this.toastr.error(err.message, 'An error retrieving Node name occured');
+          }
+        );
+      }
+    });
+  }
+
+  contains(nodeID: String): Node {
+    // console.log('length at search ' + this.NodeNames.length);
+    this.NodeNames.forEach(node => {
+
+      if (nodeID === node.ID) {
+        return node;
+      }
+    });
+    return null;
   }
 }

@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TaskDetailViewComponent } from 'pages/tasks/task-detail-view/task-detail-view.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ServicesService } from 'services/services/services.service';
+import { NodeService } from 'services/node/node.service';
 
 @NgModule({
   imports: [
@@ -24,6 +25,6 @@ import { ServicesService } from 'services/services/services.service';
     NgxDatatableModule,
   ],
   declarations: [TaskListViewComponent, TaskDetailViewComponent],
-  providers: [TaskService, MockService, ServicesService],
+  providers: [TaskService, MockService, ServicesService, NodeService],
 })
 export class TasksModule {}
