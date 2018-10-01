@@ -95,8 +95,6 @@ export class HomeComponent implements OnInit {
         for (let i = 0; i < task.length; i++) {
           this.tasks.push(task[i]);
 
-          console.log(task[i].Status.State);
-
           if (task[i].Status.State === 'running') {
             this.runTask++;
           }
