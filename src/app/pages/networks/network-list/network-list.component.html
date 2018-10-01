@@ -30,7 +30,6 @@
     <ngx-datatable class="bootstrap ngx-datatable" [footerHeight]="40" [headerHeight]="'auto'" [columnMode]="'force'"
       [rows]="rows" [rowHeight]="50" [selected]="selected" [selectionType]="'single'" (select)='onSelect($event)'>
 
-
       <ngx-datatable-column name="Name">
         <ng-template let-column="column" ngx-datatable-header-template>
           {{column.name}}

@@ -51,6 +51,6 @@ export class NetworkListComponent implements OnInit {
 
   onSelect({ selected }) {
     // console.log('Select Event', selected, this.selected);
-    this.router.navigate(['/networks/' + selected[0].ID]);
+    this.router.navigate(['/networks/' + selected[0].Id]);
   }
 }
