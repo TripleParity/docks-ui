@@ -1,4 +1,3 @@
-<!--TODO(FJMentz): NodeID -> NodeName or (ID if !hasName())-->
 <app-spinner [hidden]="isLoaded"></app-spinner>
 <div class="row heading">
     <div class="col-sm-4">
@@ -34,7 +33,7 @@
 
             <ngx-datatable-column name="Node">
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                    <div> {{ row.NodeName }}</div>
+                    <div> {{ row.NodeHostname }}</div>
                 </ng-template>
             </ngx-datatable-column>
 
