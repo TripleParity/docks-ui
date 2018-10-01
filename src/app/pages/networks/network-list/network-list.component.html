@@ -1,31 +1,52 @@
 <!-- TODO(egeldenhuys): Move CSS to higher level-->
 <!-- TODO(egeldenhuys): Search function -->
 
-<div id="networkList">
-  <h3>Networks</h3>
-  <div class="row">
-    <div class="col-md-12">
-      <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [headerHeight]="'auto'" [columnMode]="'force'"
-        [rows]="rows" [rowHeight]="50">
+<div class="row heading">
+  <div class="col-sm-4">
+      <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search Networks" aria-label="Recipient's username" aria-describedby="basic-addon2"
+              (keyup)="updateFilter($event)">
+          <div class="input-group-append">
+              <button class="btn btn-default">
+                  <span class="input-group-text" id="Search">
+                      <i class="fa fa-search"></i>
+                  </span>
+              </button>
+          </div>
+      </div>
+  </div>
+  <div class="offset-sm-6 col-sm-2">
+      <a routerLink="/networks/create">
+          <button type="button" class="btn btn-info">
+              Create Network
+              <i class="fa  fa-pencil-square-o"> </i>
+          </button>
+      </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ngx-datatable class="bootstrap ngx-datatable" [footerHeight]="40" [headerHeight]="'auto'" [columnMode]="'force'"
+      [rows]="rows" [rowHeight]="50" [selected]="selected" [selectionType]="'single'" (select)='onSelect($event)'>
 
 
-        <ngx-datatable-column name="Name">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            {{column.name}}
-          </ng-template>
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            {{row.Name}}
-          </ng-template>
+      <ngx-datatable-column name="Name">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          {{column.name}}
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{row.Name}}
+        </ng-template>
 
-        </ngx-datatable-column>
+      </ngx-datatable-column>
 
-        <ngx-datatable-column name="Driver">
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            {{row.Driver}}
-          </ng-template>
-        </ngx-datatable-column>
+      <ngx-datatable-column name="Driver">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{row.Driver}}
+        </ng-template>
+      </ngx-datatable-column>
 
-      </ngx-datatable>
-    </div>
+    </ngx-datatable>
   </div>
 </div>

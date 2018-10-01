@@ -27,6 +27,7 @@ a:hover{
 {
     background-color: #F7F7F7;
     padding: 10px;
+    border-bottom: 2px solid #C9C9C9;
 }
 .Search{
     background-color:transparent;
