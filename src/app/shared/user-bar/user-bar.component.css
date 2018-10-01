@@ -1,4 +1,9 @@
-.pageTitle
-{
-    padding-left: 0px; 
+.pageTitle {
+    padding-left: 0px;    
+}
+h3 {
+    color: #9CB4BE;
+    font-size: 200%;
+    text-transform: capitalize;
+    margin-top: 30px;
 }

@@ -51,4 +51,9 @@ export class TaskListViewComponent implements OnInit {
   onSelect({ selected }) {
     this.router.navigate(['/tasks/' + selected[0].ID]);
   }
+
+  // getImage() {
+  //   const taskImage = this.taskModel.Spec.ContainerSpec.Image.split('@');
+  //   this.image = taskImage[0];
+  // }
 }

@@ -326,19 +326,23 @@ navbar styles
     text-decoration: none;
 }
 
-/*
-user bar styling
- */
-
 .logo{
     border-radius: 50%;
     width: 50px;
     color: var(--c-light);
+    margin-top: -15px;
 }
+
+/*
+user bar styling
+ */
+
+
 
 .user-bar{
     background-color: var(--c-dark-background);
-    border-bottom: 5px solid rgba(255, 255, 255, 0.8);;
+    border-bottom: 4px solid rgba(255, 255, 255, 0.8);
+    height: 80px;
 }
 
 /*
@@ -427,11 +431,6 @@ bootstrap table theme
     font-weight: bold;
 }
 
-.col-md-12
-{
-    padding-left: 0;
-}
-
 /* Material design for detail views */
 #Search{
     background-color:transparent;
@@ -441,6 +440,7 @@ bootstrap table theme
 {
     background-color: #F7F7F7;
     padding: 10px;
+    margin-left: 0px;
 }
 
 
@@ -660,12 +660,12 @@ button.toast-close-button {
     background-color: #F2F2F2;
     border-bottom: 1px solid #C9C9C9;
     border-top: 1px solid #C9C9C9;
+    margin-left: 0px;
 }
 .innerTitle
 {
     margin-top: 10px;
 }
-
 .inserts {
     color: #1180AF;
     font-size: 14px;
@@ -677,7 +677,7 @@ button.toast-close-button {
 .detailTable
 {
     width: 100%;
-    margin: 20px 0px;
+    margin: 20px 15px;
 }
 .detailName 
 {
