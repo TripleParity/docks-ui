@@ -28,7 +28,7 @@
 
             <ngx-datatable-column name="Image">
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                    <div> {{row.Spec.ContainerSpec.Image}}</div>
+                    <div> {{ getImage(row.Spec.ContainerSpec.Image)}}</div>
                 </ng-template>
             </ngx-datatable-column>
 
