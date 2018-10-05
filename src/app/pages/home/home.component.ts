@@ -6,7 +6,7 @@ import { NetworkService } from '../../services/network/network.service';
 import { VolumeService } from '../../services/volume/volume.service';
 import { TaskService } from '../../services/task/task.service';
 import { interval } from 'rxjs/observable/interval';
-import { Subscription } from  'rxjs';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   private chartA: any;
   private chartB: any;
   private page_start: Subscription;
-  
+
   constructor(
     private networkService: NetworkService,
     private volumeService: VolumeService,
@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit {
   ) {}
   chart;
   ngOnInit() {
-
     this.updateChartB();
     this.page_start = interval(2000).subscribe(() => {
       this.updateChartB();
@@ -66,18 +65,15 @@ export class HomeComponent implements OnInit {
       type: 'pie',
       data: {
         labels: [],
-        datasets: [
-          {
-          },
-        ],
+        datasets: [{}],
       },
     });
   }
-  
+
   ngOnDestroy() {
     this.page_start.unsubscribe();
   }
-  updateChartB(){
+  updateChartB() {
     let map = new Map<string, number>();
     let coloursMap = new Map<number, string>();
     coloursMap.set(0, '#C6FF87');
@@ -88,40 +84,35 @@ export class HomeComponent implements OnInit {
     coloursMap.set(5, '#FD971F');
     coloursMap.set(6, '#FFFC87');
     coloursMap.set(7, '#E4FF87');
-   
-    
 
-    this.taskService.getTasks().subscribe(tasks => {
-      tasks.forEach(task => {
+    this.taskService.getTasks().subscribe((tasks) => {
+      tasks.forEach((task) => {
         if (!map.has(task.Status.State)) {
           map.set(task.Status.State, 0);
-        }else{
+        } else {
           let old = map.get(task.Status.State);
           map.set(task.Status.State, old + 1);
         }
       });
-      
+
       let labels = [];
       let dataSet = [];
       let colours = [];
       let i = 0;
-      Array.from(map.values()).forEach(value => {
+      Array.from(map.values()).forEach((value) => {
         dataSet.push(value);
         colours.push(coloursMap.get(i++));
       });
 
-      
-      Array.from(map.keys()).forEach(key => {
+      Array.from(map.keys()).forEach((key) => {
         labels.push(key);
       });
-
-
 
       this.chartB.data.labels = labels;
       this.chartB.data.datasets[0].data = dataSet;
       this.chartB.data.datasets[0].backgroundColor = colours;
       this.chartB.update();
-    })
+    });
   }
 
   getStats() {

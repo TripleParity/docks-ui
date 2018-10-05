@@ -36,7 +36,7 @@ import { ServiceLogsComponent } from 'pages/services/service-logs/service-logs.c
     ServicesOperationsComponent,
     ServiceCreateComponent,
     ServiceDetailViewComponent,
-    ServiceLogsComponent
+    ServiceLogsComponent,
   ],
   providers: [ServicesService, MockService, StackService],
 })
