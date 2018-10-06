@@ -109,7 +109,7 @@ export class UserListComponent implements OnInit {
       (err: UserError) => {
         this.toastr.error(
           err.message,
-          "Could not update user's two-factor authentication status"
+          'Could not update user\'s two-factor authentication status'
         );
         if (err.code === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
           this.toastr.error('Could not find user', 'An error occured!');

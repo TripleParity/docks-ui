@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
+import { NavigationStart, Router } from '@angular/router';
 import { Chart } from 'chart.js';
 
 import { NetworkService } from '../../services/network/network.service';
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private chartA: any;
   private chartB: any;
   private page_start: Subscription;
-
+  private routeSub: Subscription;
   public numNet: number;
   public numTask: number;
   public numVol: number;
@@ -28,10 +28,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     private volumeService: VolumeService,
     private taskService: TaskService,
     private nodeService: NodeService,
-    private servicesService: ServicesService
+    private servicesService: ServicesService,
+    private router: Router
   ) {}
   chart;
   ngOnInit() {
+    this.routeSub = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.page_start.unsubscribe();
+      }
+    });
+
     this.updateChartA();
     this.updateChartB();
 
@@ -59,6 +66,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.page_start.unsubscribe();
+    this.routeSub.unsubscribe();
   }
   updateChartB() {
     this.nodeService.getNodes().subscribe(
