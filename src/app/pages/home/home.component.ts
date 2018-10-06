@@ -61,39 +61,40 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.page_start.unsubscribe();
   }
   updateChartB() {
-    this.nodeService.getNodes().subscribe((nodes) => {
-      const labels = [];
-      const dataSet = [];
-      const colours = [];
-      let online = 0;
-      let offline = 0;
+    this.nodeService.getNodes().subscribe(
+      (nodes) => {
+        const labels = [];
+        const dataSet = [];
+        const colours = [];
+        let online = 0;
+        let offline = 0;
 
-      nodes.forEach(node => {
-        if ( node.Status.State === 'ready' ) {
-          online++;
-        } else {
-          offline++;
-        }
-      });
+        nodes.forEach((node) => {
+          if (node.Status.State === 'ready') {
+            online++;
+          } else {
+            offline++;
+          }
+        });
 
-      dataSet.push(online);
-      dataSet.push(offline);
+        dataSet.push(online);
+        dataSet.push(offline);
 
+        colours.push('#C6FF87');
+        colours.push('#272822');
 
-      colours.push('#C6FF87');
-      colours.push('#272822');
+        labels.push('Online');
+        labels.push('Offline');
 
-      labels.push('Online');
-      labels.push('Offline');
-
-      this.chartB.data.labels = labels;
-      this.chartB.data.datasets[0].data = dataSet;
-      this.chartB.data.datasets[0].backgroundColor = colours;
-      this.chartB.update();
-    },
-    (error) => {
-      // console.log("If this isn't here the test cases fail ( probably due to the error not being handled");
-    });
+        this.chartB.data.labels = labels;
+        this.chartB.data.datasets[0].data = dataSet;
+        this.chartB.data.datasets[0].backgroundColor = colours;
+        this.chartB.update();
+      },
+      (error) => {
+        // console.log("If this isn't here the test cases fail ( probably due to the error not being handled");
+      }
+    );
   }
 
   async updateChartA() {
@@ -107,9 +108,27 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.numTask = n_tasks.length;
     this.numVol = n_volumes.length;
 
-    this.chartA.data.labels = ['Nodes', 'Networks', 'Volumes', 'Tasks', 'Services'];
-    this.chartA.data.datasets[0].data = [n_nodes.length, n_networks.length, n_volumes.length, n_tasks.length, n_services.length];
-    this.chartA.data.datasets[0].backgroundColor = ['#FF7F90', '#DEFF71', '#7CC55A', '#102900', '#F6FF93'];
+    this.chartA.data.labels = [
+      'Nodes',
+      'Networks',
+      'Volumes',
+      'Tasks',
+      'Services',
+    ];
+    this.chartA.data.datasets[0].data = [
+      n_nodes.length,
+      n_networks.length,
+      n_volumes.length,
+      n_tasks.length,
+      n_services.length,
+    ];
+    this.chartA.data.datasets[0].backgroundColor = [
+      '#FF7F90',
+      '#DEFF71',
+      '#7CC55A',
+      '#102900',
+      '#F6FF93',
+    ];
     this.chartA.update();
   }
 }

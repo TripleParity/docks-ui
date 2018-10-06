@@ -13,7 +13,6 @@ import { VolumeService } from '../../services/volume/volume.service';
 import { NodeService } from '../../services/node/node.service';
 import { ServicesService } from '../../services/services/services.service';
 
-
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
@@ -23,7 +22,9 @@ describe('HomeComponent', () => {
       declarations: [HomeComponent],
       imports: [RouterTestingModule],
       providers: [
-        NodeService, ServicesService, GraphService,
+        NodeService,
+        ServicesService,
+        GraphService,
         NetworkService,
         HttpClient,
         HttpHandler,

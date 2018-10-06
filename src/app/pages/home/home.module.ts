@@ -12,10 +12,16 @@ import { TaskService } from '../../services/task/task.service';
 import { NodeService } from '../../services/node/node.service';
 import { ServicesService } from '../../services/services/services.service';
 
-
 @NgModule({
   imports: [CommonModule, HomeRoutingModule],
   declarations: [HomeComponent],
-  providers: [NetworkService, VolumeService, TaskService, NodeService, ServicesService, GraphService],
+  providers: [
+    NetworkService,
+    VolumeService,
+    TaskService,
+    NodeService,
+    ServicesService,
+    GraphService,
+  ],
 })
 export class HomeModule {}
