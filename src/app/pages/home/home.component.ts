@@ -4,6 +4,8 @@ import { Chart } from 'chart.js';
 
 import { NetworkService } from '../../services/network/network.service';
 import { VolumeService } from '../../services/volume/volume.service';
+import { NodeService } from '../../services/node/node.service';
+import { ServicesService } from '../../services/services/services.service';
 import { TaskService } from '../../services/task/task.service';
 import { interval } from 'rxjs/observable/interval';
 import { Subscription } from 'rxjs/Subscription';
@@ -13,51 +15,36 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  public volumes = [];
-  public numVol = 0;
-  public networks = [];
-  public numNet = 0;
-  public tasks = [];
-  public numTask = 0;
-
-  public runTask = 0;
-  public pauseTask = 0;
-  public stopTask = 0;
-
   private chartA: any;
   private chartB: any;
   private page_start: Subscription;
 
+  public numNet: number;
+  public numTask: number;
+  public numVol: number;
+
   constructor(
     private networkService: NetworkService,
     private volumeService: VolumeService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private nodeService: NodeService,
+    private servicesService: ServicesService
   ) {}
   chart;
   ngOnInit() {
+    this.updateChartA();
     this.updateChartB();
-    this.page_start = interval(2000).subscribe(() => {
-      this.updateChartB();
-    });
 
-    this.getStats();
+    this.page_start = interval(5000).subscribe(() => {
+      this.updateChartB();
+      this.updateChartA();
+    });
 
     this.chartA = new Chart('myChart', {
       type: 'pie',
       data: {
-        labels: ['Volumes', 'Networks', 'Services', 'Tasks', 'Containers'],
-        datasets: [
-          {
-            backgroundColor: [
-              '#FF0000',
-              '#FFA500',
-              '#008080',
-              '#008000',
-              '#800080',
-            ],
-            data: [10, 1, 1, 2, 5],
-          },
-        ],
+        labels: [],
+        datasets: [{}],
       },
     });
 
@@ -71,42 +58,33 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.page_start.unsubscribe();
+    this.page_start.unsubscribe();
   }
   updateChartB() {
-    const map = new Map<string, number>();
-    const coloursMap = new Map<number, string>();
-    coloursMap.set(0, '#C6FF87');
-    coloursMap.set(1, '#272822');
-    coloursMap.set(2, '#F92672');
-    coloursMap.set(3, '#66D9EF');
-    coloursMap.set(4, '#A6E22E');
-    coloursMap.set(5, '#FD971F');
-    coloursMap.set(6, '#FFFC87');
-    coloursMap.set(7, '#E4FF87');
-
-    this.taskService.getTasks().subscribe((tasks) => {
-      tasks.forEach((task) => {
-        if (!map.has(task.Status.State)) {
-          map.set(task.Status.State, 0);
-        } else {
-          const old = map.get(task.Status.State);
-          map.set(task.Status.State, old + 1);
-        }
-      });
-
+    this.nodeService.getNodes().subscribe((nodes) => {
       const labels = [];
       const dataSet = [];
       const colours = [];
-      let i = 0;
-      Array.from(map.values()).forEach((value) => {
-        dataSet.push(value);
-        colours.push(coloursMap.get(i++));
+      let online = 0;
+      let offline = 0;
+
+      nodes.forEach(node => {
+        if ( node.Status.State === 'ready' ) {
+          online++;
+        } else {
+          offline++;
+        }
       });
 
-      Array.from(map.keys()).forEach((key) => {
-        labels.push(key);
-      });
+      dataSet.push(online);
+      dataSet.push(offline);
+
+
+      colours.push('#C6FF87');
+      colours.push('#272822');
+
+      labels.push('Online');
+      labels.push('Offline');
 
       this.chartB.data.labels = labels;
       this.chartB.data.datasets[0].data = dataSet;
@@ -118,55 +96,20 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  getStats() {
-    this.volumeService.getVolumes().subscribe(
-      (volume) => {
-        for (let i = 0; i < volume.length; i++) {
-          this.volumes.push(volume[i]);
-        }
-        this.numVol = this.volumes.length;
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
+  async updateChartA() {
+    const n_nodes = await this.nodeService.getNodes().toPromise();
+    const n_services = await this.servicesService.getServices().toPromise();
+    const n_volumes = await this.volumeService.getVolumes().toPromise();
+    const n_networks = await this.networkService.getNetworks().toPromise();
+    const n_tasks = await this.taskService.getTasks().toPromise();
 
-    this.networkService.getNetworks().subscribe(
-      (network) => {
-        for (let i = 0; i < network.length; i++) {
-          this.networks.push(network[i]);
-        }
-        this.numNet = this.networks.length;
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
+    this.numNet = n_networks.length;
+    this.numTask = n_tasks.length;
+    this.numVol = n_volumes.length;
 
-    this.taskService.getTasks().subscribe(
-      (task) => {
-        for (let i = 0; i < task.length; i++) {
-          this.tasks.push(task[i]);
-
-          console.log(task[i].Status.State);
-
-          if (task[i].Status.State === 'running') {
-            this.runTask++;
-          }
-
-          if (task[i].Status.State === 'shutdown') {
-            this.stopTask++;
-          }
-
-          if (task[i].Status.State === 'failed') {
-            this.pauseTask++;
-          }
-        }
-        this.numTask = this.tasks.length;
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
+    this.chartA.data.labels = ['Nodes', 'Networks', 'Volumes', 'Tasks', 'Services'];
+    this.chartA.data.datasets[0].data = [n_nodes.length, n_networks.length, n_volumes.length, n_tasks.length, n_services.length];
+    this.chartA.data.datasets[0].backgroundColor = ['#FF7F90', '#DEFF71', '#7CC55A', '#102900', '#F6FF93'];
+    this.chartA.update();
   }
 }
