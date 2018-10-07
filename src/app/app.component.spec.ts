@@ -7,11 +7,12 @@ import { UserBarComponent } from './shared/user-bar/user-bar.component';
 import { AuthService } from 'services/auth/auth.service';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
+import { APP_BASE_HREF } from '@angular/common';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],
-      providers: [AuthService, ConfigurationService, TokenStorage],
+      providers: [AuthService, ConfigurationService, TokenStorage, {provide: APP_BASE_HREF, useValue: '/'}],
       declarations: [AppComponent, NavbarComponent, UserBarComponent],
     }).compileComponents();
   }));
@@ -19,10 +20,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
-  it(`should have as title 'Docks-UI'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Docks-UI');
   }));
 });

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VolumeDetailViewComponent } from './volume-detail-view.component';
 import { NgbModule, NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClient, HttpHandler } from '@angular/common/http/http';
+import { HttpHandler, HttpClient } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { ConfigurationService } from 'services/configuration/configuration.service';
