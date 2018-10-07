@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Volume } from 'app/models/volume/volume.model';
 import { VolumeService, VolumeError } from 'services/volume/volume.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-volumes-view',
@@ -12,10 +13,12 @@ export class VolumesViewComponent implements OnInit {
   public volumes: Volume[];
   public searchString = [];
   public isLoaded = false;
+  public selected = [];
 
   constructor(
     private volumeService: VolumeService,
     private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -49,5 +52,10 @@ export class VolumesViewComponent implements OnInit {
 
     // update the rows
     this.volumes = temp;
+  }
+
+  onSelect({ selected }) {
+    // console.log('Select Event', selected, this.selected);
+    this.router.navigate(['/volumes/' + selected[0].Name]);
   }
 }
