@@ -15,8 +15,8 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
-        <ngx-datatable class="bootstrap ngx-datatable" [limit]="9" [footerHeight]="40" [columnMode]="'force'" [rows]="tasks" [headerHeight]="'auto'"
+    <div class="col-md-12 col-sm-12 col-12">
+        <ngx-datatable class="bootstrap ngx-datatable" [limit]="100" [footerHeight]="40" [columnMode]="'force'" [rows]="tasks" [headerHeight]="'auto'"
             [rowHeight]="getRowHeight" [selectionType]="'single'" (select)='onSelect($event)'>
 
             <ngx-datatable-column name="Name">

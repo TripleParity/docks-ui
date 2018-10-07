@@ -8,3 +8,11 @@
 {
     padding-left: 0;
 }
+.left-bar
+{
+    padding-right: 0px;
+}
+.right-bar
+{
+    padding-left: 10px;
+}
