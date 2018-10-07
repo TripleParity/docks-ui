@@ -14,6 +14,7 @@ export class VolumeDetailViewComponent implements OnInit {
 
   public volumeName: string;
   public volumeModel: Volume;
+  public labels: string[];
   public isLoaded = false;
 
   constructor(
@@ -35,11 +36,22 @@ export class VolumeDetailViewComponent implements OnInit {
       (volume) => {
         this.volumeModel = volume;
         this.isLoaded = true;
-        console.log(volume);
+        this.labels = this.getLabels();
+        console.log(this.labels);
       },
       (err: VolumeError) => {
         this.toastr.error(err.message, 'An error occured');
       }
     );
+  }
+
+  getLabels(): string[] {
+    const enumerableKeys = [];
+    // tslint:disable-next-line:forin
+    for (const key in this.volumeModel.Labels) {
+      enumerableKeys.push(key);
+    }
+
+    return enumerableKeys;
   }
 }

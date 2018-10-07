@@ -70,4 +70,25 @@
       </tbody>
     </table>
   </div>
+
+  <div class="row title">
+    <div class="innerTitle col-sm-12">
+      <h3>Labels</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="detailTable">
+      <tbody *ngFor="let key of labels; let i=index">
+          <tr>
+            <td class="detailName">
+              {{key}}
+            </td>
+            <td class="detailValue">
+              <span class="inserts"> {{volumeModel.Labels[key]}} </span>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
