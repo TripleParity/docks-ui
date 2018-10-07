@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { VolumeService } from 'services/volume/volume.service';
+import { VolumeService, VolumeError } from 'services/volume/volume.service';
 import { ToastrService } from 'ngx-toastr';
+import { Volume } from 'app/models/volume/volume.model';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-volume-detail-view',
@@ -10,8 +12,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class VolumeDetailViewComponent implements OnInit {
 
-  public volumeName: String;
-  public selected = [];
+  public volumeName: string;
+  public volumeModel: Volume;
+  public isLoaded = false;
 
   constructor(
     private router: Router,
@@ -22,12 +25,21 @@ export class VolumeDetailViewComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.volumeName = params.get('networkID');
+      this.volumeName = params.get('volumeID');
       this.fetchVolume();
     });
   }
 
   fetchVolume() {
-
+    this.volumeService.inspectVolumes(this.volumeName).subscribe(
+      (volume) => {
+        this.volumeModel = volume;
+        this.isLoaded = true;
+        console.log(volume);
+      },
+      (err: VolumeError) => {
+        this.toastr.error(err.message, 'An error occured');
+      }
+    );
   }
 }

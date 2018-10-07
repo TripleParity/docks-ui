@@ -36,12 +36,10 @@ export class NetworkDetailViewComponent implements OnInit {
       (network) => {
         this.networkModel = network;
         this.isLoaded = true;
-        console.log(network);
         this.subnet = network.IPAM.Config[0].Subnet;
         this.gateway = network.IPAM.Config[0].Gateway;
       },
       (err: NetworkError) => {
-        console.log('this is where the error message is coming from ');
         this.toastr.error(err.message, 'An error occured');
       }
     );
