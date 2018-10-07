@@ -37,7 +37,6 @@ export class VolumeDetailViewComponent implements OnInit {
         this.volumeModel = volume;
         this.isLoaded = true;
         this.labels = this.getLabels();
-        console.log(this.labels);
       },
       (err: VolumeError) => {
         this.toastr.error(err.message, 'An error occured');
