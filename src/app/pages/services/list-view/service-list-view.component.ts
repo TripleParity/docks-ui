@@ -184,5 +184,4 @@ export class ServiceListViewComponent implements OnInit {
     // console.log('Select Event', selected, this.selected);
     this.router.navigate(['/services/' + selected[0].ID]);
   }
-
 }

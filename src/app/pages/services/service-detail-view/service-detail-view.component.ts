@@ -87,7 +87,10 @@ export class ServiceDetailViewComponent implements OnInit {
   }
 
   getPort() {
-    if (this.serviceModel.Spec.EndpointSpec.hasOwnProperty('Ports') && this.serviceModel.Spec.EndpointSpec.Ports[0]) {
+    if (
+      this.serviceModel.Spec.EndpointSpec.hasOwnProperty('Ports') &&
+      this.serviceModel.Spec.EndpointSpec.Ports[0]
+    ) {
       this.port = this.serviceModel.Spec.EndpointSpec.Ports[0].PublishedPort.toString();
     } else {
       this.port = '-';
@@ -95,7 +98,9 @@ export class ServiceDetailViewComponent implements OnInit {
   }
 
   getImage() {
-    this.image = this.serviceModel.Spec.TaskTemplate.ContainerSpec.Image.split('@')[0];
+    this.image = this.serviceModel.Spec.TaskTemplate.ContainerSpec.Image.split(
+      '@'
+    )[0];
   }
 
   viewLogs() {

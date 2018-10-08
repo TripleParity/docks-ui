@@ -21,9 +21,7 @@ import { SpinnerModule } from 'app/shared/spinner/spinner.module';
     NgbModule,
     ReactiveFormsModule,
   ],
-  declarations: [
-    NodeViewComponent,
-  ],
+  declarations: [NodeViewComponent],
   providers: [NodeService],
 })
 export class NodesModule {}

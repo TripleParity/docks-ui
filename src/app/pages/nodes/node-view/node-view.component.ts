@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-node-view',
   templateUrl: './node-view.component.html',
-  styleUrls: ['./node-view.component.css']
+  styleUrls: ['./node-view.component.css'],
 })
 export class NodeViewComponent implements OnInit {
   public nodes: Node[];
@@ -16,12 +16,14 @@ export class NodeViewComponent implements OnInit {
 
   constructor(
     private nodeService: NodeService,
-    private toastr: ToastrService,
-  ) { }
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.fetchNodes();
-    setInterval(() => { this.fetchNodes(); }, 1000 * 5);
+    setInterval(() => {
+      this.fetchNodes();
+    }, 1000 * 5);
   }
 
   getRowHeight(row) {
@@ -30,13 +32,16 @@ export class NodeViewComponent implements OnInit {
 
   fetchNodes() {
     console.log('Fetching nodes');
-    this.nodeService.getNodes().subscribe((nodes: Node[]) => {
-      this.nodes = nodes;
-      this.searchString = [...nodes];
-      this.isLoaded = true;
-    }, (err: NodeError) => {
-      this.toastr.error(err.message, 'An error occured');
-    });
+    this.nodeService.getNodes().subscribe(
+      (nodes: Node[]) => {
+        this.nodes = nodes;
+        this.searchString = [...nodes];
+        this.isLoaded = true;
+      },
+      (err: NodeError) => {
+        this.toastr.error(err.message, 'An error occured');
+      }
+    );
   }
 
   updateFilter(event) {
@@ -44,7 +49,9 @@ export class NodeViewComponent implements OnInit {
 
     // filter our data
     const temp = this.searchString.filter((node: Node) => {
-      return node.Description.Hostname.toLowerCase().indexOf(val) !== -1 || !val;
+      return (
+        node.Description.Hostname.toLowerCase().indexOf(val) !== -1 || !val
+      );
     });
 
     // update the rows
@@ -52,7 +59,7 @@ export class NodeViewComponent implements OnInit {
   }
 
   public getCPU(nano: string) {
-    return (+nano /  1000000000);
+    return +nano / 1000000000;
   }
 
   public getRam(mem: string) {
