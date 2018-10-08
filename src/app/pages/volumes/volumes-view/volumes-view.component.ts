@@ -17,8 +17,8 @@ export class VolumesViewComponent implements OnInit {
 
   constructor(
     private volumeService: VolumeService,
-    private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
