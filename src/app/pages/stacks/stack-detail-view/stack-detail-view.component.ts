@@ -40,12 +40,10 @@ export class StackDetailViewComponent implements OnInit {
   }
 
   fetchStackServices() {
-    console.log('In here with the timer');
     this.stackService.getStackServices(this.stackName).subscribe(
       (service) => {
         this.service = service;
         this.isLoaded = true;
-        console.log(this.service);
       },
       (err: ServiceError) => {
         this.toastr.error(

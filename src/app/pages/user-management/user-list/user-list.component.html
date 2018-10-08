@@ -1,31 +1,35 @@
-<div id="userListComponent">
+
   <!-- TODO(egeldenhuys): Improve with using subjectUser and flags[] -->
   <!-- TODO(egeldenhuys): Pass messages without using URL-->
   <!-- TODO(egeldenhuys): Align cells vertically in center -->
 
-  <h3>
-    Users
-  </h3>
-  <a routerLink="/users/create">
-    <button type="button" class="btn btn-primary">Create user</button>
-  </a>
-
-  <hr>
-
-  <div id="userList">
-    <div class="row">
-      <div class="col-md-auto">
-        <h4>List of users</h4>
-      </div>
-      <div class="col">
-        <input type='text' placeholder='Filter username...' (keyup)='updateFilter($event)' />
-
-      </div>
+  <div class="row heading">
+    <div class="col-sm-4">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search Users" aria-label="Recipient's username" aria-describedby="basic-addon2"
+                (keyup)="updateFilter($event)">
+            <div class="input-group-append">
+                <button class="btn btn-default">
+                    <span class="input-group-text" id="Search">
+                        <i class="fa fa-search"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
     </div>
+    <div class="offset-sm-6 col-sm-2">
+        <a routerLink="/users/create">
+            <button type="button" class="btn btn-info">
+                Add User
+                <i class="fa  fa-users"> </i>
+            </button>
+        </a>
+    </div>
+  </div>
 
     <div class="row">
         <div class="col-md-12">
-            <ngx-datatable class="bootstrap ngx-datatable" [limit]="10" [footerHeight]="40" [columnMode]="'force'" [rows]="users" [columns]="columns"
+            <ngx-datatable class="bootstrap ngx-datatable" [limit]="50" [footerHeight]="40" [columnMode]="'force'" [rows]="users" [columns]="columns"
               [headerHeight]="'auto'" [rowHeight]="'auto'" [selected]="selected">
 
               <ngx-datatable-column name="Username">
@@ -61,8 +65,6 @@
         </div>
     </div>
 
-  </div>
-
   <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Delete User</h4>
@@ -82,5 +84,3 @@
       <button type="button" class="btn btn-danger" (click)="deleteUser(usernameToDelete)">Delete</button>
     </div>
   </ng-template>
-
-</div>
