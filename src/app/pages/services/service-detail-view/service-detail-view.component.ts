@@ -7,6 +7,8 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { Service } from 'app/models/service/service.model';
 import { Formatter } from 'classes/formatter/formatter';
+import { Task } from 'app/models/task/task.model';
+import { TaskService, TaskError } from 'services/task/task.service';
 
 @Component({
   selector: 'app-service-detail-view',
@@ -23,12 +25,15 @@ export class ServiceDetailViewComponent implements OnInit {
   public port: string;
   public image: string;
 
+  public tasks: Task[];
+
   constructor(
     private router: Router,
     private serviceService: ServicesService,
     private Stack: ServicesService,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private taskService: TaskService
   ) {}
 
   ngOnInit() {
@@ -48,6 +53,7 @@ export class ServiceDetailViewComponent implements OnInit {
         this.getReplicas();
         this.getPort();
         this.getImage();
+        this.getTasks(this.serviceModel.ID);
       },
       (err: ServiceError) => {
         this.toastr.error(err.message, 'An error occured');
@@ -104,7 +110,39 @@ export class ServiceDetailViewComponent implements OnInit {
   }
 
   viewLogs() {
-    console.log('stacks/' + this.stackName + '/logs');
     this.router.navigate(['services/' + this.serviceID + '/logs']);
+  }
+
+  getRowHeight(row) {
+    return (row.height = 50);
+  }
+
+  onSelect({ selected }) {
+    // console.log('Select Event', selected, this.selected);
+    this.router.navigate(['/tasks/' + selected[0].ID]);
+  }
+
+  getTasks(serviceId: string) {
+    this.taskService.getTasks().subscribe(
+      (task) => {
+        this.tasks = task;
+      },
+      (err: TaskError) => {
+        this.toastr.error(err.message, 'An error occured');
+      }
+    );
+  }
+
+  getTaskName(labels: Object, slot: number, id: string): string {
+    if (labels && labels.hasOwnProperty('com.docker.stack.namespace')) {
+      return labels['com.docker.stack.namespace'] + '.' + slot;
+    } else {
+      return id;
+    }
+  }
+
+  getTaskImage(image: String): string {
+    const taskImage = image.split('@');
+    return taskImage[0];
   }
 }

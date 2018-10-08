@@ -1,7 +1,7 @@
 <app-spinner [hidden]="isLoaded"></app-spinner>
 
 <div class="row heading">
-  <div class="col-md-4 offset-md-8">
+  <div class="col-sm-4">
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Search Nodes" aria-label="Node name" aria-describedby="basic-addon2"
         (keyup)="updateFilter($event)">
@@ -19,7 +19,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="nodes" [headerHeight]="'auto'"
+      <ngx-datatable class="bootstrap ngx-datatable" [limit]="100" [footerHeight]="40" [columnMode]="'force'" [rows]="nodes" [headerHeight]="'auto'"
         [rowHeight]="getRowHeight">
 
         <ngx-datatable-column name="Name">

@@ -3,6 +3,9 @@ import { Task } from '../../../models/task/task.model';
 import { TaskService, TaskError } from '../../../services/task/task.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { NodeService, NodeError } from 'services/node/node.service';
+import { Node } from 'app/models/node/node.model';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-task-list-view',
@@ -12,6 +15,7 @@ import { Router } from '@angular/router';
 export class TaskListViewComponent implements OnInit {
   constructor(
     private taskService: TaskService,
+    private nodeService: NodeService,
     private router: Router,
     private toastr: ToastrService
   ) {}
@@ -19,6 +23,7 @@ export class TaskListViewComponent implements OnInit {
   public previous = 0;
   public isLoaded = false;
   public selected = [];
+  private NodeNames: Node[] = [];
 
   ngOnInit() {
     this.fetchTasks();
@@ -50,5 +55,10 @@ export class TaskListViewComponent implements OnInit {
 
   onSelect({ selected }) {
     this.router.navigate(['/tasks/' + selected[0].ID]);
+  }
+
+  getImage(image: String): string {
+    const taskImage = image.split('@');
+    return taskImage[0];
   }
 }

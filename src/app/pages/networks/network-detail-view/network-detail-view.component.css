@@ -1,24 +1,3 @@
-.label
-{
-    margin-top: 5px;
-}
-
-table
-{
-    width: 100%;
-    margin: 20px 0px;
-}
-.name 
-{
-    color: #6E6E6E;
-    width: 20%;
-}
-.value
-{
-    width: 60%;
-}
-td
-{
-    padding-left: 10px;
-    padding-top: 5px;
+.label {
+    text-align: right;
 }

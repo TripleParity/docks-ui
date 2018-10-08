@@ -1,71 +1,134 @@
-<div class="row heading">
-  <div class="col-sm-10">
-    <h1>
-      <i class="fa fa-sitemap"></i>
-      Network:
-      <i class="inserts"> "insert Network name here" </i> Detail
-    </h1>
+<div *ngIf="isLoaded">
+  <div class="row heading">
+    <div class="col-sm-10">
+      <h1>
+        <i class="fa fa-sitemap"></i>
+        Network:
+        <span class="detailID"> {{networkModel.Name}} </span> 
+      </h1>
+    </div>
+    <div class="col-sm-2 label">
+      <button class="btn btn-info">
+        <i class="fa fa-trash"></i> Delete</button>
+    </div>
   </div>
-  <div class="col-sm-2 label">
-    <button class="btn btn-info">
-      <i class="fa fa-trash"></i> Delete</button>
+
+  <div class="row title">
+    <div class="innerTitle col-sm-12">
+      <h3>General</h3>
+    </div>
   </div>
-</div>
 
-<div class="row title">
-  <div class="innerTitle col-sm-12">
-    <h3>General</h3>
+  <div class="row">
+    <table class="detailTable">
+      <tbody>
+          <tr>
+              <td class="detailName">
+                Name:
+              </td>
+              <td class="detailValue">
+                <span class="inserts"> {{networkModel.Name}} </span>
+              </td>
+            </tr>
+        <tr>
+          <td class="detailName">
+            ID:
+          </td>
+          <td class="detailValue">
+            <span class="inserts"> {{networkModel.Id}} </span>
+          </td>
+        </tr>
+        <tr>
+          <td class="detailName">
+            Scope:
+          </td>
+          <td class="detailValue">
+            <span class="inserts"> {{networkModel.Scope}} </span>
+          </td>
+        </tr>
+        <tr>
+          <td class="detailName">
+            Created At:
+          </td>
+          <td class="detailValue">
+            <span class="inserts"> {{PrettifyDateTime(networkModel.Created)}} </span>
+          </td>
+        </tr>
+        <tr>
+            <td class="detailName">
+              Ingress:
+            </td>
+            <td class="detailValue">
+              <span class="inserts"> {{networkModel.Ingress}} </span>
+            </td>
+          </tr>
+          <tr>
+              <td class="detailName">
+                Enabled IPv6:
+              </td>
+              <td class="detailValue">
+                <span class="inserts"> {{networkModel.EnableIPv6}} </span>
+              </td>
+            </tr>
+            <tr>
+                <td class="detailName">
+                 Attachable
+                </td>
+                <td class="detailValue">
+                  <span class="inserts"> {{networkModel.Attachable}} </span>
+                </td>
+              </tr>
+      </tbody>
+    </table>
   </div>
-</div>
 
-<div class="row">
-  <table>
-    <tbody>
-      <tr>
-        <td class="name">
-          ID:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert network id here" </i>
-        </td>
-      </tr>
-      <tr>
-        <td class="name">
-          Scope:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert network Scope here" </i>
-        </td>
-      </tr>
-      <tr>
-        <td class="name">
-          Created At:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert network CA date here" </i>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="row title">
-  <div class="innerTitle col-sm-12">
-    <h3>Driver</h3>
+  <div class="row title">
+    <div class="innerTitle col-sm-12">
+      <h3>Driver</h3>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <table>
-    <tbody>
-      <tr>
-        <td class="name">
-          Driver Name:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert network driver name here" </i>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <table class="detailTable">
+      <tbody>
+        <tr>
+          <td class="detailName">
+            Driver Name:
+          </td>
+          <td class="detailValue">
+            <span class="inserts"> {{networkModel.Driver}} </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row title">
+      <div class="innerTitle col-sm-12">
+        <h3>IP Address Management (IPAM) </h3>
+      </div>
+    </div>
+
+    <div class="row">
+        <table class="detailTable">
+          <tbody>
+            <tr>
+              <td class="detailName">
+                Subnet:
+              </td>
+              <td class="detailValue">
+                <span class="inserts"> {{subnet}} </span>
+              </td>
+            </tr>
+            <tr>
+                <td class="detailName">
+                  Gateway:
+                </td>
+                <td class="detailValue">
+                  <span class="inserts"> {{gateway}} </span>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
 </div>
