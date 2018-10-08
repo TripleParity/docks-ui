@@ -33,7 +33,7 @@ describe('ServiceDetailViewComponent', () => {
         TokenStorage,
         NgbAlertConfig,
         ToastrService,
-        TaskService
+        TaskService,
       ],
     }).compileComponents();
   }));

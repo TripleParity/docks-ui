@@ -28,7 +28,7 @@ describe('VolumeDetailViewComponent', () => {
         ConfigurationService,
         TokenStorage,
         NgbAlertConfig,
-        ToastrService
+        ToastrService,
       ],
     }).compileComponents();
   }));

@@ -11,7 +11,11 @@ import { NetworkCreateComponent } from 'pages/networks/network-create/network-cr
 
 @NgModule({
   imports: [CommonModule, NetworksRoutingModule, NgxDatatableModule],
-  declarations: [NetworkListComponent, NetworkDetailViewComponent, NetworkCreateComponent],
+  declarations: [
+    NetworkListComponent,
+    NetworkDetailViewComponent,
+    NetworkCreateComponent,
+  ],
   providers: [HttpClientModule, NetworkService],
 })
 export class NetworkModule {}

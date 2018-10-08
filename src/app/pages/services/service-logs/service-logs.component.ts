@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { ServicesService, ServiceError } from 'services/services/services.service';
+import {
+  ServicesService,
+  ServiceError,
+} from 'services/services/services.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-service-logs',
   templateUrl: './service-logs.component.html',
-  styleUrls: ['./service-logs.component.css']
+  styleUrls: ['./service-logs.component.css'],
 })
 export class ServiceLogsComponent implements OnInit {
-
   public serviceID: string;
   public Log: string;
   public serviceName: string;
@@ -19,8 +21,8 @@ export class ServiceLogsComponent implements OnInit {
   constructor(
     private serviceService: ServicesService,
     private route: ActivatedRoute,
-    private toastr: ToastrService,
-  ) { }
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -33,9 +35,10 @@ export class ServiceLogsComponent implements OnInit {
   fetchService() {
     this.serviceService.inspectService(this.serviceID).subscribe(
       (service) => {
-          this.serviceName = service.Spec.Name;
-          this.isLoaded = true;
-      }, (err: ServiceError) => {
+        this.serviceName = service.Spec.Name;
+        this.isLoaded = true;
+      },
+      (err: ServiceError) => {
         this.toastr.error(err.message, 'An error occured');
       }
     );
@@ -50,7 +53,8 @@ export class ServiceLogsComponent implements OnInit {
           this.Log = 'The service ' + this.serviceName + ' returned no log';
         }
         this.isLoadedLog = true;
-      }, (err: ServiceError) => {
+      },
+      (err: ServiceError) => {
         this.toastr.error(err.message, 'An error occured');
       }
     );

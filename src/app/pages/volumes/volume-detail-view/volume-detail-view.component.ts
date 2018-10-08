@@ -11,7 +11,6 @@ import { debug } from 'util';
   styleUrls: ['./volume-detail-view.component.css'],
 })
 export class VolumeDetailViewComponent implements OnInit {
-
   public volumeName: string;
   public volumeModel: Volume;
   public labels: string[];

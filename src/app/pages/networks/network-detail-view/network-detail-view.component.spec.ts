@@ -28,7 +28,7 @@ describe('NetworkDetailViewComponent', () => {
         ConfigurationService,
         TokenStorage,
         NgbAlertConfig,
-        ToastrService
+        ToastrService,
       ],
     }).compileComponents();
   }));

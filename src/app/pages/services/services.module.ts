@@ -37,7 +37,7 @@ import { TaskService } from 'services/task/task.service';
     ServicesOperationsComponent,
     ServiceCreateComponent,
     ServiceDetailViewComponent,
-    ServiceLogsComponent
+    ServiceLogsComponent,
   ],
   providers: [ServicesService, MockService, StackService, TaskService],
 })

@@ -12,7 +12,12 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],
-      providers: [AuthService, ConfigurationService, TokenStorage, {provide: APP_BASE_HREF, useValue: '/'}],
+      providers: [
+        AuthService,
+        ConfigurationService,
+        TokenStorage,
+        { provide: APP_BASE_HREF, useValue: '/' },
+      ],
       declarations: [AppComponent, NavbarComponent, UserBarComponent],
     }).compileComponents();
   }));

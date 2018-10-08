@@ -48,5 +48,4 @@ export class NetworkDetailViewComponent implements OnInit {
   public PrettifyDateTime(buff: string): string {
     return Formatter.PrettifyDateTime(buff);
   }
-
 }
