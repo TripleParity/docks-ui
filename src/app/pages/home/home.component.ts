@@ -102,9 +102,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
         dataSet.push(online);
         dataSet.push(offline);
-
+        
+        colours.push('#1180af');
         colours.push('#C6FF87');
-        colours.push('#272822');
 
         labels.push('Online');
         labels.push('Offline');
