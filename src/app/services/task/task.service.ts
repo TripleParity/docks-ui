@@ -35,7 +35,7 @@ export class TaskService {
    */
   public getTasks(): Observable<Task[]> {
     return this.http
-      .get(this.config.getAPIHostname() + '/tasks', {
+      .get(this.config.getAPIHostname() + '/docker/tasks', {
         responseType: 'json',
       })
       .pipe(

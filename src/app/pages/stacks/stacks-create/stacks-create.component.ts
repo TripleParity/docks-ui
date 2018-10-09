@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Stack } from 'app/models/stack/stack.model';
 import { Router } from '@angular/router';
 import {
@@ -13,10 +13,11 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './stacks-create.component.html',
   styleUrls: ['./stacks-create.component.css'],
 })
-export class StacksCreateComponent implements OnInit {
+export class StacksCreateComponent implements OnInit, AfterViewInit {
+  @ViewChild('editor') editor;
   public stackModel: Stack;
   public fileText = '';
-
+  public text = 'Oh biscuits';
   constructor(
     private router: Router,
     private stackService: StackService,
@@ -27,6 +28,14 @@ export class StacksCreateComponent implements OnInit {
       serviceCount: 0,
       stackFile: '',
     };
+  }
+
+  ngAfterViewInit() {
+    this.editor.setTheme('dracula');
+
+    this.editor.getEditor().setOptions({
+        enableBasicAutocompletion: true
+    });
   }
 
   ngOnInit() {}
