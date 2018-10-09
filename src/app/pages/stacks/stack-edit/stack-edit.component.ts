@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Stack } from 'app/models/stack/stack.model';
+import { Stack } from '../app/models/stack/stack.model';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {
   StackService,
@@ -8,6 +8,8 @@ import {
 } from 'services/stack/stack.service';
 import { ToastrService } from 'ngx-toastr';
 
+
+//WHY IS NOT THIS WORKING?
 @Component({
   selector: 'app-stack-edit',
   templateUrl: './stack-edit.component.html',
