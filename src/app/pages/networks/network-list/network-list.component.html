@@ -30,18 +30,15 @@
     <ngx-datatable class="bootstrap ngx-datatable" [footerHeight]="40" [headerHeight]="'auto'" [columnMode]="'force'"
       [rows]="rows" [rowHeight]="50" [limit]="100" [selected]="selected" [selectionType]="'single'" (select)='onSelect($event)'>
 
-      <ngx-datatable-column name="Name">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          {{column.name}}
-        </ng-template>
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <ngx-datatable-column name="Name" prop="Name">
+        <ng-template let-row="row" ngx-datatable-cell-template>
           {{row.Name}}
         </ng-template>
 
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="Driver">
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <ngx-datatable-column name="Driver" prop="Driver">
+        <ng-template let-row="row" ngx-datatable-cell-template>
           {{row.Driver}}
         </ng-template>
       </ngx-datatable-column>

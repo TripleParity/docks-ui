@@ -13,7 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./network-list.component.css'],
 })
 export class NetworkListComponent implements OnInit {
-  public rows: Network[] = [];
+  public rows: Network[];
+  public searchString: Network[];
   public temp = [];
   public loadingIndicator = true;
   public selected = [];
@@ -25,9 +26,12 @@ export class NetworkListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.rows = [];
+    this.searchString = [];
     this.networksService.getNetworks().subscribe(
       (data: Network[]) => {
         this.rows = data;
+        this.searchString = [...data];
       },
       (err: NetworkError) => {
         console.error(err.message);
@@ -40,13 +44,16 @@ export class NetworkListComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function(d) {
+    const temp = this.searchString.filter((network: Network) => {
       return (
-        d.Name.toLowerCase().indexOf(val) !== -1 ||
-        d.Image.toLowerCase().indexOf(val) !== -1 ||
+        network.Name.toLowerCase().indexOf(val) !== -1 ||
+        network.Driver.toLowerCase().indexOf(val) !== -1 ||
         !val
       );
     });
+
+    // update the rows
+    this.rows = temp;
   }
 
   onSelect({ selected }) {
