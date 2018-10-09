@@ -45,7 +45,7 @@ export class ServiceListViewComponent implements OnInit {
       (services: Service[]) => {
         this.services = services;
 
-        this.prettyfyServices();
+        this.prettifyServices();
 
         // Datatables needs to be "notified" about the changes to the 'rows' array.
         this.searchString = [...this.services];
@@ -61,7 +61,7 @@ export class ServiceListViewComponent implements OnInit {
     );
   }
 
-  prettyfyServices() {
+  prettifyServices() {
     this.services.forEach(element => {
       let port = null;
       if (element.Spec.EndpointSpec.Ports !== undefined) {

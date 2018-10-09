@@ -36,7 +36,7 @@ export class TaskListViewComponent implements OnInit {
         this.tasks = task;
         this.searchString = [...this.tasks];
 
-        this.prettyfyTasks();
+        this.prettifyTasks();
         this.isLoaded = true;
       },
       (err: TaskError) => {
@@ -45,7 +45,7 @@ export class TaskListViewComponent implements OnInit {
     );
   }
 
-  prettyfyTasks() {
+  prettifyTasks() {
     this.tasks.forEach(elem => {
       elem.Name = this.getTaskName(elem.Spec.ContainerSpec.Labels, elem.Slot, elem.ID);
       elem.Spec.ContainerSpec.Image = this.getImage(elem.Spec.ContainerSpec.Image);
