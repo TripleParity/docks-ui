@@ -58,7 +58,6 @@ export class VolumeDetailViewComponent implements OnInit {
   }
 
   removeVolume() {
-    console.log(this.forceDelete);
     this.volumeService
       .deleteVolume(this.volumeName, this.forceDelete)
       .subscribe(
