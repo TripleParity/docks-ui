@@ -134,7 +134,7 @@ export class ServiceListViewComponent implements OnInit {
     const temp = this.searchString.filter((service: Service) => {
     return (
         service.Spec.Name.toLowerCase().indexOf(val) !== -1 ||
-        // service.Spec.TaskTemplate.ContainerSpec.Image.toLowerCase().indexOf(val) !== -1 ||
+        service.Spec.TaskTemplate.ContainerSpec.Image.toLowerCase().indexOf(val) !== -1 ||
         !val
       );
     });
