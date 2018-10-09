@@ -38,9 +38,9 @@ export class StacksCreateComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.editor.setTheme('dreamweaver');
 
-    this.editor.getEditor().setOptions({
-        enableBasicAutoCompletion: true,
-    });
+    // this.editor.getEditor().setOptions({
+    //     enableBasicAutoCompletion: true,
+    // });
   }
 
   ngOnInit() {}
