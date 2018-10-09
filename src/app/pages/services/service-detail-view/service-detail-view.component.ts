@@ -9,6 +9,7 @@ import { Service } from 'app/models/service/service.model';
 import { Formatter } from 'classes/formatter/formatter';
 import { Task } from 'app/models/task/task.model';
 import { TaskService, TaskError } from 'services/task/task.service';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-service-detail-view',
@@ -24,6 +25,7 @@ export class ServiceDetailViewComponent implements OnInit {
   public replicas: string;
   public port: string;
   public image: string;
+  public activeModal: NgbModalRef;
 
   public tasks: Task[];
 
@@ -33,7 +35,8 @@ export class ServiceDetailViewComponent implements OnInit {
     private Stack: ServicesService,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -144,5 +147,23 @@ export class ServiceDetailViewComponent implements OnInit {
   getTaskImage(image: String): string {
     const taskImage = image.split('@');
     return taskImage[0];
+  }
+
+  open(content) {
+    this.activeModal = this.modalService.open(content);
+  }
+
+  removeService() {
+    this.serviceService.deleteService(this.serviceModel.ID).subscribe(
+      (service) => {
+        this.toastr.success('Service ' + this.stackName + ' was successfully removed');
+        this.activeModal.close();
+        this.router.navigate(['/services/list']);
+      },
+      (err: ServiceError) => {
+        this.toastr.error(err.message, 'Could not remove stack');
+        this.activeModal.close();
+      }
+    );
   }
 }
