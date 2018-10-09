@@ -61,7 +61,7 @@ export class ServiceListViewComponent implements OnInit {
     );
   }
 
-  prettyfyServices(){
+  prettyfyServices() {
     this.services.forEach(element => {
       let port = null;
       if (element.Spec.EndpointSpec.Ports !== undefined) {
@@ -85,7 +85,7 @@ export class ServiceListViewComponent implements OnInit {
 
       element.Spec.Mode.Replicated.Replicas = replicated;
 
-      element.Spec.TaskTemplate.ContainerSpec.Image = element.Spec.TaskTemplate.ContainerSpec.Image.split('@')[0]
+      element.Spec.TaskTemplate.ContainerSpec.Image = element.Spec.TaskTemplate.ContainerSpec.Image.split('@')[0];
 
     });
   }
