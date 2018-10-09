@@ -31,12 +31,31 @@ export class HomeComponent implements OnInit, OnDestroy {
   chart;
   ngOnInit() {
     this.cards = [];
-    this.cards.push({title: 'Networks', text: '0', src: 'assets/logo-small-square.png'});
-    this.cards.push({title: 'Volumes', text: '0', src: 'assets/logo-small-square.png'});
-    this.cards.push({title: 'Tasks', text: '0', src: 'assets/logo-small-square.png'});
-    this.cards.push({title: 'Services', text: '0', src: 'assets/logo-small-square.png'});
-    this.cards.push({title: 'Nodes', text: '0', src: 'assets/logo-small-square.png'});
-
+    this.cards.push({
+      title: 'Networks',
+      text: '0',
+      src: 'assets/logo-small-square.png',
+    });
+    this.cards.push({
+      title: 'Volumes',
+      text: '0',
+      src: 'assets/logo-small-square.png',
+    });
+    this.cards.push({
+      title: 'Tasks',
+      text: '0',
+      src: 'assets/logo-small-square.png',
+    });
+    this.cards.push({
+      title: 'Services',
+      text: '0',
+      src: 'assets/logo-small-square.png',
+    });
+    this.cards.push({
+      title: 'Nodes',
+      text: '0',
+      src: 'assets/logo-small-square.png',
+    });
 
     this.routeSub = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
@@ -108,7 +127,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const n_networks = await this.networkService.getNetworks().toPromise();
     const n_tasks = await this.taskService.getTasks().toPromise();
 
-    this.cards.forEach(card => {
+    this.cards.forEach((card) => {
       switch (card['title']) {
         case 'Services': {
           card['text'] = n_services.length;
