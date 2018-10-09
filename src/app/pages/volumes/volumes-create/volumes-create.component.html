@@ -27,14 +27,14 @@
 
   <div class="form row">
     <div class="col-sm-2 text">
-      <label for="volumeName" class="col-form-label">
+      <label for="volumeDriver" class="col-form-label">
         <h4>
           <i class="required fa fa-asterisk"></i> Driver: </h4>
       </label>
     </div>
     <div class="col-sm-9">
-      <input type="text" placeholder="Tardis" formControlName="Name" class="form-control" id="volumeName" required>
-      <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A Volume Name
+      <input type="text" placeholder="Local" formControlName="Driver" class="form-control" id="volumeDriver" required>
+      <ngb-alert [hidden]="Driver.valid || Driver.pristine" (close)="Driver.markAsPristine()" [type]="'danger'">A Volume Name
         is required.</ngb-alert>
     </div>
   </div>

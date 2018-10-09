@@ -8,7 +8,7 @@
       </h1>
     </div>
     <div class="col-sm-2 label">
-      <button class="btn btn-info">
+      <button class="btn btn-info" (click)="open(content)">
         <i class="fa fa-trash"></i> Delete</button>
     </div>
   </div>
@@ -92,3 +92,22 @@
     </table>
   </div>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Remove Volume</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" align ="center">
+    <h5>Are you sure you want to remove the following Volume</h5>
+    <h5>
+      <pre>{{volumeModel.Name}}</pre>
+    </h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Cancel click')">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="removeVolume()">Delete</button>
+  </div>
+</ng-template>
