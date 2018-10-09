@@ -47,9 +47,11 @@ export class VolumesViewComponent implements OnInit {
 
     // filter our data
     const temp = this.searchString.filter((volume: Volume) => {
-      return volume.Name.toLowerCase().indexOf(val) !== -1 ||
-      volume.Driver.toLowerCase().indexOf(val) !== -1 ||
-      !val;
+      return (
+        volume.Name.toLowerCase().indexOf(val) !== -1 ||
+        volume.Driver.toLowerCase().indexOf(val) !== -1 ||
+        !val
+      );
     });
 
     // update the rows

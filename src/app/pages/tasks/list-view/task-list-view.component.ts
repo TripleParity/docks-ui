@@ -46,9 +46,15 @@ export class TaskListViewComponent implements OnInit {
   }
 
   prettifyTasks() {
-    this.tasks.forEach(elem => {
-      elem.Name = this.getTaskName(elem.Spec.ContainerSpec.Labels, elem.Slot, elem.ID);
-      elem.Spec.ContainerSpec.Image = this.getImage(elem.Spec.ContainerSpec.Image);
+    this.tasks.forEach((elem) => {
+      elem.Name = this.getTaskName(
+        elem.Spec.ContainerSpec.Labels,
+        elem.Slot,
+        elem.ID
+      );
+      elem.Spec.ContainerSpec.Image = this.getImage(
+        elem.Spec.ContainerSpec.Image
+      );
     });
   }
 
@@ -69,7 +75,7 @@ export class TaskListViewComponent implements OnInit {
 
     // filter our data
     const temp = this.searchString.filter((task: Task) => {
-    return (
+      return (
         task.Name.toLowerCase().indexOf(val) !== -1 ||
         task.Spec.ContainerSpec.Image.toLowerCase().indexOf(val) !== -1 ||
         task.NodeHostname.toLowerCase().indexOf(val) !== -1 ||

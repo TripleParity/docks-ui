@@ -33,7 +33,8 @@ export class NodeViewComponent implements OnInit, OnDestroy {
     this.routeSub = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.page_start.unsubscribe();
-    }});
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -61,9 +62,13 @@ export class NodeViewComponent implements OnInit, OnDestroy {
   }
 
   prettifyNodes() {
-    this.nodes.forEach(elem => {
-      elem.Description.Resources.NanoCPUs = this.getCPU(elem.Description.Resources.NanoCPUs.toString());
-      elem.Description.Resources.MemoryBytes = this.getRam(elem.Description.Resources.MemoryBytes.toString());
+    this.nodes.forEach((elem) => {
+      elem.Description.Resources.NanoCPUs = this.getCPU(
+        elem.Description.Resources.NanoCPUs.toString()
+      );
+      elem.Description.Resources.MemoryBytes = this.getRam(
+        elem.Description.Resources.MemoryBytes.toString()
+      );
     });
   }
 

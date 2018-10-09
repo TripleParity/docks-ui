@@ -62,7 +62,7 @@ export class ServiceListViewComponent implements OnInit {
   }
 
   prettifyServices() {
-    this.services.forEach(element => {
+    this.services.forEach((element) => {
       let port = null;
       if (element.Spec.EndpointSpec.Ports !== undefined) {
         port = element.Spec.EndpointSpec.Ports[0].PublishedPort;
@@ -85,8 +85,9 @@ export class ServiceListViewComponent implements OnInit {
 
       element.Spec.Mode.Replicated.Replicas = replicated;
 
-      element.Spec.TaskTemplate.ContainerSpec.Image = element.Spec.TaskTemplate.ContainerSpec.Image.split('@')[0];
-
+      element.Spec.TaskTemplate.ContainerSpec.Image = element.Spec.TaskTemplate.ContainerSpec.Image.split(
+        '@'
+      )[0];
     });
   }
 
@@ -132,9 +133,11 @@ export class ServiceListViewComponent implements OnInit {
 
     // filter our data
     const temp = this.searchString.filter((service: Service) => {
-    return (
+      return (
         service.Spec.Name.toLowerCase().indexOf(val) !== -1 ||
-        service.Spec.TaskTemplate.ContainerSpec.Image.toLowerCase().indexOf(val) !== -1 ||
+        service.Spec.TaskTemplate.ContainerSpec.Image.toLowerCase().indexOf(
+          val
+        ) !== -1 ||
         !val
       );
     });
@@ -146,12 +149,12 @@ export class ServiceListViewComponent implements OnInit {
   }
 
   findIndex(str: string) {
-      let i = 0;
-      while (this.services[i]['ID'] !== str) {
-        i++;
-      }
-      return i++;
+    let i = 0;
+    while (this.services[i]['ID'] !== str) {
+      i++;
     }
+    return i++;
+  }
 
   onSelect({ selected }) {
     this.router.navigate(['/services/' + selected[0].ID]);
