@@ -58,20 +58,32 @@ export class VolumeDetailViewComponent implements OnInit {
   }
 
   removeVolume() {
-    this.volumeService.deleteVolume(this.volumeName, this.forceDelete).subscribe(
-      (volume) => {
-        this.toastr.success('Volume ' + this.volumeName + ' was successfully removed');
-        this.activeModal.close();
-        this.router.navigate(['/volumes']);
-      },
-      (result: VolumeError) => {
-        this.toastr.error(result.message, 'Could not remove volume ' + this.volumeName);
-        this.activeModal.close();
-      }
-    );
+    console.log(this.forceDelete);
+    this.volumeService
+      .deleteVolume(this.volumeName, this.forceDelete)
+      .subscribe(
+        (volume) => {
+          this.toastr.success(
+            'Volume ' + this.volumeName + ' was successfully removed'
+          );
+          this.activeModal.close();
+          this.router.navigate(['/volumes']);
+        },
+        (result: VolumeError) => {
+          this.toastr.error(
+            result.message,
+            'Could not remove volume ' + this.volumeName
+          );
+          this.activeModal.close();
+        }
+      );
   }
 
   open(content) {
     this.activeModal = this.modalService.open(content);
+  }
+
+  changeCheck(event) {
+    this.forceDelete = !event.forceDelete;
   }
 }

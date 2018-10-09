@@ -106,6 +106,11 @@
       <pre>{{volumeModel.Name}}</pre>
     </h5>
   </div>
+  <div class="forceCheck">
+    <div class="checkbox">
+        <label><input type="checkbox" (change)="changeCheck($event)" value=""> Force </label>
+    </div>
+  </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Cancel click')">Cancel</button>
     <button type="button" class="btn btn-danger" (click)="removeVolume()">Delete</button>
