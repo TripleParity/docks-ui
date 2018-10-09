@@ -1,41 +1,18 @@
 <div class="container">
-  <div id="stats" class="row">
-      <div id="volumes" class="col-4">
-          <div class="inner-container">
-              <img src="https://cdn0.iconfinder.com/data/icons/office-icon-set-2/100/Noun_Project_100Icon_10px_grid-07-128.png">
-              <h3>{{numVol}}</h3>
-              <p>Volumes</p>
-          </div>
-      </div>
-      <div id="networks" class="col-4">
-          <div class="inner-container">
-              <img src="https://cdn3.iconfinder.com/data/icons/other-icons/48/organization-128.png">
-              <h3>{{numNet}}</h3>
-              <p>Networks</p>
-          </div>
-      </div>
-      <div id="tasks" class="col-4">
-          <div class="inner-container">
-              <img src="https://cdn3.iconfinder.com/data/icons/other-icons/48/list-128.png">
-              <h3>{{numTask}}</h3>
-              <p>tasks</p>
-          </div>
-      </div>
-  </div>
+            <div class="card" style="width: 18rem;" *ngFor="let card of cards">
+                <img class="card-img-top" src={{card.src}} alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{card.title}} </h5>
+                  <p class="card-text">{{card.text}}</p>
+                </div>
+            </div>
+<div>
 
   <br><br>
 
   <div class="row">
       <div class="col-4">
-          <canvas id="myChart" width="300" height="300"></canvas>
-
-      </div>
-      <!-- <div class="col-4">
-          <canvas id="myChartbar" width="300" height="300"></canvas>
-      </div> -->
-
-      <div class="col-4">
-          <canvas id="chart2" width="300" height="300"></canvas>
+          <canvas id="chart2" width="750" height="750"></canvas>
       </div>
   </div>
 </div>

@@ -15,13 +15,10 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  private chartA: any;
   private chartB: any;
   private page_start: Subscription;
   private routeSub: Subscription;
-  public numNet: number;
-  public numTask: number;
-  public numVol: number;
+  public cards: any[] = [];
 
   constructor(
     private networkService: NetworkService,
@@ -33,26 +30,25 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
   chart;
   ngOnInit() {
+    this.cards = [];
+    this.cards.push({title: 'Networks', text: '0', src: 'assets/logo-small-square.png'});
+    this.cards.push({title: 'Volumes', text: '0', src: 'assets/logo-small-square.png'});
+    this.cards.push({title: 'Tasks', text: '0', src: 'assets/logo-small-square.png'});
+    this.cards.push({title: 'Services', text: '0', src: 'assets/logo-small-square.png'});
+    this.cards.push({title: 'Nodes', text: '0', src: 'assets/logo-small-square.png'});
+
+
     this.routeSub = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.page_start.unsubscribe();
       }
     });
 
-    this.updateChartA();
     this.updateChartB();
-
+    this.count_types();
     this.page_start = interval(5000).subscribe(() => {
       this.updateChartB();
-      this.updateChartA();
-    });
-
-    this.chartA = new Chart('myChart', {
-      type: 'pie',
-      data: {
-        labels: [],
-        datasets: [{}],
-      },
+      this.count_types();
     });
 
     this.chartB = new Chart('chart2', {
@@ -105,38 +101,36 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  async updateChartA() {
+  async count_types() {
     const n_nodes = await this.nodeService.getNodes().toPromise();
     const n_services = await this.servicesService.getServices().toPromise();
     const n_volumes = await this.volumeService.getVolumes().toPromise();
     const n_networks = await this.networkService.getNetworks().toPromise();
     const n_tasks = await this.taskService.getTasks().toPromise();
 
-    this.numNet = n_networks.length;
-    this.numTask = n_tasks.length;
-    this.numVol = n_volumes.length;
-
-    this.chartA.data.labels = [
-      'Nodes',
-      'Networks',
-      'Volumes',
-      'Tasks',
-      'Services',
-    ];
-    this.chartA.data.datasets[0].data = [
-      n_nodes.length,
-      n_networks.length,
-      n_volumes.length,
-      n_tasks.length,
-      n_services.length,
-    ];
-    this.chartA.data.datasets[0].backgroundColor = [
-      '#FF7F90',
-      '#DEFF71',
-      '#7CC55A',
-      '#102900',
-      '#F6FF93',
-    ];
-    this.chartA.update();
+    this.cards.forEach(card => {
+      switch (card['title']) {
+        case 'Services': {
+          card['text'] = n_services.length;
+          break;
+        }
+        case 'Nodes': {
+          card['text'] = n_nodes.length;
+          break;
+        }
+        case 'Volumes': {
+          card['text'] = n_volumes.length;
+          break;
+        }
+        case 'Networks': {
+          card['text'] = n_networks.length;
+          break;
+        }
+        case 'Tasks': {
+          card['text'] = n_tasks.length;
+          break;
+        }
+      }
+    });
   }
 }
