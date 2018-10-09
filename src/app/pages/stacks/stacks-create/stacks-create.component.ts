@@ -1,11 +1,11 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { Stack } from 'app/models/stack/stack.model';
+import { Stack } from '../../../../app/models/stack/stack.model';
 import { Router } from '@angular/router';
 import {
   StackService,
   StackError,
   StackErrorCode,
-} from 'services/stack/stack.service';
+} from '../../../services/stack/stack.service';
 import { ToastrService } from 'ngx-toastr';
 
 import 'brace/mode/yaml';

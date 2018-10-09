@@ -5,7 +5,7 @@ import {
   StackService,
   StackError,
   StackErrorCode,
-} from 'services/stack/stack.service';
+} from '../../../services/stack/stack.service';
 import { ToastrService } from 'ngx-toastr';
 
 
