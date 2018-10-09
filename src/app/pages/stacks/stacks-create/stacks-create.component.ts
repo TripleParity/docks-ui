@@ -9,6 +9,8 @@ import {
 import { ToastrService } from 'ngx-toastr';
 
 import 'brace/mode/yaml';
+import 'brace/theme/dreamweaver';
+import { AceEditorComponent } from 'ng2-ace-editor';
 
 
 @Component({
@@ -17,10 +19,10 @@ import 'brace/mode/yaml';
   styleUrls: ['./stacks-create.component.css'],
 })
 export class StacksCreateComponent implements OnInit, AfterViewInit {
-  @ViewChild('editor') editor;
+  @ViewChild('editor') editor: AceEditorComponent;
   public stackModel: Stack;
   public fileText = '';
-  public text = 'Oh biscuits';
+  public text = 'Add the compose file here';
   constructor(
     private router: Router,
     private stackService: StackService,
@@ -34,10 +36,10 @@ export class StacksCreateComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.editor.setTheme('dracula');
+    this.editor.setTheme('dreamweaver');
 
     this.editor.getEditor().setOptions({
-        enableBasicAutocompletion: true,
+        enableBasicAutoCompletion: true,
     });
   }
 

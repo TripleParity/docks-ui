@@ -18,7 +18,9 @@
       <div class="form-group">
         <div class="row">
           <div class="col-6">
-            <textarea rows="15" cols="40s" placeholder="View the docker file here.." required name="stackFile" [(ngModel)]="stackModel.stackFile">{{fileText}}</textarea>
+            <ace-editor [(text)]="text" id='editor' #editor style="height:318px;" mode='yaml'>
+
+            </ace-editor>
           </div>
           <div class="col-6">
             <label for="file">
@@ -64,10 +66,6 @@
       </div>
 
     </form>
-
-   <ace-editor [(text)]="text" id='editor' #editor style="height:150px;" mode='yaml'>
-
-   </ace-editor>
 
   </div>
 </div>

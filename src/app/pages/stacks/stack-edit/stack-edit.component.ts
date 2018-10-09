@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Stack } from '../../../../app/models/stack/stack.model';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {
@@ -8,15 +8,20 @@ import {
 } from '../../../services/stack/stack.service';
 import { ToastrService } from 'ngx-toastr';
 
+import 'brace/mode/yaml';
+import 'brace/theme/dreamweaver';
+import { AceEditorComponent } from 'ng2-ace-editor';
 
 @Component({
   selector: 'app-stack-edit',
   templateUrl: './stack-edit.component.html',
   styleUrls: ['./stack-edit.component.css'],
 })
-export class StackEditComponent implements OnInit {
+export class StackEditComponent implements OnInit, AfterViewInit {
+  @ViewChild('editor') editor: AceEditorComponent;
   public stackModel: Stack;
   public fileText = '';
+  public text = 'Edit the compose file here after uploading it';
 
   constructor(
     private router: Router,
@@ -24,6 +29,14 @@ export class StackEditComponent implements OnInit {
     private route: ActivatedRoute,
     private toastr: ToastrService
   ) {}
+
+  ngAfterViewInit() {
+    this.editor.setTheme('dreamweaver');
+
+    // this.editor.getEditor().setOptions({
+    //     enableBasicAutoCompletion: true,
+    // });
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -42,6 +55,7 @@ export class StackEditComponent implements OnInit {
     reader.onload = function() {
       me.fileText = reader.result;
       me.stackModel.stackFile = me.fileText;
+      me.editor.text = reader.result;
     };
   }
 
