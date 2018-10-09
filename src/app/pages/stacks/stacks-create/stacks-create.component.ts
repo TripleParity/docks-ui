@@ -8,6 +8,9 @@ import {
 } from 'services/stack/stack.service';
 import { ToastrService } from 'ngx-toastr';
 
+import 'brace/mode/yaml';
+
+
 @Component({
   selector: 'app-stacks-create',
   templateUrl: './stacks-create.component.html',
@@ -34,7 +37,7 @@ export class StacksCreateComponent implements OnInit, AfterViewInit {
     this.editor.setTheme('dracula');
 
     this.editor.getEditor().setOptions({
-        enableBasicAutocompletion: true
+        enableBasicAutocompletion: true,
     });
   }
 
