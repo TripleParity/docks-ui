@@ -34,27 +34,27 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.cards.push({
       title: 'Networks',
       text: '0',
-      src: 'assets/logo-small-square.png',
+      src: 'fa fa-sitemap',
     });
     this.cards.push({
       title: 'Volumes',
       text: '0',
-      src: 'assets/logo-small-square.png',
+      src: 'fa fa-book',
     });
     this.cards.push({
       title: 'Tasks',
       text: '0',
-      src: 'assets/logo-small-square.png',
+      src: 'fa fa-tag',
     });
     this.cards.push({
       title: 'Services',
       text: '0',
-      src: 'assets/logo-small-square.png',
+      src: 'fa fa-tags',
     });
     this.cards.push({
       title: 'Nodes',
       text: '0',
-      src: 'assets/logo-small-square.png',
+      src: 'fa fa-tasks',
     });
 
     this.routeSub = this.router.events.subscribe((event) => {

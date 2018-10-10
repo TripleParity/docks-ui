@@ -1,11 +1,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col" *ngFor="let card of cards">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src={{card.src}} alt="Card image cap">
+            <div class="card infoCards"><h4 class="iconHeader"><i class={{card.src}}></i></h4>
                 <div class="card-body">
-                    <h5 class="card-title">{{card.title}} </h5>
-                    <p class="card-text">{{card.text}}</p>
+                    <h5 class="card-title center">{{card.title}} </h5>
+                    <p class="card-text center">{{card.text}}</p>
                 </div>
             </div>
         </div>
