@@ -23,6 +23,7 @@ export class StacksCreateComponent implements OnInit, AfterViewInit {
   public stackModel: Stack;
   public fileText = '';
   public text = 'Add the compose file here';
+  public deploying = false;
   constructor(
     private router: Router,
     private stackService: StackService,
@@ -56,6 +57,10 @@ export class StacksCreateComponent implements OnInit, AfterViewInit {
   }
 
   submit() {
+    this.stackModel.stackFile = this.text;
+    this.toastr.info('Trying to deploy your stack', 'Busy');
+    this.deploying = true;
+
     this.stackService
       .deployStack(this.stackModel.stackName, btoa(this.stackModel.stackFile))
       .subscribe(
@@ -64,15 +69,17 @@ export class StacksCreateComponent implements OnInit, AfterViewInit {
             'Successfully deployed stack ' + this.stackModel.stackName,
             'Success!'
           );
+          this.deploying = false;
           this.router.navigate(['/stacks']);
         },
         (err: StackError) => {
           this.toastr.error(err.message, 'Error while deploying stack');
+          this.deploying = false;
         }
       );
   }
 
-  replaceStackContents(stack) {
-    this.stackModel.stackFile = atob(stack);
+  replaceStackContents(stack: string) {
+    this.text = atob(stack);
   }
 }
