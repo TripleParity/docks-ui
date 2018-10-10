@@ -14,7 +14,6 @@ import { StackDetailViewComponent } from 'pages/stacks/stack-detail-view/stack-d
 
 import { AceEditorModule } from 'ng2-ace-editor';
 
-
 @NgModule({
   imports: [
     CommonModule,

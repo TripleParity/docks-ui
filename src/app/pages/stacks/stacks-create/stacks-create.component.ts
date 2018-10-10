@@ -12,7 +12,6 @@ import 'brace/mode/yaml';
 import 'brace/theme/dreamweaver';
 import { AceEditorComponent } from 'ng2-ace-editor';
 
-
 @Component({
   selector: 'app-stacks-create',
   templateUrl: './stacks-create.component.html',

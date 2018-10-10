@@ -25,7 +25,6 @@ describe('StackEditComponent', () => {
         RouterTestingModule,
         ToastrModule.forRoot(),
         AceEditorModule,
-
       ],
       providers: [
         StackService,
