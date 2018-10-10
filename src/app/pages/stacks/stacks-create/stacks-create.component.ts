@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Stack } from '../../../../app/models/stack/stack.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {
   StackService,
   StackError,
@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import 'brace/mode/yaml';
 import 'brace/theme/dreamweaver';
 import { AceEditorComponent } from 'ng2-ace-editor';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-stacks-create',
@@ -23,16 +24,26 @@ export class StacksCreateComponent implements OnInit, AfterViewInit {
   public fileText = '';
   public text = 'Add the compose file here';
   public deploying = false;
+  private preconfStacks;
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private stackService: StackService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {
     this.stackModel = {
       stackName: '',
       serviceCount: 0,
       stackFile: '',
     };
+
+    // tslint:disable
+    this.preconfStacks = [
+      {key: 'WordPress', text: 'dmVyc2lvbjogJzMuMScNCnNlcnZpY2VzOg0KICAgZGI6DQogICAgIGltYWdlOiBteXNxbDo1LjcNCiAgICAgcmVzdGFydDogYWx3YXlzDQogICAgIGVudmlyb25tZW50Og0KICAgICAgIE1ZU1FMX1JPT1RfUEFTU1dPUkQ6IHNvbWV3b3JkcHJlc3MNCiAgICAgICBNWVNRTF9EQVRBQkFTRTogd29yZHByZXNzDQogICAgICAgTVlTUUxfVVNFUjogd29yZHByZXNzDQogICAgICAgTVlTUUxfUEFTU1dPUkQ6IHdvcmRwcmVzcw0KDQogICB3b3JkcHJlc3M6DQogICAgIGRlcGVuZHNfb246DQogICAgICAgLSBkYg0KICAgICBpbWFnZTogd29yZHByZXNzOmxhdGVzdA0KICAgICBwb3J0czoNCiAgICAgICAtICI4MDAwOjgwIg0KICAgICByZXN0YXJ0OiBhbHdheXMNCiAgICAgZW52aXJvbm1lbnQ6DQogICAgICAgV09SRFBSRVNTX0RCX0hPU1Q6IGRiOjMzMDYNCiAgICAgICBXT1JEUFJFU1NfREJfVVNFUjogd29yZHByZXNzDQogICAgICAgV09SRFBSRVNTX0RCX1BBU1NXT1JEOiB3b3JkcHJlc3M='},
+      {key: 'Mongo', text: 'dmVyc2lvbjogJzMuMicKc2VydmljZXM6CiAgICBtb25nbzoKICAgICAgICBpbWFnZTogbW9uZ28KICAgIG1leHByZXNzOgogICAgICAgIGltYWdlOiBtb25nby1leHByZXNzCiAgICAgICAgZGVwZW5kc19vbjoKICAgICAgICAgICAgLSAibW9uZ28iCiAgICAgICAgcmVzdGFydDogImFsd2F5cyIKICAgICAgICBwb3J0czoKICAgICAgICAgICAgLSAiODAwMTo4MDgxIgogICAgICAgIGVudmlyb25tZW50OgogICAgICAgICAgICBNRV9DT05GSUdfT1BUSU9OU19FRElUT1JUSEVNRTogYW1iaWFuY2U='},
+      {key: 'NGINX', text: 'dmVyc2lvbjogJzMnCgpzZXJ2aWNlczoKICAgIGFwcDoKICAgICAgICBpbWFnZTogbmdpbngKICAgICAgICBwb3J0czogCiAgICAgICAgICAgIC0gIjgwMDI6ODAi'}
+    ];
+    // tslint:enable
   }
 
   ngAfterViewInit() {
@@ -43,7 +54,19 @@ export class StacksCreateComponent implements OnInit, AfterViewInit {
     // });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params['preconf'] != null) {
+        console.log(params['preconf']);
+        this.preconfStacks.forEach(stack => {
+          if (stack.key === params['preconf']) {
+            this.replaceStackContents(stack.text);
+            return;
+          }
+        });
+      }
+    });
+  }
 
   uploadFile(event) {
     const reader = new FileReader();

@@ -5,6 +5,7 @@ import { StacksViewComponent } from 'app/pages/stacks/stacks-view/stacks-view.co
 import { StacksCreateComponent } from 'app/pages/stacks/stacks-create/stacks-create.component';
 import { StackEditComponent } from 'pages/stacks/stack-edit/stack-edit.component';
 import { StackDetailViewComponent } from 'pages/stacks/stack-detail-view/stack-detail-view.component';
+import { StackPreconfComponent } from 'pages/stacks/stack-preconf/stack-preconf.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
     path: 'create',
     pathMatch: 'full',
     component: StacksCreateComponent,
+  },
+  {
+    path: 'preconfigured',
+    pathMatch: 'full',
+    component: StackPreconfComponent,
   },
   {
     path: ':stackName/edit',

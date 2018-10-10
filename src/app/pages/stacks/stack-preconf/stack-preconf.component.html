@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="offset-md-4">
+  </div>
+  <div class="col-md-4 centered">
+    <h2>Deploy Preconfigured Stack</h2>
+  </div>
+</div>
+  
+<div class="row">
+
+  <div class="col" *ngFor="let stack of stacks">
+    <div class="card stackCard" (click)="toCreate(stack.name)">
+      <div class="centered">
+        <img class="img" src="{{stack.img}}" alt="{{stack.name}}" height="50px">
+      </div>
+      <div class="card-body centered">
+        <h5 class="card-title">{{stack.name}}</h5>
+      </div>
+    </div>
+  </div>
+  
+</div>

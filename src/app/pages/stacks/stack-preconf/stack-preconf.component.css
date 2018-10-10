@@ -1,0 +1,15 @@
+.stackCard{
+    width: 18rem;
+    margin: auto; 
+    margin-top: 20px
+}
+
+.centered{
+    text-align: center
+}
+
+.img{
+    display: inline-block;
+    margin: auto;
+    margin-top: 20px;
+}
