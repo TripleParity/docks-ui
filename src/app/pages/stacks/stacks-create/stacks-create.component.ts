@@ -1,22 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { Stack } from 'app/models/stack/stack.model';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Stack } from '../../../../app/models/stack/stack.model';
 import { Router } from '@angular/router';
 import {
   StackService,
   StackError,
   StackErrorCode,
-} from 'services/stack/stack.service';
+} from '../../../services/stack/stack.service';
 import { ToastrService } from 'ngx-toastr';
+
+import 'brace/mode/yaml';
+import 'brace/theme/dreamweaver';
+import { AceEditorComponent } from 'ng2-ace-editor';
 
 @Component({
   selector: 'app-stacks-create',
   templateUrl: './stacks-create.component.html',
   styleUrls: ['./stacks-create.component.css'],
 })
-export class StacksCreateComponent implements OnInit {
+export class StacksCreateComponent implements OnInit, AfterViewInit {
+  @ViewChild('editor') editor: AceEditorComponent;
   public stackModel: Stack;
   public fileText = '';
-
+  public text = 'Add the compose file here';
+  public deploying = false;
   constructor(
     private router: Router,
     private stackService: StackService,
@@ -27,6 +33,14 @@ export class StacksCreateComponent implements OnInit {
       serviceCount: 0,
       stackFile: '',
     };
+  }
+
+  ngAfterViewInit() {
+    this.editor.setTheme('dreamweaver');
+
+    // this.editor.getEditor().setOptions({
+    //     enableBasicAutoCompletion: true,
+    // });
   }
 
   ngOnInit() {}
@@ -42,6 +56,10 @@ export class StacksCreateComponent implements OnInit {
   }
 
   submit() {
+    this.stackModel.stackFile = this.text;
+    this.toastr.info('Trying to deploy your stack', 'Busy');
+    this.deploying = true;
+
     this.stackService
       .deployStack(this.stackModel.stackName, btoa(this.stackModel.stackFile))
       .subscribe(
@@ -50,15 +68,17 @@ export class StacksCreateComponent implements OnInit {
             'Successfully deployed stack ' + this.stackModel.stackName,
             'Success!'
           );
+          this.deploying = false;
           this.router.navigate(['/stacks']);
         },
         (err: StackError) => {
           this.toastr.error(err.message, 'Error while deploying stack');
+          this.deploying = false;
         }
       );
   }
 
-  replaceStackContents(stack) {
-    this.stackModel.stackFile = atob(stack);
+  replaceStackContents(stack: string) {
+    this.text = atob(stack);
   }
 }
