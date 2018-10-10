@@ -27,14 +27,14 @@
 
   <div class="form row">
     <div class="col-sm-2 text">
-      <label for="volumeName" class="col-form-label">
+      <label for="volumeDriver" class="col-form-label">
         <h4>
           <i class="required fa fa-asterisk"></i> Driver: </h4>
       </label>
     </div>
     <div class="col-sm-9">
-      <input type="text" placeholder="Tardis" formControlName="Name" class="form-control" id="volumeName" required>
-      <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A Volume Name
+      <input type="text" placeholder="Local" formControlName="Driver" class="form-control" id="volumeDriver" required>
+      <ngb-alert [hidden]="Driver.valid || Driver.pristine" (close)="Driver.markAsPristine()" [type]="'danger'">A Volume Driver
         is required.</ngb-alert>
     </div>
   </div>
@@ -62,7 +62,7 @@
           <div class="form-group col-sm-5">
             <input type="text" placeholder="Mountpoint" formControlName="OptionName" class="form-control text" id="'OptionName'+i"
               required>
-            <ngb-alert [hidden]="Options.valid || Options.pristine" (close)="Options.markAsPristine()" [type]="'danger'">If
+            <ngb-alert type="text" [hidden]="Options.valid || Options.pristine" (close)="Options.markAsPristine()" [type]="'danger'">If
               you add an Option a name is required.</ngb-alert>
           </div>
           <div class="col-sm-5">
@@ -108,6 +108,8 @@
           <div class="form-group col-sm-5">
             <input type="text" placeholder="com.example.some-label" formControlName="Name" class="form-control text" id="'LabelName'+i"
               required>
+              <ngb-alert type="text" [hidden]="Labels.valid || Labels.pristine" (close)="Labels.markAsPristine()" [type]="'danger'" class="inlineAlerts">If
+                  you add a Label a name is required.</ngb-alert>
           </div>
           <div class="form-group col-sm-5">
             <input type="text" placeholder="some-value" formControlName="Value" class="form-control text" id="'LabelValue'+i">
