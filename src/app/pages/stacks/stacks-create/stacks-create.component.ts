@@ -50,8 +50,9 @@ export class StacksCreateComponent implements OnInit, AfterViewInit {
     reader.readAsText(event.target.files[0]);
     const me = this;
     reader.onload = function() {
-      me.fileText = reader.result;
+      me.fileText = reader.result.toString();
       me.stackModel.stackFile = me.fileText;
+      me.text = me.fileText;
     };
   }
 
