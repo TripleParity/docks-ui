@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StackPreconfComponent } from './stack-preconf.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('StackPreconfComponent', () => {
   let component: StackPreconfComponent;
@@ -8,7 +9,10 @@ describe('StackPreconfComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StackPreconfComponent ]
+      declarations: [ StackPreconfComponent ],
+      imports: [
+        RouterTestingModule,
+      ]
     })
     .compileComponents();
   }));
