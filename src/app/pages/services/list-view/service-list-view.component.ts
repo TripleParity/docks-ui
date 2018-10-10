@@ -79,11 +79,10 @@ export class ServiceListViewComponent implements OnInit {
       // Handle optional Modes
       if ('Global' in element.Spec.Mode) {
         replicated = 'Global';
-        element.Spec.Mode.Replicated = {Replicas: replicated};
+        element.Spec.Mode.Replicated = { Replicas: replicated };
       } else if ('Replicated' in element.Spec.Mode) {
         replicated = element.Spec.Mode.Replicated.Replicas.toString();
       }
-
 
       element.Spec.TaskTemplate.ContainerSpec.Image = element.Spec.TaskTemplate.ContainerSpec.Image.split(
         '@'
