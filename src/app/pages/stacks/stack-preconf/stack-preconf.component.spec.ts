@@ -9,12 +9,9 @@ describe('StackPreconfComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StackPreconfComponent ],
-      imports: [
-        RouterTestingModule,
-      ]
-    })
-    .compileComponents();
+      declarations: [StackPreconfComponent],
+      imports: [RouterTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
