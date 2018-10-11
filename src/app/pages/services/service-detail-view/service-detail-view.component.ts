@@ -53,7 +53,6 @@ export class ServiceDetailViewComponent implements OnInit {
         this.getStackName();
         this.isLoaded = true;
         this.getMode();
-        this.getReplicas();
         this.getPort();
         this.getImage();
         this.getTasks(this.serviceModel.ID);
@@ -80,14 +79,6 @@ export class ServiceDetailViewComponent implements OnInit {
       this.mode = 'Replicated';
     } else {
       this.mode = 'Global';
-    }
-  }
-
-  getReplicas() {
-    if (this.serviceModel.Spec.Mode.hasOwnProperty('Replicated')) {
-      this.replicas = this.serviceModel.Spec.Mode.Replicated.Replicas.toString();
-    } else {
-      this.replicas = 'Global';
     }
   }
 
@@ -126,14 +117,30 @@ export class ServiceDetailViewComponent implements OnInit {
   }
 
   getTasks(serviceId: string) {
-    this.taskService.getTasks().subscribe(
+    this.taskService.getTaskInService(this.serviceID).subscribe(
       (task) => {
         this.tasks = task;
+        this.getReplicas();
       },
       (err: TaskError) => {
         this.toastr.error(err.message, 'An error occured');
       }
     );
+  }
+
+
+  getReplicas() {
+    if (this.serviceModel.Spec.Mode.hasOwnProperty('Replicated')) {
+      let numberOfRunningTasks = 0;
+      this.tasks.forEach(element => {
+        if (element.Status.State === 'running') {
+          numberOfRunningTasks++;
+        }
+      });
+      this.replicas = numberOfRunningTasks.toString() + '/' + this.serviceModel.Spec.Mode.Replicated.Replicas.toString();
+    } else {
+      this.replicas = 'Global';
+    }
   }
 
   getTaskName(labels: Object, slot: number, id: string): string {
