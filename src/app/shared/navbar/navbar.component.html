@@ -2,13 +2,13 @@
     <div class="list-group nav-list-group panel p-l-0 p-r-0 navDocks"  *ngIf="isLoggedIn$ | async as isLogged">
         <!--Add items as they are implemented-->
 
-        <!--<a href="#" class="nav-list-group-item" routerLink="/tasks/list"><i class="fa fa-list"></i> <span class="hidden-sm-down"> Task List View</span></a>-->
-        <div class="CompanyLogo">
-            <a href="#" class="navbar-left navbar-brand text-light">
-                <img src="assets/logo-small-square.png" class="logo"> 
-                <span id="Docks"> Docks</span>
-            </a>
-        </div>
+    <!--<a href="#" class="nav-list-group-item" routerLink="/tasks/list"><i class="fa fa-list"></i> <span class="hidden-sm-down"> Task List View</span></a>-->
+    <div class="CompanyLogo">
+        <a href="#" class="navbar-left navbar-brand text-light" routerLink="/">
+            <img src="assets/logo-small-square.png" class="logo"> 
+            <span id="Docks"> Docks</span>
+        </a>
+    </div>
 
         <h4 class="navHeader">Applications</h4>
         <a href="#" class="nav-list-group-item" routerLink="/stacks"><i class="fa fa-database"></i><span class="hidden-sm-down"> Stacks</span></a>

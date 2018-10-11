@@ -34,6 +34,7 @@ export class TaskService {
    * @returns {Observable<Task[]>}
    */
   public getTasks(): Observable<Task[]> {
+    // TODO(egeldenhuys): The `/tasks` endpoint has not been tested with query parameters
     return this.http
       .get(this.config.getAPIHostname() + '/tasks', {
         responseType: 'json',

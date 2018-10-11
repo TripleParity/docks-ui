@@ -23,6 +23,7 @@ export class StackDetailViewComponent implements OnInit {
   public isLoaded = false;
   public activeModal: NgbModalRef;
   public selected = [];
+  public stackNameToDelete;
 
   constructor(
     private router: Router,
@@ -76,6 +77,7 @@ export class StackDetailViewComponent implements OnInit {
   }
 
   open(content, stackName: string) {
+    this.stackNameToDelete = stackName;
     this.activeModal = this.modalService.open(content);
   }
 

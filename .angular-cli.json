@@ -25,7 +25,9 @@
         "styles-additional.css",
         "../node_modules/font-awesome/css/font-awesome.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/ace-builds/src-min/ace.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

@@ -19,13 +19,14 @@ export class TaskListViewComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) {}
-  public tasks: Task[] = [];
+  public tasks: Task[];
+  public searchString: Task[];
   public previous = 0;
   public isLoaded = false;
   public selected = [];
-  private NodeNames: Node[] = [];
 
   ngOnInit() {
+    this.tasks = [];
     this.fetchTasks();
   }
 
@@ -33,12 +34,28 @@ export class TaskListViewComponent implements OnInit {
     this.taskService.getTasks().subscribe(
       (task) => {
         this.tasks = task;
+        this.searchString = [...this.tasks];
+
+        this.prettifyTasks();
         this.isLoaded = true;
       },
       (err: TaskError) => {
         this.toastr.error(err.message, 'An error occured');
       }
     );
+  }
+
+  prettifyTasks() {
+    this.tasks.forEach((elem) => {
+      elem.Name = this.getTaskName(
+        elem.Spec.ContainerSpec.Labels,
+        elem.Slot,
+        elem.ID
+      );
+      elem.Spec.ContainerSpec.Image = this.getImage(
+        elem.Spec.ContainerSpec.Image
+      );
+    });
   }
 
   getRowHeight(row) {
@@ -51,6 +68,26 @@ export class TaskListViewComponent implements OnInit {
     } else {
       return id;
     }
+  }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.searchString.filter((task: Task) => {
+      return (
+        task.Name.toLowerCase().indexOf(val) !== -1 ||
+        task.Spec.ContainerSpec.Image.toLowerCase().indexOf(val) !== -1 ||
+        task.NodeHostname.toLowerCase().indexOf(val) !== -1 ||
+        task.Status.State.toLowerCase().indexOf(val) !== -1 ||
+        !val
+      );
+    });
+
+    // update the rows
+    this.tasks = temp;
+    // Whenever the filter changes, always go back to the first page
+    // this.table.offset = 0;
   }
 
   onSelect({ selected }) {

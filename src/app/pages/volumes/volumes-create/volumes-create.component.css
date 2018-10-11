@@ -48,11 +48,6 @@ h1, .text
 {
     cursor: pointer;
 }
-
-#bottomTable
-{
-    padding: 20px;
-}
 .required
 {
     font-size: 40%;
