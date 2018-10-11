@@ -9,6 +9,7 @@ import { Service } from 'app/models/service/service.model';
 import { Formatter } from 'classes/formatter/formatter';
 import { Task } from 'app/models/task/task.model';
 import { TaskService, TaskError } from 'services/task/task.service';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-service-detail-view',
@@ -24,6 +25,7 @@ export class ServiceDetailViewComponent implements OnInit {
   public replicas: string;
   public port: string;
   public image: string;
+  public activeModal: NgbModalRef;
 
   public tasks: Task[];
 
@@ -33,7 +35,8 @@ export class ServiceDetailViewComponent implements OnInit {
     private Stack: ServicesService,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -50,7 +53,6 @@ export class ServiceDetailViewComponent implements OnInit {
         this.getStackName();
         this.isLoaded = true;
         this.getMode();
-        this.getReplicas();
         this.getPort();
         this.getImage();
         this.getTasks(this.serviceModel.ID);
@@ -77,14 +79,6 @@ export class ServiceDetailViewComponent implements OnInit {
       this.mode = 'Replicated';
     } else {
       this.mode = 'Global';
-    }
-  }
-
-  getReplicas() {
-    if (this.serviceModel.Spec.Mode.hasOwnProperty('Replicated')) {
-      this.replicas = this.serviceModel.Spec.Mode.Replicated.Replicas.toString();
-    } else {
-      this.replicas = 'Global';
     }
   }
 
@@ -123,14 +117,30 @@ export class ServiceDetailViewComponent implements OnInit {
   }
 
   getTasks(serviceId: string) {
-    this.taskService.getTasks().subscribe(
+    this.taskService.getTaskInService(this.serviceID).subscribe(
       (task) => {
         this.tasks = task;
+        this.getReplicas();
       },
       (err: TaskError) => {
         this.toastr.error(err.message, 'An error occured');
       }
     );
+  }
+
+
+  getReplicas() {
+    if (this.serviceModel.Spec.Mode.hasOwnProperty('Replicated')) {
+      let numberOfRunningTasks = 0;
+      this.tasks.forEach(element => {
+        if (element.Status.State === 'running') {
+          numberOfRunningTasks++;
+        }
+      });
+      this.replicas = numberOfRunningTasks.toString() + '/' + this.serviceModel.Spec.Mode.Replicated.Replicas.toString();
+    } else {
+      this.replicas = 'Global';
+    }
   }
 
   getTaskName(labels: Object, slot: number, id: string): string {
@@ -144,5 +154,23 @@ export class ServiceDetailViewComponent implements OnInit {
   getTaskImage(image: String): string {
     const taskImage = image.split('@');
     return taskImage[0];
+  }
+
+  open(content) {
+    this.activeModal = this.modalService.open(content);
+  }
+
+  removeService() {
+    this.serviceService.deleteService(this.serviceModel.ID).subscribe(
+      (service) => {
+        this.toastr.success('Service ' + this.stackName + ' was successfully removed');
+        this.activeModal.close();
+        this.router.navigate(['/services/list']);
+      },
+      (err: ServiceError) => {
+        this.toastr.error(err.message, 'Could not remove stack');
+        this.activeModal.close();
+      }
+    );
   }
 }

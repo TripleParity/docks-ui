@@ -45,36 +45,9 @@
         </div>
     </div> 
     
-    <div formArrayName="Labels">
-        <div *ngFor="let label of Labels.controls; let i=index">
-        <div [formGroupName]="i">
-            <div class="row form">
-                <div class="col-sm-2 ">
-                    <label for="'LabelName'+i" class="text">
-                    <i class="required fa fa-asterisk"></i> Trigger type:
-                    </label>
-                </div>
-                <select class="btn btn-secondary">
-                    <option value="0">Please pick a trigger type</option>
-                    <option *ngFor="let type of triggerTypes" value={{type}}>
-                        {{type}}
-                    </option>
-                </select>
-                <div class="col-sm-1">
-                    <span (click)="removeLabel(i)" class="spans" id="delete">
-                    <i class="fa fa-trash"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                
-            </div>
-        </div>
-        </div>
-    </div>
+
     
     <div class="row break"></div>
-    
     <div class="row">
         <div class="offset-sm-4 col-sm-2">
         <a routerLink="/webhooks">

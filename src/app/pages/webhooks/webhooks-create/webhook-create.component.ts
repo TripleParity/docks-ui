@@ -31,7 +31,7 @@ export class WebhookCreateComponent implements OnInit {
     Name: ['', Validators.required],
     url: ['', Validators.required],
     Labels: this.fb.array([
-      // this.initLabels();
+      this.initTriggers()
     ]),
   });
 
@@ -50,6 +50,12 @@ export class WebhookCreateComponent implements OnInit {
   initLabels() {
     return this.fb.group({
       Name: ['', Validators.required],
+    });
+  }
+
+  initTriggers() {
+    this.triggerTypes.forEach(element => {
+
     });
   }
 
