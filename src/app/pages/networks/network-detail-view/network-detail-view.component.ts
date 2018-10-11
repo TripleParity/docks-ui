@@ -26,6 +26,7 @@ export class NetworkDetailViewComponent implements OnInit {
   public subnet: string;
   public gateway: string;
   public activeModal: NgbModalRef;
+  public labels: string[];
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -41,11 +42,22 @@ export class NetworkDetailViewComponent implements OnInit {
         this.isLoaded = true;
         this.subnet = network.IPAM.Config[0].Subnet;
         this.gateway = network.IPAM.Config[0].Gateway;
+        this.labels = this.getLabels();
       },
       (err: NetworkError) => {
         this.toastr.error(err.message, 'An error occured');
       }
     );
+  }
+
+  getLabels(): string[] {
+    const enumerableKeys = [];
+    // tslint:disable-next-line:forin
+    for (const key in this.networkModel.Labels) {
+      enumerableKeys.push(key);
+    }
+
+    return enumerableKeys;
   }
 
   public PrettifyDateTime(buff: string): string {
