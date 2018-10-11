@@ -49,14 +49,21 @@
         <div class="row row justify-content-center">
             <div *ngFor="let key of triggerTypes; let i=index">
                 <input type="checkbox" formControlName={{key}} class="form-check-label" id={{key}}>
-                <label class="checkBox" for={{key}}> {{key}}</label>   
+                <label class="checkBox" for={{key}}> {{key}}</label>
             </div>
         </div>
     </div>
 
     <div class="row break"></div>
 
-        
+    <div class="row">
+        <div class="col-md-12">
+            <ace-editor [(text)]="text" id='editor' #editor style="height:318px;" mode='javascript'>
+                
+            </ace-editor>
+        </div>
+    </div>
+
     <div class="row break"></div>
     <div class="row">
         <div class="offset-sm-4 col-sm-2">

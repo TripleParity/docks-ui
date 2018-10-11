@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { WebhookService, WebhookError } from 'services/webhook/webhook.service';
 import { Webhook, DockerEventTypes } from 'app/models/webhook/webhook.model';
 import { ToastrService } from 'ngx-toastr';
@@ -7,14 +7,18 @@ import { FormArray, FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { stripGeneratedFileSuffix } from '@angular/compiler/src/aot/util';
+
+import 'brace/mode/javascript';
+import 'brace/theme/dreamweaver';
+import { AceEditorComponent } from 'ng2-ace-editor';
 
 @Component({
   selector: 'app-webhook-create',
   templateUrl: './webhook-create.component.html',
   styleUrls: ['./webhook-create.component.css'],
 })
-export class WebhookCreateComponent implements OnInit {
+export class WebhookCreateComponent implements OnInit, AfterViewInit {
+  @ViewChild('editor') editor: AceEditorComponent;
   public name: string;
   public url: string;
   public volumes: boolean;
@@ -25,6 +29,7 @@ export class WebhookCreateComponent implements OnInit {
   public daemons: boolean;
   public images: boolean;
   public nodes: boolean;
+  public text = 'Add project configs here';
   public triggerTypes = ['Volumes', 'Network', 'Service', 'Node', 'Image', 'Daemon', 'Secret', 'Config'];
 
   webhookForm: FormGroup = this.fb.group({
@@ -44,7 +49,18 @@ export class WebhookCreateComponent implements OnInit {
     this.url = '';
   }
 
+
+  ngAfterViewInit() {
+    this.editor.setTheme('dreamweaver');
+
+    // this.editor.getEditor().setOptions({
+    //     enableBasicAutoCompletion: true,
+    // });
+  }
+
   ngOnInit() {}
+
+
 
   initLabels() {
     return this.fb.group({
