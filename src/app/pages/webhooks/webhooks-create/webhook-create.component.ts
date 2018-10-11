@@ -76,7 +76,6 @@ export class WebhookCreateComponent implements OnInit {
     }
 
     const webby: Webhook = { name: this.name, url: this.url, types: t };
-    console.table(t);
 
     this.wh.createWebhook(webby).subscribe(
       (result: WebhookError) => {
