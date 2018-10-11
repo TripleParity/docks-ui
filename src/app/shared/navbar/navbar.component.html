@@ -1,5 +1,6 @@
-<div class="list-group nav-list-group panel p-l-0 p-r-0 navDocks"  *ngIf="isLoggedIn$ | async as isLogged">
-    <!--Add items as they are implemented-->
+<div id = "masterDiv">
+    <div class="list-group nav-list-group panel p-l-0 p-r-0 navDocks"  *ngIf="isLoggedIn$ | async as isLogged">
+        <!--Add items as they are implemented-->
 
     <!--<a href="#" class="nav-list-group-item" routerLink="/tasks/list"><i class="fa fa-list"></i> <span class="hidden-sm-down"> Task List View</span></a>-->
     <div class="CompanyLogo">
@@ -9,21 +10,22 @@
         </a>
     </div>
 
-    <h4 class="navHeader">Applications</h4>
-    <a href="#" class="nav-list-group-item" routerLink="/stacks"><i class="fa fa-database"></i><span class="hidden-sm-down"> Stacks</span></a>
-    <a href="#" class="nav-list-group-item" routerLink="/services/list"><i class="fa fa-tags"></i><span class="hidden-sm-down"> Services</span></a>
-    <a href="#" class="nav-list-group-item" routerLink="/tasks/list"><i class="fa fa-tag"></i><span class="hidden-sm-down"> Tasks</span></a>
+        <h4 class="navHeader">Applications</h4>
+        <a href="#" class="nav-list-group-item" routerLink="/stacks"><i class="fa fa-database"></i><span class="hidden-sm-down"> Stacks</span></a>
+        <a href="#" class="nav-list-group-item" routerLink="/services/list"><i class="fa fa-tags"></i><span class="hidden-sm-down"> Services</span></a>
+        <a href="#" class="nav-list-group-item" routerLink="/tasks/list"><i class="fa fa-tag"></i><span class="hidden-sm-down"> Tasks</span></a>
 
-    <h4 class="navHeader">Infrastructure</h4>
-    <a href="#" class="nav-list-group-item" routerLink="/nodes"><i class="fa fa-tasks"></i><span class="hidden-sm-down"> Nodes</span></a>
-    <a href="#" class="nav-list-group-item" routerLink="/networks"><i class="fa fa-sitemap"></i><span class="hidden-sm-down"> Networks</span></a>
+        <h4 class="navHeader">Infrastructure</h4>
+        <a href="#" class="nav-list-group-item" routerLink="/nodes"><i class="fa fa-tasks"></i><span class="hidden-sm-down"> Nodes</span></a>
+        <a href="#" class="nav-list-group-item" routerLink="/networks"><i class="fa fa-sitemap"></i><span class="hidden-sm-down"> Networks</span></a>
 
-    <h4 class="navHeader">Data</h4>
-    <a href="#" class="nav-list-group-item" routerLink="/volumes"><i class="fa fa-book"></i><span class="hidden-sm-down"> Volumes</span></a>
+        <h4 class="navHeader">Data</h4>
+        <a href="#" class="nav-list-group-item" routerLink="/volumes"><i class="fa fa-book"></i><span class="hidden-sm-down"> Volumes</span></a>
 
-    <h4 class="navHeader">Users</h4>
-    <a href="#" class="nav-list-group-item" routerLink="/users"><i class="fa fa-users"></i><span class="hidden-sm-down"> Users</span></a>
+        <h4 class="navHeader">Users</h4>
+        <a href="#" class="nav-list-group-item" routerLink="/users"><i class="fa fa-users"></i><span class="hidden-sm-down"> Users</span></a>
 
-    <h5 class="navHeader">Webhooks</h5>
-    <a href="#" class="nav-list-group-item" routerLink="/webhooks"><i class="fa fa-users"></i><span class="hidden-sm-down"> Webhooks</span></a>
+        <h5 class="navHeader">Webhooks</h5>
+        <a href="#" class="nav-list-group-item" routerLink="/webhooks"><i class="fa fa-users"></i><span class="hidden-sm-down"> Webhooks</span></a>
+    </div>
 </div>

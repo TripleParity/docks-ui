@@ -66,6 +66,7 @@ export class StacksViewComponent implements OnInit {
   }
 
   onSelect({ selected }) {
+    // console.log('Select Event', selected, this.selected);
     this.router.navigate(['/stacks/' + selected[0].stackName]);
   }
 }
