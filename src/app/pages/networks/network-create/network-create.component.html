@@ -35,14 +35,16 @@
     </div>
   </div>
 
-  <div class="row break"></div>
+  <div  class="row break">
+  </div>
 
-  <!-- <div class="row">
-    <div class="col-4"> 
-      <input type=”checkbox” formControlName="IsAttachable"/> IsAttachable
-    </div>
-  </div> -->
-
+  <div formGroupName="checkBoxes">
+      Ingress <input type="checkbox" formControlName="Ingress"> 
+      Internal <input type="checkbox" formControlName="Internal"> 
+      Is Attachable <input type="checkbox" formControlName="IsAttachable"> 
+      EnableIPv6 <input type="checkbox" formControlName="EnableIPv6"> 
+  </div>
+  
   <div class="row break"></div>
 
   <div class="row formStart">

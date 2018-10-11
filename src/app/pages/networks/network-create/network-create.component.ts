@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Network } from 'app/models/network/network.model';
 import { Router } from '@angular/router';
 import { NetworkService, NetworkError } from 'services/network/network.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
@@ -26,9 +26,12 @@ export class NetworkCreateComponent implements OnInit {
   networkForm: FormGroup = this.fb.group({
     Name: ['', Validators.required],
     Driver: [''],
-    IsAttachable: [false],
-    Ingress: [false],
-    EnableIPv6 : [false],
+    checkBoxes: new FormGroup({
+      Ingress: new FormControl(false),
+      IsAttachable: new FormControl(false),
+      EnableIPv6: new FormControl(false),
+      Internal: new FormControl(false)
+    }),
     Options: this.fb.array([
       // this.initOptions()
     ]),
@@ -41,5 +44,9 @@ export class NetworkCreateComponent implements OnInit {
 
   get Name() {
     return this.networkForm.get('Name');
+  }
+
+  submit() {
+   console.log('Ingress ' + this.networkForm.controls['checkBoxes'].value.Ingress);
   }
 }
