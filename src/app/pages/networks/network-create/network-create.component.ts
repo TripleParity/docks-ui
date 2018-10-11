@@ -25,13 +25,13 @@ export class NetworkCreateComponent implements OnInit {
 
   networkForm: FormGroup = this.fb.group({
     Name: ['', Validators.required],
-    Driver: [''],
     checkBoxes: new FormGroup({
       Ingress: new FormControl(false),
       IsAttachable: new FormControl(false),
       EnableIPv6: new FormControl(false),
-      Internal: new FormControl(false)
+      Internal: new FormControl(false),
     }),
+    Driver: [''],
     Options: this.fb.array([
       // this.initOptions()
     ]),
@@ -42,11 +42,69 @@ export class NetworkCreateComponent implements OnInit {
 
   ngOnInit() {}
 
+  submit() {
+    console.log(
+      'Ingress ' + this.networkForm.controls['checkBoxes'].value.Ingress
+    );
+  }
+
+  convertOptions() {
+    let i = 0;
+    const test = {};
+    while (i < this.Options.length) {
+      test[this.Options.at(i).get('OptionName').value] = this.Options.at(i).get(
+        'Value'
+      ).value;
+      i++;
+    }
+
+    return test;
+  }
+
+  convertLabels() {
+    let i = 0;
+    const test = {};
+
+    while (i < this.Labels.length) {
+      test[this.Labels.at(i).get('Name').value] = this.Labels.at(i).get(
+        'Value'
+      ).value;
+      i++;
+    }
+
+    return test;
+  }
   get Name() {
     return this.networkForm.get('Name');
   }
 
-  submit() {
-   console.log('Ingress ' + this.networkForm.controls['checkBoxes'].value.Ingress);
+  get driver() {
+    return this.networkForm.get('Name');
+  }
+
+  get Ingress() {
+    return this.networkForm.controls['checkBokes'].value.Ingress;
+  }
+
+  get Options() {
+    return this.networkForm.get('Options') as FormArray;
+  }
+
+  get Labels() {
+    return this.networkForm.get('Labels') as FormArray;
+  }
+
+  initLabels() {
+    return this.fb.group({
+      Name: ['', Validators.required],
+      Value: [''],
+    });
+  }
+
+  initOptions() {
+    return this.fb.group({
+      OptionName: ['', Validators.required],
+      Value: [''],
+    });
   }
 }
