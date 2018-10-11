@@ -54,7 +54,22 @@ export class NetworkDetailViewComponent implements OnInit {
   }
 
   removeNetwork() {
-    console.log('In here');
+    this.networkService.deleteNetwork(this.networkID).subscribe(
+      (network) => {
+        this.toastr.success(
+          'Network ' + this.networkModel.Name + ' was successfully removed'
+        );
+        this.activeModal.close();
+        this.router.navigate(['/networks']);
+      },
+      (result: NetworkError) => {
+        this.toastr.error(
+            result.message,
+            'Could not delete network ' + this.networkModel.Name
+          );
+          this.activeModal.close();
+      }
+    );
   }
 
   open(content) {
