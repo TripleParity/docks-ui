@@ -3,6 +3,10 @@ import { WebhookService, WebhookError } from 'services/webhook/webhook.service';
 import { Webhook, DockerEventTypes } from 'app/models/webhook/webhook.model';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { FormArray } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-webhook-create',
@@ -21,10 +25,22 @@ export class WebhookCreateComponent implements OnInit {
   public images: boolean;
   public nodes: boolean;
 
+  webhookForm: FormGroup = this.fb.group({
+    Name: ['', Validators.required],
+    Driver: ['', Validators.required],
+    Options: this.fb.array([
+      // this.initOptions()
+    ]),
+    Labels: this.fb.array([
+      // this.initLabels();
+    ]),
+  });
+
   constructor(
     private wh: WebhookService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder,
   ) {
     this.name = '';
     this.url = '';
