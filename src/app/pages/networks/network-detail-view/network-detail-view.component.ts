@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { NetworkService, NetworkError } from 'services/network/network.service';
 import { Network } from 'app/models/network/network.model';
 import { Formatter } from 'classes/formatter/formatter';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { debuglog } from 'util';
 
 @Component({
   selector: 'app-network-detail-view',
@@ -15,7 +17,8 @@ export class NetworkDetailViewComponent implements OnInit {
     private router: Router,
     private networkService: NetworkService,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: NgbModal
   ) {}
 
   public networkID: string;
@@ -23,6 +26,7 @@ export class NetworkDetailViewComponent implements OnInit {
   public isLoaded = false;
   public subnet: string;
   public gateway: string;
+  public activeModal: NgbModalRef;
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -47,5 +51,13 @@ export class NetworkDetailViewComponent implements OnInit {
 
   public PrettifyDateTime(buff: string): string {
     return Formatter.PrettifyDateTime(buff);
+  }
+
+  removeNetwork() {
+    console.log('In here');
+  }
+
+  open(content) {
+    this.activeModal = this.modalService.open(content);
   }
 }
