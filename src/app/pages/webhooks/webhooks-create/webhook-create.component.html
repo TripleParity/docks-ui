@@ -1,8 +1,8 @@
 <div class="row heading">
     <div class="col-sm-10">
         <h1>
-        <i class="fa fa-anchor"></i>
-        Create Webhooks:
+            <i class="fa fa-anchor"></i>
+            Create Webhooks:
         </h1>
     </div>
 </div>
@@ -10,56 +10,66 @@
 <form [formGroup]="webhookForm" (ngSubmit)="submit()">
     <div class="form row">
         <div class="col-sm-2 text">
-        <label for="webhookName" class="col-form-label">
-            <h4>
-            <i class="required fa fa-asterisk"></i> Name: </h4>
-        </label>
+            <label for="webhookName" class="col-form-label">
+                <h4>
+                    <i class="required fa fa-asterisk"></i> Name: </h4>
+            </label>
         </div>
         <div class="col-sm-9">
-        <input type="text" placeholder="myWebhook" formControlName="Name" class="form-control" id="webhookName" required>
-        <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A Webhook Name is required.</ngb-alert>
+            <input type="text" placeholder="myWebhook" formControlName="Name" class="form-control" id="webhookName"
+                required>
+            <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A
+                Webhook Name is required.</ngb-alert>
         </div>
     </div>
-    
-    <div class="form row">
-        <div class="col-sm-2 text">
-        <label for="webhookURL" class="col-form-label">
-            <h4>
-            <i class="required fa fa-asterisk"></i> URL: </h4>
-        </label>
-        </div>
-        <div class="col-sm-9">
-        <input type="text" placeholder="Webhook URL" formControlName="url" class="form-control" id="webhookURL" required>
-        <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A Webhook URL is required.</ngb-alert>
-        </div>
-    </div>
-    
-    <div class="row break"></div>
-    
-    <div class="form row">
-        <div class="col-sm-2 text">
-        <span class="spans" (click)="addLabel()">
-            <i class="fa fa-plus-circle"></i>
-            Add a Trigger Type
-        </span>
-        </div>
-    </div> 
-    
 
-    
+    <div class="form row">
+        <div class="col-sm-2 text">
+            <label for="webhookURL" class="col-form-label">
+                <h4>
+                    <i class="required fa fa-asterisk"></i> URL: </h4>
+            </label>
+        </div>
+        <div class="col-sm-9">
+            <input type="text" placeholder="Webhook URL" formControlName="url" class="form-control" id="webhookURL"
+                required>
+            <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A
+                Webhook URL is required.</ngb-alert>
+        </div>
+    </div>
+
+    <div class="row break"></div>
+
+
+    <div class="form row justify-content-center">
+        <h4 id="Triggers" class="text">
+            Select Triggers: </h4>
+    </div>
+    <div formGroupName="Labels">
+        <div class="row row justify-content-center">
+            <div *ngFor="let key of triggerTypes; let i=index">
+                <input type="checkbox" formControlName={{key}} class="form-check-label" id={{key}}>
+                <label class="checkBox" for={{key}}> {{key}}</label>   
+            </div>
+        </div>
+    </div>
+
+    <div class="row break"></div>
+
+        
     <div class="row break"></div>
     <div class="row">
         <div class="offset-sm-4 col-sm-2">
-        <a routerLink="/webhooks">
-            <button type="button" class="btn btn-secondary "> Cancel
-            <i class="fa fa-undo"></i>
-            </button>
-        </a>
+            <a routerLink="/webhooks">
+                <button type="button" class="btn btn-secondary "> Cancel
+                    <i class="fa fa-undo"></i>
+                </button>
+            </a>
         </div>
         <div class="col-2">
-        <button type="submit" class="btn btn-info" [disabled]="!webhookForm.valid"> Create Webhook
-            <i class="fa fa-arrow-circle-o-up"></i>
-        </button>
+            <button type="submit" class="btn btn-info" [disabled]="!webhookForm.valid"> Create Webhook
+                <i class="fa fa-arrow-circle-o-up"></i>
+            </button>
         </div>
-    </div>  
+    </div>
 </form>

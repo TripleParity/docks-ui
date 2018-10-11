@@ -30,9 +30,8 @@ export class WebhookCreateComponent implements OnInit {
   webhookForm: FormGroup = this.fb.group({
     Name: ['', Validators.required],
     url: ['', Validators.required],
-    Labels: this.fb.array([
-      this.initTriggers()
-    ]),
+    Labels: new FormGroup(this.initTriggers()),
+    Editor: ['']
   });
 
   constructor(
@@ -54,9 +53,12 @@ export class WebhookCreateComponent implements OnInit {
   }
 
   initTriggers() {
+    const fGroup = {};
     this.triggerTypes.forEach(element => {
-
+      fGroup[element] = new FormControl(false);
     });
+
+    return fGroup;
   }
 
   get Name() {
