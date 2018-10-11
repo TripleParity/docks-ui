@@ -63,7 +63,9 @@ export class VolumesCreateComponent implements OnInit {
     let i = 0;
     const test = {};
     while (i < this.Options.length) {
-      test[this.Options.at(i).get('OptionName').value] = this.Options.at(i).get('Value').value;
+      test[this.Options.at(i).get('OptionName').value] = this.Options.at(i).get(
+        'Value'
+      ).value;
       i++;
     }
 
@@ -75,7 +77,9 @@ export class VolumesCreateComponent implements OnInit {
     const test = {};
 
     while (i < this.Labels.length) {
-      test[this.Labels.at(i).get('Name').value] = this.Labels.at(i).get('Value').value;
+      test[this.Labels.at(i).get('Name').value] = this.Labels.at(i).get(
+        'Value'
+      ).value;
       i++;
     }
 
@@ -138,5 +142,13 @@ export class VolumesCreateComponent implements OnInit {
 
   get Labels() {
     return this.volumeForm.get('Labels') as FormArray;
+  }
+
+  ShowOptionName() {
+    return this.Options.length > 0;
+  }
+
+  ShowLabelName() {
+    return this.Labels.length > 0;
   }
 }

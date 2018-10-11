@@ -35,6 +35,8 @@ export class NetworkCreateComponent implements OnInit {
     Options: this.fb.array([
       // this.initOptions()
     ]),
+    Subnet: [''],
+    GateWay: [''],
     Labels: this.fb.array([
       // this.initOptions()
     ]),
@@ -106,5 +108,29 @@ export class NetworkCreateComponent implements OnInit {
       OptionName: ['', Validators.required],
       Value: [''],
     });
+  }
+
+  addOption() {
+    const control = <FormArray>this.networkForm.controls['Options'];
+    control.push(this.initOptions());
+  }
+
+  removeOption(i: number) {
+    const control = <FormArray>this.networkForm.controls['Options'];
+    control.removeAt(i);
+  }
+
+  addLabel() {
+    const control = <FormArray>this.networkForm.controls['Labels'];
+    control.push(this.initLabels());
+  }
+
+  removeLabel(i: number) {
+    const control = <FormArray>this.networkForm.controls['Labels'];
+    control.removeAt(i);
+  }
+
+  ShowOptionName() {
+   return (this.Options.length > 0);
   }
 }

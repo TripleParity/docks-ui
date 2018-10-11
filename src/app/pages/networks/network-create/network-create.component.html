@@ -22,7 +22,17 @@
         Name is required.</ngb-alert>
     </div>
   </div>
-  <div class="row">
+
+  <div formGroupName="checkBoxes">
+    Ingress <input type="checkbox" formControlName="Ingress">
+    Internal <input type="checkbox" formControlName="Internal">
+    Is Attachable <input type="checkbox" formControlName="IsAttachable">
+    EnableIPv6 <input type="checkbox" formControlName="EnableIPv6">
+  </div>
+
+  <div class="row break"></div>
+
+  <div class="row formStart">
     <div class="col-sm-2 text">
       <label for="networkDriver" class="col-form-label">
         <h4>
@@ -34,19 +44,79 @@
       <input type="text" placeholder="bridge" formControlName="Driver" class="form-control" id="networkDriver">
     </div>
   </div>
-
-  <div  class="row break">
+  <div class="row">
+    <div class="col-sm-2 spans" (click)="addOption()" id="add">
+      <i class="fa fa-plus-circle"></i> Add Driver Options
+    </div>
   </div>
 
-  <div formGroupName="checkBoxes">
-      Ingress <input type="checkbox" formControlName="Ingress"> 
-      Internal <input type="checkbox" formControlName="Internal"> 
-      Is Attachable <input type="checkbox" formControlName="IsAttachable"> 
-      EnableIPv6 <input type="checkbox" formControlName="EnableIPv6"> 
+  <div formArrayName="Options">
+    <div *ngIf="ShowOptionName()">
+      <div class="row form">
+        <div class="col-sm-5 ">
+          <label for="'OptionName'+i" class="text">
+            <i class="required fa fa-asterisk"></i>Name:
+          </label>
+        </div>
+        <div class="col-sm-5">
+          <label for="'OptionValue'+i" class="text">Value: </label>
+        </div>
+      </div>
+
+    </div>
+    <div *ngFor="let option of Options.controls; let i=index">
+      <div [formGroupName]="i">
+        <div class="row">
+          <div class="form-group col-sm-5">
+            <input type="text" placeholder="Mountpoint" formControlName="OptionName" class="form-control text" id="'OptionName'+i"
+              required>
+            <ngb-alert type="text" [hidden]="Options.at(i).valid || Options.at(i).pristine" (close)="Options.markAsPristine()"
+              [type]="'danger'">If
+              you add a Driver option a name is required.</ngb-alert>
+          </div>
+          <div class="col-sm-5">
+            <div class="form-group">
+              <input type="text" placeholder="./volumes/tardis" formControlName="Value" class="form-control text" id="'OptionValue'+i">
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <span (click)="removeOption(i)" class="spans" class="delete">
+              <i class="fa fa-trash"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  
+
   <div class="row break"></div>
+  <div class="row formStart">
+    <div class="col-sm-2 smallerText">
+      <label for="networkSubnet" class="col-form-label">
+        <h4>
+          Subnet:
+        </h4>
+      </label>
+    </div>
+    <div class="col-sm-9">
+      <input type="text" placeholder="172.20.0.0/16" formControlName="Subnet" class="form-control" id="networkSubnet">
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-sm-2 smallerText">
+      <label for="networkGateway" class="col-form-label">
+        <h4>
+          Gateway:
+        </h4>
+      </label>
+    </div>
+    <div class="col-sm-9">
+      <input type="text" placeholder="172.20.10.11" formControlName="Gateway" class="form-control" id="networkGateway">
+    </div>
+  </div>
+
+  <div class="row break"></div>
   <div class="row formStart">
     <div class="offset-sm-4 col-sm-2">
       <a routerLink="/networks">
