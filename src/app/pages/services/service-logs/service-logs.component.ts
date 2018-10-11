@@ -48,9 +48,12 @@ export class ServiceLogsComponent implements OnInit {
     this.serviceService.getServiceLog(this.serviceID).subscribe(
       (service) => {
         this.Log = service;
+        // this.Log = this.Log.slice(8);
 
         if (this.Log.length === 0) {
           this.Log = 'The service ' + this.serviceName + ' returned no log';
+        } else {
+          this.Log = this.parseLog(this.Log);
         }
         this.isLoadedLog = true;
       },
@@ -58,5 +61,17 @@ export class ServiceLogsComponent implements OnInit {
         this.toastr.error(err.message, 'An error occured');
       }
     );
+  }
+
+  parseLog(log) {
+    const logArray = log.split('\n');
+    let ret = '';
+
+    logArray.forEach(element => {
+      element = element.slice(8);
+      ret = ret + element + '\n';
+    });
+
+    return ret;
   }
 }
