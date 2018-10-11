@@ -17,5 +17,18 @@ export interface Network {
   Attachable: boolean;
   Ingress: boolean;
   IPAM: Ipam;
-  Options: JSON;
+  Options: {[name: string]: string};
+  Labels?: {[name: string]: string};
+}
+
+export interface NetworkSending {
+  Name: string;
+  Driver: string;
+  EnableIPv6: boolean;
+  Internal: boolean;
+  Attachable: boolean;
+  Ingress: boolean;
+  IPAM?: Ipam;
+  Options?: {[name: string]: string};
+  Labels?: {[name: string]: string};
 }

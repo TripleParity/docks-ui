@@ -34,6 +34,7 @@ export class TaskService {
    * @returns {Observable<Task[]>}
    */
   public getTasks(): Observable<Task[]> {
+    // TODO(egeldenhuys): The `/tasks` endpoint has not been tested with query parameters
     return this.http
       .get(this.config.getAPIHostname() + '/tasks', {
         responseType: 'json',
@@ -54,6 +55,37 @@ export class TaskService {
         })
       );
   }
+
+
+    /**
+     * Returns a list of all the tasks in a specific service.
+     * @param {string} id
+     * @returns {Observable<Task[]>}
+     */
+  public getTaskInService(service_id: string): Observable<Task[]> {
+    return this.http
+      .get(this.config.getAPIHostname() + '/tasks', {
+        responseType: 'json',
+      })
+      .pipe(
+        map((data) => {
+          const tasks: Task[] = [];
+          for (let i = 0; i < Object.keys(data).length; i++) {
+            if (data[i].ServiceID === service_id) {
+              tasks.push(data[i]);
+            }
+          }
+          return tasks;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return ErrorObservable.create({
+            code: <TaskErrorCode>err.status,
+            message: err.error['message'],
+          });
+        })
+      );
+  }
+
 
   /**
    * Returns a log associated with the particular task.

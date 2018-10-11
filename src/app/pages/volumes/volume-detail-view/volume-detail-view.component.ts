@@ -4,6 +4,7 @@ import { VolumeService, VolumeError } from 'services/volume/volume.service';
 import { ToastrService } from 'ngx-toastr';
 import { Volume } from 'app/models/volume/volume.model';
 import { debug } from 'util';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-volume-detail-view',
@@ -15,12 +16,15 @@ export class VolumeDetailViewComponent implements OnInit {
   public volumeModel: Volume;
   public labels: string[];
   public isLoaded = false;
+  public activeModal: NgbModalRef;
+  public forceDelete = false;
 
   constructor(
     private router: Router,
     private volumeService: VolumeService,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -51,5 +55,34 @@ export class VolumeDetailViewComponent implements OnInit {
     }
 
     return enumerableKeys;
+  }
+
+  removeVolume() {
+    this.volumeService
+      .deleteVolume(this.volumeName, this.forceDelete)
+      .subscribe(
+        (volume) => {
+          this.toastr.success(
+            'Volume ' + this.volumeName + ' was successfully removed'
+          );
+          this.activeModal.close();
+          this.router.navigate(['/volumes']);
+        },
+        (result: VolumeError) => {
+          this.toastr.error(
+            result.message,
+            'Could not remove volume ' + this.volumeName
+          );
+          this.activeModal.close();
+        }
+      );
+  }
+
+  open(content) {
+    this.activeModal = this.modalService.open(content);
+  }
+
+  changeCheck(event) {
+    this.forceDelete = !event.forceDelete;
   }
 }

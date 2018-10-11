@@ -29,7 +29,7 @@ h1, .text
     margin-left: 0px;
 }
 
-#delete
+.delete
 {
     font-size: 150%;
 }
@@ -47,11 +47,6 @@ h1, .text
 .spans:hover
 {
     cursor: pointer;
-}
-
-#bottomTable
-{
-    padding: 20px;
 }
 .required
 {

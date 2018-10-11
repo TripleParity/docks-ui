@@ -16,10 +16,12 @@
 
       <div class="form-group">
         <div class="row">
-          <div class="col-auto">
-            <textarea rows="15" cols="50" placeholder="View the docker file here.." required name="stackFile" [(ngModel)]="stackModel.stackFile">{{fileText}}</textarea>
+          <div class="col-6">
+            <ace-editor [(text)]="text" id='editor' #editor style="height:318px;" mode='yaml'>
+
+            </ace-editor>
           </div>
-          <div class="col-auto">
+          <div class="col-6">
             <label for="file">
               <h4>Select a docker-compose file: </h4>
             </label>
