@@ -6,7 +6,6 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import { debug } from 'util';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -62,61 +61,38 @@ export class VolumesCreateComponent implements OnInit {
 
   convertOptions() {
     let i = 0;
-    let temp = '{';
-
+    const test = {};
     while (i < this.Options.length) {
-      temp +=
-        '"' +
-        this.Options.at(i).get('OptionName').value +
-        '":"' +
-        this.Options.at(i).get('Value').value +
-        '",';
+      test[this.Options.at(i).get('OptionName').value] = this.Options.at(i).get(
+        'Value'
+      ).value;
       i++;
     }
 
-    // console.log(JSON.stringify(this.Options));
-    if (this.Options.length > 0) {
-      temp = temp.substring(0, temp.length - 1);
-    }
-
-    temp += '}';
-
-    return temp;
+    return test;
   }
 
   convertLabels() {
     let i = 0;
-    let temp = '{';
+    const test = {};
 
     while (i < this.Labels.length) {
-      temp +=
-        '"' +
-        this.Labels.at(i).get('Name').value +
-        '":"' +
-        this.Labels.at(i).get('Value').value +
-        '",';
+      test[this.Labels.at(i).get('Name').value] = this.Labels.at(i).get(
+        'Value'
+      ).value;
       i++;
     }
 
-    // console.log(JSON.stringify(this.Options));
-    if (this.Labels.length > 0) {
-      temp = temp.substring(0, temp.length - 1);
-    }
-
-    temp += '}';
-
-    return temp;
+    return test;
   }
 
   submit() {
     this.volumeModel.Name = this.volumeForm.get('Name').value;
     this.volumeModel.Driver = this.volumeForm.get('Driver').value;
 
-    let string = this.convertOptions();
-    this.volumeModel.DriverOpts = JSON.parse(string);
+    this.volumeModel.DriverOpts = this.convertOptions();
 
-    string = this.convertLabels();
-    this.volumeModel.Labels = JSON.parse(string);
+    this.volumeModel.Labels = this.convertLabels();
 
     this.volumeService.createVolume(this.volumeModel).subscribe(
       (result: Volume) => {
@@ -166,5 +142,13 @@ export class VolumesCreateComponent implements OnInit {
 
   get Labels() {
     return this.volumeForm.get('Labels') as FormArray;
+  }
+
+  ShowOptionName() {
+    return this.Options.length > 0;
+  }
+
+  ShowLabelName() {
+    return this.Labels.length > 0;
   }
 }
