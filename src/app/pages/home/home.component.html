@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col" *ngFor="let card of cards">
-            <div class="card infoCards"><h4 class="iconHeader"><i class={{card.src}}></i></h4>
+            <div class="card infoCards" routerLink={{card.route}}><h4 class="iconHeader"><i class={{card.src}}></i></h4>
                 <div class="card-body">
                     <h5 class="card-title center">{{card.title}} </h5>
                     <p class="card-text center">{{card.text}}</p>
@@ -9,12 +9,19 @@
             </div>
         </div>
     </div>
-    <div>
-        <br><br>
-        <h2>Nodes</h2>
-        <div class="row">
-            <div class="col-4">
-                <canvas id="chart2" width="750" height="750"></canvas>
+    <div class="row">
+        <div class="col-6" style="text-align: center">
+            <br><br>
+            <h2>Nodes Loads</h2>
+            <div style="width: 50%; margin: auto">
+                <canvas id="chart1" width="750px" height="750px"></canvas>
+            </div>
+        </div>
+        <div class="col-6" style="text-align: center">
+            <br><br>
+            <h2>Nodes Status</h2>
+            <div style="width: 50%; margin: auto">
+                <canvas id="chart2" width="750px" height="750px"></canvas>
             </div>
         </div>
     </div>

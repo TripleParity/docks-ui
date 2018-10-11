@@ -1,4 +1,4 @@
-#networks{
+/* #networks{
     width: 250px;
     background-color: lightgray;
     float: left;
@@ -27,7 +27,7 @@
 #stats {
     display: inline-block;
     margin-top: 5%;
-}
+} */
 
 img {
     width: 50px;

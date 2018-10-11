@@ -15,10 +15,17 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  private chartA: any;
   private chartB: any;
   private page_start: Subscription;
   private routeSub: Subscription;
   public cards: any[] = [];
+  private colours: any[] = [
+    '#1180af',
+    '#C6FF87',
+    '#27548c',
+    '#94E864',
+  ];
 
   constructor(
     private networkService: NetworkService,
@@ -35,26 +42,31 @@ export class HomeComponent implements OnInit, OnDestroy {
       title: 'Networks',
       text: '0',
       src: 'fa fa-sitemap',
+      route: '/networks',
     });
     this.cards.push({
       title: 'Volumes',
       text: '0',
       src: 'fa fa-book',
+      route: '/volumes',
     });
     this.cards.push({
       title: 'Tasks',
       text: '0',
       src: 'fa fa-tag',
+      route: '/tasks/list',
     });
     this.cards.push({
       title: 'Services',
       text: '0',
       src: 'fa fa-tags',
+      route: '/services/list',
     });
     this.cards.push({
       title: 'Nodes',
       text: '0',
       src: 'fa fa-tasks',
+      route: '/nodes',
     });
 
     this.routeSub = this.router.events.subscribe((event) => {
@@ -63,11 +75,21 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     });
 
+    this.updateChartA();
     this.updateChartB();
     this.count_types();
     this.page_start = interval(5000).subscribe(() => {
+      this.updateChartA();
       this.updateChartB();
       this.count_types();
+    });
+
+    this.chartA = new Chart('chart1', {
+      type: 'pie',
+      data: {
+        labels: [],
+        datasets: [{}],
+      },
     });
 
     this.chartB = new Chart('chart2', {
@@ -88,7 +110,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       (nodes) => {
         const labels = [];
         const dataSet = [];
-        const colours = [];
         let online = 0;
         let offline = 0;
 
@@ -103,16 +124,50 @@ export class HomeComponent implements OnInit, OnDestroy {
         dataSet.push(online);
         dataSet.push(offline);
 
-        colours.push('#1180af');
-        colours.push('#C6FF87');
-
         labels.push('Online');
         labels.push('Offline');
 
         this.chartB.data.labels = labels;
         this.chartB.data.datasets[0].data = dataSet;
-        this.chartB.data.datasets[0].backgroundColor = colours;
+        this.chartB.data.datasets[0].backgroundColor = this.colours;
         this.chartB.update();
+      },
+      (error) => {
+        // console.log("If this isn't here the test cases fail ( probably due to the error not being handled");
+      }
+    );
+  }
+
+  updateChartA() {
+    const me = this;
+    this.taskService.getTasks().subscribe(
+      (tasks) => {
+        const labels = [];
+        const dataSet = [];
+        // let colours = [];
+        const nodesArray = [];
+
+        tasks.forEach((task) => {
+          const temp = nodesArray.find(ob => ob['name'] === task.NodeHostname);
+          if (temp !== undefined) {
+            temp.tasks++;
+          } else {
+            nodesArray.push({name: task.NodeHostname, tasks : 1});
+          }
+        });
+
+        nodesArray.forEach(node => {
+          dataSet.push(node['tasks']);
+        });
+
+        nodesArray.forEach(node => {
+          labels.push(node['name']);
+        });
+
+        this.chartA.data.labels = labels;
+        this.chartA.data.datasets[0].data = dataSet;
+        this.chartA.data.datasets[0].backgroundColor = this.colours;
+        this.chartA.update();
       },
       (error) => {
         // console.log("If this isn't here the test cases fail ( probably due to the error not being handled");
