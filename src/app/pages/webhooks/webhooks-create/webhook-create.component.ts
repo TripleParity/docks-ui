@@ -3,10 +3,11 @@ import { WebhookService, WebhookError } from 'services/webhook/webhook.service';
 import { Webhook, DockerEventTypes } from 'app/models/webhook/webhook.model';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { FormArray } from '@angular/forms';
+import { FormArray, FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { stripGeneratedFileSuffix } from '@angular/compiler/src/aot/util';
 
 @Component({
   selector: 'app-webhook-create',
@@ -24,13 +25,11 @@ export class WebhookCreateComponent implements OnInit {
   public daemons: boolean;
   public images: boolean;
   public nodes: boolean;
+  public triggerTypes = ['Volumes', 'Network', 'Service', 'Node', 'Image', 'Daemon', 'Secret', 'Config'];
 
   webhookForm: FormGroup = this.fb.group({
     Name: ['', Validators.required],
-    Driver: ['', Validators.required],
-    Options: this.fb.array([
-      // this.initOptions()
-    ]),
+    url: ['', Validators.required],
     Labels: this.fb.array([
       // this.initLabels();
     ]),
@@ -48,52 +47,89 @@ export class WebhookCreateComponent implements OnInit {
 
   ngOnInit() {}
 
-  submit() {
-    const t: DockerEventTypes[] = [];
-    if (this.volumes) {
-      t.push(DockerEventTypes.VOLUME);
-    }
-    if (this.networks) {
-      t.push(DockerEventTypes.NETWORK);
-    }
-    if (this.configs) {
-      t.push(DockerEventTypes.CONFIG);
-    }
-    if (this.secrets) {
-      t.push(DockerEventTypes.SECRET);
-    }
-    if (this.services) {
-      t.push(DockerEventTypes.SERVICE);
-    }
-    if (this.daemons) {
-      t.push(DockerEventTypes.DAEMON);
-    }
-    if (this.images) {
-      t.push(DockerEventTypes.IMAGE);
-    }
-    if (this.nodes) {
-      t.push(DockerEventTypes.NODE);
+  initLabels() {
+    return this.fb.group({
+      Name: ['', Validators.required],
+    });
+  }
+
+  get Name() {
+    return this.webhookForm.get('Name');
+  }
+
+  get URL() {
+    return this.webhookForm.get('url');
+  }
+
+  get Labels() {
+    return this.webhookForm.get('Labels') as FormArray;
+  }
+
+  addLabel() {
+    const control = <FormArray>this.webhookForm.controls['Labels'];
+    control.push(this.initLabels());
+  }
+
+  removeLabel(i: number) {
+    const control = <FormArray>this.webhookForm.controls['Labels'];
+    control.removeAt(i);
+  }
+
+  convertLabels() {
+    let i = 0;
+    let temp = '{';
+
+    while (i < this.Labels.length) {
+      temp +=
+        '"' +
+        this.Labels.at(i).get('Name').value +
+        '":"';
+      i++;
     }
 
-    const webby: Webhook = { name: this.name, url: this.url, types: t };
+    // console.log(JSON.stringify(this.Options));
+    if (this.Labels.length > 0) {
+      temp = temp.substring(0, temp.length - 1);
+    }
+
+    temp += '}';
+
+    return temp;
+  }
+
+  submit() {
+    const t: DockerEventTypes[] = [];
+
+    const name = this.webhookForm.get('Name').value;
+    const url = this.webhookForm.get('url').value;
+
+    const str = this.convertLabels();
+    const labels = JSON.parse(str);
+
+    const webby: Webhook = { name: name, url: url, types: labels };
 
     this.wh.createWebhook(webby).subscribe(
       (result: WebhookError) => {
-        this.toastr.success('Created webhook ' + webby['name'], 'Success!');
+        this.toastr.success(
+          'Webhook ' + webby['name'] + 'created!',
+          'Success!'
+        );
         this.router.navigate(['/webhooks']);
       },
       (err: WebhookError) => {
-        this.toastr.error(err.message, 'Error while creating webhook');
+        this.toastr.error(err.message, 'Could not create webhook');
       }
     );
   }
 
   public hasNameAndURL() {
-    if (this.name.length > 0 && this.url.length > 0) {
+    if (this.webhookForm.get('Name').value > 0 && this.webhookForm.get('url').value > 0) {
       return true;
     }
     return false;
   }
 
   onChange() {}
+
+
 }

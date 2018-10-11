@@ -7,74 +7,30 @@
     </div>
 </div>
 
-<form [formGroup]="webhooksForm" (ngSubmit)="submit()">
+<form [formGroup]="webhookForm" (ngSubmit)="submit()">
     <div class="form row">
         <div class="col-sm-2 text">
-        <label for="webhooksName" class="col-form-label">
+        <label for="webhookName" class="col-form-label">
             <h4>
             <i class="required fa fa-asterisk"></i> Name: </h4>
         </label>
         </div>
         <div class="col-sm-9">
-        <input type="text" placeholder="Tardis" formControlName="Name" class="form-control" id="webhookName" required>
+        <input type="text" placeholder="myWebhook" formControlName="Name" class="form-control" id="webhookName" required>
         <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A Webhook Name is required.</ngb-alert>
         </div>
-    
     </div>
     
-    
-    <!-- <div class="form row">
+    <div class="form row">
         <div class="col-sm-2 text">
-        <label for="volumeDriver" class="col-form-label">
+        <label for="webhookURL" class="col-form-label">
             <h4>
-            <i class="required fa fa-asterisk"></i> Driver: </h4>
+            <i class="required fa fa-asterisk"></i> URL: </h4>
         </label>
         </div>
         <div class="col-sm-9">
-        <input type="text" placeholder="Local" formControlName="Driver" class="form-control" id="volumeDriver" required>
-        <ngb-alert [hidden]="Driver.valid || Driver.pristine" (close)="Driver.markAsPristine()" [type]="'danger'">A Volume Driver
-            is required.</ngb-alert>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2 spans" (click)="addOption()" id="add">
-        <i class="fa fa-plus-circle"></i> Add Driver Options
-        </div>
-    </div>
-    
-    <div formArrayName="Options">
-        <div *ngFor="let option of Options.controls; let i=index">
-        <div [formGroupName]="i">
-            <div class="row form">
-            <div class="col-sm-5 ">
-                <label for="'OptionName'+i" class="text">
-                <i class="required fa fa-asterisk"></i>Name:
-                </label>
-            </div>
-            <div class="col-sm-5">
-                <label for="'OptionValue'+i" class="text">Value: </label>
-            </div>
-            </div>
-    
-            <div class="row">
-            <div class="form-group col-sm-5">
-                <input type="text" placeholder="Mountpoint" formControlName="OptionName" class="form-control text" id="'OptionName'+i"
-                required>
-                <ngb-alert type="text" [hidden]="Options.valid || Options.pristine" (close)="Options.markAsPristine()" [type]="'danger'">If
-                you add an Option a name is required.</ngb-alert>
-            </div>
-            <div class="col-sm-5">
-                <div class="form-group">
-                <input type="text" placeholder="./volumes/tardis" formControlName="Value" class="form-control text" id="'OptionValue'+i">
-                </div>
-            </div>
-            <div class="col-sm-1">
-                <span (click)="removeOption(i)" class="spans" id="delete">
-                <i class="fa fa-trash"></i>
-                </span>
-            </div>
-            </div>
-        </div>
+        <input type="text" placeholder="Webhook URL" formControlName="url" class="form-control" id="webhookURL" required>
+        <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A Webhook URL is required.</ngb-alert>
         </div>
     </div>
     
@@ -84,39 +40,34 @@
         <div class="col-sm-2 text">
         <span class="spans" (click)="addLabel()">
             <i class="fa fa-plus-circle"></i>
-            Add a Label
+            Add a Trigger Type
         </span>
         </div>
-    </div>
+    </div> 
     
     <div formArrayName="Labels">
         <div *ngFor="let label of Labels.controls; let i=index">
         <div [formGroupName]="i">
             <div class="row form">
-            <div class="col-sm-5 ">
-                <label for="'LabelName'+i" class="text">
-                <i class="required fa fa-asterisk"></i>Name:
-                </label>
-            </div>
-            <div class="col-sm-5" >
-                <label for="'LabelValue'+i" class="text">Value: </label>
-            </div>
+                <div class="col-sm-2 ">
+                    <label for="'LabelName'+i" class="text">
+                    <i class="required fa fa-asterisk"></i> Trigger type:
+                    </label>
+                </div>
+                <select class="btn btn-secondary">
+                    <option value="0">Please pick a trigger type</option>
+                    <option *ngFor="let type of triggerTypes" value={{type}}>
+                        {{type}}
+                    </option>
+                </select>
+                <div class="col-sm-1">
+                    <span (click)="removeLabel(i)" class="spans" id="delete">
+                    <i class="fa fa-trash"></i>
+                    </span>
+                </div>
             </div>
             <div class="row">
-            <div class="form-group col-sm-5">
-                <input type="text" placeholder="com.example.some-label" formControlName="Name" class="form-control text" id="'LabelName'+i"
-                required>
-                <ngb-alert type="text" [hidden]="Labels.valid || Labels.pristine" (close)="Labels.markAsPristine()" [type]="'danger'" class="inlineAlerts">If
-                    you add a Label a name is required.</ngb-alert>
-            </div>
-            <div class="form-group col-sm-5">
-                <input type="text" placeholder="some-value" formControlName="Value" class="form-control text" id="'LabelValue'+i">
-            </div>
-            <div class="col-sm-1">
-                <span (click)="removeLabel(i)" class="spans" id="delete">
-                <i class="fa fa-trash"></i>
-                </span>
-            </div>
+                
             </div>
         </div>
         </div>
@@ -126,79 +77,16 @@
     
     <div class="row">
         <div class="offset-sm-4 col-sm-2">
-        <a routerLink="/volumes">
+        <a routerLink="/webhooks">
             <button type="button" class="btn btn-secondary "> Cancel
             <i class="fa fa-undo"></i>
             </button>
         </a>
         </div>
         <div class="col-2">
-        <button type="submit" class="btn btn-info" [disabled]="!volumeForm.valid"> Create Volume
+        <button type="submit" class="btn btn-info" [disabled]="!webhookForm.valid"> Create Webhook
             <i class="fa fa-arrow-circle-o-up"></i>
         </button>
         </div>
-    </div>  -->
+    </div>  
 </form>
-
-<div class="row">
-    <div class="offset-md-4">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <form #createForm="ngForm" (ngSubmit)="submit()">
-  
-        <div class="form-group">
-          <label for="stackName">This is the name Name</label>
-          <input type="text" class="form-control" id="first" [(ngModel)]="name" name="name">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Webhook URL</label>
-            <input type="text" class="form-control" id="second" [(ngModel)]="url" name="url">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Volumes</label>
-            <input type="checkbox" value="Name" [(ngModel)]="volumes" name="volumes">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Network</label>
-            <input type="checkbox" value="NameSecond"  [(ngModel)]="networks" name="networks">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Service</label>
-            <input type="checkbox" value="NameThird"  [(ngModel)]="services" name="services">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Node</label>
-            <input type="checkbox" value="NameFourth"  [(ngModel)]="nodes" name="nodes">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Image</label>
-            <input type="checkbox" value="NameFive"  [(ngModel)]="images" name="images">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Daemon</label>
-            <input type="checkbox" value="NameSix"  [(ngModel)]="daemons" name="daemons">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Secret</label>
-            <input type="checkbox" value="NameSeven"  [(ngModel)]="secrets" name="secrets">
-        </div>
-
-        
-        <div class="form-group">
-            <label for="stackName">Config</label>
-            <input type="checkbox" value="NameEight"  [(ngModel)]="configs" name="configs">
-        </div>
-        <input type="submit" [disabled]=" name.length == 0 || url.length == 0">
-      </form>
-    </div>
-  </div>
