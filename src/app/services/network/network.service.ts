@@ -14,7 +14,7 @@ import { catchError, map } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 import { ConfigurationService } from '../configuration/configuration.service';
-import { Network } from 'app/models/network/network.model';
+import { Network, NetworkSending } from 'app/models/network/network.model';
 
 enum NetworkErrorCode {
   ERR_OK = 200,
@@ -151,9 +151,9 @@ export class NetworkService {
    * @param {Network} network
    * @returns {Observable<JSON>}
    */
-  public createNetwork(inputs: Network): Observable<Network> {
+  public createNetwork(inputs: NetworkSending): Observable<Network> {
     return this.http
-      .post(this.config.getAPIHostname() + 'docker/networks/create', inputs, {
+      .post(this.config.getAPIHostname() + '/docker/networks/create', inputs, {
         responseType: 'json',
       })
       .pipe(

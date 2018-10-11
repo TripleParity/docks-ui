@@ -5,7 +5,6 @@ import { NetworkService, NetworkError } from 'services/network/network.service';
 import { Network } from 'app/models/network/network.model';
 import { Formatter } from 'classes/formatter/formatter';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { debuglog } from 'util';
 
 @Component({
   selector: 'app-network-detail-view',

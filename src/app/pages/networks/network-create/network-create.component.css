@@ -12,20 +12,19 @@
 .alerts {
     margin-top: 5px;
 }
-h1, .text, .smallerText {
+h1, .text {
     padding: 5px;
     color: #797979;
 }
 
-.text, .smallerText {
+h3 {
+    font-size: 110%;
+}
+
+.text{
     margin-left: 15px;
 }
 
-.smallerText {
-    padding: 0px;
-    padding-left: 5px;
-    font-size: 80%;
-}
 
 .formStart {
     margin-top: 15px;
@@ -47,4 +46,10 @@ h1, .text, .smallerText {
 .delete
 {
     font-size: 150%;
+}
+.centered {
+    text-align: center;
+}
+.checkBox:hover {
+    cursor: pointer;
 }
