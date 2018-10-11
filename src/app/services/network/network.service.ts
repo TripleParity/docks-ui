@@ -144,6 +144,32 @@ export class NetworkService {
   }
 
   // TODO:(CDuPlooy): Create a network query parameters not working. ( Encoding of json object )
+
+  /**
+   * Connects the target container to the target network.
+   *
+   * @param {Network} network
+   * @returns {Observable<JSON>}
+   */
+  public createNetwork(inputs: Network): Observable<Network> {
+    return this.http
+      .post(this.config.getAPIHostname() + 'docker/networks/create', inputs, {
+        responseType: 'json',
+      })
+      .pipe(
+        map((x) => {
+          return <Network>x;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return ErrorObservable.create({
+            code: <NetworkErrorCode>err.status,
+            message: err.error['message'],
+          });
+        })
+      );
+  }
+
+
   /**
    * Connects the target container to the target network.
    *

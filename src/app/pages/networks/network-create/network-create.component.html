@@ -1,3 +1,63 @@
-<p>
-  network-create works!
-</p>
+<div class="row heading">
+  <div class="col-sm-10">
+    <h1>
+      <i class="fa fa-book"></i>
+      Create Network
+    </h1>
+  </div>
+</div>
+
+<form [formGroup]="networkForm" (ngSubmit)="submit()">
+
+  <div class="formStart row">
+    <div class="col-sm-2 text">
+      <label for="networkName" class="col-form-label">
+        <h4>
+          <i class="required fa fa-asterisk"></i> Name: </h4>
+      </label>
+    </div>
+    <div class="col-sm-9">
+      <input type="text" placeholder="Tardis" formControlName="Name" class="form-control" id="networkName" required>
+      <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A Network
+        Name is required.</ngb-alert>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2 text">
+      <label for="networkDriver" class="col-form-label">
+        <h4>
+          Driver:
+        </h4>
+      </label>
+    </div>
+    <div class="col-sm-9">
+      <input type="text" placeholder="bridge" formControlName="Driver" class="form-control" id="networkDriver">
+    </div>
+  </div>
+
+  <div class="row break"></div>
+
+  <!-- <div class="row">
+    <div class="col-4"> 
+      <input type=”checkbox” formControlName="IsAttachable"/> IsAttachable
+    </div>
+  </div> -->
+
+  <div class="row break"></div>
+
+  <div class="row formStart">
+    <div class="offset-sm-4 col-sm-2">
+      <a routerLink="/networks">
+        <button type="button" class="btn btn-secondary "> Cancel
+          <i class="fa fa-undo"></i>
+        </button>
+      </a>
+    </div>
+    <div class="col-2">
+      <button type="submit" class="btn btn-info" [disabled]="!networkForm.valid"> Create Network
+        <i class="fa fa-arrow-circle-o-up"></i>
+      </button>
+    </div>
+  </div>
+
+</form>
