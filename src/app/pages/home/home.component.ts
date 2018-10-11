@@ -20,12 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private page_start: Subscription;
   private routeSub: Subscription;
   public cards: any[] = [];
-  private colours: any[] = [
-    '#1180af',
-    '#C6FF87',
-    '#27548c',
-    '#94E864',
-  ];
+  private colours: any[] = ['#1180af', '#C6FF87', '#27548c', '#94E864'];
 
   constructor(
     private networkService: NetworkService,
@@ -148,19 +143,21 @@ export class HomeComponent implements OnInit, OnDestroy {
         const nodesArray = [];
 
         tasks.forEach((task) => {
-          const temp = nodesArray.find(ob => ob['name'] === task.NodeHostname);
+          const temp = nodesArray.find(
+            (ob) => ob['name'] === task.NodeHostname
+          );
           if (temp !== undefined) {
             temp.tasks++;
           } else {
-            nodesArray.push({name: task.NodeHostname, tasks : 1});
+            nodesArray.push({ name: task.NodeHostname, tasks: 1 });
           }
         });
 
-        nodesArray.forEach(node => {
+        nodesArray.forEach((node) => {
           dataSet.push(node['tasks']);
         });
 
-        nodesArray.forEach(node => {
+        nodesArray.forEach((node) => {
           labels.push(node['name']);
         });
 
