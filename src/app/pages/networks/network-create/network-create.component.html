@@ -1,3 +1,198 @@
-<p>
-  network-create works!
-</p>
+<div class="row heading">
+  <div class="col-sm-10">
+    <h1>
+      <i class="fa fa-book"></i>
+      Create Network
+    </h1>
+  </div>
+</div>
+
+<form [formGroup]="networkForm" (ngSubmit)="submit()">
+
+  <div class="formStart row">
+    <div class="col-sm-2 text">
+      <label for="networkName" class="col-form-label">
+        <h4>
+          <i class="required fa fa-asterisk"></i> Name: </h4>
+      </label>
+    </div>
+    <div class="col-sm-9">
+      <input type="text" placeholder="Tardis" formControlName="Name" class="form-control" id="networkName" required>
+      <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A Network
+        Name is required.</ngb-alert>
+    </div>
+  </div>
+  
+  <div formGroupName="checkBoxes">
+    <div class="row centered">
+      <div class="col-md-2 text">
+        <input type="checkbox" formControlName="Ingress" class="checkBox form-check-label" id="Ingress"> 
+        <label for="Ingress"> Ingress</label>
+      </div>
+      <div class="col-md-3 text">
+         <input type="checkbox" formControlName="Internal" class="checkBox form-check-label" id="Internal"> 
+         <label for="Internal"> Internal</label>
+      </div>
+      <div class="col-md-3 text">
+         <input type="checkbox" formControlName="IsAttachable" class="checkBox form-check-label" id="Attachable">  
+         <label for="Attachable"> Is Attachable</label>
+      </div>
+      <div class="col-md-2 text">
+        <input type="checkbox" formControlName="EnableIPv6" class="checkBox form-check-label" id="EnableIP">  
+        <label for="EnableIP"> EnableIPv6</label>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row break"></div>
+
+  <div class="row formStart">
+    <div class="col-sm-2 text">
+      <label for="networkDriver" class="col-form-label">
+        <h4>
+          Driver:
+        </h4>
+      </label>
+    </div>
+    <div class="col-sm-9">
+      <input type="text" placeholder="bridge" formControlName="Driver" class="form-control" id="networkDriver">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2 spans" (click)="addOption()" id="add">
+      <i class="fa fa-plus-circle"></i> Add Driver Options
+    </div>
+  </div>
+
+  <div formArrayName="Options">
+    <div *ngIf="ShowOptionName()">
+      <div class="row form">
+        <div class="col-sm-5 ">
+          <label for="'OptionName'+i" class="text">
+            <i class="required fa fa-asterisk"></i>Name:
+          </label>
+        </div>
+        <div class="col-sm-5">
+          <label for="'OptionValue'+i" class="text">Value: </label>
+        </div>
+      </div>
+
+    </div>
+    <div *ngFor="let option of Options.controls; let i=index">
+      <div [formGroupName]="i">
+        <div class="row">
+          <div class="form-group col-sm-5">
+            <input type="text" placeholder="Mountpoint" formControlName="OptionName" class="form-control text" id="'OptionName'+i"
+              required>
+            <ngb-alert type="text" [hidden]="Options.at(i).valid || Options.at(i).pristine" (close)="Options.markAsPristine()"
+              [type]="'danger'">If
+              you add a Driver option a name is required.</ngb-alert>
+          </div>
+          <div class="col-sm-5">
+            <div class="form-group">
+              <input type="text" placeholder="./volumes/tardis" formControlName="Value" class="form-control text" id="'OptionValue'+i">
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <span (click)="removeOption(i)" class="spans delete">
+              <i class="fa fa-trash"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row break"></div>
+  <div class="row formStart">
+    <div class="col-sm-2 text">
+      <label for="networkSubnet" class="col-form-label">
+        <h3>
+          Subnet:
+        </h3>
+      </label>
+    </div>
+    <div class="col-sm-9">
+      <input type="text" placeholder="172.20.0.0/16" formControlName="Subnet" class="form-control" id="networkSubnet">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 text">
+      <label for="networkGateway" class="col-form-label">
+        <h3>
+          Gateway:
+        </h3>
+      </label>
+    </div>
+    <div class="col-sm-9">
+      <input type="text" placeholder="172.20.10.11" formControlName="GateWay" class="form-control" id="networkGateway">
+    </div>
+  </div>
+
+  <div class="row break"></div>
+
+  <div class="form row">
+    <div class="col-sm-2 text">
+      <span class="spans" (click)="addLabel()">
+        <i class="fa fa-plus-circle"></i>
+        Add a Label
+      </span>
+    </div>
+  </div>
+
+  <div formArrayName="Labels">
+    <div *ngIf="ShowLabelName()">
+      <div class="row form">
+        <div class="col-sm-5 ">
+          <label for="'LabelName'+i" class="text">
+            <i class="required fa fa-asterisk"></i>Name:
+          </label>
+        </div>
+        <div class="col-sm-5">
+          <label for="'LabelValue'+i" class="text">Value: </label>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let label of Labels.controls; let i=index">
+      <div [formGroupName]="i">
+
+        <div class="row">
+          <div class="form-group col-sm-5">
+            <input type="text" placeholder="com.example.some-label" formControlName="Name" class="form-control text" id="'LabelName'+i"
+              required>
+            <ngb-alert type="text" [hidden]="Labels.at(i).valid || Labels.at(i).pristine" (close)="Labels.markAsPristine()"
+              [type]="'danger'" class="inlineAlerts">If
+              you add a Label a name is required.</ngb-alert>
+          </div>
+          <div class="form-group col-sm-5">
+            <input type="text" placeholder="some-value" formControlName="Value" class="form-control text" id="'LabelValue'+i">
+          </div>
+          <div class="col-sm-1">
+            <span (click)="removeLabel(i)" class="spans delete">
+              <i class="fa fa-trash"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row break"></div>
+
+  <div class="row formStart">
+    <div class="offset-sm-4 col-sm-2">
+      <a routerLink="/networks">
+        <button type="button" class="btn btn-secondary "> Cancel
+          <i class="fa fa-undo"></i>
+        </button>
+      </a>
+    </div>
+    <div class="col-2">
+      <button type="submit" class="btn btn-info" [disabled]="!networkForm.valid"> Create Network
+        <i class="fa fa-arrow-circle-o-up"></i>
+      </button>
+    </div>
+  </div>
+
+</form>
