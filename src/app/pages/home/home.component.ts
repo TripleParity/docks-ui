@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.updateChartA();
     this.updateChartB();
     this.count_types();
-    this.page_start = interval(5000).subscribe(() => {
+    this.page_start = interval(30000).subscribe(() => {
       this.updateChartA();
       this.updateChartB();
       this.count_types();
