@@ -1,41 +1,28 @@
-<div class="container">
-  <div id="stats" class="row">
-      <div id="volumes" class="col-4">
-          <div class="inner-container">
-              <img src="https://cdn0.iconfinder.com/data/icons/office-icon-set-2/100/Noun_Project_100Icon_10px_grid-07-128.png">
-              <h3>{{numVol}}</h3>
-              <p>Volumes</p>
-          </div>
-      </div>
-      <div id="networks" class="col-4">
-          <div class="inner-container">
-              <img src="https://cdn3.iconfinder.com/data/icons/other-icons/48/organization-128.png">
-              <h3>{{numNet}}</h3>
-              <p>Networks</p>
-          </div>
-      </div>
-      <div id="tasks" class="col-4">
-          <div class="inner-container">
-              <img src="https://cdn3.iconfinder.com/data/icons/other-icons/48/list-128.png">
-              <h3>{{numTask}}</h3>
-              <p>tasks</p>
-          </div>
-      </div>
-  </div>
-
-  <br><br>
-
-  <div class="row">
-      <div class="col-4">
-          <canvas id="myChart" width="300" height="300"></canvas>
-
-      </div>
-      <!-- <div class="col-4">
-          <canvas id="myChartbar" width="300" height="300"></canvas>
-      </div> -->
-
-      <div class="col-4">
-          <canvas id="chart2" width="300" height="300"></canvas>
-      </div>
-  </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col" *ngFor="let card of cards">
+            <div class="card infoCards" routerLink={{card.route}}><h4 class="iconHeader"><i class={{card.src}}></i></h4>
+                <div class="card-body">
+                    <h5 class="card-title center">{{card.title}} </h5>
+                    <p class="card-text center">{{card.text}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6" style="text-align: center">
+            <br><br>
+            <h2>Nodes Loads</h2>
+            <div style="width: 50%; margin: auto">
+                <canvas id="chart1" width="750px" height="750px"></canvas>
+            </div>
+        </div>
+        <div class="col-6" style="text-align: center">
+            <br><br>
+            <h2>Nodes Status</h2>
+            <div style="width: 50%; margin: auto">
+                <canvas id="chart2" width="750px" height="750px"></canvas>
+            </div>
+        </div>
+    </div>
 </div>
