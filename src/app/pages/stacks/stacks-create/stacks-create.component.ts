@@ -21,7 +21,7 @@ export class StacksCreateComponent implements OnInit, AfterViewInit {
   @ViewChild('editor') editor: AceEditorComponent;
   public stackModel: Stack;
   public fileText = '';
-  public text = 'Add the compose file here';
+  public text = '#Add or edit the compose file here\n';
   public deploying = false;
   constructor(
     private router: Router,
@@ -81,4 +81,9 @@ export class StacksCreateComponent implements OnInit, AfterViewInit {
   replaceStackContents(stack: string) {
     this.text = atob(stack);
   }
+
+  replaceStr() {
+    this.text = 'Test';
+  }
+
 }
