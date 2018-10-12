@@ -13,4 +13,5 @@ export interface Webhook {
   name: string;
   url: string;
   types: DockerEventTypes[];
+  modifier?: string;
 }
