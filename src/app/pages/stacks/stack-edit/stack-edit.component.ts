@@ -36,7 +36,8 @@ export class StackEditComponent implements OnInit, AfterViewInit {
 
     // Fetch stack definition for current stack
     this.waitingForResponse = true;
-    this.stackService.getStackFile(this.stackModel.stackName)
+    this.stackService
+      .getStackFile(this.stackModel.stackName)
       .subscribe(
         (result) => {
           this.text = result.stackFile;
@@ -44,10 +45,11 @@ export class StackEditComponent implements OnInit, AfterViewInit {
 
         (err: StackError) => {
           this.toastr.warning(err.message, 'Could not decode stack.');
-        },
-      ).add(
-        () => {this.waitingForResponse = false; }
-      );
+        }
+      )
+      .add(() => {
+        this.waitingForResponse = false;
+      });
 
     // this.editor.getEditor().setOptions({
     //     enableBasicAutoCompletion: true,
@@ -92,8 +94,8 @@ export class StackEditComponent implements OnInit, AfterViewInit {
           this.toastr.error(err.message, 'Error updating stack');
         }
       )
-      .add(
-        () => {this.waitingForResponse = false; }
-      );
+      .add(() => {
+        this.waitingForResponse = false;
+      });
   }
 }

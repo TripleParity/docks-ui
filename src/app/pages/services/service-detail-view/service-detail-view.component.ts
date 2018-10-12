@@ -128,16 +128,18 @@ export class ServiceDetailViewComponent implements OnInit {
     );
   }
 
-
   getReplicas() {
     if (this.serviceModel.Spec.Mode.hasOwnProperty('Replicated')) {
       let numberOfRunningTasks = 0;
-      this.tasks.forEach(element => {
+      this.tasks.forEach((element) => {
         if (element.Status.State === 'running') {
           numberOfRunningTasks++;
         }
       });
-      this.replicas = numberOfRunningTasks.toString() + '/' + this.serviceModel.Spec.Mode.Replicated.Replicas.toString();
+      this.replicas =
+        numberOfRunningTasks.toString() +
+        '/' +
+        this.serviceModel.Spec.Mode.Replicated.Replicas.toString();
     } else {
       this.replicas = 'Global';
     }
@@ -163,7 +165,9 @@ export class ServiceDetailViewComponent implements OnInit {
   removeService() {
     this.serviceService.deleteService(this.serviceModel.ID).subscribe(
       (service) => {
-        this.toastr.success('Service ' + this.stackName + ' was successfully removed');
+        this.toastr.success(
+          'Service ' + this.stackName + ' was successfully removed'
+        );
         this.activeModal.close();
         this.router.navigate(['/services/list']);
       },

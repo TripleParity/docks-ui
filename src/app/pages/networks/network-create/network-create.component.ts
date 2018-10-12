@@ -21,7 +21,7 @@ export class NetworkCreateComponent implements OnInit {
     private networkService: NetworkService,
     private fb: FormBuilder,
     private toastr: ToastrService
-  ) { }
+  ) {}
 
   networkForm: FormGroup = this.fb.group({
     Name: ['', Validators.required],
@@ -45,7 +45,6 @@ export class NetworkCreateComponent implements OnInit {
   ngOnInit() {}
 
   submit() {
-
     const networkModel: NetworkSending = {
       Name: this.networkForm.get('Name').value,
       Ingress: this.networkForm.controls['checkBoxes'].value.Ingress,
@@ -54,17 +53,24 @@ export class NetworkCreateComponent implements OnInit {
       Internal: this.networkForm.controls['checkBoxes'].value.Internal,
       Driver: this.networkForm.get('Driver').value,
       Options: this.convertOptions(),
-      IPAM : {Config: [
-        {Subnet: this.networkForm.get('Subnet').value,
-        Gateway: this.networkForm.get('GateWay').value }
-      ]},
-      Labels: this.convertLabels()
+      IPAM: {
+        Config: [
+          {
+            Subnet: this.networkForm.get('Subnet').value,
+            Gateway: this.networkForm.get('GateWay').value,
+          },
+        ],
+      },
+      Labels: this.convertLabels(),
     };
 
     if (this.networkForm.get('Driver').value.length === 0) {
       delete networkModel.Driver;
     }
-    if (this.networkForm.get('Subnet').value.length === 0 || this.networkForm.get('Gateway').value.length === 0 ) {
+    if (
+      this.networkForm.get('Subnet').value.length === 0 ||
+      this.networkForm.get('Gateway').value.length === 0
+    ) {
       delete networkModel.IPAM;
     }
     if (this.convertOptions.length === 0) {
@@ -169,7 +175,7 @@ export class NetworkCreateComponent implements OnInit {
   }
 
   ShowOptionName() {
-   return (this.Options.length > 0);
+    return this.Options.length > 0;
   }
 
   ShowLabelName() {

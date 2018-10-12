@@ -12,7 +12,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  imports: [CommonModule, NetworksRoutingModule, NgxDatatableModule, FormsModule, ReactiveFormsModule, NgbModule],
+  imports: [
+    CommonModule,
+    NetworksRoutingModule,
+    NgxDatatableModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+  ],
   declarations: [
     NetworkListComponent,
     NetworkDetailViewComponent,
