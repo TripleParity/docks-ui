@@ -61,7 +61,7 @@ export class StackEditComponent implements OnInit, AfterViewInit {
 
   submit() {
     this.stackService
-      .updateStack(this.stackModel.stackName, btoa(this.stackModel.stackFile))
+      .updateStack(this.stackModel.stackName, btoa(this.text))
       .subscribe(
         (result) => {
           this.toastr.success(
