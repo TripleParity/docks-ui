@@ -67,7 +67,7 @@ export class ServiceLogsComponent implements OnInit {
     const logArray = log.split('\n');
     let ret = '';
 
-    logArray.forEach(element => {
+    logArray.forEach((element) => {
       element = element.slice(8);
       ret = ret + element + '\n';
     });

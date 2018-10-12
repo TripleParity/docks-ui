@@ -56,12 +56,11 @@ export class TaskService {
       );
   }
 
-
-    /**
-     * Returns a list of all the tasks in a specific service.
-     * @param {string} id
-     * @returns {Observable<Task[]>}
-     */
+  /**
+   * Returns a list of all the tasks in a specific service.
+   * @param {string} id
+   * @returns {Observable<Task[]>}
+   */
   public getTaskInService(service_id: string): Observable<Task[]> {
     return this.http
       .get(this.config.getAPIHostname() + '/tasks', {
@@ -85,7 +84,6 @@ export class TaskService {
         })
       );
   }
-
 
   /**
    * Returns a log associated with the particular task.

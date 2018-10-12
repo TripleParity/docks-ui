@@ -42,7 +42,7 @@
           </a>
         </div>
         <div class="col-2">
-          <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid"> Update Stack
+          <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid" [disabled]="waitingForResponse" > Update Stack
             <i class="fa fa-arrow-circle-o-up"></i>
           </button>
         </div>

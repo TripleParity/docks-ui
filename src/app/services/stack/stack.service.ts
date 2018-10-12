@@ -175,4 +175,32 @@ export class StackService {
         })
       );
   }
+
+  /**
+   * Returns the stackfile associated with the stack
+   *
+   * @param {string} stack
+   * @returns {Observable<Service[]>}
+   */
+  public getStackFile(stack: string): Observable<Stack> {
+    return this.http
+      .get(this.config.getAPIHostname() + '/stacks/' + stack + '/stackfile', {
+        responseType: 'json',
+      })
+      .pipe(
+        map((x) => {
+          const data = x['data'];
+          return {
+            stackName: stack,
+            stackFile: atob(data['stackFile']),
+          };
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return ErrorObservable.create({
+            code: <StackErrorCode>err.status,
+            message: err.error,
+          });
+        })
+      );
+  }
 }

@@ -17,8 +17,8 @@ export interface Network {
   Attachable: boolean;
   Ingress: boolean;
   IPAM: Ipam;
-  Options: {[name: string]: string};
-  Labels?: {[name: string]: string};
+  Options: { [name: string]: string };
+  Labels?: { [name: string]: string };
 }
 
 export interface NetworkSending {
@@ -29,6 +29,6 @@ export interface NetworkSending {
   Attachable: boolean;
   Ingress: boolean;
   IPAM?: Ipam;
-  Options?: {[name: string]: string};
-  Labels?: {[name: string]: string};
+  Options?: { [name: string]: string };
+  Labels?: { [name: string]: string };
 }

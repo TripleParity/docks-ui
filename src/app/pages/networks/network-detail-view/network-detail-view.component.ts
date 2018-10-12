@@ -75,10 +75,10 @@ export class NetworkDetailViewComponent implements OnInit {
       },
       (result: NetworkError) => {
         this.toastr.error(
-            result.message,
-            'Could not delete network ' + this.networkModel.Name
-          );
-          this.activeModal.close();
+          result.message,
+          'Could not delete network ' + this.networkModel.Name
+        );
+        this.activeModal.close();
       }
     );
   }

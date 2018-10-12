@@ -22,6 +22,7 @@ export class StackEditComponent implements OnInit, AfterViewInit {
   public stackModel: Stack;
   public fileText = '';
   public text = 'Edit the compose file here after uploading it';
+  public waitingForResponse = false;
 
   constructor(
     private router: Router,
@@ -32,6 +33,23 @@ export class StackEditComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.editor.setTheme('dreamweaver');
+
+    // Fetch stack definition for current stack
+    this.waitingForResponse = true;
+    this.stackService
+      .getStackFile(this.stackModel.stackName)
+      .subscribe(
+        (result) => {
+          this.text = result.stackFile;
+        },
+
+        (err: StackError) => {
+          this.toastr.warning(err.message, 'Could not decode stack.');
+        }
+      )
+      .add(() => {
+        this.waitingForResponse = false;
+      });
 
     // this.editor.getEditor().setOptions({
     //     enableBasicAutoCompletion: true,
@@ -60,8 +78,10 @@ export class StackEditComponent implements OnInit, AfterViewInit {
   }
 
   submit() {
+    this.waitingForResponse = true;
+    this.toastr.info('Submitting stack to be updated...');
     this.stackService
-      .updateStack(this.stackModel.stackName, btoa(this.stackModel.stackFile))
+      .updateStack(this.stackModel.stackName, btoa(this.text))
       .subscribe(
         (result) => {
           this.toastr.success(
@@ -73,6 +93,9 @@ export class StackEditComponent implements OnInit, AfterViewInit {
         (err: StackError) => {
           this.toastr.error(err.message, 'Error updating stack');
         }
-      );
+      )
+      .add(() => {
+        this.waitingForResponse = false;
+      });
   }
 }

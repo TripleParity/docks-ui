@@ -13,12 +13,12 @@ export interface Ipam {
    * `{"Subnet": <CIDR>, "IPRange": <CIDR>, "Gateway": <IP address>, "AuxAddress": <device_name:IP address>}`
    */
   Config?: {
-      [name: string]: string;
+    [name: string]: string;
   }[];
   /**
    * Driver-specific options, specified as a map.
    */
   Options?: {
-      [name: string]: string;
+    [name: string]: string;
   }[];
 }
