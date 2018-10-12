@@ -6,8 +6,12 @@ import { HttpHandler, HttpClient } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
-import { NetworkService } from 'services/network/network.service';
-import { VolumeService } from 'services/volume/volume.service';
+import { GraphService } from '../../services/graphs/graph.service';
+
+import { NetworkService } from '../../services/network/network.service';
+import { VolumeService } from '../../services/volume/volume.service';
+import { NodeService } from '../../services/node/node.service';
+import { ServicesService } from '../../services/services/services.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -18,6 +22,9 @@ describe('HomeComponent', () => {
       declarations: [HomeComponent],
       imports: [RouterTestingModule],
       providers: [
+        NodeService,
+        ServicesService,
+        GraphService,
         NetworkService,
         HttpClient,
         HttpHandler,
