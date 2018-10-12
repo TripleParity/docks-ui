@@ -1,3 +1,7 @@
 .label {
     text-align: right;
 }
+.modal-title {
+    width: 100%;
+    text-align: center;
+}

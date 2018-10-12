@@ -29,7 +29,8 @@ export class WebhookCreateComponent implements OnInit, AfterViewInit {
   public daemons: boolean;
   public images: boolean;
   public nodes: boolean;
-  public text = 'Add project configs here';
+  public default_text = '(json) => { return json;}';
+  public text: string = this.default_text;
   public triggerTypes = ['Volumes', 'Network', 'Service', 'Node', 'Image', 'Daemon', 'Secret', 'Config'];
 
   webhookForm: FormGroup = this.fb.group({
@@ -126,12 +127,38 @@ export class WebhookCreateComponent implements OnInit, AfterViewInit {
 
     const name = this.webhookForm.get('Name').value;
     const url = this.webhookForm.get('url').value;
+    const typesStrs = [];
+    if (this.daemons) {
+      typesStrs.push(DockerEventTypes.DAEMON);
+    }
+    if (this.configs) {
+      typesStrs.push(DockerEventTypes.CONFIG);
+    }
+    if (this.networks) {
+      typesStrs.push(DockerEventTypes.NETWORK);
+    }
+    if (this.volumes) {
+      typesStrs.push(DockerEventTypes.VOLUME);
+    }
+    if (this.images) {
+      typesStrs.push(DockerEventTypes.IMAGE);
+    }
+    if (this.secrets) {
+      typesStrs.push(DockerEventTypes.SECRET);
+    }
+    if (this.services) {
+      typesStrs.push(DockerEventTypes.SERVICE);
+    }
+    if (this.nodes) {
+      typesStrs.push(DockerEventTypes.NODE);
+    }
+    // TODO: Add Task ?
 
-    const str = this.convertLabels();
-    const labels = JSON.parse(str);
-
-    const webby: Webhook = { name: name, url: url, types: labels };
-
+    const webby: Webhook = { name: name, url: url, types: typesStrs };
+    if (this.text !== this.default_text) {
+      webby.modifier = btoa(this.text);
+    }
+    console.log({webby});
     this.wh.createWebhook(webby).subscribe(
       (result: WebhookError) => {
         this.toastr.success(

@@ -34,7 +34,8 @@
     </div>
     <div class="col-sm-9">
       <input type="text" placeholder="Local" formControlName="Driver" class="form-control" id="volumeDriver" required>
-      <ngb-alert [hidden]="Driver.valid || Driver.pristine" (close)="Driver.markAsPristine()" [type]="'danger'">A Volume Driver
+      <ngb-alert [hidden]="Driver.valid || Driver.pristine" (close)="Driver.markAsPristine()" [type]="'danger'">A
+        Volume Driver
         is required.</ngb-alert>
     </div>
   </div>
@@ -45,24 +46,27 @@
   </div>
 
   <div formArrayName="Options">
-    <div *ngFor="let option of Options.controls; let i=index">
-      <div [formGroupName]="i">
-        <div class="row form">
-          <div class="col-sm-5 ">
-            <label for="'OptionName'+i" class="text">
-              <i class="required fa fa-asterisk"></i>Name:
-            </label>
-          </div>
-          <div class="col-sm-5">
-            <label for="'OptionValue'+i" class="text">Value: </label>
+      <div *ngIf="ShowOptionName()">
+          <div class="row form">
+            <div class="col-sm-5 ">
+              <label for="'LabelName'+i" class="text">
+                <i class="required fa fa-asterisk"></i>Name:
+              </label>
+            </div>
+            <div class="col-sm-5">
+              <label for="'LabelValue'+i" class="text">Value: </label>
+            </div>
           </div>
         </div>
-
+    <div *ngFor="let option of Options.controls; let i=index">
+      <div [formGroupName]="i">
+      
         <div class="row">
           <div class="form-group col-sm-5">
             <input type="text" placeholder="Mountpoint" formControlName="OptionName" class="form-control text" id="'OptionName'+i"
               required>
-            <ngb-alert type="text" [hidden]="Options.valid || Options.pristine" (close)="Options.markAsPristine()" [type]="'danger'">If
+            <ngb-alert type="text" [hidden]="Options.at(i).valid || Options.at(i).pristine" (close)="Options.markAsPristine()"
+              [type]="'danger'">If
               you add an Option a name is required.</ngb-alert>
           </div>
           <div class="col-sm-5">
@@ -71,7 +75,7 @@
             </div>
           </div>
           <div class="col-sm-1">
-            <span (click)="removeOption(i)" class="spans" id="delete">
+            <span (click)="removeOption(i)" class="spans delete">
               <i class="fa fa-trash"></i>
             </span>
           </div>
@@ -92,30 +96,34 @@
   </div>
 
   <div formArrayName="Labels">
+    <div *ngIf="ShowLabelName()">
+      <div class="row form">
+        <div class="col-sm-5 ">
+          <label for="'LabelName'+i" class="text">
+            <i class="required fa fa-asterisk"></i>Name:
+          </label>
+        </div>
+        <div class="col-sm-5">
+          <label for="'LabelValue'+i" class="text">Value: </label>
+        </div>
+      </div>
+    </div>
     <div *ngFor="let label of Labels.controls; let i=index">
       <div [formGroupName]="i">
-        <div class="row form">
-          <div class="col-sm-5 ">
-            <label for="'LabelName'+i" class="text">
-              <i class="required fa fa-asterisk"></i>Name:
-            </label>
-          </div>
-          <div class="col-sm-5" >
-            <label for="'LabelValue'+i" class="text">Value: </label>
-          </div>
-        </div>
+
         <div class="row">
           <div class="form-group col-sm-5">
             <input type="text" placeholder="com.example.some-label" formControlName="Name" class="form-control text" id="'LabelName'+i"
               required>
-              <ngb-alert type="text" [hidden]="Labels.valid || Labels.pristine" (close)="Labels.markAsPristine()" [type]="'danger'" class="inlineAlerts">If
-                  you add a Label a name is required.</ngb-alert>
+            <ngb-alert type="text" [hidden]="Labels.at(i).valid || Labels.at(i).pristine" (close)="Labels.markAsPristine()"
+              [type]="'danger'" class="inlineAlerts">If
+              you add a Label a name is required.</ngb-alert>
           </div>
           <div class="form-group col-sm-5">
             <input type="text" placeholder="some-value" formControlName="Value" class="form-control text" id="'LabelValue'+i">
           </div>
           <div class="col-sm-1">
-            <span (click)="removeLabel(i)" class="spans" id="delete">
+            <span (click)="removeLabel(i)" class="spans delete">
               <i class="fa fa-trash"></i>
             </span>
           </div>
