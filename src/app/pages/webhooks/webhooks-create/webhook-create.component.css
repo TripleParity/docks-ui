@@ -61,3 +61,6 @@ h1, .text
 {
     padding: 5px 15px;
 }
+.bottom-buttons {
+    margin-bottom: 15px;
+}
