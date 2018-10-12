@@ -14,7 +14,7 @@ import { catchError, map } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 import { ConfigurationService } from '../configuration/configuration.service';
-import { Network } from 'app/models/network/network.model';
+import { Network, NetworkSending } from 'app/models/network/network.model';
 
 enum NetworkErrorCode {
   ERR_OK = 200,
@@ -144,6 +144,32 @@ export class NetworkService {
   }
 
   // TODO:(CDuPlooy): Create a network query parameters not working. ( Encoding of json object )
+
+  /**
+   * Connects the target container to the target network.
+   *
+   * @param {Network} network
+   * @returns {Observable<JSON>}
+   */
+  public createNetwork(inputs: NetworkSending): Observable<Network> {
+    return this.http
+      .post(this.config.getAPIHostname() + '/docker/networks/create', inputs, {
+        responseType: 'json',
+      })
+      .pipe(
+        map((x) => {
+          return <Network>x;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return ErrorObservable.create({
+            code: <NetworkErrorCode>err.status,
+            message: err.error['message'],
+          });
+        })
+      );
+  }
+
+
   /**
    * Connects the target container to the target network.
    *
