@@ -21,7 +21,7 @@ export class StackEditComponent implements OnInit, AfterViewInit {
   @ViewChild('editor') editor: AceEditorComponent;
   public stackModel: Stack;
   public fileText = '';
-  public text = 'Edit the compose file here after uploading it';
+  public text = '#Add or edit the compose file here\n';
 
   constructor(
     private router: Router,
