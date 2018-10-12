@@ -1,0 +1,17 @@
+.stackCard{
+    width: 18rem;
+    margin: auto; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.centered{
+    text-align: center
+}
+
+.img{
+    display: inline-block;
+    margin: auto;
+    margin-top: 20px;
+}
