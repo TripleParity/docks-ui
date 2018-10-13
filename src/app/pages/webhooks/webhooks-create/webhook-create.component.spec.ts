@@ -26,7 +26,7 @@ describe('WebhookCreateComponent', () => {
         RouterTestingModule,
         FormsModule,
         ToastrModule.forRoot(),
-        AceEditorModule
+        AceEditorModule,
       ],
       providers: [
         VolumeService,
