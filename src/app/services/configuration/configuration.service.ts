@@ -48,7 +48,8 @@ export class ConfigurationService {
     // NOTE: API port is hardcoded here
 
     if (currentUrl.includes('direct.labs.play-with-docker.com')) {
-      currentUrl = currentUrl.split('/')[0];
+      const urlParts: string[] = currentUrl.split('/');
+      currentUrl = urlParts[0] + '//' + urlParts[2];
       currentUrl = currentUrl.replace('4200.direct', '8080.direct');
 
       if (this.tokenStorage.getToken(docksApiAddressKey) === null) {
