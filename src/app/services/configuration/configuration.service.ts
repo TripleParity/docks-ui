@@ -41,13 +41,14 @@ export class ConfigurationService {
    * by the router.
    */
   public fetchAPIHostname() {
-    const currentUrl: string = window.location.href;
+    let currentUrl: string = window.location.href;
 
     // Need to match the following url and patch the port
     // http://ip172-18-0-8-bf132dc9cs9g00ffpcog-4200.direct.labs.play-with-docker.com/login
+    // NOTE: API port is hardcoded here
 
     if (currentUrl.includes('direct.labs.play-with-docker.com')) {
-      currentUrl.replace('4200.direct', '8080.direct');
+      currentUrl = currentUrl.replace('4200.direct', '8080.direct');
 
       if (this.tokenStorage.getToken(docksApiAddressKey) === null) {
         this.refreshPage();
