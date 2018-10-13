@@ -1,6 +1,6 @@
 {
   "name": "docks-ui",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "license": "GPL-3.0",
   "scripts": {
     "start": "ng serve --host=0.0.0.0",
@@ -30,6 +30,7 @@
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
+    "ng2-ace-editor": "^0.3.8",
     "ngx-toastr": "^8.10.2",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"

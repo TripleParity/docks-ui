@@ -1,0 +1,55 @@
+.break {
+    background-color: #F7F7F7;
+    height: 30px;
+    border-bottom: 1px solid #C9C9C9;
+    border-top: 1px solid #C9C9C9;
+    margin-top: 5px;
+    margin-left: 0px;
+}
+.required {
+    font-size: 40%;
+}
+.alerts {
+    margin-top: 5px;
+}
+h1, .text {
+    padding: 5px;
+    color: #797979;
+}
+
+h3 {
+    font-size: 110%;
+}
+
+.text{
+    margin-left: 15px;
+}
+
+
+.formStart {
+    margin-top: 15px;
+}
+#add
+{
+    font-size: 90%;
+    margin-left: 30px;
+}
+
+.spans
+{
+    color: #797979;
+}
+.spans:hover
+{
+    cursor: pointer;
+}
+.delete
+{
+    font-size: 150%;
+}
+.centered {
+    text-align: center;
+}
+.checkBox:hover {
+    cursor: pointer;
+}

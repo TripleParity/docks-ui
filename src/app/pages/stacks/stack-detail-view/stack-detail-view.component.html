@@ -61,7 +61,7 @@
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="Replicas">
+            <ngx-datatable-column name="Ports">
                 <ng-template let-row="row" ngx-datatable-cell-template>
                   {{getPort(row.Spec.EndpointSpec)}}
                 </ng-template>
@@ -73,12 +73,14 @@
 
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Remove Stack</h4>
+      <div class="modal-title">
+          <h4 id="modal-basic-title">Remove Stack</h4>
+      </div>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body" align="center">
+    <div class="modal-body" align ="center">
       <h5>Are you sure you want to remove the following Stack?</h5>
       <h5>
         <pre>{{stackNameToDelete}}</pre>

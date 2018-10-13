@@ -3,7 +3,10 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { TaskService, TaskError } from 'services/task/task.service';
 import { ToastrService } from 'ngx-toastr';
 import { Task } from 'app/models/task/task.model';
-import { ServicesService, ServiceError } from 'services/services/services.service';
+import {
+  ServicesService,
+  ServiceError,
+} from 'services/services/services.service';
 import { Formatter } from 'classes/formatter/formatter';
 
 @Component({
@@ -66,13 +69,14 @@ export class TaskDetailViewComponent implements OnInit {
   }
 
   getServiceName() {
-    this.taskServiceSercice
-      .inspectService(this.taskModel.ServiceID)
-      .subscribe((service) => {
+    this.taskServiceSercice.inspectService(this.taskModel.ServiceID).subscribe(
+      (service) => {
         this.serviceName = service.Spec.Name;
-      }, (err: ServiceError) => {
+      },
+      (err: ServiceError) => {
         this.toastr.error(err.message, 'An error occured');
-      });
+      }
+    );
   }
 
   getImage() {

@@ -7,18 +7,13 @@
         <span class="detailID"> {{serviceModel.Spec.Name}} </span>
       </h1>
     </div>
-    <div class="col-sm-3 label">
+    <div class="col-sm-3 options">
       <button class="btn btn-info" (click)="viewLogs()">
-        <div class="fa fa-archive"></div> View Logs</button>
-      <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle >Actions</button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button class="dropdown-item">
-            <div class="fa fa-pencil"></div> Edit</button>
-          <button class="dropdown-item">
-            <div class="fa fa-trash"></div> Delete</button>
-        </div>
-      </div>
+        <div class="fa fa-archive"></div> View Logs
+      </button>
+           <button class="btn btn-info" (click)="open(content)">
+        <div class="fa fa-trash"></div> Delete
+      </button>
     </div>
   </div>
 
@@ -101,46 +96,64 @@
     </table>
   </div>
 
-  <!-- <div class="row title">
-  <div class="innerTitle col-sm-12">
-    <h3>Meta</h3>
-  </div>
-</div>
-<div class="row">
-  <table>
-    <tbody>
-      <tr>
-        <td class="name">
-          Ownership:
-        </td>
-        <td class="value">
-          <div class="inserts"> "insert service Ownership here" </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="name">
-          Created by:
-        </td>
-        <td class="value">
-          <div class="inserts"> "insert service owner here" </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="name">
-          Used by these teams:
-        </td>
-        <td class="value">
-          <div class="inserts"> "insert service teams here" </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-
-
   <div class="row title">
     <div class="innerTitle col-sm-12">
       <h3>Tasks</h3>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ngx-datatable class="bootstrap ngx-datatable" [footerHeight]="40" [columnMode]="'force'" [rows]="tasks" [headerHeight]="'auto'"
+            [rowHeight]="getRowHeight" [selectionType]="'single'" (select)='onSelect($event)'>
+
+            <ngx-datatable-column name="Name">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div>{{getTaskName(row.Spec.ContainerSpec.Labels, row.Slot, row.ID)}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Image">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div> {{ getTaskImage(row.Spec.ContainerSpec.Image)}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Node">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div> {{ row.NodeHostname }}</div>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Status">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div class="{{row.Status.State}} status"> {{row.Status.State}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+  </div>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <div id="modal-basic-title">
+        <h4 class="modal-title" >Remove Service</h4>
+    </div>
+    <div>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+    </div>
+  </div>
+  <div class="modal-body" align ="center">
+    <h5>Are you sure you want to remove the following Service?</h5>
+    <h5>
+      <pre>{{serviceModel.Spec.Name}}</pre>
+    </h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Cancel click')">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="removeService()">Delete</button>
+  </div>
+</ng-template>

@@ -16,7 +16,7 @@ const routes: Routes = [
     component: VolumesCreateComponent,
   },
   {
-    path: 'detail',
+    path: ':volumeID',
     component: VolumeDetailViewComponent,
   },
 ];

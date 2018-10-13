@@ -17,11 +17,7 @@ describe('TaskDetailViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TaskDetailViewComponent],
-      imports: [
-        RouterTestingModule,
-        SpinnerModule,
-        ToastrModule.forRoot(),
-      ],
+      imports: [RouterTestingModule, SpinnerModule, ToastrModule.forRoot()],
       providers: [
         TaskService,
         ServicesService,

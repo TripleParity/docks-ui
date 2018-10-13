@@ -2,6 +2,7 @@ import { NetworkListComponent } from './network-list/network-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NetworkDetailViewComponent } from 'pages/networks/network-detail-view/network-detail-view.component';
+import { NetworkCreateComponent } from 'pages/networks/network-create/network-create.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,11 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'detail',
+    path: 'create',
+    component: NetworkCreateComponent,
+  },
+  {
+    path: ':networkID',
     component: NetworkDetailViewComponent,
   },
 ];

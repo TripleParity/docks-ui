@@ -4,7 +4,7 @@ export interface Volume {
   Driver: string;
   Mountpoint?: string;
   Scope?: string;
-  Labels?: JSON;
+  Labels?: { [name: string]: string };
   Options?: JSON;
-  DriverOpts?: JSON;
+  DriverOpts?: { [name: string]: string };
 }

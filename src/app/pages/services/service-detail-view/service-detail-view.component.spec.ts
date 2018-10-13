@@ -10,6 +10,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { HttpHandler, HttpClient } from '@angular/common/http';
 import { ConfigurationService } from 'services/configuration/configuration.service';
 import { TokenStorage } from 'classes/tokenstorage/tokenstorage';
+import { TaskService } from 'services/task/task.service';
 
 describe('ServiceDetailViewComponent', () => {
   let component: ServiceDetailViewComponent;
@@ -32,6 +33,7 @@ describe('ServiceDetailViewComponent', () => {
         TokenStorage,
         NgbAlertConfig,
         ToastrService,
+        TaskService,
       ],
     }).compileComponents();
   }));

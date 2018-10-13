@@ -96,7 +96,10 @@ export class UserListComponent implements OnInit {
     this.userService.updateUserTwoFactorStatus(username, status).subscribe(
       (result: UserError) => {
         if (result.code === UserErrorCode.REQUEST_OK) {
-          this.toastr.success('Updated Two-Factor authentication status for ' + username + '.',  'Success!');
+          this.toastr.success(
+            'Updated Two-Factor authentication status for ' + username + '.',
+            'Success!'
+          );
         } else {
           this.toastr.error('Something went wrong...', 'An error occured!');
         }
@@ -104,7 +107,12 @@ export class UserListComponent implements OnInit {
         this.fetchUsers();
       },
       (err: UserError) => {
-        this.toastr.error(err.message, 'Could not update user\'s two-factor authentication status');
+        /* tslint:disable */
+        this.toastr.error(
+          err.message,
+          "Could not update user's two-factor authentication status"
+        );
+        /* tslint:enable */
         if (err.code === UserErrorCode.REQUEST_ERR_NOT_FOUND) {
           this.toastr.error('Could not find user', 'An error occured!');
         } else {

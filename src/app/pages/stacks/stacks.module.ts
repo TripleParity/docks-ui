@@ -12,6 +12,9 @@ import { StackService } from 'services/stack/stack.service';
 import { StackEditComponent } from 'pages/stacks/stack-edit/stack-edit.component';
 import { StackDetailViewComponent } from 'pages/stacks/stack-detail-view/stack-detail-view.component';
 
+import { AceEditorModule } from 'ng2-ace-editor';
+import { StackPreconfComponent } from './stack-preconf/stack-preconf.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,12 +23,14 @@ import { StackDetailViewComponent } from 'pages/stacks/stack-detail-view/stack-d
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
+    AceEditorModule,
   ],
   declarations: [
     StacksViewComponent,
     StacksCreateComponent,
     StackEditComponent,
     StackDetailViewComponent,
+    StackPreconfComponent,
   ],
   providers: [StackService],
 })

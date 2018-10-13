@@ -1,7 +1,7 @@
 <app-spinner [hidden]="isLoaded"></app-spinner>
 
 <div class="row heading">
-  <div class="col-md-4 offset-md-8">
+  <div class="col-sm-4">
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Search Nodes" aria-label="Node name" aria-describedby="basic-addon2"
         (keyup)="updateFilter($event)">
@@ -19,54 +19,54 @@
 
   <div class="row">
     <div class="col-md-12">
-      <ngx-datatable class="bootstrap ngx-datatable" [limit]="20" [footerHeight]="40" [columnMode]="'force'" [rows]="nodes" [headerHeight]="'auto'"
+      <ngx-datatable class="bootstrap ngx-datatable" [limit]="100" [footerHeight]="40" [columnMode]="'force'" [rows]="nodes" [headerHeight]="'auto'"
         [rowHeight]="getRowHeight">
 
-        <ngx-datatable-column name="Name">
+        <ngx-datatable-column name="Name" prop="Description.Hostname">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.Description.Hostname}}
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Engine version">
+        <ngx-datatable-column name="Engine version" prop="Description.Engine.EngineVersion">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.Description.Engine.EngineVersion}}
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="IP address">
+        <ngx-datatable-column name="IP address" prop="Status.Addr">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.Status.Addr}}
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Availability">
+        <ngx-datatable-column name="Availability" prop="Spec.Availability">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <div class="{{row.Spec.Availability}} status">{{row.Spec.Availability}}</div>
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Role">
+        <ngx-datatable-column name="Role" prop="Spec.Role">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.Spec.Role}}
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="State">
+        <ngx-datatable-column name="State" prop="Status.State">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <div class="{{row.Status.State}} status">{{row.Status.State}}</div>
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="CPUs">
+        <ngx-datatable-column name="CPUs" prop="Description.Resources.NanoCPUs">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ getCPU(row.Description.Resources.NanoCPUs) }}
+            {{ row.Description.Resources.NanoCPUs }}
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Memory">
+        <ngx-datatable-column name="Memory" prop="Description.Resources.MemoryBytes">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ getRam(row.Description.Resources.MemoryBytes) }} GB
+            {{ row.Description.Resources.MemoryBytes }} GB
           </ng-template>
         </ngx-datatable-column>
 

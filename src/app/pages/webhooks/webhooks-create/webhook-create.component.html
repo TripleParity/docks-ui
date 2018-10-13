@@ -1,65 +1,82 @@
-<div class="row">
-    <div class="offset-md-4">
+<div class="row heading">
+    <div class="col-sm-10">
+        <h1>
+            <i class="fa fa-anchor"></i>
+            Create Webhooks:
+        </h1>
     </div>
-    <div class="col-md-4">
-      <h2>Webhooks</h2>
+</div>
+
+<form [formGroup]="webhookForm" (ngSubmit)="submit()">
+    <div class="form row">
+        <div class="col-sm-2 text">
+            <label for="webhookName" class="col-form-label">
+                <h4>
+                    <i class="required fa fa-asterisk"></i> Name: </h4>
+            </label>
+        </div>
+        <div class="col-sm-9">
+            <input type="text" placeholder="myWebhook" formControlName="Name" class="form-control" id="webhookName"
+                required>
+            <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A
+                Webhook Name is required.</ngb-alert>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <form #createForm="ngForm" (ngSubmit)="submit()">
-  
-        <div class="form-group">
-          <label for="stackName">Name</label>
-          <input type="text" class="form-control" id="first" [(ngModel)]="name" name="name">
-        </div>
 
-        <div class="form-group">
-            <label for="stackName">Webhook URL</label>
-            <input type="text" class="form-control" id="second" [(ngModel)]="url" name="url">
+    <div class="form row">
+        <div class="col-sm-2 text">
+            <label for="webhookURL" class="col-form-label">
+                <h4>
+                    <i class="required fa fa-asterisk"></i> URL: </h4>
+            </label>
         </div>
-
-        <div class="form-group">
-            <label for="stackName">Volumes</label>
-            <input type="checkbox" value="Name" [(ngModel)]="volumes" name="volumes">
+        <div class="col-sm-9">
+            <input type="text" placeholder="Webhook URL" formControlName="url" class="form-control" id="webhookURL"
+                required>
+            <ngb-alert [hidden]="Name.valid || Name.pristine" (close)="Name.markAsPristine()" [type]="'danger'">A
+                Webhook URL is required.</ngb-alert>
         </div>
-
-        <div class="form-group">
-            <label for="stackName">Network</label>
-            <input type="checkbox" value="NameSecond"  [(ngModel)]="networks" name="networks">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Service</label>
-            <input type="checkbox" value="NameThird"  [(ngModel)]="services" name="services">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Node</label>
-            <input type="checkbox" value="NameFourth"  [(ngModel)]="nodes" name="nodes">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Image</label>
-            <input type="checkbox" value="NameFive"  [(ngModel)]="images" name="images">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Daemon</label>
-            <input type="checkbox" value="NameSix"  [(ngModel)]="daemons" name="daemons">
-        </div>
-
-        <div class="form-group">
-            <label for="stackName">Secret</label>
-            <input type="checkbox" value="NameSeven"  [(ngModel)]="secrets" name="secrets">
-        </div>
-
-        
-        <div class="form-group">
-            <label for="stackName">Config</label>
-            <input type="checkbox" value="NameEight"  [(ngModel)]="configs" name="configs">
-        </div>
-        <input type="submit" [disabled]=" name.length == 0 || url.length == 0">
-      </form>
     </div>
-  </div>
+
+    <div class="row break"></div>
+
+
+    <div class="form row justify-content-center">
+        <h4 id="Triggers" class="text">
+            Select Triggers: </h4>
+    </div>
+    <div formGroupName="Labels">
+        <div class="row row justify-content-center">
+            <div *ngFor="let key of triggerTypes; let i=index">
+                <input type="checkbox" formControlName={{key}} class="form-check-label" id={{key}}>
+                <label class="checkBox" for={{key}}> {{key}}</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row break"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ace-editor [(text)]="text" id='editor' #editor style="height:318px;" mode='javascript'>
+                
+            </ace-editor>
+        </div>
+    </div>
+
+    <div class="row break"></div>
+    <div class="row">
+        <div class="offset-sm-4 col-sm-2 bottom-buttons">
+            <a routerLink="/webhooks">
+                <button type="button" class="btn btn-secondary "> Cancel
+                    <i class="fa fa-undo"></i>
+                </button>
+            </a>
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-info" [disabled]="!webhookForm.valid"> Create Webhook
+                <i class="fa fa-arrow-circle-o-up"></i>
+            </button>
+        </div>
+    </div>
+</form>

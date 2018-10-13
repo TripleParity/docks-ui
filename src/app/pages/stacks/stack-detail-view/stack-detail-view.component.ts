@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { StackService, StackError, StackErrorCode } from 'services/stack/stack.service';
+import {
+  StackService,
+  StackError,
+  StackErrorCode,
+} from 'services/stack/stack.service';
 import { ToastrService } from 'ngx-toastr';
 import { Service } from 'app/models/service/service.model';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -14,19 +18,19 @@ import { EndpointSpec } from 'app/models/service/endpoint/endpointspec.model';
   styleUrls: ['./stack-detail-view.component.css'],
 })
 export class StackDetailViewComponent implements OnInit {
-
   public stackName: string;
   public service: Service[];
   public isLoaded = false;
   public activeModal: NgbModalRef;
   public selected = [];
+  public stackNameToDelete;
 
   constructor(
     private router: Router,
     private stackService: StackService,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-    private modalService: NgbModal,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -36,18 +40,17 @@ export class StackDetailViewComponent implements OnInit {
     });
   }
 
-
   fetchStackServices() {
-    console.log('In here with the timer');
     this.stackService.getStackServices(this.stackName).subscribe(
       (service) => {
         this.service = service;
         this.isLoaded = true;
-        console.log(this.service);
-      }, (err: ServiceError) => {
-          this.toastr.error(
+      },
+      (err: ServiceError) => {
+        this.toastr.error(
           'Something went wrong...',
-          'Could not retrieve services' );
+          'Could not retrieve services'
+        );
       }
     );
   }
@@ -74,6 +77,7 @@ export class StackDetailViewComponent implements OnInit {
   }
 
   open(content, stackName: string) {
+    this.stackNameToDelete = stackName;
     this.activeModal = this.modalService.open(content);
   }
 

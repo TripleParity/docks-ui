@@ -11,6 +11,7 @@ import { ConfigurationService } from 'services/configuration/configuration.servi
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 import { ToastrService, ToastrModule } from 'ngx-toastr';
 import { WebhookService } from 'services/webhook/webhook.service';
+import { AceEditorModule } from 'ng2-ace-editor';
 
 describe('WebhookCreateComponent', () => {
   let component: WebhookCreateComponent;
@@ -25,6 +26,7 @@ describe('WebhookCreateComponent', () => {
         RouterTestingModule,
         FormsModule,
         ToastrModule.forRoot(),
+        AceEditorModule
       ],
       providers: [
         VolumeService,

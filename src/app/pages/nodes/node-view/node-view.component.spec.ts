@@ -12,14 +12,13 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SpinnerModule } from 'app/shared/spinner/spinner.module';
 import { ToastrService, ToastrModule } from 'ngx-toastr';
 
-
 describe('NodeViewComponent', () => {
   let component: NodeViewComponent;
   let fixture: ComponentFixture<NodeViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NodeViewComponent ],
+      declarations: [NodeViewComponent],
       imports: [
         NgbModule.forRoot(),
         ReactiveFormsModule,
@@ -35,10 +34,9 @@ describe('NodeViewComponent', () => {
         HttpHandler,
         ConfigurationService,
         TokenStorage,
-        ToastrService
-      ]
-    })
-    .compileComponents();
+        ToastrService,
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

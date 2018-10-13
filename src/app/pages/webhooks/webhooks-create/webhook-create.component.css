@@ -1,3 +1,4 @@
+
 .heading
 {
     background-color: #F7F7F7;
@@ -6,20 +7,27 @@ button
 {
     margin-top: 10px;
 }
-h1, .form-group, .bottomHeading
+h1, .text
 {
-    padding: 10px;
+    padding: 5px;
     color: #797979;
 }
-.form-group
+
+.text{
+    margin-left: 15px;
+}
+
+.form
 {
     margin-top: 10px;
 }
 .break
 {
     background-color: #F7F7F7;
-    height: 20px;
+    height: 30px;
     border-bottom: 1px solid #C9C9C9;
+    margin-top: 5px;
+    margin-left: 0px;
 }
 
 #delete
@@ -30,6 +38,7 @@ h1, .form-group, .bottomHeading
 #add
 {
     font-size: 90%;
+    margin-left: 30px;
 }
 
 .spans
@@ -40,11 +49,6 @@ h1, .form-group, .bottomHeading
 {
     cursor: pointer;
 }
-
-#bottomTable
-{
-    padding: 20px;
-}
 .required
 {
     font-size: 40%;
@@ -52,4 +56,11 @@ h1, .form-group, .bottomHeading
 .alerts
 {
     margin-top: 5px;
+}
+.checkBox
+{
+    padding: 5px 15px;
+}
+.bottom-buttons {
+    margin-bottom: 15px;
 }

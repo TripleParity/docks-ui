@@ -3,6 +3,9 @@ import { Task } from '../../../models/task/task.model';
 import { TaskService, TaskError } from '../../../services/task/task.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { NodeService, NodeError } from 'services/node/node.service';
+import { Node } from 'app/models/node/node.model';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-task-list-view',
@@ -12,15 +15,18 @@ import { Router } from '@angular/router';
 export class TaskListViewComponent implements OnInit {
   constructor(
     private taskService: TaskService,
+    private nodeService: NodeService,
     private router: Router,
     private toastr: ToastrService
   ) {}
-  public tasks: Task[] = [];
+  public tasks: Task[];
+  public searchString: Task[];
   public previous = 0;
   public isLoaded = false;
   public selected = [];
 
   ngOnInit() {
+    this.tasks = [];
     this.fetchTasks();
   }
 
@@ -28,12 +34,28 @@ export class TaskListViewComponent implements OnInit {
     this.taskService.getTasks().subscribe(
       (task) => {
         this.tasks = task;
+        this.searchString = [...this.tasks];
+
+        this.prettifyTasks();
         this.isLoaded = true;
       },
       (err: TaskError) => {
         this.toastr.error(err.message, 'An error occured');
       }
     );
+  }
+
+  prettifyTasks() {
+    this.tasks.forEach((elem) => {
+      elem.Name = this.getTaskName(
+        elem.Spec.ContainerSpec.Labels,
+        elem.Slot,
+        elem.ID
+      );
+      elem.Spec.ContainerSpec.Image = this.getImage(
+        elem.Spec.ContainerSpec.Image
+      );
+    });
   }
 
   getRowHeight(row) {
@@ -48,7 +70,32 @@ export class TaskListViewComponent implements OnInit {
     }
   }
 
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.searchString.filter((task: Task) => {
+      return (
+        task.Name.toLowerCase().indexOf(val) !== -1 ||
+        task.Spec.ContainerSpec.Image.toLowerCase().indexOf(val) !== -1 ||
+        task.NodeHostname.toLowerCase().indexOf(val) !== -1 ||
+        task.Status.State.toLowerCase().indexOf(val) !== -1 ||
+        !val
+      );
+    });
+
+    // update the rows
+    this.tasks = temp;
+    // Whenever the filter changes, always go back to the first page
+    // this.table.offset = 0;
+  }
+
   onSelect({ selected }) {
     this.router.navigate(['/tasks/' + selected[0].ID]);
+  }
+
+  getImage(image: String): string {
+    const taskImage = image.split('@');
+    return taskImage[0];
   }
 }

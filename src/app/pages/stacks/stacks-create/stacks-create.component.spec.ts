@@ -10,6 +10,8 @@ import { ConfigurationService } from 'services/configuration/configuration.servi
 import { TokenStorage } from 'app/classes/tokenstorage/tokenstorage';
 import { ToastrService, ToastrModule } from 'ngx-toastr';
 
+import { AceEditorModule } from 'ng2-ace-editor';
+
 describe('StacksCreateComponent', () => {
   let component: StacksCreateComponent;
   let fixture: ComponentFixture<StacksCreateComponent>;
@@ -22,6 +24,7 @@ describe('StacksCreateComponent', () => {
         NgbModule,
         RouterTestingModule,
         ToastrModule.forRoot(),
+        AceEditorModule,
       ],
       providers: [
         StackService,

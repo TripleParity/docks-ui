@@ -49,7 +49,11 @@ export class AuthService {
    * @param {string} token
    * @returns {Observable<AuthError>}
    */
-  public getToken(username: string, password: string, token: string): Observable<AuthError> {
+  public getToken(
+    username: string,
+    password: string,
+    token: string
+  ): Observable<AuthError> {
     return this.http
       .post(
         this.config.getAPIHostname() + '/api/auth/token',
@@ -74,9 +78,13 @@ export class AuthService {
           } else if (err.status === 401) {
             return ErrorObservable.create(AuthError.AUTH_ERR_CREDENTIALS);
           } else if (err.status === 402) {
-            return ErrorObservable.create(AuthError.AUTH_ERR_INITIAL_TWO_FACTOR_TOKEN);
+            return ErrorObservable.create(
+              AuthError.AUTH_ERR_INITIAL_TWO_FACTOR_TOKEN
+            );
           } else if (err.status === 400) {
-            return ErrorObservable.create(AuthError.AUTH_ERR_TWO_FACTOR_TOKEN_REQUIRED);
+            return ErrorObservable.create(
+              AuthError.AUTH_ERR_TWO_FACTOR_TOKEN_REQUIRED
+            );
           } else {
             return ErrorObservable.create(AuthError.AUTH_ERR);
           }
@@ -106,7 +114,7 @@ export class AuthService {
     this.loggedIn.next(false);
   }
 
-    /**
+  /**
    * Used to get a token from docks-api
    *
    * @param {string} username
@@ -117,7 +125,7 @@ export class AuthService {
     return this.http
       .post(
         this.config.getAPIHostname() + '/api/auth/qr',
-        { username: username, password: password},
+        { username: username, password: password },
         {
           responseType: 'json',
         }
@@ -125,9 +133,9 @@ export class AuthService {
       .pipe(
         map((body) => {
           if (body['qr'] === null) {
-            return <QRReturn> {qrImageData: ''};
+            return <QRReturn>{ qrImageData: '' };
           }
-          return <QRReturn> {qrImageData: body['qr']};
+          return <QRReturn>{ qrImageData: body['qr'] };
         }),
         catchError((err: HttpErrorResponse) => {
           return ErrorObservable.create(AuthError.AUTH_ERR);

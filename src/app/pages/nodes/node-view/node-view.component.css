@@ -19,3 +19,8 @@
     color: darkgrey;
     border: 1px solid darkgrey; 
 }
+
+.col-sm-4
+{
+  padding-left: 0px;
+}

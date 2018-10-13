@@ -1,71 +1,120 @@
-<div class="row heading">
-  <div class="col-sm-10">
-    <h1>
-      <i class="fa fa-book"></i>
-      Volume:
-      <i class="inserts"> "insert Volume name here" </i> Detail
-    </h1>
+<div *ngIf="isLoaded">
+  <div class="row heading">
+    <div class="col-sm-10">
+      <h1>
+        <i class="fa fa-book"></i>
+        Volume:
+        <span class="detailID"> {{volumeModel.Name}} </span>
+      </h1>
+    </div>
+    <div class="col-sm-2 label">
+      <button class="btn btn-info" (click)="open(content)">
+        <i class="fa fa-trash"></i> Delete</button>
+    </div>
   </div>
-  <div class="col-sm-2 label">
-    <button class="btn btn-info">
-      <i class="fa fa-trash"></i> Delete</button>
+
+  <div class="row title">
+    <div class="innerTitle col-sm-12">
+      <h3>General</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="detailTable">
+      <tbody>
+        <tr>
+          <td class="detailName">
+            Name:
+          </td>
+          <td class="detailValue">
+            <span class="inserts"> {{volumeModel.Name}} </span>
+          </td>
+        </tr>
+        <tr>
+          <td class="detailName">
+            Scope:
+          </td>
+          <td class="detailValue">
+            <span class="inserts"> {{volumeModel.Scope}} </span>
+          </td>
+        </tr>
+        <tr>
+          <td class="detailName">
+            Mount Point:
+          </td>
+          <td class="detailValue">
+            <span class="inserts"> {{volumeModel.Mountpoint}} </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row title">
+    <div class="innerTitle col-sm-12">
+      <h3>Driver</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="detailTable">
+      <tbody>
+        <tr>
+          <td class="detailName">
+            Driver:
+          </td>
+          <td class="detailValue">
+            <span class="inserts"> {{volumeModel.Driver}} </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row title">
+    <div class="innerTitle col-sm-12">
+      <h3>Labels</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="detailTable">
+      <tbody *ngFor="let key of labels; let i=index">
+        <tr>
+          <td class="detailName">
+            {{key}}
+          </td>
+          <td class="detailValue">
+            <span class="inserts"> {{volumeModel.Labels[key]}} </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
-<div class="row title">
-  <div class="innerTitle col-sm-12">
-    <h3>General</h3>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <div class="modal-title">
+      <h4 id="modal-basic-title">Remove Volume</h4>
+    </div>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div>
-
-<div class="row">
-  <table>
-    <tbody>
-      <tr>
-        <td class="name">
-          Name:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert volume name here" </i>
-        </td>
-      </tr>
-      <tr>
-        <td class="name">
-          Scope:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert volume scope here" </i>
-        </td>
-      </tr>
-      <tr>
-        <td class="name">
-          Mount Point:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert volume mount point here" </i>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="row title">
-  <div class="innerTitle col-sm-12">
-    <h3>Driver</h3>
+  <div class="modal-body" align="center">
+    <h5>Are you sure you want to remove the following Volume</h5>
+    <h5>
+      <pre>{{volumeModel.Name}}</pre>
+    </h5>
   </div>
-</div>
-
-<div class="row">
-  <table>
-    <tbody>
-      <tr>
-        <td class="name">
-          Driver Name:
-        </td>
-        <td class="value">
-          <i class="inserts"> "insert volume driver name here" </i>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="forceCheck">
+    <div class="checkbox">
+      <label><input type="checkbox" (change)="changeCheck($event)" value=""> Force </label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Cancel click')">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="removeVolume()">Delete</button>
+  </div>
+</ng-template>

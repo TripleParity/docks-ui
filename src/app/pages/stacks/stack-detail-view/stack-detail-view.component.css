@@ -4,3 +4,7 @@
 #serviceTable {
     margin-top: 20px;
 }
+.modal-title {
+    width: 100%;
+    text-align: center;
+}
