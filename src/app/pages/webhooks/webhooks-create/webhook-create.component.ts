@@ -31,25 +31,33 @@ export class WebhookCreateComponent implements OnInit, AfterViewInit {
   public nodes: boolean;
   public default_text = '(json) => { return json;}';
   public text: string = this.default_text;
-  public triggerTypes = ['Volumes', 'Network', 'Service', 'Node', 'Image', 'Daemon', 'Secret', 'Config'];
+  public triggerTypes = [
+    'Volumes',
+    'Network',
+    'Service',
+    'Node',
+    'Image',
+    'Daemon',
+    'Secret',
+    'Config',
+  ];
 
   webhookForm: FormGroup = this.fb.group({
     Name: ['', Validators.required],
     url: ['', Validators.required],
     Labels: new FormGroup(this.initTriggers()),
-    Editor: ['']
+    Editor: [''],
   });
 
   constructor(
     private wh: WebhookService,
     private toastr: ToastrService,
     private router: Router,
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) {
     this.name = '';
     this.url = '';
   }
-
 
   ngAfterViewInit() {
     this.editor.setTheme('dreamweaver');
@@ -61,8 +69,6 @@ export class WebhookCreateComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {}
 
-
-
   initLabels() {
     return this.fb.group({
       Name: ['', Validators.required],
@@ -71,7 +77,7 @@ export class WebhookCreateComponent implements OnInit, AfterViewInit {
 
   initTriggers() {
     const fGroup = {};
-    this.triggerTypes.forEach(element => {
+    this.triggerTypes.forEach((element) => {
       fGroup[element] = new FormControl(false);
     });
 
@@ -105,10 +111,7 @@ export class WebhookCreateComponent implements OnInit, AfterViewInit {
     let temp = '{';
 
     while (i < this.Labels.length) {
-      temp +=
-        '"' +
-        this.Labels.at(i).get('Name').value +
-        '":"';
+      temp += '"' + this.Labels.at(i).get('Name').value + '":"';
       i++;
     }
 
@@ -158,7 +161,7 @@ export class WebhookCreateComponent implements OnInit, AfterViewInit {
     if (this.text !== this.default_text) {
       webby.modifier = btoa(this.text);
     }
-    console.log({webby});
+    console.log({ webby });
     this.wh.createWebhook(webby).subscribe(
       (result: WebhookError) => {
         this.toastr.success(
@@ -174,13 +177,14 @@ export class WebhookCreateComponent implements OnInit, AfterViewInit {
   }
 
   public hasNameAndURL() {
-    if (this.webhookForm.get('Name').value > 0 && this.webhookForm.get('url').value > 0) {
+    if (
+      this.webhookForm.get('Name').value > 0 &&
+      this.webhookForm.get('url').value > 0
+    ) {
       return true;
     }
     return false;
   }
 
   onChange() {}
-
-
 }
